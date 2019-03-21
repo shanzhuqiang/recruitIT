@@ -1,0 +1,103 @@
+<view class='homeWrap'>
+  <view class='headRow'>
+    <view class='addressWrap'>
+      <text class='address'>{{ address }}</text>
+      <image class='xiala' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/xiala.png'></image>
+    </view>
+    <view class='serachIptWrap'>
+      <image class='search' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/search.png'></image>
+      <input class='serachIpt' placeholder="你想搜什么？" />
+    </view>
+  </view>
+  <view class='middleWrap'>
+    <view class='bannerWrap'>
+      <swiper
+        indicator-dots
+        autoplay
+      >
+        <block wx:for="{{bannerImg}}" wx:key="">
+          <swiper-item>
+            <image src="{{item}}" class="bannerImg" />
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <view class='btnWrap'>
+      <view class='colBtn'>
+        <view class='imgBox'>
+          <image class='mingqi' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/mingqi.png'></image>
+        </view>
+        <view>名企专区</view>
+      </view>
+      <view class='colBtn'>
+        <view class='imgBox'>
+          <image class='zhiwei' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/zhiwei.png'></image>
+        </view>
+        <view>名企专区</view>
+      </view>
+      <view class='colBtn'>
+        <view class='imgBox'>
+          <image class='xiangmu' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/xiangmu.png'></image>
+        </view>
+        <view>名企专区</view>
+      </view>
+      <view class='colBtn'>
+        <view class='imgBox'>
+          <image class='rencai' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/rencai.png'></image>
+        </view>
+        <view>名企专区</view>
+      </view>
+    </view>
+    <view class='tuiguangWrap'>
+      <image class='tuiguangBtn' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/tuiguangBtn1.png'></image>
+      <image style='float: right' class='tuiguangBtn' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/tuiguangBtn2.png'></image>
+    </view>
+  </view>
+  <view class='rowHeight'></view>
+  <view class='title'>
+    <text class='{{ titleChoosed === "project" ? "active" : "" }}' bindtap='chooseTitle' data-id="project">最新项目</text>
+    <text class='{{ titleChoosed === "quarters" ? "active" : "" }}' style='margin-left: 60rpx;' bindtap='chooseTitle' data-id="quarters">最新岗位</text>
+  </view>
+  <view class='itemWrap' wx:for="{{ projectList }}" wx:key="">
+    <view class='first'>
+      <view class='box'>招标</view>
+      <view class='title'>{{ item.title }}</view>
+      <view class='money'>{{ item.money }}</view>
+    </view>
+    <view class='second'>
+      <text style='padding-left: 0'>{{ item.address }}</text>
+      <text class='middleText'>{{ item.time }}</text>
+      <text>{{ item.typeOne }}</text>
+    </view>
+    <view class='content'>
+      {{ item.content }}
+    </view>
+    <view class='peopleNum'>
+      {{ item.peopleNum }}人已投递
+    </view>
+  </view>
+  <view class='itemWrap itemWrapTwo' wx:for="{{ quartersList }}" wx:key="">
+    <view class='first'>
+      <view class='title'>{{ item.title }}</view>
+      <view class='money'>{{ item.money }}</view>
+    </view>
+    <view class='second'>
+      <text style='padding-left: 0'>{{ item.address }}</text>
+      <text class='middleText'>{{ item.time }}</text>
+      <text>{{ item.education }}</text>
+    </view>
+    <view class='picBox'>
+      <view class='left'>
+        <image class='logoImg' wx:if="{{item.img !== ''}}" src='{{ item.img }}' ></image>
+      </view>
+      <view class='right'>
+        <view class='logoName'>{{ item.name }}</view>
+        <view class='logoType'>{{ item.typeOne }}</view>
+      </view>
+    </view>
+  </view>
+  <view style='height: 90rpx;'></view>
+  <view class='btootmNavWrap'>
+  
+  </view>
+</view>

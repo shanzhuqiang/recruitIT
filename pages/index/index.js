@@ -16,11 +16,10 @@ Page({
     this.setData({
       imgSrc: app.globalData.imgSrc
     })
-
   },
   goFindPartTime() {
     wx.navigateTo({
-      url: '../findPartTime/findPartTime'
+      url: '../home/home'
     })
   },
 
