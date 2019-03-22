@@ -1,0 +1,13 @@
+<!--pages/chooseCity/chooseCity.wxml-->
+<view class='chooseCityWrap'>
+  <view class='leftBox'>
+    <scroll-view scroll-y style="height: 100%;">
+      <view class='{{ chooseActive === "used" ? "active" : "" }} item' bindtap='chooseCity' data-id="used">常用</view>
+      <view class='{{ chooseActive === "municipality" ? "active" : "" }} item' bindtap='chooseCity' data-id="municipality">直辖市</view>
+      <view class='{{ chooseActive === item.id ? "active" : "" }} item' bindtap='chooseCity' wx:for="{{ cityList }}" data-id="{{ item.id }}" wx:key="">{{ item.label }}</view>
+    </scroll-view>
+  </view>
+  <view class='rightBox'>
+  
+  </view>
+</view>

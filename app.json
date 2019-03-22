@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/findPartTime/findPartTime",
-    "pages/home/home"
+    "pages/home/home",
+    "pages/chooseCity/chooseCity"
   ],
   "window": {
     "backgroundTextStyle": "light",

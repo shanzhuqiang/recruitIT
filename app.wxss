@@ -8,4 +8,47 @@
   bottom: 0;
   left: 0;
   right: 0;
+  font-family: PingFangSC-Regular;
+	font-size: 22rpx;
+	line-height: 24rpx;
+	color: #999;
+}
+/* dibuanniu */
+.btootmNavWrap .btnBox{
+  width: 20%;
+  float: left;
+  height: 98rpx;
+  text-align: center;
+  position: relative;
+}
+.btootmNavWrap .btnBox .imgBox{
+  height: 55rpx;
+  padding-top: 10rpx;
+}
+.btootmNavWrap .btnBox.active{
+  color: #333;
+}
+.btootmNavWrap .btnBox .homePng{
+  width: 43rpx;
+  height: 40rpx; 
+}
+.btootmNavWrap .btnBox .shangjin{
+  width: 35rpx;
+  height: 40rpx; 
+}
+.btootmNavWrap .btnBox .addfabu{
+  width: 114rpx;
+  height: 114rpx;
+  position: absolute;
+  left: 18rpx;
+  top: -50rpx;
+}
+.btootmNavWrap .btnBox .luntan{
+  width: 37rpx;
+  height: 33rpx; 
+  padding-top: 6rpx;
+}
+.btootmNavWrap .btnBox .my{
+  width: 34rpx;
+  height: 39rpx; 
 }
