@@ -1,5 +1,0 @@
-<view class='findPartTimeWrap'>
-  <view class='headRow'>
-    <view>{{ address }}</view>
-  </view>
-</view>

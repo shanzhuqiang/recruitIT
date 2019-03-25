@@ -23,34 +23,34 @@
       </swiper>
     </view>
     <view class='btnWrap'>
-      <view class='colBtn'>
+      <view class='colBtn' bindtap='goEnterprise'>
         <view class='imgBox'>
           <image class='mingqi' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/mingqi.png'></image>
         </view>
         <view>名企专区</view>
       </view>
-      <view class='colBtn'>
+      <view class='colBtn' bindtap='goGoodJob'>
         <view class='imgBox'>
           <image class='zhiwei' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/zhiwei.png'></image>
         </view>
-        <view>名企专区</view>
+        <view>职位精选</view>
       </view>
-      <view class='colBtn'>
+      <view class='colBtn' bindtap='goProjectHall'>
         <view class='imgBox'>
           <image class='xiangmu' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/xiangmu.png'></image>
         </view>
-        <view>名企专区</view>
+        <view>项目大厅</view>
       </view>
-      <view class='colBtn'>
+      <view class='colBtn' bindtap='goTalentResume'>
         <view class='imgBox'>
           <image class='rencai' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/rencai.png'></image>
         </view>
-        <view>名企专区</view>
+        <view>人才简历</view>
       </view>
     </view>
     <view class='tuiguangWrap'>
-      <image class='tuiguangBtn' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/tuiguangBtn1.png'></image>
-      <image style='float: right' class='tuiguangBtn' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/tuiguangBtn2.png'></image>
+      <image class='tuiguangBtn' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/tuiguangBtn1.png' bindtap='goSpread'></image>
+      <image style='float: right' class='tuiguangBtn' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/tuiguangBtn2.png' bindtap='goGoldVote'></image>
     </view>
   </view>
   <view class='rowHeight'></view>

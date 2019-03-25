@@ -2,9 +2,16 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/findPartTime/findPartTime",
     "pages/home/home",
-    "pages/chooseCity/chooseCity"
+    "pages/chooseCity/chooseCity",
+    "pages/enterprise/enterprise",
+    "pages/enterpriseInfo/enterpriseInfo",
+    "pages/goodJob/goodJob",
+    "pages/projectHall/projectHall",
+    "pages/talentResume/talentResume",
+    "pages/goldVote/goldVote",
+    "pages/oldGoldVote/oldGoldVote",
+    "pages/spread/spread"
   ],
   "window": {
     "backgroundTextStyle": "light",

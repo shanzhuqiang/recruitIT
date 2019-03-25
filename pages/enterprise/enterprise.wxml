@@ -1,0 +1,42 @@
+<!--pages/enterprise/enterprise.wxml-->
+<view class='enterpriseWrap'>
+  <view class='filterWrap'>
+    <view class='colBox {{ topFilterBtn === "rongzi" ? "active" : "" }}' bindtap='topFilter' data-id="rongzi">
+      <text>融资</text>
+      <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ topFilterBtn === "rongzi" ? imgSrc + "/arrowUp.png" : imgSrc + "/arrowDown.png" }}'></image>
+    </view>
+    <view class='colBox {{ topFilterBtn === "guimo" ? "active" : "" }}' bindtap='topFilter' data-id="guimo">
+      <text>规模</text>
+      <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ topFilterBtn === "guimo" ? imgSrc + "/arrowUp.png" : imgSrc + "/arrowDown.png" }}'></image>
+    </view>
+    <view class='colBox {{ topFilterBtn === "hangye" ? "active" : "" }}' bindtap='topFilter' data-id="hangye">
+      <text>行业</text>
+      <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ topFilterBtn === "hangye" ? imgSrc + "/arrowUp.png" : imgSrc + "/arrowDown.png" }}'></image>
+    </view>
+  </view>
+  <view class='itemBox'>
+    <view class='topRow' bindtap='goEnterpriseInfo'>
+      <image class='enterpriseImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/logo.png'></image>
+      <view class='rightTitle'>
+        <view class='topTitle'>杭州魅智科技有限公司</view>
+        <view class='downNum'>
+          <text>在招职位3</text>
+          <text class='senondText'>在招项目3</text>
+        </view>
+      </view>
+    </view>
+    <view class='downRow'>
+      <view class='tags'>未融资</view>
+      <view class='tags'>100-499人</view>
+      <view class='tags'>移动互联网</view>
+    </view>
+  </view>
+  <view class='filterMask' wx:if="{{ maskOnOff }}">
+    <view class='maskBody'>
+      <view class='title'>{{ filterTitle }}</view>
+      <view class='filterBtnWrap' wx:for="{{ filterList }}" wx:key="">
+        <view class='filterBtn {{ filterBtn === item ? "active" : ""}}' style='{{item === "" ? "visibility:hidden" : ""}}' wx:for="{{ item }}" data-id='{{ item }}' bindtap='chooseFilter' wx:key="">{{ item }}</view>
+      </view>
+    </view>
+  </view>
+</view>

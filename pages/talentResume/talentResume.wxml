@@ -1,0 +1,52 @@
+<!--pages/talentResume/talentResume.wxml-->
+<view class='talentResumeWrap'>
+  <view class='filterWrap'>
+    <view class='colBox {{ topFilterBtn === "quyu" ? "active" : "" }}' bindtap='topFilter' data-id="quyu">
+      <text>区域</text>
+      <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ topFilterBtn === "quyu" ? imgSrc + "/arrowUp.png" : imgSrc + "/arrowDown.png" }}'></image>
+    </view>
+    <view class='colBox {{ topFilterBtn === "jingyan" ? "active" : "" }}' bindtap='topFilter' data-id="jingyan">
+      <text>经验</text>
+      <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ topFilterBtn === "jingyan" ? imgSrc + "/arrowUp.png" : imgSrc + "/arrowDown.png" }}'></image>
+    </view>
+    <view class='colBox {{ topFilterBtn === "yuexin" ? "active" : "" }}' bindtap='topFilter' data-id="yuexin">
+      <text>月薪</text>
+      <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ topFilterBtn === "yuexin" ? imgSrc + "/arrowUp.png" : imgSrc + "/arrowDown.png" }}'></image>
+    </view>
+  </view>
+  <view class='itemWrap' wx:for="{{ talentResumeList }}" wx:key="">
+    <view class='firstRow'>
+      <view class='leftImgBox'>
+        <image class='leftImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc + "/logo.png" }}'></image>
+      </view>
+      <view class='rightBox'>
+        <view class='firstTitle'>王大伟<text class='typeName'>高级UI设计师</text></view>
+        <view class='secondTags'>
+          <text style='padding-left: 0'>三年</text>
+          <text class='middleTag'>本科</text>
+          <text>10k-14k</text>
+        </view>
+        <view class='thirdTags'>
+          <text>PS</text>
+          <text>AI</text>
+          <text>Axure</text>
+          <text>AE</text>
+        </view>
+      </view>
+    </view>
+    <view class='contentWrap'>
+      <view class='content'>
+        我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程
+      </view>
+    </view>
+  </view>
+  <view class='filterMask' wx:if="{{ maskOnOff }}">
+    <view class='maskBody'>
+      <view class='title'>{{ filterTitle }}</view>
+      <view class='filterBtnWrap' wx:for="{{ filterList }}" wx:key="">
+        <view class='filterBtn {{ filterBtn === item ? "active" : ""}}' style='{{item === "" ? "visibility:hidden" : ""}}' wx:for="{{ item }}" data-id='{{ item }}' bindtap='chooseFilter' wx:key="">{{ item }}</view>
+      </view>
+    </view>
+  </view>
+
+</view>

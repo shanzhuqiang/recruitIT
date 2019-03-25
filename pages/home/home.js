@@ -84,9 +84,46 @@ Page({
       this.initQuartersData()
     }
   },
+  // 切换城市
   goChooseCity() {
     wx.navigateTo({
       url: '../chooseCity/chooseCity'
+    })
+  },
+  // 平台推广
+  goSpread() {
+    wx.navigateTo({
+      url: '../spread/spread'
+    })
+  },
+  // 平台推广
+  goGoldVote() {
+    wx.navigateTo({
+      url: '../goldVote/goldVote'
+    })
+  },
+  // 名企专区
+  goEnterprise() {
+    wx.navigateTo({
+      url: '../enterprise/enterprise'
+    })
+  },
+  // 职位精选
+  goGoodJob() {
+    wx.navigateTo({
+      url: '../goodJob/goodJob'
+    })
+  },
+  // 项目大厅
+  goProjectHall() {
+    wx.navigateTo({
+      url: '../projectHall/projectHall'
+    })
+  },
+  // 人才简历
+  goTalentResume() {
+    wx.navigateTo({
+      url: '../talentResume/talentResume'
     })
   },
   /**

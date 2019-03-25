@@ -1,0 +1,40 @@
+<!--pages/goldVote/goldVote.wxml-->
+<view class='goldVoteWrap'>
+  <view style='height: 30rpx;'></view>
+  <view class='topTitle'>
+    参与话题投票赢金币
+    <image class='question' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/question.png' bindtap='openRule'></image>
+    <view class='rightTitle' bindtap='goOldGoldVote'>往期话题</view>
+  </view>
+  <view class='itemBox'>
+    <view class='firstBox'>
+      #你相信第六感吗？
+      <view class='lastTime'>
+        <image class='huatiImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/huati.png'></image>
+        <text>剩余时间：00:24:00</text>
+      </view>
+    </view>
+    <view class='secondBox'>
+      <view class='leftBtn' bindtap='openModal' data-id="on">信</view>
+      <view class='rightBtn' bindtap='openModal' data-id="off">不信</view>
+    </view>
+    <view class='peopleNum'>500人已参与</view>
+  </view>
+  <view class='maskWrap' wx:if="{{ maskOnOff }}">
+    <view class='maskBox'>
+      <view class='title'>投票规则</view>
+      <view class='text'>1、用户推荐的前60位设计师进入评委投票阶段</view>
+      <view class='text'>2、获得过68Design专访、推荐的设计师可直接进入评委投票阶段</view>
+      <view class='text'>3、评委推荐的前10名为年度十佳设计师，如票数相同，将根据设计师的影响力排名、被关注</view>
+      <view class='bottomBtnWrap'>
+        <view class='bottomBtn' bindtap='closeRule'>我知道了</view>
+      </view>
+    </view>
+  </view>
+  
+  <i-modal visible="{{ visible }}" bind:ok="bindOk" bind:cancel="bindClose">
+    <image class='modealImg' wx:if="{{imgSrc !== ''}}" src='{{ openModalType === "on" ? imgSrc + "/btn2.png" : imgSrc + "/btn3.png"}}'></image>
+    <view class='jinbi'>当前金币数：<text class='num'>560</text></view>
+    <view class='jinbi'>您将消耗XX金币参与话题投票</view>
+  </i-modal>
+</view>
