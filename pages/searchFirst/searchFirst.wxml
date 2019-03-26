@@ -1,0 +1,26 @@
+<!--pages/searchFirst/searchFirst.wxml-->
+<view class='searchFirstWrap'>
+  <view class='headRow'>
+    <view class='addressWrap' bindtap="goChooseCity">
+      <text class='address'>{{ address }}</text>
+      <image class='xiala' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/xiala.png'></image>
+    </view>
+    <view class='serachIptWrap'>
+      <image class='search' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/search.png'></image>
+      <input class='serachIpt' placeholder="你想搜什么？" />
+    </view>
+  </view>
+  <view class='historyWrap'>
+    <view class='typeWrap'>
+      <view class='active'>项目</view>
+      <view>岗位</view>
+    </view>
+    <view class='historyBox'>
+      <view class='historyTitle'>搜索历史</view>
+      <view class='historyTag'>
+        <text>日结</text>
+        <text>周末兼职</text>
+      </view>
+    </view>
+  </view>
+</view>

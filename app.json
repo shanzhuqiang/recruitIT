@@ -11,7 +11,9 @@
     "pages/talentResume/talentResume",
     "pages/goldVote/goldVote",
     "pages/oldGoldVote/oldGoldVote",
-    "pages/spread/spread"
+    "pages/spread/spread",
+    "pages/searchFirst/searchFirst",
+    "pages/searchSecond/searchSecond"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,94 @@
+/* pages/searchFirst/searchFirst.wxss */
+
+/* 导航栏 */
+.searchFirstWrap .headRow{
+  height: 76rpx;
+  line-height: 76rpx;
+  padding: 0 30rpx 15rpx;
+}
+.searchFirstWrap .headRow .addressWrap{
+  float: left;
+  width: 100rpx;
+}
+.searchFirstWrap .headRow .addressWrap .address{
+	font-family: PingFangSC-Regular;
+	font-size: 26rpx;
+  color: #333;
+  width: 75rpx;
+  text-align: right;
+}
+.searchFirstWrap .headRow .addressWrap .xiala{
+  width: 15rpx;
+  height: 10rpx;
+  vertical-align: middle;
+  margin-left: 15rpx;
+}
+.searchFirstWrap .headRow .serachIptWrap{
+  margin-left: 100rpx;
+  background-color: #f4f4f4;
+	border-radius: 2px;
+  height: 62rpx;
+  padding-top: 14rpx;
+  padding-left: 80rpx;
+  position: relative;
+}
+.searchFirstWrap .headRow .serachIptWrap .search{
+  width: 26rpx;
+  height: 26rpx;
+  position: absolute;
+  left: 37rpx;
+  top: 26rpx;
+}
+.searchFirstWrap .headRow .serachIptWrap .serachIpt{
+  font-size: 26rpx;
+}
+/* 选择搜索类型 */
+.searchFirstWrap .historyWrap .typeWrap{
+  height: 90rpx;
+  line-height: 90rpx;
+  display: flex;
+  padding: 0 120rpx;
+}
+.searchFirstWrap .historyWrap .typeWrap view{
+  height: 90rpx;
+  text-align: center;
+  width: 50%;
+	font-family: PingFangSC-Regular;
+	font-size: 30rpx;
+	color: #666;
+}
+.searchFirstWrap .historyWrap .typeWrap view.active{
+	color: #333;
+	font-family: PingFangSC-Medium;
+  position: relative;
+}
+.searchFirstWrap .historyWrap .typeWrap view.active::after{
+  content: "";
+  position: absolute;
+	width: 40rpx;
+	height: 7rpx;
+  background: #1a49d2;
+  left: 107rpx;
+  bottom: 0rpx
+}
+.searchFirstWrap .historyWrap .historyBox{
+  padding: 0 30rpx;
+}
+.searchFirstWrap .historyWrap .historyBox .historyTitle{
+	font-family: PingFangSC-Regular;
+	font-size: 28rpx;
+	color: #333;
+}
+.searchFirstWrap .historyWrap .historyBox .historyTag text{
+  display: inline-block;
+	height: 62rpx;
+	line-height: 62rpx;
+  text-align: center;
+	border-radius: 4rpx;
+	border: solid 1rpx #f0f0f0;
+	font-family: PingFangSC-Regular;
+	font-size: 24rpx;
+	color: #666;
+  padding: 0 20rpx;
+  margin-right: 18rpx;
+}

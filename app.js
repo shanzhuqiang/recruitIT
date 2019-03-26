@@ -35,6 +35,7 @@ App({
   },
   globalData: {
     imgSrc: '../../images',
+    userType: '',
     userInfo: null
   }
 })

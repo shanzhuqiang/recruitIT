@@ -1,4 +1,4 @@
-// pages/index/index.js
+// pages/searchFirst/searchFirst.js
 const app = getApp()
 Page({
 
@@ -6,9 +6,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imgSrc: ''
+    imgSrc: '',
+    address: '杭州'
   },
-
+  // 切换城市
+  goChooseCity() {
+    wx.navigateTo({
+      url: '../chooseCity/chooseCity'
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -17,13 +23,7 @@ Page({
       imgSrc: app.globalData.imgSrc
     })
   },
-  goFindPartTime(e) {
-    let key = e.currentTarget.dataset.id
-    app.globalData.userType = key
-    wx.navigateTo({
-      url: '../home/home'
-    })
-  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

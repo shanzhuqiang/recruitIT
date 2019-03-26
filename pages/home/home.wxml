@@ -4,9 +4,9 @@
       <text class='address'>{{ address }}</text>
       <image class='xiala' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/xiala.png'></image>
     </view>
-    <view class='serachIptWrap'>
+    <view class='serachIptWrap' bindtap='goHomeSearch'>
       <image class='search' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/search.png'></image>
-      <input class='serachIpt' placeholder="你想搜什么？" />
+      <input class='serachIpt' placeholder="你想搜什么？" disabled />
     </view>
   </view>
   <view class='middleWrap'>
@@ -54,45 +54,78 @@
     </view>
   </view>
   <view class='rowHeight'></view>
-  <view class='title'>
-    <text class='{{ titleChoosed === "project" ? "active" : "" }}' bindtap='chooseTitle' data-id="project">最新项目</text>
-    <text class='{{ titleChoosed === "quarters" ? "active" : "" }}' style='margin-left: 60rpx;' bindtap='chooseTitle' data-id="quarters">最新岗位</text>
-  </view>
-  <view class='itemWrap' wx:for="{{ projectList }}" wx:key="">
-    <view class='first'>
-      <view class='box'>招标</view>
-      <view class='title'>{{ item.title }}</view>
-      <view class='money'>{{ item.money }}</view>
+  <view class='typeTitleWrap' wx:if="{{ userType === 'first' }}">
+    <view class='title'>
+      <text class='{{ titleChoosed === "project" ? "active" : "" }}' bindtap='chooseTitle' data-id="project">最新项目</text>
+      <text class='{{ titleChoosed === "quarters" ? "active" : "" }}' style='margin-left: 60rpx;' bindtap='chooseTitle' data-id="quarters">最新岗位</text>
     </view>
-    <view class='second'>
-      <text style='padding-left: 0'>{{ item.address }}</text>
-      <text class='middleText'>{{ item.time }}</text>
-      <text>{{ item.typeOne }}</text>
-    </view>
-    <view class='content'>
-      {{ item.content }}
-    </view>
-    <view class='peopleNum'>
-      {{ item.peopleNum }}人已投递
-    </view>
-  </view>
-  <view class='itemWrap itemWrapTwo' wx:for="{{ quartersList }}" wx:key="">
-    <view class='first'>
-      <view class='title'>{{ item.title }}</view>
-      <view class='money'>{{ item.money }}</view>
-    </view>
-    <view class='second'>
-      <text style='padding-left: 0'>{{ item.address }}</text>
-      <text class='middleText'>{{ item.time }}</text>
-      <text>{{ item.education }}</text>
-    </view>
-    <view class='picBox'>
-      <view class='left'>
-        <image class='logoImg' wx:if="{{item.img !== ''}}" src='{{ item.img }}' ></image>
+    <view class='itemWrap' wx:for="{{ projectList }}" wx:key="">
+      <view class='first'>
+        <view class='box'>招标</view>
+        <view class='title'>{{ item.title }}</view>
+        <view class='money'>{{ item.money }}</view>
       </view>
-      <view class='right'>
-        <view class='logoName'>{{ item.name }}</view>
-        <view class='logoType'>{{ item.typeOne }}</view>
+      <view class='second'>
+        <text style='padding-left: 0'>{{ item.address }}</text>
+        <text class='middleText'>{{ item.time }}</text>
+        <text>{{ item.typeOne }}</text>
+      </view>
+      <view class='content'>
+        {{ item.content }}
+      </view>
+      <view class='peopleNum'>
+        {{ item.peopleNum }}人已投递
+      </view>
+    </view>
+    <view class='itemWrap itemWrapTwo' wx:for="{{ quartersList }}" wx:key="">
+      <view class='first'>
+        <view class='title'>{{ item.title }}</view>
+        <view class='money'>{{ item.money }}</view>
+      </view>
+      <view class='second'>
+        <text style='padding-left: 0'>{{ item.address }}</text>
+        <text class='middleText'>{{ item.time }}</text>
+        <text>{{ item.education }}</text>
+      </view>
+      <view class='picBox'>
+        <view class='left'>
+          <image class='logoImg' wx:if="{{item.img !== ''}}" src='{{ item.img }}' ></image>
+        </view>
+        <view class='right'>
+          <view class='logoName'>{{ item.name }}</view>
+          <view class='logoType'>{{ item.typeOne }}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='typeTitleWrap' wx:if="{{ userType === 'second' }}">
+    <view class='titleSecond'>
+      <text>精英简历</text>
+    </view>
+    <view class='jinyingItemWrap' wx:for="{{ talentResumeList }}" wx:key="">
+      <view class='firstRow'>
+        <view class='leftImgBox'>
+          <image class='leftImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc + "/logo.png" }}'></image>
+        </view>
+        <view class='rightBox'>
+          <view class='firstTitle'>王大伟<text class='typeName'>高级UI设计师</text></view>
+          <view class='secondTags'>
+            <text style='padding-left: 0'>三年</text>
+            <text class='middleTag'>本科</text>
+            <text>10k-14k</text>
+          </view>
+          <view class='thirdTags'>
+            <text>PS</text>
+            <text>AI</text>
+            <text>Axure</text>
+            <text>AE</text>
+          </view>
+        </view>
+      </view>
+      <view class='contentWrap'>
+        <view class='content'>
+          我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程
+        </view>
       </view>
     </view>
   </view>

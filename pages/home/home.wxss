@@ -105,7 +105,7 @@ page{
   background: #f8f8f8;
 }
 /* 切换title */
-.homeWrap > .title{
+.homeWrap > .typeTitleWrap .title{
   height: 88rpx;
   line-height: 88rpx;
   font-size: 24rpx;
@@ -113,17 +113,29 @@ page{
   border-bottom: 1rpx solid #eee;
   padding: 0 30rpx;
 }
-.homeWrap > .title text{
+.homeWrap > .typeTitleWrap .titleSecond{
+  border-bottom: 1rpx solid #eee;
+  padding: 0 30rpx;
+  font-size: 24rpx;
+  color: #666;
+  height: 88rpx;
+  line-height: 88rpx;
+}
+.homeWrap > .typeTitleWrap .titleSecond text{
+  border-left: 6rpx solid #2e76f9;
+  padding-left: 20rpx;
+}
+.homeWrap > .typeTitleWrap .title text{
   display: inline-block;
   height: 88rpx;
 }
-.homeWrap .title .active{
+.homeWrap > .typeTitleWrap .title .active{
   font-size: 26rpx;
   color: #333;
 	font-family: PingFangSC-Medium;
   position: relative;
 }
-.homeWrap .title .active::after{
+.homeWrap > .typeTitleWrap .title .active::after{
   content: "";
   position: absolute;
   width: 40rpx;
@@ -248,4 +260,84 @@ page{
 	font-family: PingFangSC-Regular;
 	font-size: 24rpx;
 	color: #999;
+}
+/* 精英简历列表 */
+.homeWrap .typeTitleWrap .jinyingItemWrap{
+  padding: 0 30rpx;
+  border-bottom: 16rpx solid #f8f8f8;
+}
+.homeWrap .typeTitleWrap .jinyingItemWrap .firstRow{
+  height: 130rpx;
+  padding: 40rpx 0 20rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+.homeWrap .typeTitleWrap .jinyingItemWrap .firstRow .leftImgBox{
+  width: 80rpx;
+  height: 80rpx;
+  float: left;
+}
+.homeWrap .typeTitleWrap .jinyingItemWrap .firstRow .leftImgBox .leftImg{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+.homeWrap .typeTitleWrap .jinyingItemWrap .firstRow .rightBox{
+  margin-left: 110rpx;
+}
+.homeWrap .typeTitleWrap .jinyingItemWrap .firstRow .rightBox .firstTitle{
+	font-family: PingFangSC-Medium;
+	font-size: 34rpx;
+  height: 34rpx;
+  line-height: 34rpx;
+	color: #333;
+}
+.homeWrap .typeTitleWrap .jinyingItemWrap .firstRow .rightBox .firstTitle .typeName{
+	font-family: PingFangSC-Regular;
+	font-size: 26rpx;
+  height: 26rpx;
+  line-height: 26rpx;
+	color: #333;
+  margin-left: 24rpx;
+}
+.homeWrap .typeTitleWrap .jinyingItemWrap .firstRow .rightBox .secondTags{
+	font-family: PingFangSC-Regular;
+	font-size: 24rpx;
+  height: 24rpx;
+  line-height: 24rpx;
+	color: #999;
+  padding-top: 20rpx;
+}
+.homeWrap .typeTitleWrap .jinyingItemWrap .firstRow .rightBox .secondTags text{
+  padding: 0 15rpx;
+}
+.homeWrap .typeTitleWrap .jinyingItemWrap .firstRow .rightBox .secondTags text.middleTag{
+  border-left: 1rpx solid #999;
+  border-right: 1rpx solid #999;
+}
+.homeWrap .typeTitleWrap .jinyingItemWrap .firstRow .rightBox .thirdTags text{
+	height: 28rpx;
+  line-height: 28rpx;
+  text-align: center;
+	background-color: #e8eeff;
+	border-radius: 2rpx;
+	font-family: PingFangSC-Regular;
+	font-size: 22rpx;
+	letter-spacing: 1px;
+	color: #7a91d5;
+  padding: 0 13rpx;
+  margin-right: 20rpx;
+}
+.homeWrap .typeTitleWrap .jinyingItemWrap .contentWrap{
+  padding: 33rpx 0 40rpx;
+}
+.homeWrap .typeTitleWrap .jinyingItemWrap .contentWrap .content{
+	font-family: PingFangSC-Regular;
+	font-size: 26rpx;
+	line-height: 36rpx;
+	color: #999;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }

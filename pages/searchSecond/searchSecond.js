@@ -1,29 +1,20 @@
-// pages/index/index.js
-const app = getApp()
+// pages/searchSecond/searchSecond.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    imgSrc: ''
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      imgSrc: app.globalData.imgSrc
-    })
+
   },
-  goFindPartTime(e) {
-    let key = e.currentTarget.dataset.id
-    app.globalData.userType = key
-    wx.navigateTo({
-      url: '../home/home'
-    })
-  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

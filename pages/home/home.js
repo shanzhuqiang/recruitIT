@@ -11,13 +11,16 @@ Page({
     bannerImg: ['../../images/banner.png', '../../images/banner.png', '../../images/banner.png'],
     titleChoosed: 'project',
     projectList: [],
-    quartersList: []
+    quartersList: [],
+    talentResumeList: [{}],
+    userType: ''
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.setData({
+      userType: app.globalData.userType,
       imgSrc: app.globalData.imgSrc
     })
     this.initProjectData()
@@ -82,6 +85,18 @@ Page({
         titleChoosed: key
       })
       this.initQuartersData()
+    }
+  },
+  // 搜索
+  goHomeSearch () {
+    if (this.data.userType === 'first') {
+      wx.navigateTo({
+        url: '../searchFirst/searchFirst'
+      })
+    } else if (this.data.userType === 'second') {
+      wx.navigateTo({
+        url: '../searchSecond/searchSecond'
+      })
     }
   },
   // 切换城市
