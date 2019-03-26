@@ -7,13 +7,13 @@
     </view>
     <view class='serachIptWrap'>
       <image class='search' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/search.png'></image>
-      <input class='serachIpt' placeholder="你想搜什么？" />
+      <input class='serachIpt' placeholder="你想搜什么？" bindinput="iptChange"/>
     </view>
   </view>
-  <view class='historyWrap'>
+  <view class='historyWrap' wx:if="{{ keyVal === '' }}">
     <view class='typeWrap'>
-      <view class='active'>项目</view>
-      <view>岗位</view>
+      <view class='{{ typeStr === "xiangmu" ? "active" : "" }}' bindtap='chooseType' data-id="xiangmu">项目</view>
+      <view class='{{ typeStr === "gangwei" ? "active" : "" }}' bindtap='chooseType' data-id="gangwei">岗位</view>
     </view>
     <view class='historyBox'>
       <view class='historyTitle'>搜索历史</view>
@@ -21,6 +21,83 @@
         <text>日结</text>
         <text>周末兼职</text>
       </view>
+      <view class='historyTitle'>热门推荐</view>
+      <view class='historyTag'>
+        <text>日结</text>
+        <text>周末兼职</text>
+        <text>服务员</text>
+        <text>家教</text>
+        <text>派单</text>
+        <text style='margin-right: 0'>客服</text>
+      </view>
+    </view>
+  </view>
+  <view class='filterWrap' wx:if="{{ keyVal !== '' }}">
+    <view class='{{ filterStr === "sort" ? "active" : "" }}' bindtap='openSort'>
+      默认排序
+      <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ filterStr === "sort" ? imgSrc + "/arrowUp.png" : imgSrc + "/arrowDown.png" }}'></image>
+    </view>
+    <view class='{{ filterStr === "filter" ? "active" : "" }}' bindtap='openFilter'>
+      筛选
+      <image class='filter' wx:if="{{imgSrc !== ''}}" src='{{ filterStr === "filter" ? imgSrc + "/filterTwo.png" : imgSrc + "/filter.png" }}'></image>
+    </view>
+  </view>
+  <view class='projectWrap' wx:if="{{ keyVal !== '' && typeStr === 'xiangmu' }}">
+    <view class='itemWrap' wx:for="{{ projectList }}" wx:key="">
+      <view class='first'>
+        <view class='box'>招标</view>
+        <view class='title'>{{ item.title }}</view>
+        <view class='money'>{{ item.money }}</view>
+      </view>
+      <view class='second'>
+        <text style='padding-left: 0'>{{ item.address }}</text>
+        <text class='middleText'>{{ item.time }}</text>
+        <text>{{ item.typeOne }}</text>
+      </view>
+      <view class='content'>
+        {{ item.content }}
+      </view>
+      <view class='peopleNum'>
+        {{ item.peopleNum }}人已投递
+      </view>
+    </view>
+  </view>
+  <view class='projectWrap' wx:if="{{ keyVal !== '' && typeStr === 'gangwei' }}">
+    <view class='itemWrap itemWrapTwo' wx:for="{{ quartersList }}" wx:key="">
+      <view class='first'>
+        <view class='title'>{{ item.title }}</view>
+        <view class='money'>{{ item.money }}</view>
+      </view>
+      <view class='second'>
+        <text style='padding-left: 0'>{{ item.address }}</text>
+        <text class='middleText'>{{ item.time }}</text>
+        <text>{{ item.education }}</text>
+      </view>
+      <view class='picBox'>
+        <view class='left'>
+          <image class='logoImg' wx:if="{{item.img !== ''}}" src='{{ item.img }}' ></image>
+        </view>
+        <view class='right'>
+          <view class='logoName'>{{ item.name }}</view>
+          <view class='logoType'>{{ item.typeOne }}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='makWrap' wx:if="{{ filterStr !== '' }}">
+    <view class='sortBox' wx:if="{{ filterStr === 'sort' }}">
+      <view class='{{ sortVal === item ? "active" : "" }}' wx:for="{{ sortList }}" wx:key="" bindtap='chooseSort' data-id="{{ item }}">{{ item }}</view>
+    </view>
+    <view class='filterBox' wx:if="{{ filterStr === 'filter' }}">
+      <view class='filterScroll'>
+        <view wx:for="{{ filtertList }}" wx:key="">
+          <view class='titleRow'>{{ item.title }}</view>
+          <view class='tagRow' wx:for="{{ item.item }}" wx:key="">
+            <view class='tagBtn' style='{{item === "" ? "visibility:hidden" : ""}}' wx:for="{{ item }}" wx:key="">{{ item }}</view>
+          </view>
+        </view>
+      </view>
+      <view class='bottomBtn'>确定</view>
     </view>
   </view>
 </view>

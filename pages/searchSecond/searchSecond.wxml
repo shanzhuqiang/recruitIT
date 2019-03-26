@@ -1,2 +1,86 @@
-<!--pages/searchSecond/searchSecond.wxml-->
-<text>pages/searchSecond/searchSecond.wxml</text>
+<!--pages/searchFirst/searchFirst.wxml-->
+<view class='searchFirstWrap'>
+  <view class='headRow'>
+    <view class='addressWrap' bindtap="goChooseCity">
+      <text class='address'>{{ address }}</text>
+      <image class='xiala' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/xiala.png'></image>
+    </view>
+    <view class='serachIptWrap'>
+      <image class='search' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/search.png'></image>
+      <input class='serachIpt' placeholder="你想搜什么？" bindinput="iptChange"/>
+    </view>
+  </view>
+  <view class='historyWrap' wx:if="{{ keyVal === '' }}">
+    <view class='historyBox'>
+      <view class='historyTitle'>搜索历史</view>
+      <view class='historyTag'>
+        <text>日结</text>
+        <text>周末兼职</text>
+      </view>
+      <view class='historyTitle'>热门推荐</view>
+      <view class='historyTag'>
+        <text>日结</text>
+        <text>周末兼职</text>
+        <text>服务员</text>
+        <text>家教</text>
+        <text>派单</text>
+        <text style='margin-right: 0'>客服</text>
+      </view>
+    </view>
+  </view>
+  <view class='filterWrap' wx:if="{{ keyVal !== '' }}">
+    <view class='{{ filterStr === "sort" ? "active" : "" }}' bindtap='openSort'>
+      默认排序
+      <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ filterStr === "sort" ? imgSrc + "/arrowUp.png" : imgSrc + "/arrowDown.png" }}'></image>
+    </view>
+    <view class='{{ filterStr === "filter" ? "active" : "" }}' bindtap='openFilter'>
+      筛选
+      <image class='filter' wx:if="{{imgSrc !== ''}}" src='{{ filterStr === "filter" ? imgSrc + "/filterTwo.png" : imgSrc + "/filter.png" }}'></image>
+    </view>
+  </view>
+  <view class='typeTitleWrap' wx:if="{{ keyVal !== '' }}">
+    <view class='jinyingItemWrap' wx:for="{{ talentResumeList }}" wx:key="">
+      <view class='firstRow'>
+        <view class='leftImgBox'>
+          <image class='leftImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc + "/logo.png" }}'></image>
+        </view>
+        <view class='rightBox'>
+          <view class='firstTitle'>王大伟<text class='typeName'>高级UI设计师</text></view>
+          <view class='secondTags'>
+            <text style='padding-left: 0'>三年</text>
+            <text class='middleTag'>本科</text>
+            <text>10k-14k</text>
+          </view>
+          <view class='thirdTags'>
+            <text>PS</text>
+            <text>AI</text>
+            <text>Axure</text>
+            <text>AE</text>
+          </view>
+        </view>
+      </view>
+      <view class='contentWrap'>
+        <view class='content'>
+          我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='makWrap' wx:if="{{ filterStr !== '' }}">
+    <view class='sortBox' wx:if="{{ filterStr === 'sort' }}">
+      <view class='{{ sortVal === "智能排序" ? "active" : "" }}' bindtap='chooseSort' data-id="智能排序">智能排序</view>
+      <view class='{{ sortVal === "时间排序" ? "active" : "" }}' bindtap='chooseSort' data-id="智能排序">智能排序</view>
+    </view>
+    <view class='filterBox' wx:if="{{ filterStr === 'filter' }}">
+      <view class='filterScroll'>
+        <view wx:for="{{ filtertList }}" wx:key="">
+          <view class='titleRow'>{{ item.title }}</view>
+          <view class='tagRow' wx:for="{{ item.item }}" wx:key="">
+            <view class='tagBtn' style='{{item === "" ? "visibility:hidden" : ""}}' wx:for="{{ item }}" wx:key="">{{ item }}</view>
+          </view>
+        </view>
+      </view>
+      <view class='bottomBtn'>确定</view>
+    </view>
+  </view>
+</view>
