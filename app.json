@@ -13,7 +13,10 @@
     "pages/oldGoldVote/oldGoldVote",
     "pages/spread/spread",
     "pages/searchFirst/searchFirst",
-    "pages/searchSecond/searchSecond"
+    "pages/searchSecond/searchSecond",
+    "pages/bountyPlatform/bountyPlatform",
+    "pages/my/my",
+    "pages/bbs/bbs"
   ],
   "window": {
     "backgroundTextStyle": "light",

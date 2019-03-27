@@ -1,0 +1,57 @@
+/* pages/bountyPlatform/bountyPlatform.wxss */
+.bountyPlatformWrap .typeWrap{
+  height: 90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  display: flex;
+  border-bottom: 1rpx solid #eee;
+}
+.bountyPlatformWrap .typeWrap > view{
+	font-family: PingFangSC-Regular;
+	font-size: 30rpx;
+	color: #666;
+  width: 50%;
+}
+.bountyPlatformWrap .typeWrap > view.active{
+	font-family: PingFangSC-Medium;
+  color: #333;
+  position: relative;
+}
+.bountyPlatformWrap .typeWrap > view.active::after{
+  content: "";
+  position: absolute;
+	width: 40rpx;
+	height: 7rpx;
+  background: #1a49d2;
+  left: 165rpx;
+  bottom: 0rpx
+}
+/* 过滤 */
+.bountyPlatformWrap .filterWrap{
+  height: 88rpx;
+  line-height: 88rpx;
+  border-bottom: 16rpx solid #f8f8f8;
+}
+.bountyPlatformWrap .filterWrap .colBox{
+  width: 33%;
+  float: left;
+  text-align: center;
+	font-family: PingFangSC-Regular;
+	font-size: 28rpx;
+	color: #666;
+}
+.bountyPlatformWrap .filterWrap .colBox.active{
+	color: #2e70f9;
+}
+.bountyPlatformWrap .filterWrap .colBox .arrowDown{
+  width: 15rpx;
+  height: 10rpx;
+  vertical-align: middle;
+  margin-left: 10rpx;
+}
+.bountyPlatformWrap .filterWrap .colBox .filterImg{
+  width: 22rpx;
+  height: 22rpx;
+  vertical-align: middle;
+  margin-left: 10rpx;
+}

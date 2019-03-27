@@ -133,11 +133,11 @@
   <view class='btootmNavWrap'>
     <view class='btnBox active'>
       <view class='imgBox'>
-        <image class='homePng' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/home.png'></image>
+        <image class='homePng' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/home2.png'></image>
       </view>
       <view>首页</view>
     </view>
-    <view class='btnBox'>
+    <view class='btnBox' bindtap='goBountyPlatform'>
       <view class='imgBox'>
         <image class='shangjin' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/shangjin.png'></image>
       </view>

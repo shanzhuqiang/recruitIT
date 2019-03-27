@@ -26,6 +26,12 @@ Page({
     this.initProjectData()
     // this.initQuartersData()
   },
+  // 进入赏金平台
+  goBountyPlatform() {
+    wx.navigateTo({
+      url: '../bountyPlatform/bountyPlatform'
+    })
+  },
   // 最新项目初始化
   initProjectData() {
     let projectList = [

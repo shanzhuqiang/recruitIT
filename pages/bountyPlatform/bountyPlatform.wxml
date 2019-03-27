@@ -1,0 +1,52 @@
+<!--pages/bountyPlatform/bountyPlatform.wxml-->
+<view class='bountyPlatformWrap'>
+  <view class='typeWrap'>
+    <view class='{{topType === "xiangmu" ? "active" : ""}}' bindtap='changeTopType' data-id="xiangmu">赏金项目</view>
+    <view class='{{topType === "zhaopin" ? "active" : ""}}' bindtap='changeTopType' data-id="zhaopin">赏金招聘</view>
+  </view>
+  <view class='filterWrap'>
+    <view class='colBox {{ topFilterBtn === "quyu" ? "active" : "" }}' bindtap='topFilter' data-id="quyu">
+      <text>区域</text>
+      <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ topFilterBtn === "quyu" ? imgSrc + "/arrowUp.png" : imgSrc + "/arrowDown.png" }}'></image>
+    </view>
+    <view class='colBox {{ topFilterBtn === "jiage" ? "active" : "" }}' bindtap='topFilter' data-id="jiage">
+      <text>价格</text>
+      <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ topFilterBtn === "jiage" ? imgSrc + "/arrowUp.png" : imgSrc + "/arrowDown.png" }}'></image>
+    </view>
+    <view class='colBox {{ topFilterBtn === "shaixuan" ? "active" : "" }}' bindtap='topFilter' data-id="shaixuan">
+      <text>筛选</text>
+      <image class='filterImg' wx:if="{{imgSrc !== ''}}" src='{{ topFilterBtn === "shaixuan" ? imgSrc + "/filterTwo.png" : imgSrc + "/filter.png" }}'></image>
+    </view>
+  </view>
+  <view class='btootmNavWrap'>
+    <view class='btnBox'>
+      <view class='imgBox'>
+        <image class='homePng' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/home.png'></image>
+      </view>
+      <view>首页</view>
+    </view>
+    <view class='btnBox active'>
+      <view class='imgBox'>
+        <image class='shangjin' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/shangjin2.png'></image>
+      </view>
+      <view>赏金平台</view>
+    </view>
+    <view class='btnBox'>
+        <image class='addfabu' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/addfabu.png'></image>
+        <view class='imgBox'></view>
+        <view>发布</view>
+    </view>
+    <view class='btnBox'>
+      <view class='imgBox'>
+        <image class='luntan' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/luntan.png'></image>
+      </view>
+        <view>论坛</view>
+    </view>
+    <view class='btnBox'>
+      <view class='imgBox'>
+        <image class='my' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/my.png'></image>
+      </view>
+        <view>我的</view>
+    </view>
+  </view>
+</view>
