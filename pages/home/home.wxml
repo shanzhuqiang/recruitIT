@@ -143,18 +143,18 @@
       </view>
       <view>赏金平台</view>
     </view>
-    <view class='btnBox'>
+    <view class='btnBox' bindtap='goSpread'>
         <image class='addfabu' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/addfabu.png'></image>
         <view class='imgBox'></view>
         <view>发布</view>
     </view>
-    <view class='btnBox'>
+    <view class='btnBox' bindtap='goBbs'>
       <view class='imgBox'>
         <image class='luntan' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/luntan.png'></image>
       </view>
         <view>论坛</view>
     </view>
-    <view class='btnBox'>
+    <view class='btnBox' bindtap='goMy'>
       <view class='imgBox'>
         <image class='my' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/my.png'></image>
       </view>

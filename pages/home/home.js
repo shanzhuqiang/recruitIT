@@ -32,6 +32,24 @@ Page({
       url: '../bountyPlatform/bountyPlatform'
     })
   },
+  // 发布
+  goSpread() {
+    wx.navigateTo({
+      url: '../spread/spread'
+    })
+  },
+  // 进入论坛
+  goBbs() {
+    wx.navigateTo({
+      url: '../bbs/bbs'
+    })
+  },
+  // 进入我的
+  goMy() {
+    wx.navigateTo({
+      url: '../my/my'
+    })
+  },
   // 最新项目初始化
   initProjectData() {
     let projectList = [

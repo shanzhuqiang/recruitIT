@@ -1,4 +1,5 @@
 <view class='indexWrap'>
+<button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">312</button>
   <view class='homeTitle'>请选择当前进入IT小程序身份</view>
   <view class='chooseOneWrap'>
     <image class='chooseOne' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/chooseOne.png'></image>

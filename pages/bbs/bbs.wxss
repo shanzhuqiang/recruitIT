@@ -1,1 +1,49 @@
 /* pages/bbs/bbs.wxss */
+/* 导航栏 */
+.bbsWrap .headRow{
+  height: 76rpx;
+  line-height: 76rpx;
+  padding: 0 30rpx 15rpx;
+}
+.bbsWrap .headRow .serachIptWrap{
+  background-color: #f4f4f4;
+	border-radius: 2px;
+  height: 62rpx;
+  padding-top: 14rpx;
+  padding-left: 80rpx;
+  position: relative;
+}
+.bbsWrap .headRow .serachIptWrap .search{
+  width: 26rpx;
+  height: 26rpx;
+  position: absolute;
+  left: 37rpx;
+  top: 26rpx;
+}
+.bbsWrap .headRow .serachIptWrap .serachIpt{
+  font-size: 26rpx;
+}
+/* 选择类型 */
+.bbsWrap .filterWrap{
+  line-height: 88rpx;
+  height: 88rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  padding: 0 60rpx;
+}
+.bbsWrap .filterWrap .colBox{
+  width: 33%;
+  float: left;
+  text-align: center;
+	font-family: PingFangSC-Regular;
+	font-size: 28rpx;
+	color: #666;
+}
+.bbsWrap .filterWrap .colBox.active{
+	color: #2e70f9;
+}
+.bbsWrap .filterWrap .colBox .filterImg{
+  width: 22rpx;
+  height: 22rpx;
+  vertical-align: middle;
+  margin-left: 10rpx;
+}

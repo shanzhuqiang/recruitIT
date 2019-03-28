@@ -1,2 +1,52 @@
 <!--pages/bbs/bbs.wxml-->
-<text>pages/bbs/bbs.wxml</text>
+<view class='bbsWrap'>
+  <view class='headRow'>
+    <view class='serachIptWrap' bindtap='goHomeSearch'>
+      <image class='search' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/search.png'></image>
+      <input class='serachIpt' placeholder="你想搜什么？" disabled />
+    </view>
+  </view>
+  <view class='filterWrap'>
+    <view class='colBox {{ topFilterBtn === "tuijian" ? "active" : "" }}' bindtap='topFilter' data-id="tuijian">
+      <text>推荐</text>
+    </view>
+    <view class='colBox {{ topFilterBtn === "guanzhu" ? "active" : "" }}' bindtap='topFilter' data-id="guanzhu">
+      <text>关注</text>
+    </view>
+    <view class='colBox {{ topFilterBtn === "shaixuan" ? "active" : "" }}' bindtap='topFilter' data-id="shaixuan">
+      <text>筛选</text>
+      <image class='filterImg' wx:if="{{imgSrc !== ''}}" src='{{ topFilterBtn === "shaixuan" ? imgSrc + "/filterTwo.png" : imgSrc + "/filter.png" }}'></image>
+    </view>
+  </view>
+  <view class='btootmNavWrap'>
+    <view class='btnBox active'>
+      <view class='imgBox'>
+        <image class='homePng' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/home.png'></image>
+      </view>
+      <view>首页</view>
+    </view>
+    <view class='btnBox' bindtap='goBountyPlatform'>
+      <view class='imgBox'>
+        <image class='shangjin' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/shangjin.png'></image>
+      </view>
+      <view>赏金平台</view>
+    </view>
+    <view class='btnBox' bindtap='goSpread'>
+        <image class='addfabu' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/addfabu.png'></image>
+        <view class='imgBox'></view>
+        <view>发布</view>
+    </view>
+    <view class='btnBox' bindtap='goBbs'>
+      <view class='imgBox'>
+        <image class='luntan' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/luntan2.png'></image>
+      </view>
+        <view>论坛</view>
+    </view>
+    <view class='btnBox' bindtap='goMy'>
+      <view class='imgBox'>
+        <image class='my' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/my.png'></image>
+      </view>
+        <view>我的</view>
+    </view>
+  </view>
+</view>
