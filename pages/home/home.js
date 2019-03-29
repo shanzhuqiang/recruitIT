@@ -13,7 +13,21 @@ Page({
     projectList: [],
     quartersList: [],
     talentResumeList: [{}],
-    userType: ''
+    userType: '',
+    getPhoneMaskOnOff: true
+  },
+  initAuth () {
+    if (app.globalData.userInfo) {
+      this.setData({
+        getPhoneMaskOnOff: false
+      })
+    }
+  },
+  getPhoneNumber(e) {
+    console.log(e)
+    console.log(e.detail.errMsg)
+    console.log(e.detail.iv)
+    console.log(e.detail.encryptedData)
   },
   /**
    * 生命周期函数--监听页面加载
@@ -24,6 +38,7 @@ Page({
       imgSrc: app.globalData.imgSrc
     })
     this.initProjectData()
+    this.initAuth()
     // this.initQuartersData()
   },
   // 进入赏金平台

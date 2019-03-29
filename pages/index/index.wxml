@@ -1,5 +1,5 @@
 <view class='indexWrap'>
-<button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">312</button>
+  <button class='authMask' open-type="getUserInfo" bindgetuserinfo="bindgetuserinfo" lang="zh_CN" wx:if="{{ authMask }}">3123</button>
   <view class='homeTitle'>请选择当前进入IT小程序身份</view>
   <view class='chooseOneWrap'>
     <image class='chooseOne' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/chooseOne.png'></image>

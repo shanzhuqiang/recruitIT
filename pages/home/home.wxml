@@ -1,4 +1,5 @@
 <view class='homeWrap'>
+  <button class='getPhoneMask' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{ getPhoneMaskOnOff }}"></button>
   <view class='headRow'>
     <view class='addressWrap' bindtap="goChooseCity">
       <text class='address'>{{ address }}</text>
