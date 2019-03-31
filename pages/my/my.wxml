@@ -1,2 +1,78 @@
 <!--pages/my/my.wxml-->
-<text>pages/my/my.wxml</text>
+<view class='myWrap'>
+  <view class='topBoxWrap'>
+    <view class='topBox'>
+      <image class='touxiang' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/touxiang.png'></image>
+      <view class='firstRow'>
+        <view class='one'>歪脖子树</view>
+        <view class='two'>工程师</view>
+        <view class='three'>
+          <image class='zuanshi' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/zuanshi.png'></image>
+          A会员
+        </view>
+      </view>
+      <view class='renzhengWrap'>
+        <image class='renzheng' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/renzheng.png'></image>
+        已认证
+      </view>
+      <view class='tongzhi'>通知</view>
+      <view class='topBottomBox'>
+        <view>金币 300</view>
+        <view>我的钱包</view>
+      </view>
+    </view>
+  </view>
+  <view class='middleBox'>
+    <view>
+      <image class='jianli' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/jianli.png'></image>
+      <view>完善简历</view>
+    </view>
+    <view>
+      <image class='toudi' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/toudi.png'></image>
+      <view>我的投递</view>
+    </view>
+    <view>
+      <image class='renwu' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/renwu.png'></image>
+      <view>我的任务</view>  
+    </view>
+    <view>
+      <image class='fabu' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/fabu.png'></image>
+      <view>我的发布</view>
+    </view>
+  </view>
+  <view class='vipWrap'>
+    <image class='vipGuanggao' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/vipGuanggao.png'></image>
+  </view>
+  <view class='listWrap'>
+    <view class='listItem'>
+      <image class='renwuDay' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/renwuDay.png'></image>
+      每日任务
+      <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
+    </view>
+    <view class='listItem'>
+      <image class='guanzhu' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/guanzhu.png'></image>
+      关注公司
+      <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
+    </view>
+    <view class='listItem'>
+      <image class='tuiguangren' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/tuiguangren.png'></image>
+      成为推广人
+      <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
+    </view>
+    <view class='listItem'>
+      <image class='kefu' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/kefu.png'></image>
+      客服
+      <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
+    </view>
+    <view class='listItem'>
+      <image class='yijian' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/yijian.png'></image>
+      意见反馈
+      <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
+    </view>
+    <view class='listItem'>
+      <image class='shezhi' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/shezhi.png'></image>
+      设置
+      <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
+    </view>
+  </view>
+</view>

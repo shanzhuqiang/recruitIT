@@ -35,8 +35,6 @@ Page({
           authMask: true
         })
       } else {
-        console.log('userInfoReadyCallback: ', res);
-        console.log('获取用户信息成功');
         this.setData({
           userInfo: res
         }) 
@@ -44,7 +42,7 @@ Page({
     };
   },
   bindgetuserinfo(res) {
-    console.log(res)
+    console.log(res.detail.userInfo)
   },
   goFindPartTime(e) {
     let key = e.currentTarget.dataset.id

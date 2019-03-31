@@ -1,2 +1,22 @@
 <!--pages/spread/spread.wxml-->
-<text>pages/spread/spread.wxml</text>
+<view class='spreadWrap'>
+    <image class='spreadWrapBg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/shareBg.png' bindtap='openImg'></image>
+    <view class='yaoqingBtn' bindtap='openMask'>立即邀请好友</view>
+    <view class='reuleWrap'>
+      <view class='ruleTitle'>
+        <image class='ruleBg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/ruleTitle.png'></image>
+        活动规则
+      </view>
+      <view class='content'>
+        <view>1、用户推荐的前60位设计师进入评委投票阶段;</view>
+        <view>2、获得过68Design专访、推荐的设计师可直接进入评委投票阶段；</view>
+        <view>3、评委推荐的前10名为年度十佳设计师，如票数相同，将根据该设计师的影响力排名、被关注度、所获得的推荐点评的质量进行评比。</view>
+      </view>
+    </view>
+    <view class='maskWrap' wx:if="{{ maskOnOff }}">
+      <view class='contentBox'>
+        <image class='shareImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/shareImg.png' bindtap='openImg'></image>
+        <view class='text' bindtap='closeMask'>我知道了</view>
+      </view>
+    </view>
+</view>
