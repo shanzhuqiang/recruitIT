@@ -16,18 +16,24 @@ Page({
     userType: '',
     getPhoneMaskOnOff: true
   },
-  initAuth () {
+  initAuth() {
     if (app.globalData.userInfo) {
+      // if (app.globalData.userInfo && app.globalData.userInfo.phone) {
       this.setData({
         getPhoneMaskOnOff: false
       })
     }
   },
   getPhoneNumber(e) {
-    console.log(e)
-    console.log(e.detail.errMsg)
-    console.log(e.detail.iv)
-    console.log(e.detail.encryptedData)
+    if (e.detail.errMsg === 'getPhoneNumber:ok') {
+      this.setData({
+        getPhoneMaskOnOff: false
+      })
+      console.log(e)
+      console.log(e.detail.errMsg)
+      console.log(e.detail.iv)
+      console.log(e.detail.encryptedData)
+    }
   },
   /**
    * 生命周期函数--监听页面加载
@@ -48,9 +54,9 @@ Page({
     })
   },
   // 发布
-  goSpread() {
+  goRelease() {
     wx.navigateTo({
-      url: '../spread/spread'
+      url: '../release/release'
     })
   },
   // 进入论坛
@@ -150,7 +156,7 @@ Page({
       url: '../spread/spread'
     })
   },
-  // 平台推广
+  // 金币投票
   goGoldVote() {
     wx.navigateTo({
       url: '../goldVote/goldVote'

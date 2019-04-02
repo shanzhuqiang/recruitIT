@@ -11,7 +11,7 @@
           A会员
         </view>
       </view>
-      <view class='renzhengWrap'>
+      <view class='renzhengWrap' bindtap='goRenzheng'>
         <image class='renzheng' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/renzheng.png'></image>
         已认证
       </view>
@@ -44,12 +44,12 @@
     <image class='vipGuanggao' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/vipGuanggao.png'></image>
   </view>
   <view class='listWrap'>
-    <view class='listItem'>
+    <view class='listItem' bindtap='goTask'>
       <image class='renwuDay' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/renwuDay.png'></image>
       每日任务
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
     </view>
-    <view class='listItem'>
+    <view class='listItem' bindtap='goGUnzhugongsi'>
       <image class='guanzhu' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/guanzhu.png'></image>
       关注公司
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
@@ -69,10 +69,42 @@
       意见反馈
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
     </view>
-    <view class='listItem'>
+    <view class='listItem' bindtap='goSetting'>
       <image class='shezhi' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/shezhi.png'></image>
       设置
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
+    </view>
+  </view>
+  <view style='height: 90rpx;'></view>
+  <view class='btootmNavWrap'>
+    <view class='btnBox' bindtap='goHome'>
+      <view class='imgBox'>
+        <image class='homePng' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/home.png'></image>
+      </view>
+      <view>首页</view>
+    </view>
+    <view class='btnBox' bindtap='goBountyPlatform'>
+      <view class='imgBox'>
+        <image class='shangjin' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/shangjin.png'></image>
+      </view>
+      <view>赏金平台</view>
+    </view>
+    <view class='btnBox' bindtap='goRelease'>
+        <image class='addfabu' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/addfabu.png'></image>
+        <view class='imgBox'></view>
+        <view>发布</view>
+    </view>
+    <view class='btnBox' bindtap='goBbs'>
+      <view class='imgBox'>
+        <image class='luntan' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/luntan.png'></image>
+      </view>
+        <view>论坛</view>
+    </view>
+    <view class='btnBox active'>
+      <view class='imgBox'>
+        <image class='my' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/my2.png'></image>
+      </view>
+        <view>我的</view>
     </view>
   </view>
 </view>

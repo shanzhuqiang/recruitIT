@@ -16,12 +16,24 @@
     "pages/searchSecond/searchSecond",
     "pages/bountyPlatform/bountyPlatform",
     "pages/my/my",
-    "pages/bbs/bbs"
+    "pages/bbs/bbs",
+    "pages/renzheng/renzheng",
+    "pages/qiuzhiyixiang/qiuzhiyixiang",
+    "pages/guanzhugongsi/guanzhugongsi",
+    "pages/taskDay/taskDay",
+    "pages/release/release",
+    "pages/walk/walk",
+    "pages/setting/setting"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用于自动定位求职地区和搜索附近名企职位"
+    }
   }
 }

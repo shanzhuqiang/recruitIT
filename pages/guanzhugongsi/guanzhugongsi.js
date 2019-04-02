@@ -1,4 +1,4 @@
-// pages/my/my.js
+// pages/guanzhugongsi/guanzhugongsi.js
 const app = getApp()
 Page({
 
@@ -6,8 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imgSrc: ''
-  }, 
+    imgSrc: '',
+
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -17,54 +18,7 @@ Page({
       imgSrc: app.globalData.imgSrc
     })
   },
-  // 每日任务
-  goTask() {
-    wx.navigateTo({
-      url: '../taskDay/taskDay'
-    })
-  },
-  // 关注公司
-  goGUnzhugongsi() {
-    wx.navigateTo({
-      url: '../guanzhugongsi/guanzhugongsi'
-    })
-  },
-  // 认证
-  goRenzheng() {
-    wx.navigateTo({
-      url: '../renzheng/renzheng'
-    })
-  },
-  // 进入首页
-  goHome() {
-    wx.navigateTo({
-      url: '../home/home'
-    })
-  },
-  // 进入赏金平台
-  goBountyPlatform() {
-    wx.navigateTo({
-      url: '../bountyPlatform/bountyPlatform'
-    })
-  },
-  // 发布
-  goRelease() {
-    wx.navigateTo({
-      url: '../release/release'
-    })
-  },
-  // 进入论坛
-  goBbs() {
-    wx.navigateTo({
-      url: '../bbs/bbs'
-    })
-  },
-  // 设置
-  goSetting() {
-    wx.navigateTo({
-      url: '../setting/setting'
-    })
-  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

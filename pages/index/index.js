@@ -42,14 +42,20 @@ Page({
     };
   },
   bindgetuserinfo(res) {
+    this.setData({
+      authMask: false
+    })
     console.log(res.detail.userInfo)
   },
   goFindPartTime(e) {
     let key = e.currentTarget.dataset.id
     app.globalData.userType = key
     wx.navigateTo({
-      url: '../home/home'
+      url: '../setting/setting'
     })
+    // wx.navigateTo({
+    //   url: '../home/home'
+    // })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

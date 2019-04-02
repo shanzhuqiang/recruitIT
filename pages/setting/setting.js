@@ -1,51 +1,18 @@
-// pages/bbs/bbs.js
-const app = getApp()
+// pages/setting/setting.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    imgSrc: '',
-    topFilterBtn: ''
+
   },
-  topFilter(e) {
-    let key = e.currentTarget.dataset.id
-    this.setData({
-      topFilterBtn: key
-    })
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      imgSrc: app.globalData.imgSrc
-    })
-  },
-  // 进入首页
-  goHome() {
-    wx.navigateTo({
-      url: '../home/home'
-    })
-  },
-  // 进入赏金平台
-  goBountyPlatform() {
-    wx.navigateTo({
-      url: '../bountyPlatform/bountyPlatform'
-    })
-  },
-  // 发布
-  goRelease() {
-    wx.navigateTo({
-      url: '../release/release'
-    })
-  },
-  // 进入我的
-  goMy() {
-    wx.navigateTo({
-      url: '../my/my'
-    })
+
   },
 
   /**

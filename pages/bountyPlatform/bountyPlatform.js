@@ -23,7 +23,36 @@ Page({
       imgSrc: app.globalData.imgSrc
     })
   },
-
+  // 进入首页
+  goHome() {
+    wx.navigateTo({
+      url: '../home/home'
+    })
+  },
+  // 进入赏金平台
+  goBountyPlatform() {
+    wx.navigateTo({
+      url: '../bountyPlatform/bountyPlatform'
+    })
+  },
+  // 发布
+  goRelease() {
+    wx.navigateTo({
+      url: '../release/release'
+    })
+  },
+  // 进入论坛
+  goBbs() {
+    wx.navigateTo({
+      url: '../bbs/bbs'
+    })
+  },
+  // 进入我的
+  goMy() {
+    wx.navigateTo({
+      url: '../my/my'
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
