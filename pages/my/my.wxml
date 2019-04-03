@@ -54,7 +54,7 @@
       关注公司
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
     </view>
-    <view class='listItem'>
+    <view class='listItem' bindtap='goSpread'>
       <image class='tuiguangren' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/tuiguangren.png'></image>
       成为推广人
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>

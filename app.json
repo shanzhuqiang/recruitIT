@@ -27,7 +27,8 @@
     "pages/settingPhone/settingPhone",
     "pages/settingPassword/settingPassword",
     "pages/myRelease/myRelease",
-    "pages/myMessage/myMessage"
+    "pages/myMessage/myMessage",
+    "pages/myGuanzhu/myGuanzhu"
   ],
   "window": {
     "backgroundTextStyle": "light",

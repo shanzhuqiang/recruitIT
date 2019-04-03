@@ -1,0 +1,19 @@
+<!--pages/myGuanzhu/myGuanzhu.wxml-->
+<view class='myGuanzhuWrap'>
+  <view class='itemBox'>
+    <view class='firstRow'>
+      <view class='leftImgBox'>
+        <image class='leftImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc + "/logo.png" }}'></image>
+      </view>
+      <view class='rightBox'>
+        <view class='firstTitle'>王大伟<text class='typeName'>高级UI设计师</text></view>
+        <view class='secondTags'>
+          <text style='padding-left: 0'>三年</text>
+          <text class='middleTag'>本科</text>
+          <text>10k-14k</text>
+        </view>
+        <view class='bottomTime'>最近活跃：9小时前</view>
+      </view>
+    </view>
+  </view>
+</view>

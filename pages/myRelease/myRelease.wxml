@@ -1,2 +1,85 @@
 <!--pages/myRelease/myRelease.wxml-->
-<text>pages/myRelease/myRelease.wxml</text>
+<view class='myReleaseWrap'>
+  <view class='topBox'>
+    <view class='item {{ tabType === "tiezi" ? "active" : "" }}' bindtap='chooseType' data-id="tiezi">帖子</view>
+    <view class='item {{ tabType === "xiangmu" ? "active" : "" }}' bindtap='chooseType' data-id="xiangmu">
+      项目
+      <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowDown.png'></image>
+    </view>
+    <view class='item {{ tabType === "gangwei" ? "active" : "" }}' bindtap='chooseType' data-id="gangwei">
+      岗位
+      <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowDown.png'></image>
+    </view>
+  </view>
+  <view class='itemBox' wx:if="{{ tabType === 'tiezi' }}">
+    <view class='topName'>
+      <image class='touxiang' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/touxiang.png'></image>
+      <view class='name'>啊实打实打</view>
+      <view class='shenfen'>工程师</view>
+      <view class='time'>刚刚发布</view>
+    </view>
+    <view class='title'>你认为程序员和搬砖的哪个挣的多？你认为程序员和搬砖的哪个挣的多？</view>
+    <view class='bottomBox'>
+      <view class='left'>
+        <view class='content'>你认为程序员和搬砖的哪个挣的多？你认为程序员和搬砖的哪个挣的多？你认为程序员和搬砖的哪个挣的多？你认为程序员和搬砖的哪个挣的多？你认为程序员和搬砖的哪个挣的多？你认为程序员和搬砖的哪个挣的多？</view>
+      </view>
+      <view class='right'>
+        <image class='rightImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/logo.png'></image>
+      </view>
+    </view>
+    <view class='bottomBtn'>
+      <view class='address'>滨江·海创园</view>
+      <view class='iconBox'>
+        <image class='discussIcon' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/shareIcon.png'></image>
+        <text class='num'>20</text>
+      </view>
+      <view class='iconBox'>
+        <image class='heartIcon' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/heartIcon.png'></image>
+        <text class='num'>20</text>
+      </view>
+      <view class='iconBox'>
+        <image class='discussIcon' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/discussIcon.png'></image>
+        <text class='num'>20</text>
+      </view>
+    </view>
+  </view>
+  <view class='itemWrap' wx:if="{{ tabType === 'xiangmu' }}">
+    <view class='first'>
+      <view class='box'>招标</view>
+      <view class='title'>我需要app设计我需要app设计</view>
+      <view class='money'>20K-30K/月</view>
+    </view>
+    <view class='second'>
+      <text style='padding-left: 0'>杭州</text>
+      <text class='middleText'>3-5年</text>
+      <text>短期兼职</text>
+    </view>
+    <view class='content'>
+      需要打打算打算需要打打算打算需要打打算打算需要打打算打算需要打打算打算
+    </view>
+    <view class='line'></view>
+    <view class='btnWrap'>
+      <view class='timeBtn'>工时核对</view>
+    </view>
+  </view>
+  <view class='itemWrap itemWrapTwo' wx:if="{{ tabType === 'gangwei' }}">
+    <view class='first'>
+      <view class='title'>前端工程师</view>
+      <view class='money'>10-20万</view>
+    </view>
+    <view class='second'>
+      <text style='padding-left: 0'>杭州</text>
+      <text class='middleText'>3-5年</text>
+      <text>本科</text>
+    </view>
+    <view class='picBox'>
+      <view class='left'>
+        <image class='logoImg' wx:if="{{item.img !== ''}}" src='{{ imgSrc }}/logo.png' ></image>
+      </view>
+      <view class='right'>
+        <view class='logoName'>杭州平面设计有限公司</view>
+        <view class='logoType'>互联网·电商</view>
+      </view>
+    </view>
+  </view>
+</view>

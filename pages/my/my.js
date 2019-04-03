@@ -71,6 +71,12 @@ Page({
       url: '../bbs/bbs'
     })
   },
+  // 成为推广人
+  goSpread() {
+    wx.navigateTo({
+      url: '../spread/spread'
+    })
+  },
   // 设置
   goSetting() {
     wx.navigateTo({
