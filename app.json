@@ -23,7 +23,11 @@
     "pages/taskDay/taskDay",
     "pages/release/release",
     "pages/walk/walk",
-    "pages/setting/setting"
+    "pages/setting/setting",
+    "pages/settingPhone/settingPhone",
+    "pages/settingPassword/settingPassword",
+    "pages/myRelease/myRelease",
+    "pages/myMessage/myMessage"
   ],
   "window": {
     "backgroundTextStyle": "light",

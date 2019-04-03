@@ -1,12 +1,10 @@
-// pages/setting/setting.js
-const app = getApp()
+// pages/settingPassword/settingPassword.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    imgSrc: '',
 
   },
 
@@ -14,23 +12,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      imgSrc: app.globalData.imgSrc
-    })
-  },
-  goSettingPhone() {
-    wx.navigateTo({
-      url: '../settingPhone/settingPhone'
-    })
-  },
-  goSettingPassword() {
-    wx.navigateTo({
-      url: '../settingPassword/settingPassword'
-    })
-  },
-  goShouquan() {
 
   },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

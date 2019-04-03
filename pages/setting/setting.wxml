@@ -1,2 +1,22 @@
 <!--pages/setting/setting.wxml-->
-<text>pages/setting/setting.wxml</text>
+<view class='settingWrap'>
+  <view class='listWrap'>
+    <view class='item' bindtap='goSettingPhone'>
+      <view class='first'>手机号</view>
+      <view class='second'>156****8863</view>
+      <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
+    </view>
+    <view class='item' bindtap='goSettingPassword'>
+      <view class='first'>登录密码</view>
+      <view class='second'>更改密码</view>
+      <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
+    </view>
+    <view class='item' style='border-bottom: none' bindtap='goShouquan'>
+      <view class='first'>授权设置</view>
+      <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
+    </view>
+  </view>
+  <view class='qiehuanBox'>切换至经纪人</view>
+  <view class='qiehuanBox'>切换至企业HR</view>
+  <view class='loginOut'>退出登录</view>
+</view>

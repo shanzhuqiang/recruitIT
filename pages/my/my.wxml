@@ -15,7 +15,7 @@
         <image class='renzheng' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/renzheng.png'></image>
         已认证
       </view>
-      <view class='tongzhi'>通知</view>
+      <view class='tongzhi' bindtap='goMyMessage'>通知</view>
       <view class='topBottomBox'>
         <view>金币 300</view>
         <view>我的钱包</view>
@@ -35,7 +35,7 @@
       <image class='renwu' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/renwu.png'></image>
       <view>我的任务</view>  
     </view>
-    <view>
+    <view bindtap='goMyRelease'>
       <image class='fabu' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/fabu.png'></image>
       <view>我的发布</view>
     </view>

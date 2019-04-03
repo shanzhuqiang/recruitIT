@@ -17,10 +17,22 @@ Page({
       imgSrc: app.globalData.imgSrc
     })
   },
+  // 我的消息
+  goMyMessage() {
+    wx.navigateTo({
+      url: '../myMessage/myMessage'
+    })
+  },
   // 每日任务
   goTask() {
     wx.navigateTo({
       url: '../taskDay/taskDay'
+    })
+  },
+  // 我的发布
+  goMyRelease() {
+    wx.navigateTo({
+      url: '../myRelease/myRelease'
     })
   },
   // 关注公司
