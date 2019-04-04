@@ -71,6 +71,12 @@ Page({
       url: '../my/my'
     })
   },
+  // 简历
+  goResumeDetail() {
+    wx.navigateTo({
+      url: '../resumeDetail/resumeDetail'
+    })
+  },
   // 最新项目初始化
   initProjectData() {
     let projectList = [

@@ -28,7 +28,8 @@
     "pages/settingPassword/settingPassword",
     "pages/myRelease/myRelease",
     "pages/myMessage/myMessage",
-    "pages/myGuanzhu/myGuanzhu"
+    "pages/myGuanzhu/myGuanzhu",
+    "pages/resumeDetail/resumeDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",

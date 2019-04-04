@@ -103,7 +103,7 @@
     <view class='titleSecond'>
       <text>精英简历</text>
     </view>
-    <view class='jinyingItemWrap' wx:for="{{ talentResumeList }}" wx:key="">
+    <view class='jinyingItemWrap' wx:for="{{ talentResumeList }}" wx:key="" bindtap='goResumeDetail'>
       <view class='firstRow'>
         <view class='leftImgBox'>
           <image class='leftImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc + "/logo.png" }}'></image>
