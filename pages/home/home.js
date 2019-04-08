@@ -77,6 +77,18 @@ Page({
       url: '../resumeDetail/resumeDetail'
     })
   },
+  // 岗位信息
+  goPostDetail() {
+    wx.navigateTo({
+      url: '../postDetail/postDetail'
+    })
+  },
+  // 项目信息
+  goProjectDetail() {
+    wx.navigateTo({
+      url: '../projectDetail/projectDetail'
+    })
+  },
   // 最新项目初始化
   initProjectData() {
     let projectList = [

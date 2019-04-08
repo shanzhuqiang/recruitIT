@@ -60,7 +60,8 @@
       <text class='{{ titleChoosed === "project" ? "active" : "" }}' bindtap='chooseTitle' data-id="project">最新项目</text>
       <text class='{{ titleChoosed === "quarters" ? "active" : "" }}' style='margin-left: 60rpx;' bindtap='chooseTitle' data-id="quarters">最新岗位</text>
     </view>
-    <view class='itemWrap' wx:for="{{ projectList }}" wx:key="">
+    <!-- 最新项目 -->
+    <view class='itemWrap' wx:for="{{ projectList }}" wx:key="" bindtap='goProjectDetail'>
       <view class='first'>
         <view class='box'>招标</view>
         <view class='title'>{{ item.title }}</view>
@@ -78,7 +79,8 @@
         {{ item.peopleNum }}人已投递
       </view>
     </view>
-    <view class='itemWrap itemWrapTwo' wx:for="{{ quartersList }}" wx:key="">
+    <!-- 岗位信息 -->
+    <view class='itemWrap itemWrapTwo' wx:for="{{ quartersList }}" wx:key="" bindtap='goPostDetail'>
       <view class='first'>
         <view class='title'>{{ item.title }}</view>
         <view class='money'>{{ item.money }}</view>
@@ -99,6 +101,7 @@
       </view>
     </view>
   </view>
+  <!-- 简历 -->
   <view class='typeTitleWrap' wx:if="{{ userType === 'second' }}">
     <view class='titleSecond'>
       <text>精英简历</text>

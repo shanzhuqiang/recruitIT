@@ -29,7 +29,10 @@
     "pages/myRelease/myRelease",
     "pages/myMessage/myMessage",
     "pages/myGuanzhu/myGuanzhu",
-    "pages/resumeDetail/resumeDetail"
+    "pages/resumeDetail/resumeDetail",
+    "pages/postDetail/postDetail",
+    "pages/projectDetail/projectDetail",
+    "pages/invite/invite"
   ],
   "window": {
     "backgroundTextStyle": "light",

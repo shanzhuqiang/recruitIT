@@ -1,0 +1,232 @@
+/* pages/postDetail/postDetail.wxss */
+.projectDetailWrap .topBox{
+  border-bottom: 16rpx solid #f8f8f8;
+  padding: 0 30rpx;
+}
+.projectDetailWrap .topBox .first{
+  position: relative;
+}
+.projectDetailWrap .topBox .first .leftTitle{
+	font-family: PingFangSC-Medium;
+	font-size: 32rpx;
+	color: #333;
+  padding-right: 150rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.projectDetailWrap .topBox .first .rightTitle{
+	font-family: PingFangSC-Medium;
+	font-size: 28rpx;
+	color: #f34848;
+  position: absolute;
+  right: 0rpx;
+  top: 0;
+}
+.projectDetailWrap .topBox .second {
+	font-family: PingFangSC-Regular;
+	font-size: 24rpx;
+	color: #999;
+  padding-top: 25rpx;
+}
+.projectDetailWrap .topBox .second .line{
+  margin: 0 10rpx;
+}
+.projectDetailWrap .topBox .three{
+	font-family: PingFangSC-Regular;
+	font-size: 22rpx;
+	letter-spacing: 1rpx;
+	color: #7a91d5;
+  padding: 25rpx 0 40rpx;
+}
+.projectDetailWrap .topBox .three text{
+	height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  padding: 0 20rpx;
+	background-color: #e8eeff;
+	border-radius: 2px;
+  margin-right: 35rpx;
+}
+.projectDetailWrap .topBox .fourBox{
+  border-top: 1rpx solid #eee;
+  height: 128rpx;
+}
+.projectDetailWrap .topBox .fourBox .leftImg{
+  float: left;
+  width: 58rpx;
+  height: 128rpx;
+  line-height: 128rpx;
+}
+.projectDetailWrap .topBox .fourBox .leftImg .touxiang{
+  width: 58rpx;
+  height: 58rpx;
+  vertical-align: middle;
+}
+.projectDetailWrap .topBox .fourBox .rightBox{
+  margin-left: 80rpx;
+  padding-top: 30rpx;
+}
+.projectDetailWrap .topBox .fourBox .rightBox .firstRow{
+	font-family: PingFangSC-Regular;
+	font-size: 24rpx;
+	color: #333;
+}
+.projectDetailWrap .topBox .fourBox .rightBox .firstRow text{
+	font-family: PingFangSC-Regular;
+	font-size: 24rpx;
+	color: #666;
+  margin-left: 20rpx;
+}
+.projectDetailWrap .topBox .fourBox .rightBox .secondRow{
+	font-family: PingFangSC-Regular;
+	font-size: 22rpx;
+	color: #999;
+  padding-top: 10rpx;
+}
+/* 岗位详情 */
+.projectDetailWrap .detailBox{
+  padding: 0 30rpx 30rpx;
+  border-bottom: 16rpx solid #faf8f8;
+}
+.projectDetailWrap .detailBox .titleOne{
+	font-family: PingFangSC-Medium;
+	font-size: 32rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+	color: #333;
+  padding-top: 35rpx;
+}
+.projectDetailWrap .detailBox .titleSmall{
+	font-family: PingFangSC-Medium;
+	font-size: 26rpx;
+  height: 26rpx;
+  line-height: 26rpx;
+	color: #333;
+  padding: 30rpx 0 15rpx;
+}
+.projectDetailWrap .detailBox .contentRow{
+	font-family: PingFangSC-Regular;
+	font-size: 26rpx;
+	line-height: 36rpx;
+	color: #666;
+}
+/* 公司 */
+.projectDetailWrap .companyBox{
+  border-bottom: 16rpx solid #f8f8f8;
+  padding: 40rpx 30rpx 0;
+}
+.projectDetailWrap .companyBox .leftImgBox{
+  float: left;
+  width: 82rpx;
+  height: 82rpx;
+  margin-left: 10rpx;
+}
+.projectDetailWrap .companyBox .leftImgBox .logoImg{
+  width: 82rpx;
+  height: 82rpx;
+}
+.projectDetailWrap .companyBox .rightImgBox{
+  margin-left: 132rpx;
+  padding-bottom: 40rpx;
+}
+.projectDetailWrap .companyBox .rightImgBox .rowOne{
+	font-family: PingFangSC-Medium;
+	font-size: 32rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+	color: #333;
+
+}
+.projectDetailWrap .companyBox .rightImgBox .rowTwo{
+	font-family: PingFangSC-Regular;
+	font-size: 26rpx;
+  height: 26rpx;
+  line-height: 26rpx;
+	color: #666;
+  padding-top: 20rpx;
+}
+.projectDetailWrap .companyBox .rightImgBox .rowTwo .line{
+  margin: 0 10rpx;
+}
+.projectDetailWrap .companyBox .rightImgBox  .rowThree{
+	height: 28rpx;
+  line-height: 28rpx;
+	background: #2e70f9;
+	border-radius: 14rpx;
+	font-family: PingFangSC-Regular;
+	font-size: 20rpx;
+	color: #fff;
+  display: inline-block;
+  padding-right: 20rpx;
+}
+.projectDetailWrap .companyBox .rightImgBox  .rowThree .okImg{
+  width: 15rpx;
+  height: 14rpx;
+  vertical-align: middle;
+  margin: -1rpx 10rpx 0;
+}
+.projectDetailWrap .companyBox .bottomAddressBox{
+  border-top: 1rpx solid #eee;
+}
+.projectDetailWrap .companyBox .bottomAddressBox .addressTest{
+  position: relative;
+}
+.projectDetailWrap .companyBox .bottomAddressBox .arrowR{
+  width: 14rpx;
+  height: 26rpx;
+  position: absolute;
+  right: 0rpx;
+  top: 30rpx;
+}
+.projectDetailWrap .companyBox .bottomAddressBox .titleAddress{
+	font-family: PingFangSC-Medium;
+	font-size: 32rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+	color: #333;
+  padding: 30rpx 0 37rpx;
+}
+.projectDetailWrap .companyBox .bottomAddressBox .firstText{
+	font-family: PingFangSC-Regular;
+	font-size: 28rpx;
+	color: #333;
+}
+.projectDetailWrap .companyBox .bottomAddressBox .firstText .local{
+  width: 22rpx;
+  height: 26rpx;
+  vertical-align: middle;
+  margin-right: 10rpx;
+}
+.projectDetailWrap .companyBox .bottomAddressBox .secondText{
+	font-family: PingFangSC-Regular;
+	font-size: 24rpx;
+	color: #999;
+  padding: 22rpx 0 40rpx;
+}
+.projectDetailWrap .bottomBtn{
+  height: 100rpx;
+}
+.projectDetailWrap .bottomBtn .leftBtn{
+  width: 140rpx;
+  text-align: center;
+  float: left;
+  height: 100rpx;
+	font-family: PingFangSC-Regular;
+	font-size: 26rpx;
+	color: #333;
+}
+.projectDetailWrap .bottomBtn .leftBtn .share{
+  width: 28rpx;
+  height: 28rpx;
+}
+.projectDetailWrap .bottomBtn .rightBtn{
+  margin-left: 140rpx;
+  text-align: center;
+  background: #4c85fb;
+	font-family: PingFangSC-Regular;
+	font-size: 28rpx;
+	color: #fff;
+  height: 100rpx;
+  line-height: 100rpx;
+}

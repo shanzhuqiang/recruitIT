@@ -1,4 +1,4 @@
-// pages/index/index.js
+// pages/renzheng/renzheng.js
 const app = getApp()
 Page({
 
@@ -6,63 +6,51 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imgSrc: '',
-    authMask: false
+    inviteDate: '选择日期',
+    inviteTime: '选择时间',
+    imgSrc: ''
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.initUserInfo()
     this.setData({
       imgSrc: app.globalData.imgSrc
     })
+
   },
-  initUserInfo () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo
-      })
-    }
-    if (app.globalData.authMask) {
-      this.setData({
-        authMask: true
-      })
-    }
-    app.userInfoReadyCallback = res => {
-      if (res === 'authMask') {
-        this.setData({
-          authMask: true
-        })
-      } else {
-        this.setData({
-          userInfo: res
-        }) 
+  finish() {
+    wx.showToast({
+      title: '认证成功',
+      mask: true,
+      icon: 'success',
+      success() {
+        setTimeout(() => {
+          wx.reLaunch({
+            url: '../my/my'
+          })
+        }, 1500)
       }
-    };
+    })
   },
-  bindgetuserinfo(res) {
+  bindDateChange(e) {
     this.setData({
-      authMask: false
+      inviteDate: e.detail.value
     })
-    console.log(res.detail.userInfo)
-  },
-  goFindPartTime(e) {
-    let key = e.currentTarget.dataset.id
-    app.globalData.userType = key
-    wx.navigateTo({
-      url: '../invite/invite'
+  }, 
+  bindTimeChange(e) {
+    this.setData({
+      inviteTime: e.detail.value
     })
-    // wx.navigateTo({
-    //   url: '../home/home'
-    // })
-  },
+  }, 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
 
   },
+
   /**
    * 生命周期函数--监听页面显示
    */

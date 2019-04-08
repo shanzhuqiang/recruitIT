@@ -1,0 +1,85 @@
+<!--pages/postDetail/postDetail.wxml-->
+<view class='projectDetailWrap'>
+  <view class='topBox'>
+    <view class='first'>
+      <view class='leftTitle'>前端开发工程师</view>
+      <view class='rightTitle'>15k-20k</view>
+    </view>
+    <view class='second'>
+      <text>杭州·西湖区·古荡</text>
+      <text class='line'>|</text>
+      <text class='middle'>大专及以上</text>
+      <text class='line'>|</text>
+      <text>3-5年</text>
+    </view>
+    <view class='three'>
+      <text>HTML</text>
+      <text>Javascript</text>
+      <text>css</text>
+    </view>
+    <view class='fourBox'>
+      <view class='leftImg'>
+        <image class='touxiang' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/touxiang.png'></image>
+      </view>
+      <view class='rightBox'>
+        <view class='firstRow'>
+          rainbow
+          <text>人事</text>
+        </view>
+        <view class='secondRow'>最近活跃：2天前</view>
+      </view>
+    </view>
+  </view>
+  <view class='detailBox'>
+    <view class='titleOne'>岗位详情</view>
+    <view class='titleSmall'>岗位职责</view>
+    <view class='contentRow'>1、本科学历在校大学生；</view>
+    <view class='contentRow'>2、具有较强的沟通能力和服务意识；</view>
+    <view class='contentRow'>3、能吃苦耐劳，愿意承担压力；</view>
+    <view class='contentRow'>4、有相关工作经验者优先录取</view>
+    <view class='titleSmall'>任职要求</view>
+    <view class='contentRow'>1、本科学历在校大学生；</view>
+    <view class='contentRow'>2、具有较强的沟通能力和服务意识；</view>
+    <view class='contentRow'>3、能吃苦耐劳，愿意承担压力；</view>
+    <view class='contentRow'>4、有相关工作经验者优先录取</view>
+  </view>
+  <view class='companyBox'>
+    <view class='leftImgBox'>
+      <image class='logoImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/logo.png'></image>
+    </view>
+    <view class='rightImgBox'>
+      <view class='rowOne'>杭州十大科技有点公司</view>
+      <view class='rowTwo'>
+        <text>杭州</text>
+        <text class='line'>|</text>
+        <text>未融资</text>
+        <text class='line'>|</text>
+        <text>15-50人</text>
+        <text class='line'>|</text>
+        <text>移动互联网</text>
+      </view>
+      <view class='rowThree'>
+        <image class='okImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/ok.png'></image>
+        <text>已认证</text>
+      </view>
+    </view>
+    <view class='bottomAddressBox'>
+      <view class='titleAddress'>公司地址</view>
+      <view class='addressTest'>
+        <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
+        <view class='firstText'>
+          <image class='local' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/local.png'></image>
+          <text>杭州市滨江区</text>
+        </view>
+        <view class='secondText'>六合路六合路六合路</view>
+      </view>
+    </view>
+  </view>
+  <view class='bottomBtn'>
+    <view class='leftBtn'>
+      <view style='padding-top:18rpx;'><image class='share' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/share.png'></image></view>
+      <view>推荐</view>
+    </view>
+    <view class='rightBtn'>立即投递</view>
+  </view>
+</view>
