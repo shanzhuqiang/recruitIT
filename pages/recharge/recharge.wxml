@@ -22,6 +22,24 @@
         <view class='secondText'>送10金币</view>
       </view>
     </view>
+    <view class='inputBox'>
+      <input class='input' placeholder='手动输入充值金额'></input>
+    </view>
   </view>
-
+  <view class='bottomBox'>
+    <view class='title'>支付方式</view>
+    <view class='itemBox'>
+      <image class='wechat' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/wechat.png'></image>
+      微信支付
+    </view>
+    <view class='itemBox'>
+      <image class='rmb' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/rmb.png'></image>
+      账号余额
+    </view>
+    <radio-group bindchange="radioChange">
+        <radio class='wechatRadio' value="wechat" checked="{{ false }}" />
+        <radio class='rmbRadio' value="rmb" checked="{{ true }}" />
+    </radio-group>
+  </view>
+  <view class='bottomBtn'>确定</view>
 </view>

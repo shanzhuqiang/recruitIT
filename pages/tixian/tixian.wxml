@@ -1,0 +1,18 @@
+<!--pages/tixian/tixian.wxml-->
+<view class='tixianWrap'>
+  <view class='topBox'>
+    提现至：
+    <image class='wechat2' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/wechat2.png'></image>
+    微信
+  </view>
+  <view class='middleBox'>
+    <view class='title'>
+      当前余额101437.00<text>(30元起提现)</text>
+    </view>
+    <view class='bottomMoey'>
+      <text>￥</text>
+      <input class='input' type='number' placeholder='请输入提现金额'></input>
+    </view>
+  </view>
+  <view class='confirmBtn'>确定</view>
+</view>

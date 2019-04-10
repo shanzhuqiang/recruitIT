@@ -37,7 +37,10 @@
     "pages/myCompany/myCompany",
     "pages/myGold/myGold",
     "pages/myMoney/myMoney",
-    "pages/recharge/recharge"
+    "pages/recharge/recharge",
+    "pages/realName/realName",
+    "pages/tixian/tixian",
+    "pages/vip/vip"
   ],
   "window": {
     "backgroundTextStyle": "light",

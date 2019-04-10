@@ -42,3 +42,68 @@
 	line-height: 24rpx;
   padding-top: 10rpx;
 }
+.rechargeWrap .topBox .inputBox{
+	height: 92rpx;
+  line-height: 92rpx;
+	border-radius: 10rpx;
+	border: solid 3rpx #dfdfdf;
+  margin-top: 47rpx;
+}
+.rechargeWrap .topBox .inputBox .input{
+  height: 100%;
+  line-height: 100%;
+	font-size: 27rpx;
+  padding-left: 20rpx;
+}
+.rechargeWrap .bottomBox{
+  padding: 50rpx 18rpx 0;
+  position: relative;
+}
+.rechargeWrap .bottomBox .itemBox{
+  height: 104rpx;
+  line-height: 104rpx;
+  border-bottom: 1rpx solid #eee;
+	font-family: SourceHanSansCN-Light;
+	font-size: 24rpx;
+	color: #333;
+  padding-left: 120rpx;
+  position: relative;
+}
+.rechargeWrap .bottomBox .itemBox .wechat{
+  width: 53rpx;
+  height: 44rpx;
+  position: absolute;
+  left: 30rpx;
+  top: 34rpx;
+}
+.rechargeWrap .bottomBox .itemBox .rmb{
+  width: 54rpx;
+  height: 55rpx;
+  position: absolute;
+  left: 30rpx;
+  top: 27rpx;
+}
+.rechargeWrap .bottomBox .wechatRadio{
+  position: absolute;
+  top: 110rpx;
+  right: 30rpx;
+}
+.rechargeWrap .bottomBox .rmbRadio{
+  position: absolute;
+  top: 210rpx;
+  right: 30rpx;
+}
+.rechargeWrap .bottomBtn{
+	width: 600rpx;
+	height: 90rpx;
+  line-height: 90rpx;
+	background-color: #4c85fb;
+	box-shadow: 0 4rpx 16rpx 0 
+		rgba(26, 73, 210, 0.46);
+	border-radius: 4rpx;
+  text-align: center;
+	font-family: PingFangSC-Regular;
+	font-size: 32rpx;
+	color: #fff;
+  margin: 67rpx auto 0;
+}

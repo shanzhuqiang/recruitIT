@@ -1,41 +1,20 @@
-// pages/recharge/recharge.js
-const app = getApp()
+// pages/realName/realName.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    fruit: [{
-      id: 1,
-      name: '香蕉',
-    }, {
-      id: 2,
-      name: '苹果'
-    }, {
-      id: 3,
-      name: '西瓜'
-    }, {
-      id: 4,
-      name: '葡萄',
-      }],
-    current: '苹果',
-    imgSrc: ''
-
+    name: '',
+    card: '',
+    phone: ''
   },
 
-  radioChange({ detail = {} }) {
-    this.setData({
-      current: detail.value
-    });
-  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      imgSrc: app.globalData.imgSrc
-    })
+
   },
 
   /**
