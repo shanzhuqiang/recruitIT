@@ -159,6 +159,10 @@
   width: 44rpx;
   height: 41rpx;
 }
+.myWrap .middleBox > view .guanzhu2{
+  width: 47rpx;
+  height: 40rpx;
+}
 .myWrap .middleBox > view .fabu{
   width: 43rpx;
   height: 38rpx;
@@ -193,6 +197,13 @@
   width: 14rpx;
   height: 26rpx;
   right: 25rpx;
+  top: 45rpx;
+}
+.myWrap .listWrap .listItem .company{
+  width: 33rpx;
+  height: 37rpx;
+  position: absolute;
+  left: 0;
   top: 45rpx;
 }
 .myWrap .listWrap .listItem .renwuDay{

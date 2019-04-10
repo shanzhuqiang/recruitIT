@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userType: '',
     imgSrc: ''
   }, 
 
@@ -14,7 +15,26 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
+      userType: app.globalData.userType,
       imgSrc: app.globalData.imgSrc
+    })
+  },
+  // 我的公司
+  goMyCompany() {
+    wx.navigateTo({
+      url: '../myCompany/myCompany'
+    })
+  },
+  // 我的金币
+  goMyGold() {
+    wx.navigateTo({
+      url: '../myGold/myGold'
+    })
+  },
+  // 我的钱包
+  goMyMoney() {
+    wx.navigateTo({
+      url: '../myMoney/myMoney'
     })
   },
   // 我的消息

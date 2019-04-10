@@ -56,3 +56,9 @@
   color: transparent!important;
   text-shadow: 0 0 10px rgba(0,0,0,0.5)!important;
 }
+.fl{
+  float: left;
+}
+.fr{
+  float: right;
+}

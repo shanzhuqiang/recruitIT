@@ -14,7 +14,9 @@ Page({
     quartersList: [],
     talentResumeList: [{}],
     userType: '',
-    getPhoneMaskOnOff: true
+    releaseMark: false,
+    // getPhoneMaskOnOff: true
+    getPhoneMaskOnOff: false
   },
   initAuth() {
     if (app.globalData.userInfo) {
@@ -55,8 +57,16 @@ Page({
   },
   // 发布
   goRelease() {
-    wx.navigateTo({
-      url: '../release/release'
+    this.setData({
+      releaseMark: true
+    })
+    // wx.navigateTo({
+    //   url: '../release/release'
+    // })
+  },
+  closeRelease() {
+    this.setData({
+      releaseMark: false
     })
   },
   // 进入论坛

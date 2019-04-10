@@ -55,7 +55,7 @@
     </view>
   </view>
   <view class='rowHeight'></view>
-  <view class='typeTitleWrap' wx:if="{{ userType === 'first' }}">
+  <view class='typeTitleWrap' wx:if="{{ userType === 'engineer' }}">
     <view class='title'>
       <text class='{{ titleChoosed === "project" ? "active" : "" }}' bindtap='chooseTitle' data-id="project">最新项目</text>
       <text class='{{ titleChoosed === "quarters" ? "active" : "" }}' style='margin-left: 60rpx;' bindtap='chooseTitle' data-id="quarters">最新岗位</text>
@@ -102,7 +102,7 @@
     </view>
   </view>
   <!-- 简历 -->
-  <view class='typeTitleWrap' wx:if="{{ userType === 'second' }}">
+  <view class='typeTitleWrap' wx:if="{{ userType !== 'engineer' }}">
     <view class='titleSecond'>
       <text>精英简历</text>
     </view>
@@ -163,6 +163,32 @@
         <image class='my' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/my.png'></image>
       </view>
         <view>我的</view>
+    </view>
+  </view>
+  <!-- 发布 -->
+  <view class='releaseWrap' wx:if="{{ releaseMark }}">
+    <view class='iconBox'>
+      <view class='iconCol'>
+        <view>
+          <image class='fabuTiezi' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/fabuTiezi.png'></image>
+        </view>
+        <view>发布帖子</view>
+      </view>
+      <view class='iconCol' wx:if="{{ userType !== 'engineer' }}">
+        <view>
+          <image class='fabuTiezi' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/fabuGangwei.png'></image>
+        </view>
+        <view>发布岗位</view>
+      </view>
+      <view class='iconCol' wx:if="{{ userType !== 'engineer' }}">
+        <view>
+          <image class='fabuTiezi' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/fabuXiangmu.png'></image>
+        </view>
+        <view>发布项目</view>
+      </view>
+    </view>
+    <view class='bottomClose'>
+      <image class='bottomCloseIcon' bindtap='closeRelease' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/bottomClose.png'></image>
     </view>
   </view>
 </view>

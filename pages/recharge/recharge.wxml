@@ -1,0 +1,27 @@
+<!--pages/recharge/recharge.wxml-->
+<view class='rechargeWrap'>
+  <view class='topBox'>
+    <view class='title'>充值金额</view>
+    <view class='itemBoxRow'>
+      <view class='itemBox fl active'>
+        <view class='firstText'>5000元</view>
+        <view class='secondText'>送10金币</view>
+      </view>
+      <view class='itemBox fr'>
+        <view class='firstText'>5000元</view>
+        <view class='secondText'>送10金币</view>
+      </view>
+    </view>
+    <view class='itemBoxRow'>
+      <view class='itemBox fl'>
+        <view class='firstText'>5000元</view>
+        <view class='secondText'>送10金币</view>
+      </view>
+      <view class='itemBox fr'>
+        <view class='firstText'>5000元</view>
+        <view class='secondText'>送10金币</view>
+      </view>
+    </view>
+  </view>
+
+</view>

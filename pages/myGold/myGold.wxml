@@ -1,0 +1,27 @@
+<!--pages/myGold/myGold.wxml-->
+<view class='myGoldWrap'>
+  <view class='topImg'>
+    <image class='goldBg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/goldBg.png'></image>
+    <view class='first'>当前金币</view>
+    <view class='secondNum'>1018888</view>
+    <view class='rightBtn'>充值</view>
+  </view>
+  <view class='middleBtnBox'>
+    <view class='{{ typeStr === "in" ? "active" : "" }}' bindtap='chooseType' data-id="in">收入</view>
+    <view class='{{ typeStr === "out" ? "active" : "" }}' bindtap='chooseType' data-id="out">支出</view>
+  </view>
+  <view class='itemBox'>
+    <view class='first'>平台调整</view>
+    <view class='second'>
+      <view class='itemNum'>+100金币</view>
+      2019-01-14
+    </view>
+  </view>
+  <view class='itemBox'>
+    <view class='first'>平台调整</view>
+    <view class='second'>
+      <view class='itemNum'>+100金币</view>
+      2019-01-14
+    </view>
+  </view>
+</view>

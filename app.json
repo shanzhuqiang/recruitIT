@@ -32,7 +32,12 @@
     "pages/resumeDetail/resumeDetail",
     "pages/postDetail/postDetail",
     "pages/projectDetail/projectDetail",
-    "pages/invite/invite"
+    "pages/invite/invite",
+    "pages/sharePage/sharePage",
+    "pages/myCompany/myCompany",
+    "pages/myGold/myGold",
+    "pages/myMoney/myMoney",
+    "pages/recharge/recharge"
   ],
   "window": {
     "backgroundTextStyle": "light",

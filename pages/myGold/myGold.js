@@ -1,4 +1,4 @@
-// pages/index/index.js
+// pages/myGold/myGold.js
 const app = getApp()
 Page({
 
@@ -7,55 +7,22 @@ Page({
    */
   data: {
     imgSrc: '',
-    authMask: false
+    typeStr: 'in'
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.initUserInfo()
     this.setData({
       imgSrc: app.globalData.imgSrc
     })
   },
-  initUserInfo () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo
-      })
-    }
-    if (app.globalData.authMask) {
-      this.setData({
-        authMask: true
-      })
-    }
-    app.userInfoReadyCallback = res => {
-      if (res === 'authMask') {
-        this.setData({
-          authMask: true
-        })
-      } else {
-        this.setData({
-          userInfo: res
-        }) 
-      }
-    };
-  },
-  bindgetuserinfo(res) {
-    this.setData({
-      authMask: false
-    })
-    console.log(res.detail.userInfo)
-  },
-  goFindPartTime(e) {
+  chooseType(e) {
     let key = e.currentTarget.dataset.id
-    app.globalData.userType = key
-    wx.navigateTo({
-      url: '../recharge/recharge'
+    this.setData({
+      typeStr: key
     })
-    // wx.navigateTo({
-    //   url: '../home/home'
-    // })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -63,6 +30,7 @@ Page({
   onReady: function () {
 
   },
+
   /**
    * 生命周期函数--监听页面显示
    */
