@@ -49,7 +49,10 @@
     "pages/releaseBbs/releaseBbs",
     "pages/releaseProject/releaseProject",
     "pages/gangweizhize/gangweizhize",
-    "pages/renzhiyaoqiu/renzhiyaoqiu"
+    "pages/renzhiyaoqiu/renzhiyaoqiu",
+    "pages/projectZhize/projectZhize",
+    "pages/baseInfo/baseInfo",
+    "pages/desMyself/desMyself"
   ],
   "window": {
     "backgroundTextStyle": "light",

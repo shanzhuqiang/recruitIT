@@ -1,4 +1,4 @@
-// pages/releaseGangwei/releaseGangwei.js
+// pages/baseInfo/baseInfo.js
 const app = getApp()
 Page({
 
@@ -7,18 +7,27 @@ Page({
    */
   data: {
     imgSrc: '',
-    jingyanArray: ["不限", "应届毕业生", "3年以内", "3-5年", "5-10年", "10年以上"],
-    jingyan: '',
-    xueliArray: ["不限", "高中", "大专", "本科", "硕士", "博士"],
-    xueli: '',
-    moneyArray: ["不限", "2K以下", "2K-5K", "5K-10K", "10K-15K", "15K-25K", "25K-50K", "50K以上"],
-    money: '',
+    xingbieArray: ['男', '女'],
+    xingbie: '',
+    birthday: '',
+    shenfenArray: ['职场人生', '应届生'],
+    shenfen: '',
+    workTime: '',
     tagArray: ['PS'],
     addTag: false,
-    tagVal:'',
+    tagVal: '',
     maxlengthModal: false,
     delModal: false,
     delId: ''
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.setData({
+      imgSrc: app.globalData.imgSrc
+    })
   },
   // 添加标签
   addTag() {
@@ -28,7 +37,7 @@ Page({
     })
   },
   // 监听输入改变
-  tagValChange (e) {
+  tagValChange(e) {
     this.setData({
       tagVal: e.detail.detail.value
     })
@@ -85,50 +94,35 @@ Page({
     }
   },
   // 添加标签--取消
-  addTagCancel () {
+  addTagCancel() {
     this.setData({
       addTag: false
     })
   },
-  // 岗位职责
-  goGangweizhize() {
-    wx.navigateTo({
-      url: '../gangweizhize/gangweizhize'
-    })
-  },
-  // 任职要求
-  goRenzhiyaoqiu() {
-    wx.navigateTo({
-      url: '../renzhiyaoqiu/renzhiyaoqiu'
-    })
-  },
-  // 经验要求
-  jingyanChange(e) {
+  // 参加工作时间
+  workTimeChange(e) {
     this.setData({
-      jingyan: this.data.jingyanArray[e.detail.value]
-    })
-  }, 
-  // 学历
-  xueliChange(e) {
-    this.setData({
-      xueli: this.data.xueliArray[e.detail.value]
+      workTime: e.detail.value
     })
   },
-  // 月薪
-  moneyChange(e) {
+  // 当前身份
+  shenfenChange(e) {
     this.setData({
-      money: this.data.moneyArray[e.detail.value]
+      shenfen: this.data.shenfenArray[e.detail.value]
     })
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+  // 出生日期
+  birthdayChange(e) {
     this.setData({
-      imgSrc: app.globalData.imgSrc
+      birthday: e.detail.value
     })
   },
-
+  // 性别
+  xingbieChange(e) {
+    this.setData({
+      xingbie: this.data.xingbieArray[e.detail.value]
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

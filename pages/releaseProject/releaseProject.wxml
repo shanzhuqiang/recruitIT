@@ -1,2 +1,47 @@
-<!--pages/releaseProject/releaseProject.wxml-->
-<text>pages/releaseProject/releaseProject.wxml</text>
+<!--pages/releaseGangwei/releaseGangwei.wxml-->
+<view class='releaseProjectWrap'>
+  <view class='hallRowWrap'>
+    <view class='hallRow'>
+      <view class='leftName'>项目名称</view>
+      <input class='rightInput' placeholder='请输入项目名称'></input>
+      <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
+    </view>
+    <view class='hallRow'>
+      <view class='leftName'>工作地点</view>
+      <input class='rightInput' placeholder='请输入工作地点'></input>
+      <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
+    </view>
+    <view class='hallRow'>
+      <view class='leftName'>经验要求</view>
+      <picker bindchange="jingyanChange" range="{{ jingyanArray }}">
+        <input class='rightInput' placeholder="请选择" value='{{ jingyan }}' disabled/>
+      </picker>
+      <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
+    </view>
+    <view class='hallRow'>
+      <view class='leftName'>工作周期</view>
+      <picker bindchange="zhouqiChange" range="{{ zhouqiArray }}">
+        <input class='rightInput' placeholder="请选择" value='{{ zhouqi }}' disabled/>
+      </picker>
+      <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
+    </view>
+    <view class='hallRow'>
+      <view class='leftName'>月薪</view>
+      <picker bindchange="moneyChange" range="{{ moneyArray }}">
+        <input class='rightInput' placeholder="请选择" value='{{ money }}' disabled/>
+      </picker>
+      <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
+    </view>
+  </view>
+  <view class='itemWrap'>
+    <view class='hallRow' bindtap='goProjectZhize'>
+      <view class='leftName'>项目职责</view>
+      <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
+    </view>
+    <view class='hallRow' bindtap='goRenzhiyaoqiu' style='boder-bottom: none'>
+      <view class='leftName'>任职要求</view>
+      <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
+    </view>
+  </view>
+  <view class='bottomBtn'>保存</view>
+</view>

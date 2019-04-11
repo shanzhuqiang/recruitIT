@@ -1,0 +1,70 @@
+<!--pages/baseInfo/baseInfo.wxml-->
+<view class='baseInfoWrap'>
+  <view class='hallRowWrap'>
+    <view class='hallRow'>
+      <view class='leftName'>真实姓名</view>
+      <input class='rightInput' placeholder='请输入真实姓名'></input>
+    </view>
+    <view class='hallRow'>
+      <view class='leftName'>性别</view>
+      <picker bindchange="xingbieChange" range="{{ xingbieArray }}">
+        <input class='rightInput' placeholder="请选择" value='{{ xingbie }}' disabled/>
+      </picker>
+      <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
+    </view>
+    <view class='hallRow'>
+      <view class='leftName'>出生日期</view>
+      <picker bindchange="birthdayChange" mode="date">
+        <input class='rightInput' placeholder="请选择" value='{{ birthday }}' disabled/>
+      </picker>
+      <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
+    </view>
+    <view class='hallRow'>
+      <view class='leftName'>当前身份</view>
+      <picker bindchange="shenfenChange" range="{{ shenfenArray }}">
+        <input class='rightInput' placeholder="请选择" value='{{ shenfen }}' disabled/>
+      </picker>
+      <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
+    </view>
+    <view class='hallRow'>
+      <view class='leftName'>参加工作时间</view>
+      <picker bindchange="workTimeChange" mode="date">
+        <input class='rightInput' placeholder="请选择" value='{{ workTime }}' disabled/>
+      </picker>
+      <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
+    </view>
+    <view class='hallRow'>
+      <view class='leftName'>手机号码</view>
+      <input class='rightInput' placeholder='请输入手机号码'></input>
+    </view>
+    <view class='hallRow'>
+      <view class='leftName'>联系邮箱</view>
+      <input class='rightInput' placeholder='请输入联系邮箱'></input>
+    </view>
+    <view class='hallRow'>
+      <view class='leftName'>所在岗位</view>
+      <input class='rightInput' placeholder='请输入所在岗位'></input>
+    </view>
+    <view class='hallRow'>
+      <view class='leftName'>所在城市</view>
+      <input class='rightInput' placeholder='请输入所在城市'></input>
+    </view>
+  </view> 
+  <view class='bottomBox'>
+    <view class='firstTitle'>技能标签</view>
+    <view class='tagWrap'>
+      <view class='tag' wx:for="{{ tagArray }}" wx:key="" bindtap='delTag' data-id="{{ item }}">{{ item }}</view>
+      <view class='addTagBtn' bindtap='addTag'>添加标签+</view>
+    </view>
+  </view>
+  <view class='bottomBtn'>保存</view>
+  <i-modal title="添加标签" visible="{{ addTag }}" bind:ok="addTagOk" bind:cancel="addTagCancel">
+    <i-input i-class='inputBox' value="{{ tagVal }}" placeholder="最多15个字" maxlength="15" bind:change="tagValChange"/>
+  </i-modal>
+  <i-modal title="提示" visible="{{ maxlengthModal }}" bind:ok="maxlengthModalClose" show-cancel="{{ false }}">
+      <view>最多添加5个标签，请先删除</view>
+  </i-modal>
+  <i-modal title="提示" visible="{{ delModal }}" bind:ok="confirmDel" bind:cancel="cancelDel">
+      <view>确认删除该标签吗？</view>
+  </i-modal>
+</view> 

@@ -1,4 +1,7 @@
 /* pages/postDetail/postDetail.wxss */
+.postDetailWrap{
+  padding-bottom: 100rpx;
+}
 .postDetailWrap .topBox{
   border-bottom: 16rpx solid #f8f8f8;
   padding: 0 30rpx;
@@ -206,6 +209,11 @@
 }
 .postDetailWrap .bottomBtn{
   height: 100rpx;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
 }
 .postDetailWrap .bottomBtn .leftBtn{
   width: 140rpx;

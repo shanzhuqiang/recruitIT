@@ -1,34 +1,26 @@
-// pages/improveResume/improveResume.js
-const app = getApp()
+// pages/gangweizhize/gangweizhize.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    imgSrc: ''
+    keyVal: ''
   },
-  // 编辑基本信息
-  goBaseInfo () {
-    wx.navigateTo({
-      url: '../baseInfo/baseInfo'
-    })
-  },
-  // 自我描述
-  goDesMyself() {
-    wx.navigateTo({
-      url: '../desMyself/desMyself'
-    })
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+  },
+  // 输入框输入内容
+  iptChange(e) {
+    let val = e.detail.value
     this.setData({
-      imgSrc: app.globalData.imgSrc
+      keyVal: val
     })
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -1,14 +1,14 @@
-/* pages/releaseGangwei/releaseGangwei.wxss */
-.releaseGangweiWrap .hallRowWrap{
+/* pages/baseInfo/baseInfo.wxss */
+.baseInfoWrap .hallRowWrap{
   padding: 0 30rpx;
 }
-.releaseGangweiWrap .hallRow{
+.baseInfoWrap .hallRow{
   height: 120rpx;
   line-height: 120rpx;
   border-bottom: 1rpx solid #ddd;
   position:  relative;
 }
-.releaseGangweiWrap .hallRow .leftName{
+.baseInfoWrap .hallRow .leftName{
 	font-family: PingFangSC-Regular;
 	font-size: 32rpx;
 	color: #333;
@@ -17,7 +17,7 @@
   float: left;
   padding-left: 20rpx;
 }
-.releaseGangweiWrap .hallRow .rightInput{
+.baseInfoWrap .hallRow .rightInput{
   float: right;
 	font-size: 30rpx;
   margin-right: 50rpx;
@@ -26,19 +26,14 @@
   line-height: 120rpx;
   color: #333
 }
-.releaseGangweiWrap .hallRow .arrowR{
+.baseInfoWrap .hallRow .arrowR{
   width: 14rpx;
   height: 26rpx;
   position: absolute;
   right: 15rpx;
   top: 46rpx;
 }
-.releaseGangweiWrap .itemWrap{
-  padding: 0 30rpx;
-  border-top: 16rpx solid #f8f8f8;
-  border-bottom: 16rpx solid #f8f8f8;
-}
-.releaseGangweiWrap .bottomBtn{
+.baseInfoWrap .bottomBtn{
 	width: 600rpx;
 	height: 90rpx;
   line-height: 90rpx;
@@ -52,19 +47,12 @@
 	color: #fff;
   margin: 30rpx auto 30rpx
 }
-.releaseGangweiWrap .inputBox{
-  text-align: left;
-}
-.releaseGangweiWrap .inputBox > input{
-	border-radius: 4rpx;
-	border: solid 1rpx #d5d6d8;
-  padding: 0 10rpx;
-}
-.releaseGangweiWrap .bottomBox{
+/* 标签 */
+.baseInfoWrap .bottomBox{
   padding: 37rpx 30rpx 28rpx;
   border-bottom: 1rpx solid #ddd;
 }
-.releaseGangweiWrap .bottomBox .firstTitle{
+.baseInfoWrap .bottomBox .firstTitle{
 	font-family: PingFangSC-Regular;
 	font-size: 32rpx;
   height: 32rpx;
@@ -72,10 +60,10 @@
 	color: #333;
   padding-left: 30rpx;
 }
-.releaseGangweiWrap .bottomBox .tagWrap{
+.baseInfoWrap .bottomBox .tagWrap{
   padding: 24rpx 0 0 30rpx;
 }
-.releaseGangweiWrap .bottomBox .tagWrap .tag{
+.baseInfoWrap .bottomBox .tagWrap .tag{
   height: 28rpx;
   line-height: 28rpx;
 	background-color: #e8eeff;
@@ -90,7 +78,7 @@
   margin-right: 20rpx;
   margin-bottom: 10rpx;
 }
-.releaseGangweiWrap .bottomBox .tagWrap .addTagBtn{
+.baseInfoWrap .bottomBox .tagWrap .addTagBtn{
 	font-family: PingFangSC-Regular;
 	font-size: 22rpx;
 	color: #999;

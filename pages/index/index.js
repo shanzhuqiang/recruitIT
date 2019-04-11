@@ -51,7 +51,7 @@ Page({
     let key = e.currentTarget.dataset.id
     app.globalData.userType = key
     wx.navigateTo({
-      url: '../releaseGangwei/releaseGangwei'
+      url: '../improveResume/improveResume'
     })
     // wx.navigateTo({
     //   url: '../home/home'

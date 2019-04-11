@@ -46,12 +46,18 @@
   <view class='bottomBox'>
     <view class='firstTitle'>技能标签</view>
     <view class='tagWrap'>
-      <view class='tag' wx:for="{{ tagArray }}" wx:key="">{{ item }}</view>
+      <view class='tag' wx:for="{{ tagArray }}" wx:key="" bindtap='delTag' data-id="{{ item }}">{{ item }}</view>
       <view class='addTagBtn' bindtap='addTag'>添加标签+</view>
     </view>
   </view>
   <view class='bottomBtn'>保存</view>
   <i-modal title="添加标签" visible="{{ addTag }}" bind:ok="addTagOk" bind:cancel="addTagCancel">
-    <i-input i-class='inputBox' value="{{ tagVal }}" placeholder="最多15个字" maxlength="15"/>
+    <i-input i-class='inputBox' value="{{ tagVal }}" placeholder="最多15个字" maxlength="15" bind:change="tagValChange"/>
+  </i-modal>
+  <i-modal title="提示" visible="{{ maxlengthModal }}" bind:ok="maxlengthModalClose" show-cancel="{{ false }}">
+      <view>最多添加5个标签，请先删除</view>
+  </i-modal>
+  <i-modal title="提示" visible="{{ delModal }}" bind:ok="confirmDel" bind:cancel="cancelDel">
+      <view>确认删除该标签吗？</view>
   </i-modal>
 </view>
