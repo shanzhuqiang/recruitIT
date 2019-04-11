@@ -12,6 +12,7 @@
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
     </view>
     <view class='item' style='border-bottom: none' bindtap='goShouquan'>
+      <button class='listItemBtn' open-type="openSetting" bindcontact="handleContact"></button>
       <view class='first'>授权设置</view>
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
     </view>

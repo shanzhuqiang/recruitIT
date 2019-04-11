@@ -18,11 +18,10 @@ Page({
     this.setData({
       imgSrc: app.globalData.imgSrc
     })
-
   },
   finish() {
     wx.showToast({
-      title: '认证成功',
+      title: '邀请成功',
       mask: true,
       icon: 'success',
       success() {

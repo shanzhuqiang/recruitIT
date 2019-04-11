@@ -7,6 +7,7 @@ Page({
    */
   data: {
     imgSrc: '',
+    releaseMark: false,
     topType: 'xiangmu'
   },
   changeTopType(e) {
@@ -23,6 +24,24 @@ Page({
       imgSrc: app.globalData.imgSrc
     })
   },
+  // 发布帖子
+  goReleaseBbs() {
+    wx.navigateTo({
+      url: '../releaseBbs/releaseBbs'
+    })
+  },
+  // 发布岗位
+  goReleaseGangwei() {
+    wx.navigateTo({
+      url: '../releaseGangwei/releaseGangwei'
+    })
+  },
+  // 发布项目
+  goReleaseProject() {
+    wx.navigateTo({
+      url: '../releaseProject/releaseProject'
+    })
+  },
   // 进入首页
   goHome() {
     wx.navigateTo({
@@ -37,8 +56,13 @@ Page({
   },
   // 发布
   goRelease() {
-    wx.navigateTo({
-      url: '../release/release'
+    this.setData({
+      releaseMark: true
+    })
+  },
+  closeRelease() {
+    this.setData({
+      releaseMark: false
     })
   },
   // 进入论坛

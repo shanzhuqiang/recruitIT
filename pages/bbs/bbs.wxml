@@ -49,4 +49,30 @@
         <view>我的</view>
     </view>
   </view>
+  <!-- 发布 -->
+  <view class='releaseWrap' wx:if="{{ releaseMark }}">
+    <view class='iconBox'>
+      <view class='iconCol' bindtap='goReleaseBbs'>
+        <view>
+          <image class='fabuTiezi' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/fabuTiezi.png'></image>
+        </view>
+        <view>发布帖子</view>
+      </view>
+      <view class='iconCol' wx:if="{{ userType !== 'engineer' }}" bindtap='goReleaseGangwei'>
+        <view>
+          <image class='fabuTiezi' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/fabuGangwei.png'></image>
+        </view>
+        <view>发布岗位</view>
+      </view>
+      <view class='iconCol' wx:if="{{ userType !== 'engineer' }}" bindtap='goReleaseProject'>
+        <view>
+          <image class='fabuTiezi' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/fabuXiangmu.png'></image>
+        </view>
+        <view>发布项目</view>
+      </view>
+    </view>
+    <view class='bottomClose'>
+      <image class='bottomCloseIcon' bindtap='closeRelease' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/bottomClose.png'></image>
+    </view>
+  </view>
 </view>

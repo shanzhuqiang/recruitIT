@@ -192,6 +192,18 @@
   position: relative;
   padding-left: 60rpx;
 }
+.myWrap .listWrap .listItem .listItemBtn{
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent;
+  z-index: 99;
+}
+.myWrap .listWrap .listItem .listItemBtn::after{
+  border: none;
+}
 .myWrap .listWrap .listItem .arrowR{
   position: absolute;
   width: 14rpx;

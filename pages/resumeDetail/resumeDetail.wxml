@@ -4,7 +4,7 @@
     <image class='touxiang' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/touxiang.png'></image>
     <view class='title'>基本信息</view>
     <view class='first'>
-      <text class='name'>王大伟</text>
+      <text class='name {{ pay ? "" : "mosaic" }}'>王大伟</text>
       <text class='profession'>UI设计师</text>
     </view>
     <view class='second'>
@@ -24,13 +24,13 @@
       <view class='iconWrap'>
         <image class='phone' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/phone.png'></image>
       </view>
-      <view class='strBox'>18767101033</view>
+      <view class='strBox {{ pay ? "" : "mosaic" }}'>18767101033</view>
     </view>
     <view class='five'>
       <view class='iconWrap'>
         <image class='email' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/email.png'></image>
       </view>
-      <view class='strBox'>18767101033@163.com</view>
+      <view class='strBox {{ pay ? "" : "mosaic" }}'>18767101033@163.com</view>
     </view>
   </view>
   <view class='resumeDetailBox'>
@@ -82,12 +82,13 @@
     <view class='contentTitle'>工作内容</view>
     <view class='content2'>这是我的工作的内容这是我的工作的内容这是我的工作的内容这是我的工作的内容这是我的工作的内容这是我的工作的内容这是我的工作的内容这是我的工作的内容这是我的工作的内容这是我的工作的内容这是我的工作的内容这是我的工作的内容这是我的工作的内容这是我的工作的内容</view>
   </view>
+  <view style='height: 100rpx;'></view>
   <view class='bottomBtn'>
     <view class='leftBtn'>
       <view style='padding-top:18rpx;'><image class='shoucang' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/shoucang.png'></image></view>
       <view>收藏</view>
     </view>
-    <view class='rightBtn'>联系对方</view>
+    <view class='rightBtn' bindtap='bottomBtn'>{{ pay ? "联系对方" : "下载" }}</view>
   </view>
 </view>
 

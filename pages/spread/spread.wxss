@@ -1,9 +1,6 @@
 /* pages/spread/spread.wxss */
-page{
-  height: 100%;
-}
 .spreadWrap{
-  height: 100%;
+  height: 1186rpx;
   position: relative;
 }
 .spreadWrap .spreadWrapBg{

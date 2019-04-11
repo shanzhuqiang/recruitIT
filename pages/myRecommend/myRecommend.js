@@ -1,4 +1,4 @@
-// pages/release/release.js
+// pages/myRecommend/myRecommend.js
 Page({
 
   /**

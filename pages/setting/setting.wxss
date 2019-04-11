@@ -16,6 +16,18 @@ page{
   border-bottom: 1rpx solid #f0f0f0;
   position: relative;
 }
+.settingWrap .listWrap .item .listItemBtn{
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent;
+  z-index: 99;
+}
+.settingWrap .listWrap .item .listItemBtn::after{
+  border: none;
+}
 .settingWrap .listWrap .item .first{
   float: left;
   height: 88rpx;

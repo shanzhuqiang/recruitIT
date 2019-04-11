@@ -55,14 +55,29 @@ Page({
       url: '../bountyPlatform/bountyPlatform'
     })
   },
+  // 发布帖子
+  goReleaseBbs() {
+    wx.navigateTo({
+      url: '../releaseBbs/releaseBbs'
+    })
+  },
+  // 发布岗位
+  goReleaseGangwei() {
+    wx.navigateTo({
+      url: '../releaseGangwei/releaseGangwei'
+    })
+  },
+  // 发布项目
+  goReleaseProject() {
+    wx.navigateTo({
+      url: '../releaseProject/releaseProject'
+    })
+  },
   // 发布
   goRelease() {
     this.setData({
       releaseMark: true
     })
-    // wx.navigateTo({
-    //   url: '../release/release'
-    // })
   },
   closeRelease() {
     this.setData({
@@ -162,11 +177,11 @@ Page({
   },
   // 搜索
   goHomeSearch () {
-    if (this.data.userType === 'first') {
+    if (this.data.userType === 'engineer') {
       wx.navigateTo({
         url: '../searchFirst/searchFirst'
       })
-    } else if (this.data.userType === 'second') {
+    } else if (this.data.userType === 'hr') {
       wx.navigateTo({
         url: '../searchSecond/searchSecond'
       })

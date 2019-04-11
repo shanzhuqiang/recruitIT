@@ -112,7 +112,10 @@
           <image class='leftImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc + "/logo.png" }}'></image>
         </view>
         <view class='rightBox'>
-          <view class='firstTitle'>王大伟<text class='typeName'>高级UI设计师</text></view>
+          <view class='firstTitle'>
+            <text class='nameText mosaic'>王大伟</text>
+            <text class='typeName'>高级UI设计师</text>
+          </view>
           <view class='secondTags'>
             <text style='padding-left: 0'>三年</text>
             <text class='middleTag'>本科</text>
@@ -168,19 +171,19 @@
   <!-- 发布 -->
   <view class='releaseWrap' wx:if="{{ releaseMark }}">
     <view class='iconBox'>
-      <view class='iconCol'>
+      <view class='iconCol' bindtap='goReleaseBbs'>
         <view>
           <image class='fabuTiezi' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/fabuTiezi.png'></image>
         </view>
         <view>发布帖子</view>
       </view>
-      <view class='iconCol' wx:if="{{ userType !== 'engineer' }}">
+      <view class='iconCol' wx:if="{{ userType !== 'engineer' }}" bindtap='goReleaseGangwei'>
         <view>
           <image class='fabuTiezi' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/fabuGangwei.png'></image>
         </view>
         <view>发布岗位</view>
       </view>
-      <view class='iconCol' wx:if="{{ userType !== 'engineer' }}">
+      <view class='iconCol' wx:if="{{ userType !== 'engineer' }}" bindtap='goReleaseProject'>
         <view>
           <image class='fabuTiezi' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/fabuXiangmu.png'></image>
         </view>

@@ -6,9 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imgSrc: ''
+    imgSrc: '',
+    pay: false
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -17,7 +17,39 @@ Page({
       imgSrc: app.globalData.imgSrc
     })
   },
-
+  bottomBtn() {
+    if (!this.data.pay) {
+      let _this = this
+      wx.showModal({
+        confirmText: '立即下载',
+        confirmColor: '#0073ff',
+        title: '提示',
+        content: '您将消耗XX猎币下载简历，下载后就可以联系他啦~',
+        success(res) {
+          if (res.confirm) {
+            wx.showToast({
+              title: '下载成功',
+              icon: 'success'
+            })
+            _this.setData({
+              pay: true
+            })
+          }
+        }
+      })
+    } else {
+      wx.makePhoneCall({
+        phoneNumber: '1340000',
+        complete(res) {
+          wx.showModal({
+            showCancel: false,
+            title: '提示',
+            content: '可在我的-简历-待沟通中邀请面试',
+          })
+        }
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

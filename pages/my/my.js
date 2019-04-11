@@ -7,6 +7,7 @@ Page({
    */
   data: {
     userType: '',
+    releaseMark: false,
     imgSrc: ''
   }, 
 
@@ -17,6 +18,66 @@ Page({
     this.setData({
       userType: app.globalData.userType,
       imgSrc: app.globalData.imgSrc
+    })
+  },
+  // 发布帖子
+  goReleaseBbs() {
+    wx.navigateTo({
+      url: '../releaseBbs/releaseBbs'
+    })
+  },
+  // 发布岗位
+  goReleaseGangwei() {
+    wx.navigateTo({
+      url: '../releaseGangwei/releaseGangwei'
+    })
+  },
+  // 发布项目
+  goReleaseProject() {
+    wx.navigateTo({
+      url: '../releaseProject/releaseProject'
+    })
+  },
+  // 完善简历
+  goImproveResume() {
+    wx.navigateTo({
+      url: '../improveResume/improveResume'
+    })
+  },
+  // hr简历
+  goResume() {
+    wx.navigateTo({
+      url: '../resume/resume'
+    })
+  },
+  // hr我的关注
+  goMyGuanzhu() {
+    wx.navigateTo({
+      url: '../myGuanzhu/myGuanzhu'
+    })
+  },
+  // 经纪人我的推荐
+  goMyRecommend() {
+    wx.navigateTo({
+      url: '../myRecommend/myRecommend'
+    })
+  },
+  // 我的投递
+  goMyDelivery() {
+    wx.navigateTo({
+      url: '../myDelivery/myDelivery'
+    })
+  },
+  // 我的任务
+  goMyTask() {
+    wx.navigateTo({
+      url: '../myTask/myTask'
+    })
+  },
+  // vip
+  goVip() {
+    wx.navigateTo({
+      url: '../vip/vip'
     })
   },
   // 我的公司
@@ -81,8 +142,13 @@ Page({
   },
   // 发布
   goRelease() {
-    wx.navigateTo({
-      url: '../release/release'
+    this.setData({
+      releaseMark: true
+    })
+  },
+  closeRelease() {
+    this.setData({
+      releaseMark: false
     })
   },
   // 进入论坛

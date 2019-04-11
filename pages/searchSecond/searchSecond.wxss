@@ -195,7 +195,7 @@
 .searchFirstWrap .typeTitleWrap .jinyingItemWrap .firstRow .rightBox{
   margin-left: 110rpx;
 }
-.searchFirstWrap .typeTitleWrap .jinyingItemWrap .firstRow .rightBox .firstTitle{
+.searchFirstWrap .typeTitleWrap .jinyingItemWrap .firstRow .rightBox .firstTitle .nameText{
 	font-family: PingFangSC-Medium;
 	font-size: 34rpx;
   height: 34rpx;

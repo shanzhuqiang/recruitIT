@@ -21,7 +21,6 @@
     "pages/qiuzhiyixiang/qiuzhiyixiang",
     "pages/guanzhugongsi/guanzhugongsi",
     "pages/taskDay/taskDay",
-    "pages/release/release",
     "pages/walk/walk",
     "pages/setting/setting",
     "pages/settingPhone/settingPhone",
@@ -40,7 +39,17 @@
     "pages/recharge/recharge",
     "pages/realName/realName",
     "pages/tixian/tixian",
-    "pages/vip/vip"
+    "pages/vip/vip",
+    "pages/myTask/myTask",
+    "pages/myDelivery/myDelivery",
+    "pages/improveResume/improveResume",
+    "pages/resume/resume",
+    "pages/myRecommend/myRecommend",
+    "pages/releaseGangwei/releaseGangwei",
+    "pages/releaseBbs/releaseBbs",
+    "pages/releaseProject/releaseProject",
+    "pages/gangweizhize/gangweizhize",
+    "pages/renzhiyaoqiu/renzhiyaoqiu"
   ],
   "window": {
     "backgroundTextStyle": "light",

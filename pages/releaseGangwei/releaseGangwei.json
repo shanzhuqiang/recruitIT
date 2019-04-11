@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "i-input": "../../dist/input/index",
+    "i-modal": "../../dist/modal/index"
+  },
+  "navigationBarTitleText": "发布岗位",
+  "navigationBarBackgroundColor": "#fff"
+}
