@@ -1,6 +1,6 @@
 <!--pages/myRelease/myRelease.wxml-->
 <view class='myReleaseWrap'>
-  <view class='topBox'>
+  <view class='topBox' wx:if="{{ userType === 'hr' }}">
     <view class='item {{ tabType === "tiezi" ? "active" : "" }}' bindtap='chooseType' data-id="tiezi">帖子</view>
     <view class='item {{ tabType === "xiangmu" ? "active" : "" }}' bindtap='chooseType' data-id="xiangmu">
       项目

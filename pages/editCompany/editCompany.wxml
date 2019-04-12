@@ -1,0 +1,51 @@
+<!--pages/editCompany/editCompany.wxml-->
+<view class='editCompanyWrap'>
+  <view class='hallRowWrap'>
+    <view class='hallRow'>
+      <view class='leftName'>所在城市</view>
+      <input class='rightInput' placeholder='请输入所在城市'></input>
+    </view>
+    <view class='hallRow'>
+      <view class='leftName'>融资情况</view>
+      <picker bindchange="rongziChange" range="{{ rongziArray }}">
+        <input class='rightInput' placeholder="请选择" value='{{ rongzi }}' disabled/>
+      </picker>
+      <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
+    </view>
+    <view class='hallRow'>
+      <view class='leftName'>企业规模</view>
+      <picker bindchange="guimoChange" range="{{ guimoArray }}">
+        <input class='rightInput' placeholder="请选择" value='{{ guimo }}' disabled/>
+      </picker>
+      <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
+    </view>
+    <view class='hallRow'>
+      <view class='leftName'>行业</view>
+      <picker bindchange="hangyeChange" range="{{ hangyeArray }}">
+        <input class='rightInput' placeholder="请选择" value='{{ hangye }}' disabled/>
+      </picker>
+      <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
+    </view>
+    <view class='hallRow'>
+      <view class='leftName'>公司地址</view>
+      <picker bindchange="addressChange" mode="region">
+        <input class='rightInput' placeholder="请选择" value='{{ address }}' disabled/>
+      </picker>
+      <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
+    </view>
+    <view class='textareaWrap'>
+      <textarea maxlength="1000" bindinput="addressInfoChange" class='textareaBox' placeholder="详情地址" />
+    </view>
+    <view class='hallRow'>
+      <view class='leftName'>公司介绍</view>
+    </view>
+    <view class='textareaWrap' style='border-bottom: none'>
+      <textarea maxlength="1000" bindinput="introduceChange" class='textareaBox' placeholder="请输入详情" />
+    </view>
+    <view class='addBox'>
+      <image class='camera' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/camera.png'></image>
+      <text class='addText'>添加</text>
+    </view>
+  </view>
+  <view class='saveBtn'>保存</view>
+</view>

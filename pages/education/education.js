@@ -1,4 +1,4 @@
-// pages/myRelease/myRelease.js
+// pages/education/education.js
 const app = getApp()
 Page({
 
@@ -7,26 +7,38 @@ Page({
    */
   data: {
     imgSrc: '',
-    tabType: 'tiezi',
-    userType: ''
+    xueliArray: ["不限", "高中", "大专", "本科", "硕士", "博士"],
+    xueli: '',
+    intime: '',
+    outtime: ''
   },
-  // 切换类型
-  chooseType(e) {
-    let key = e.currentTarget.dataset.id
-    this.setData({
-      tabType: key
-    })
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.setData({
-      userType: app.globalData.userType,
       imgSrc: app.globalData.imgSrc
     })
   },
-
+  // 入学时间
+  intimeChange(e) {
+    this.setData({
+      intime: e.detail.value
+    })
+  },
+  // 毕业时间
+  outtimeChange(e) {
+    this.setData({
+      outtime: e.detail.value
+    })
+  },
+  // 学历
+  xueliChange(e) {
+    this.setData({
+      xueli: this.data.xueliArray[e.detail.value]
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -1,18 +1,29 @@
 // pages/myTask/myTask.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    imgSrc: '',
+    tabType: 'unconfirm'
+  },
+  // 切换类型
+  chooseType(e) {
+    let key = e.currentTarget.dataset.id
+    this.setData({
+      tabType: key
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      imgSrc: app.globalData.imgSrc
+    })
   },
 
   /**

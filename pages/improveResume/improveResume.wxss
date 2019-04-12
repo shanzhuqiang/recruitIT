@@ -1,8 +1,28 @@
 /* pages/improveResume/improveResume.wxss */
+.improveResumeWrap{
+  border-bottom: 70rpx solid #f8f8f8;
+}
 .improveResumeWrap .resumeDetailBox{
-  padding: 0 30rpx 30rpx;
+  padding: 0 30rpx;
   position: relative;
   border-bottom: 16rpx solid #f8f8f8;
+}
+.improveResumeWrap .resumeDetailBox .oneBoxWrap{
+  border-bottom: 1rpx solid #eee;
+  padding-bottom: 30rpx;
+}
+.improveResumeWrap .resumeDetailBox .addBtn{
+  height: 88rpx;
+  line-height: 88rpx;
+	font-family: PingFangSC-Regular;
+	font-size: 28rpx;
+	color: #333;
+  text-align: center;
+}
+.improveResumeWrap .resumeDetailBox .addBtn .addIcon{
+  font-family: PingFangSC-Regular;
+	font-size: 28rpx;
+	color: #4c85fb;
 }
 .improveResumeWrap .resumeDetailBox > .touxiang{
   width: 100rpx;
@@ -85,7 +105,7 @@
   vertical-align: middle;
 }
 .improveResumeWrap .resumeDetailBox .five{
-  padding-top: 20rpx;
+  padding: 20rpx 0 30rpx;
   height: 30rpx;
   line-height: 30rpx;
 }
@@ -101,7 +121,7 @@
 	color: #333;
 }
 .improveResumeWrap .resumeDetailBox .contentBox{
-  padding-top: 30rpx;
+  padding: 30rpx 0;
 }
 .improveResumeWrap .resumeDetailBox .contentBox .content{
   overflow: hidden;
@@ -116,6 +136,19 @@
 }
 .improveResumeWrap .resumeDetailBox .oneBox{
   padding-top: 30rpx;
+  position: relative;
+}
+.improveResumeWrap .resumeDetailBox .borderBottom{
+  border-bottom: 1rpx solid #eee;
+  padding-bottom: 30rpx;
+}
+.improveResumeWrap .resumeDetailBox .oneBox .editBtn{
+	font-family: PingFangSC-Regular;
+	font-size: 24rpx;
+	color: #2e70f9;
+  position: absolute;
+  right: 0;
+  top: 24rpx;
 }
 .improveResumeWrap .resumeDetailBox .oneBox .left{
   width: 82rpx;

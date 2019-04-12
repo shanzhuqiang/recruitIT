@@ -1,2 +1,37 @@
 <!--pages/myTask/myTask.wxml-->
-<text>pages/myTask/myTask.wxml</text>
+<view class='myTaskWrap'>
+  <view class='topBox'>
+    <view class='item {{ tabType === "unconfirm" ? "active" : "" }}' bindtap='chooseType' data-id="unconfirm">
+      待确认
+    </view>
+    <view class='item {{ tabType === "inprogress" ? "active" : "" }}' bindtap='chooseType' data-id="inprogress">
+      进行中
+    </view>
+    <view class='item {{ tabType === "finish" ? "active" : "" }}' bindtap='chooseType' data-id="finish">
+      已完成
+    </view>
+  </view>
+  <view class='itemWrap' wx:if="{{ tabType === 'unconfirm' }}">
+    <view class='itemTop'>
+    
+    </view>
+    <view class='itemBox'>
+      <view class='leftImg'>招标</view>
+      <view class='rightText'>
+        <view class='firstRow'>我需要APP设计</view>
+        <view class='secondRow'>
+          <text>三年</text>
+          <text class='line'>|</text>
+          <text>本科</text>
+          <text class='line'>|</text>
+          <text>10k-14k</text>
+        </view>
+        <view class='threeRow'>最近活跃：9小时前</view>
+      </view>
+    </view>
+    <view class='bottomRow'>
+      <view class='yoaqingBtn' bindtap='goInvite'>接受</view>
+    </view>
+  </view>
+
+</view>

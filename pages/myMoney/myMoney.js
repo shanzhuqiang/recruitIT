@@ -18,7 +18,13 @@ Page({
       imgSrc: app.globalData.imgSrc
     })
   },
-
+  // 提现
+  goTixian () {
+    wx.navigateTo({
+      url: '../tixian/tixian'
+    })
+  },
+  // 选择类型
   chooseType(e) {
     let key = e.currentTarget.dataset.id
     this.setData({

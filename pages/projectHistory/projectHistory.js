@@ -1,4 +1,4 @@
-// pages/myRelease/myRelease.js
+// pages/workHistory/workHistory.js
 const app = getApp()
 Page({
 
@@ -7,26 +7,30 @@ Page({
    */
   data: {
     imgSrc: '',
-    tabType: 'tiezi',
-    userType: ''
+    startTime: '',
+    endTime: ''
   },
-  // 切换类型
-  chooseType(e) {
-    let key = e.currentTarget.dataset.id
-    this.setData({
-      tabType: key
-    })
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.setData({
-      userType: app.globalData.userType,
       imgSrc: app.globalData.imgSrc
     })
   },
-
+  // 开始时间
+  startTimeChange(e) {
+    this.setData({
+      startTime: e.detail.value
+    })
+  },
+  // 结束时间
+  endTimeChange(e) {
+    this.setData({
+      endTime: e.detail.value
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

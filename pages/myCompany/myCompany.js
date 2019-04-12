@@ -1,20 +1,28 @@
-// pages/myCompany/myCompany.js
+// pages/enterpriseInfo/enterpriseInfo.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    imgSrc: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      imgSrc: app.globalData.imgSrc
+    })
   },
-
+  //编辑
+  goEditCompany() {
+    wx.navigateTo({
+      url: '../editCompany/editCompany'
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

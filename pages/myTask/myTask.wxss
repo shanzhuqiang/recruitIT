@@ -1,1 +1,115 @@
 /* pages/myTask/myTask.wxss */
+.myTaskWrap .topBox{
+  height: 90rpx;
+  line-height: 90rpx;
+  display: flex;
+  border-bottom: 1rpx solid #eee;
+  padding: 0 80rpx;
+}
+.myTaskWrap .topBox .item{
+  width: 30%;
+	font-family: PingFangSC-Regular;
+	font-size: 30rpx;
+	color: #666;
+  position: relative;
+  text-align: center;
+}
+.myTaskWrap .topBox .item.active{
+	font-family: PingFangSC-Medium;
+	color: #333;
+}
+.myTaskWrap .topBox .item.active::after{
+  content: "";
+  position: absolute;
+  width: 40rpx;
+  height: 6rpx;
+  background: #2e70f9;
+  left: 50%;
+  margin-left: -20rpx;
+  bottom: 0rpx
+}
+.myTaskWrap .itemWrap{
+  padding: 0 30rpx;
+  border-bottom: 16rpx solid #f8f8f8;
+}
+.myTaskWrap .itemWrap .itemBox{
+  border-bottom: 1rpx solid #f0f0f0;
+  padding: 70rpx 0 40rpx;
+}
+.myTaskWrap .itemWrap .itemBox .leftImg{
+	width: 68rpx;
+	height: 30rpx;
+  line-height: 30rpx;
+  text-align: center;
+	background-image: linear-gradient(-45deg, 
+		#4874f7 0%, 
+		#1a49d2 100%), 
+	linear-gradient(
+		#ffffff, 
+		#ffffff);
+	background-blend-mode: normal, 
+		normal;
+	border-radius: 2rpx;
+  float: left;
+	font-family: PingFangSC-Regular;
+	font-size: 20rpx;
+	color: #fff;
+}
+.myTaskWrap .itemWrap .itemBox .rightText{
+  margin-left: 85rpx;
+}
+.myTaskWrap .itemWrap .itemBox .rightText .firstRow{
+	font-family: PingFangSC-Medium;
+	font-size: 30rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+	color: #333;
+}
+.myTaskWrap .itemWrap .itemBox .rightText .secondRow{
+	font-family: PingFangSC-Regular;
+	font-size: 24rpx;
+  height: 24rpx;
+  line-height: 24rpx;
+	color: #999;
+  padding: 20rpx 0 15rpx; 
+}
+.myTaskWrap .itemWrap .itemBox .rightText .secondRow .line{
+  margin: 0 20rpx;
+}
+.myTaskWrap .itemWrap .itemBox .rightText .threeRow{
+	font-family: PingFangSC-Regular;
+	font-size: 24rpx;
+  height: 24rpx;
+  line-height: 24rpx;
+	color: #999;
+}
+.myTaskWrap .itemWrap .bottomRow{
+  height: 90rpx;
+  line-height: 90rpx;
+}
+.myTaskWrap .itemWrap .bottomRow .bottomBtn{
+	width: 136rpx;
+	height: 50rpx;
+  line-height: 50rpx;
+	border-radius: 4rpx;
+	border: solid 1rpx #cccccc;
+  text-align: center;
+	font-family: PingFangSC-Regular;
+	font-size: 26rpx;
+	color: #999;
+  float: right;
+  margin-top: 22rpx;
+}
+.myTaskWrap .itemWrap .bottomRow .yoaqingBtn{
+	width: 136rpx;
+	height: 50rpx;
+  line-height: 50rpx;
+	border-radius: 4rpx;
+	border: solid 1rpx #4c85fb;
+  text-align: center;
+	font-family: PingFangSC-Regular;
+	font-size: 26rpx;
+	color: #4c85fb;
+  float: right;
+  margin: 22rpx 0 0 17rpx;
+}

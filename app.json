@@ -52,7 +52,12 @@
     "pages/renzhiyaoqiu/renzhiyaoqiu",
     "pages/projectZhize/projectZhize",
     "pages/baseInfo/baseInfo",
-    "pages/desMyself/desMyself"
+    "pages/desMyself/desMyself",
+    "pages/workHistory/workHistory",
+    "pages/education/education",
+    "pages/projectHistory/projectHistory",
+    "pages/editCompany/editCompany",
+    "pages/businessLicense/businessLicense"
   ],
   "window": {
     "backgroundTextStyle": "light",

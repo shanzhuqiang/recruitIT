@@ -20,7 +20,8 @@
   position: relative;
   z-index: 1;
   top: 55rpx;
-  left: 65rpx
+  left: 65rpx;
+  width: 200rpx;
 }
 .myGoldWrap .topImg .secondNum{
 	font-family: Tensentype-LingHeiJ;
@@ -30,6 +31,7 @@
   z-index: 1;
   top: 80rpx;
   left: 60rpx;
+  width: 400rpx;
 }
 .myGoldWrap .topImg  .rightBtn{
 	width: 168rpx;

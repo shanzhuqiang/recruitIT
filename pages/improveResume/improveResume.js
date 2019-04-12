@@ -8,10 +8,28 @@ Page({
   data: {
     imgSrc: ''
   },
+  // 项目经历
+  goProjectHistory() {
+    wx.navigateTo({
+      url: '../projectHistory/projectHistory'
+    })
+  },
+  // 教育经历
+  goEducation() {
+    wx.navigateTo({
+      url: '../education/education'
+    })
+  },
   // 编辑基本信息
   goBaseInfo () {
     wx.navigateTo({
       url: '../baseInfo/baseInfo'
+    })
+  },
+  // 工作经历
+  goWorkHistory() {
+    wx.navigateTo({
+      url: '../workHistory/workHistory'
     })
   },
   // 自我描述

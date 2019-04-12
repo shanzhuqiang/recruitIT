@@ -51,7 +51,7 @@ Page({
     let key = e.currentTarget.dataset.id
     app.globalData.userType = key
     wx.navigateTo({
-      url: '../improveResume/improveResume'
+      url: '../myTask/myTask'
     })
     // wx.navigateTo({
     //   url: '../home/home'

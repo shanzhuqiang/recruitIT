@@ -2,7 +2,7 @@
 <view class='projectZhizeWrap'>
   <view class='bgRow'></view>
   <view class='textareaWrap'>
-    <textarea maxlength="1000" bindinput="iptChange" class='textareaBox' bindblur="bindTextAreaBlur" placeholder="请输入项目职责" />
+    <textarea maxlength="1000" bindinput="iptChange" class='textareaBox' placeholder="请输入项目职责" />
   </view>
   <view class='wordNum'>{{ keyVal.length }}/1000字</view>
   <view class='saveBtn'>保存</view>

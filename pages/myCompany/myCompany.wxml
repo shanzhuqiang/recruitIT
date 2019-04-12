@@ -1,2 +1,40 @@
-<!--pages/myCompany/myCompany.wxml-->
-<text>pages/myCompany/myCompany.wxml</text>
+<!--pages/enterpriseInfo/enterpriseInfo.wxml-->
+<view class='myCompanyWrap'>
+  <view class='topInfo'>
+      <image class='logoImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/logo.png'></image>
+      <view class='topInfoRight'>
+        <view class='topTitle'>
+          杭州魅智科技有限公司杭州魅智科技有限公司杭州魅智科技有限公司杭州魅智科技有限公司
+        </view>
+        <view class='guanzhuGag' bindtap='goEditCompany'>编辑</view>
+        <view class='bottomTag'>
+          <text style='padding-left: 0'>杭州</text>
+          <text class='borderLeft'>未融资</text>
+          <text class='borderBoth'>15-50人</text>
+          <text>移动互联网</text>
+        </view>
+        <view class='okBox'>
+          <image class='okImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/ok.png'></image>
+          已认证
+        </view>
+      </view>
+  </view>
+  <view class='gongsiWrap'>
+    <view class='title'>公司地址</view>
+    <view class='addressWrap'>
+      <view class='addressOne'>
+      <image class='localImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/local.png'></image>
+      杭州市滨江区
+      </view>
+      <view class='addressTwo'>六合路六合桥六和塔</view>
+    </view>
+    <view class='title'>公司介绍</view>
+    <view class='xianqgingImgWrap'>
+      <image class='xianqgingImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/xianqging.png'></image>
+    </view>
+    <view class='content'>
+      啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦
+    </view>
+  </view>
+</view>
+ 

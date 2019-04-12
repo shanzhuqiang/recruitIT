@@ -18,6 +18,13 @@ Page({
       imgSrc: app.globalData.imgSrc
     })
   },
+  // 充值
+  goRecharge() {
+    wx.navigateTo({
+      url: '../recharge/recharge'
+    })
+  },
+  // 选择类型
   chooseType(e) {
     let key = e.currentTarget.dataset.id
     this.setData({

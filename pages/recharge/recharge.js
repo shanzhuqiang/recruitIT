@@ -23,7 +23,6 @@ Page({
     imgSrc: ''
 
   },
-
   radioChange({ detail = {} }) {
     this.setData({
       current: detail.value

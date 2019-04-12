@@ -1,4 +1,4 @@
-// pages/myRelease/myRelease.js
+// pages/workHistory/workHistory.js
 const app = getApp()
 Page({
 
@@ -7,14 +7,19 @@ Page({
    */
   data: {
     imgSrc: '',
-    tabType: 'tiezi',
-    userType: ''
+    inTime: '',
+    outTime: ''
   },
-  // 切换类型
-  chooseType(e) {
-    let key = e.currentTarget.dataset.id
+  // 入职时间
+  inTimeChange(e) {
     this.setData({
-      tabType: key
+      inTime: e.detail.value
+    })
+  },
+  // 离职时间
+  outTimeChange(e) {
+    this.setData({
+      outTime: e.detail.value
     })
   },
   /**
@@ -22,7 +27,6 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      userType: app.globalData.userType,
       imgSrc: app.globalData.imgSrc
     })
   },
