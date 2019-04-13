@@ -1,4 +1,4 @@
-// pages/index/index.js
+// pages/checkTime/checkTime.js
 const app = getApp()
 Page({
 
@@ -7,55 +7,27 @@ Page({
    */
   data: {
     imgSrc: '',
-    authMask: false
+    startTime: '',
+    endTime: ''
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.initUserInfo()
     this.setData({
       imgSrc: app.globalData.imgSrc
     })
   },
-  initUserInfo () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo
-      })
-    }
-    if (app.globalData.authMask) {
-      this.setData({
-        authMask: true
-      })
-    }
-    app.userInfoReadyCallback = res => {
-      if (res === 'authMask') {
-        this.setData({
-          authMask: true
-        })
-      } else {
-        this.setData({
-          userInfo: res
-        }) 
-      }
-    };
-  },
-  bindgetuserinfo(res) {
+  startTimeChange(e) {
     this.setData({
-      authMask: false
+      startTime: e.detail.value
     })
-    console.log(res.detail.userInfo)
   },
-  goFindPartTime(e) {
-    let key = e.currentTarget.dataset.id
-    app.globalData.userType = key
-    wx.navigateTo({
-      url: '../checkTime/checkTime'
+  endTimeChange(e) {
+    this.setData({
+      endTime: e.detail.value
     })
-    // wx.navigateTo({
-    //   url: '../home/home'
-    // })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -63,6 +35,7 @@ Page({
   onReady: function () {
 
   },
+
   /**
    * 生命周期函数--监听页面显示
    */

@@ -11,27 +11,148 @@
       已完成
     </view>
   </view>
-  <view class='itemWrap' wx:if="{{ tabType === 'unconfirm' }}">
-    <view class='itemTop'>
-    
-    </view>
-    <view class='itemBox'>
-      <view class='leftImg'>招标</view>
-      <view class='rightText'>
-        <view class='firstRow'>我需要APP设计</view>
-        <view class='secondRow'>
-          <text>三年</text>
-          <text class='line'>|</text>
-          <text>本科</text>
-          <text class='line'>|</text>
-          <text>10k-14k</text>
+  <view class='itemWrapBox' wx:if="{{ tabType === 'unconfirm' }}">
+    <view class='itemWrap'>
+      <view class='itemTop'>
+        <view class='square squareJ'>经</view>
+        <view class='wordText'>来自经纪人周周周</view>
+        <view class='time'>9月15日 14:00</view>
+      </view>
+      <view class='itemBox'>
+        <view class='leftImg'>招标</view>
+        <view class='rightText'>
+          <view class='firstRow'>我需要APP设计</view>
+          <view class='secondRow'>
+            <text>杭州</text>
+            <text class='line'>|</text>
+            <text>3-5年</text>
+            <text class='line'>|</text>
+            <text>短期兼职</text>
+          </view>
+          <view class='threeRow'>最近活跃：9小时前</view>
         </view>
-        <view class='threeRow'>最近活跃：9小时前</view>
+      </view>
+      <view class='bottomRow'>
+        <view class='yoaqingBtn' bindtap='accept'>接受</view>
       </view>
     </view>
-    <view class='bottomRow'>
-      <view class='yoaqingBtn' bindtap='goInvite'>接受</view>
+    <view class='itemWrap'>
+      <view class='itemTop'>
+        <view class='square squareQ'>企</view>
+        <view class='wordText'>来自经纪人周周周</view>
+        <view class='time'>9月15日 14:00</view>
+      </view>
+      <view class='itemBox'>
+        <view class='leftImg'>招标</view>
+        <view class='rightText'>
+          <view class='firstRow'>我需要APP设计</view>
+          <view class='secondRow'>
+            <text>杭州</text>
+            <text class='line'>|</text>
+            <text>3-5年</text>
+            <text class='line'>|</text>
+            <text>短期兼职</text>
+          </view>
+          <view class='threeRow'>最近活跃：9小时前</view>
+        </view>
+      </view>
+      <view class='bottomRow'>
+        <view class='yoaqingBtn' bindtap='accept'>接受</view>
+      </view>
+    </view> 
+  </view>
+  <view class='itemWrapBox' wx:if="{{ tabType === 'inprogress' }}">
+    <view class='itemWrap'>
+      <view class='itemTop'>
+        <view class='square squareJ'>经</view>
+        <view class='wordText'>来自经纪人周周周</view>
+        <view class='time'>9月15日 14:00</view>
+      </view>
+      <view class='itemBox'>
+        <view class='leftImg'>招标</view>
+        <view class='rightText'>
+          <view class='firstRow'>我需要APP设计</view>
+          <view class='secondRow'>
+            <text>杭州</text>
+            <text class='line'>|</text>
+            <text>3-5年</text>
+            <text class='line'>|</text>
+            <text>短期兼职</text>
+          </view>
+          <view class='threeRow'>最近活跃：9小时前</view>
+        </view>
+      </view>
+      <view class='bottomRow'>
+        <view class='yoaqingBtn' bindtap='goCheckTime'>工时核对</view>
+      </view>
+    </view>
+    <view class='itemWrap'>
+      <view class='itemTop'>
+        <view class='square squareQ'>企</view>
+        <view class='wordText'>来自经纪人周周周</view>
+        <view class='time'>9月15日 14:00</view>
+      </view>
+      <view class='itemBox'>
+        <view class='leftImg'>招标</view>
+        <view class='rightText'>
+          <view class='firstRow'>我需要APP设计</view>
+          <view class='secondRow'>
+            <text>杭州</text>
+            <text class='line'>|</text>
+            <text>3-5年</text>
+            <text class='line'>|</text>
+            <text>短期兼职</text>
+          </view>
+          <view class='threeRow'>最近活跃：9小时前</view>
+        </view>
+      </view>
+      <view class='bottomRow'>
+        <view class='yoaqingBtn' bindtap='goCheckTime'>工时核对</view>
+      </view>
     </view>
   </view>
-
+  <view class='itemWrapBox' wx:if="{{ tabType === 'finish' }}">
+    <view class='itemWrap'>
+      <view class='itemTop'>
+        <view class='square squareJ'>经</view>
+        <view class='wordText'>来自经纪人周周周</view>
+        <view class='time'>9月15日 14:00</view>
+      </view>
+      <view class='itemBox'>
+        <view class='leftImg'>招标</view>
+        <view class='rightText'>
+          <view class='firstRow'>我需要APP设计</view>
+          <view class='secondRow'>
+            <text>杭州</text>
+            <text class='line'>|</text>
+            <text>3-5年</text>
+            <text class='line'>|</text>
+            <text>短期兼职</text>
+          </view>
+          <view class='threeRow'>最近活跃：9小时前</view>
+        </view>
+      </view>
+    </view>
+    <view class='itemWrap'>
+      <view class='itemTop'>
+        <view class='square squareQ'>企</view>
+        <view class='wordText'>来自经纪人周周周</view>
+        <view class='time'>9月15日 14:00</view>
+      </view>
+      <view class='itemBox'>
+        <view class='leftImg'>招标</view>
+        <view class='rightText'>
+          <view class='firstRow'>我需要APP设计</view>
+          <view class='secondRow'>
+            <text>杭州</text>
+            <text class='line'>|</text>
+            <text>3-5年</text>
+            <text class='line'>|</text>
+            <text>短期兼职</text>
+          </view>
+          <view class='threeRow'>最近活跃：9小时前</view>
+        </view>
+      </view>
+    </view>
+  </view>
 </view>

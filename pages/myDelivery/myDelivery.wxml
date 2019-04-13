@@ -1,2 +1,64 @@
 <!--pages/myDelivery/myDelivery.wxml-->
-<text>pages/myDelivery/myDelivery.wxml</text>
+<view class='myDeliveryWrap'>
+  <view class='topBoxWrap'>
+    <view class='topBoxLeft' bindtap='openTypeAllBtn'>
+      {{ typeAll }}
+      <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ typeAllBtn ? imgSrc + "/arrowUp.png" : imgSrc + "/arrowDown.png" }}'></image>
+    </view>
+    <view class='topBox'>
+      <view class='item {{ tabType === "one" ? "active" : "" }}' bindtap='chooseType' data-id="one">
+        已投递
+      </view>
+      <view class='item {{ tabType === "two" ? "active" : "" }}' bindtap='chooseType' data-id="two">
+        待沟通
+      </view>
+      <view class='item {{ tabType === "three" ? "active" : "" }}' bindtap='chooseType' data-id="three">
+        面试
+      </view>
+      <view class='item {{ tabType === "four" ? "active" : "" }}' bindtap='chooseType' data-id="four">
+        不合适
+      </view>
+    </view>
+  </view>
+  <view class='itemWrap'>
+    <view class='itemBox'>
+      <view class='leftImg'>招标</view>
+      <view class='rightText'>
+        <view class='firstRow'>
+          我需要APP设计
+          <view class='time'>9月15日 14:00</view>
+        </view>
+        <view class='secondRow'>
+          <text>杭州</text>
+          <text class='line'>|</text>
+          <text>3-5年</text>
+          <text class='line'>|</text>
+          <text>短期兼职</text>
+        </view>
+        <view class='threeRow'>10k-20k/月</view>
+      </view>
+    </view>
+    <view class='itemBox'>
+      <view class='leftImg2'>
+        <image class='logoImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc + "/logo.png" }}'></image>
+      </view>
+      <view class='rightText rightText2'>
+        <view class='firstRow'>
+          我需要APP设计
+          <view class='time'>9月15日 14:00</view>
+        </view>
+        <view class='secondRow'>
+          <text>杭州</text>
+          <text class='line'>|</text>
+          <text>杭州平面设计有限公司</text>
+        </view>
+        <view class='threeRow'>10k-20k/月</view>
+      </view>
+    </view>
+  </view>
+  <view class='typeAllMask' wx:if="{{ typeAllBtn }}">
+    <view class='maskRow {{ typeAll === "全部" ? "active" : "" }}' bindtap='chooseAll' data-id="全部">全部</view>
+    <view class='maskRow {{ typeAll === "项目" ? "active" : "" }}' bindtap='chooseAll' data-id="项目">项目</view>
+    <view class='maskRow {{ typeAll === "岗位" ? "active" : "" }}' bindtap='chooseAll' data-id="岗位">岗位</view>
+  </view>
+</view>

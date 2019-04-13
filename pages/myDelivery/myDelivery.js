@@ -1,18 +1,44 @@
 // pages/myDelivery/myDelivery.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    imgSrc: '',
+    tabType: 'one',
+    typeAll: '全部',
+    typeAllBtn: false
   },
-
+  // 切换类型
+  chooseType(e) {
+    let key = e.currentTarget.dataset.id
+    this.setData({
+      tabType: key,
+      typeAllBtn: false
+    })
+  },
+  // 打开筛选
+  openTypeAllBtn () {
+    this.setData({
+      typeAllBtn: true
+    })
+  },
+  chooseAll(e) {
+    let key = e.currentTarget.dataset.id
+    this.setData({
+      typeAll: key,
+      typeAllBtn: false
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      imgSrc: app.globalData.imgSrc
+    })
   },
 
   /**

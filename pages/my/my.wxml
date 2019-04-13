@@ -40,7 +40,7 @@
       <view>我的发布</view>
     </view>
   </view>
-  <view class='middleBox' wx:if="{{ userType === 'hr' }}">
+  <!-- <view class='middleBox' wx:if="{{ userType === 'hr' }}">
     <view bindtap='goResume'>
       <image class='jianli' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/jianli.png'></image>
       <view>简历</view>
@@ -57,8 +57,8 @@
       <image class='fabu' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/fabu.png'></image>
       <view>我的发布</view>
     </view>
-  </view>
-  <view class='middleBox' wx:if="{{ userType === 'broker' }}">
+  </view> -->
+  <view class='middleBox' wx:if="{{ userType === 'hr' }}">
     <view bindtap='goTask'>
       <image class='toudi' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/toudi.png'></image>
       <view>每日任务</view>

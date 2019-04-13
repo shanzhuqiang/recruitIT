@@ -57,7 +57,8 @@
     "pages/education/education",
     "pages/projectHistory/projectHistory",
     "pages/editCompany/editCompany",
-    "pages/businessLicense/businessLicense"
+    "pages/businessLicense/businessLicense",
+    "pages/checkTime/checkTime"
   ],
   "window": {
     "backgroundTextStyle": "light",

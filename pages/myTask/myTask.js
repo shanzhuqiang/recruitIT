@@ -16,7 +16,16 @@ Page({
       tabType: key
     })
   },
+  // 接受
+  accept () {
 
+  },
+  // 工时核对
+  goCheckTime () {
+    wx.navigateTo({
+      url: '../checkTime/checkTime'
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

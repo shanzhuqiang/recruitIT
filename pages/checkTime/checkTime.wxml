@@ -1,0 +1,38 @@
+<!--pages/checkTime/checkTime.wxml-->
+<view class='checkTimeWrap'>
+  <view class='hallRowWrap'>
+    <view class='hallRow'>
+      <view class='leftName'>公司名称</view>
+      <input class='rightInput' placeholder='请输入公司名称'></input>
+    </view>
+    <view class='hallRow'>
+      <view class='leftName'>项目名称</view>
+      <input class='rightInput' placeholder='请输入项目名称'></input>
+    </view>
+    <view class='hallRow'>
+      <view class='leftName'>开始时间</view>
+      <picker bindchange="startTimeChange" mode="date">
+        <input class='rightInput' placeholder="请选择" value='{{ startTime }}' disabled/>
+      </picker>
+      <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
+    </view>
+    <view class='hallRow'>
+      <view class='leftName'>预计结束时间</view>
+      <picker bindchange="endTimeChange" mode="date">
+        <input class='rightInput' placeholder="请选择" value='{{ endTime }}' disabled/>
+      </picker>
+      <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
+    </view>
+  </view>
+  <view class='addBoxWrap'>
+    <view class='title'>上传凭证</view>
+    <view class='bottomBox'>
+      <view class='addBox'>
+        <image class='camera' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/camera.png'></image>
+        <text class='addText'>添加</text>
+      </view>
+    </view>
+  </view>
+  <view class='bottomBtn'>提交</view>
+</view>
+
