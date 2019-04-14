@@ -33,6 +33,23 @@
       </view>
     </view>
   </view>
-  <view class='bottomBtn'>提交</view>
+  <view class='bottomBtn' bindtap='confirm'>提交</view>
+  <view class='checkMask' wx:if="{{ checkMaskBtn }}">
+    <view class='checkBox'>
+      <view class='firstRow'>
+        <image class='loading' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/loading.png'></image>
+        后台审核中...
+      </view>
+      <view class='secondRow'>
+        <view>审核结果将会微信通知你</view>
+        <view>(审核通过后即可查看工时核对进度)</view> 
+      </view>
+      <view class='threeRow'>
+        <view class='btn fl'>返回首页</view>
+        <view class='btn fr'>我的任务</view>
+      </view>
+      <view class='fourRow'>如有疑问请联系<text>客服</text></view>
+    </view>
+  </view>
 </view>
 

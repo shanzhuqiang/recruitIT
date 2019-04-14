@@ -87,3 +87,68 @@
   left: 47rpx;
   top: 91rpx;
 }
+/* 审核弹出 */
+.checkTimeWrap .checkMask{
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+}
+.checkTimeWrap .checkMask .checkBox{
+	width: 540rpx;
+	height: 480rpx;
+	background-color: #ffffff;
+	border-radius: 10rpx;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.checkTimeWrap .checkMask .checkBox .firstRow{
+  text-align: center;
+	font-size: 40rpx;
+  height: 42rpx;
+  line-height: 42rpx;
+	color: #2e70f9;
+  padding: 70rpx 0 60rpx;
+}
+.checkTimeWrap .checkMask .checkBox .firstRow .loading{
+  width: 42rpx;
+  height: 42rpx;
+  vertical-align: middle;
+}
+.checkTimeWrap .checkMask .checkBox .secondRow{
+	font-family: PingFangSC-Regular;
+	font-size: 28rpx;
+	line-height: 43rpx;
+	color: #333;
+  text-align: center;
+}
+.checkTimeWrap .checkMask .checkBox .threeRow{
+  height: 81rpx;
+  padding: 70rpx 30rpx 0;
+}
+.checkTimeWrap .checkMask .checkBox .threeRow .btn{
+	width: 220rpx;
+	height: 80rpx;
+	border-radius: 8rpx;
+	border: solid 1rpx #cccccc;
+  line-height: 80rpx;
+  text-align: center;
+	font-family: PingFangSC-Regular;
+	font-size: 28rpx;
+	color: #999;
+}
+.checkTimeWrap .checkMask .checkBox .fourRow{
+	font-family: PingFangSC-Regular;
+	font-size: 22rpx;
+	color: #999;
+  text-align: center;
+  padding-top: 30rpx;
+}
+.checkTimeWrap .checkMask .checkBox .fourRow > text{
+	color: #2e70f9;
+}

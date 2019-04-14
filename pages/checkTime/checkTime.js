@@ -8,7 +8,8 @@ Page({
   data: {
     imgSrc: '',
     startTime: '',
-    endTime: ''
+    endTime: '',
+    checkMaskBtn: false
   },
 
   /**
@@ -17,6 +18,11 @@ Page({
   onLoad: function (options) {
     this.setData({
       imgSrc: app.globalData.imgSrc
+    })
+  },
+  confirm () {
+    this.setData({
+      checkMaskBtn: true
     })
   },
   startTimeChange(e) {

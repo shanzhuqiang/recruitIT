@@ -1,0 +1,74 @@
+/* pages/checkTimePull/checkTimePull.wxss */
+.checkTimePullWrap{
+  border-top: 16rpx solid #f8f8f8;
+  padding: 0 30rpx;
+}
+.checkTimePullWrap .addBoxWrap{
+  padding: 30rpx 30rpx 58rpx;
+  border-bottom: 1rpx solid #ddd;
+}
+.checkTimePullWrap .addBoxWrap > .title{
+	font-family: PingFangSC-Regular;
+	font-size: 32rpx;
+	color: #333;
+  padding-bottom: 45rpx;
+}
+.checkTimePullWrap .addBoxWrap .addBox{
+  width: 136rpx;
+  height: 136rpx;
+	background-color: #f1f1f1;
+	border-radius: 4rpx;
+  position: relative;
+}
+.checkTimePullWrap .addBoxWrap .addBox .camera{
+  width: 69rpx;
+  height: 51rpx;
+  position: absolute;
+  top: 26rpx;
+  left: 34rpx;
+  z-index: 0;
+}
+.checkTimePullWrap .addBoxWrap .addBox .addText{
+	font-family: PingFangSC-Regular;
+	font-size: 22rpx;
+	color: #999;
+  position: absolute;
+  left: 47rpx;
+  top: 91rpx;
+}
+.checkTimePullWrap .bottomWrap{
+  padding: 45rpx 0 60rpx;
+  border-bottom: 1rpx solid #ddd;
+}
+.checkTimePullWrap .bottomWrap > .title{
+	font-family: PingFangSC-Regular;
+	font-size: 32rpx;
+	color: #333;
+  padding: 0 30rpx 45rpx;
+}
+.checkTimePullWrap .bottomWrap .textareaWrap{
+  width: 100%;
+  height: 200rpx;
+}
+.checkTimePullWrap .bottomWrap .textareaWrap .textareaBox{
+  width: 100%;
+  height: 100%;
+	font-family: PingFangSC-Regular;
+	font-size: 26rpx;
+	line-height: 36rpx;
+	color: #999;
+}
+.checkTimePullWrap .confirmBtn{
+	width: 600rpx;
+	height: 90rpx;
+  line-height: 90rpx;
+  text-align: center;
+	background-color: #4c85fb;
+	box-shadow: 0 4rpx 16rpx 0 
+		rgba(26, 73, 210, 0.46);
+	border-radius: 4rpx;
+	font-family: PingFangSC-Regular;
+	font-size: 32rpx;
+	color: #fff;
+  margin: 150rpx auto 0;
+}

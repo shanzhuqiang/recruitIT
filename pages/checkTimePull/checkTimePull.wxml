@@ -1,0 +1,17 @@
+<!--pages/checkTimePull/checkTimePull.wxml-->
+<view class='checkTimePullWrap'>
+  <view class='addBoxWrap'>
+    <view class='title'>上传凭证</view>
+    <view class='addBox'>
+      <image class='camera' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/camera.png'></image>
+      <text class='addText'>添加</text>
+    </view> 
+  </view>
+  <view class='bottomWrap'>
+    <view class='title'>内容描述</view>
+    <view class='textareaWrap'>
+      <textarea class='textareaBox' placeholder='请输入内容描述'></textarea>
+    </view>
+  </view>
+  <view class='confirmBtn'>提交</view>
+</view>

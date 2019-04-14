@@ -58,7 +58,9 @@
     "pages/projectHistory/projectHistory",
     "pages/editCompany/editCompany",
     "pages/businessLicense/businessLicense",
-    "pages/checkTime/checkTime"
+    "pages/checkTime/checkTime",
+    "pages/checkTimePull/checkTimePull",
+    "pages/checkTimeStep/checkTimeStep"
   ],
   "window": {
     "backgroundTextStyle": "light",
