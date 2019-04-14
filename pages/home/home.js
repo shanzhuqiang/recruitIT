@@ -7,7 +7,7 @@ Page({
    */
   data: {
     imgSrc: '',
-    address: '杭州',
+    cityInfo:  null,
     bannerImg: ['../../images/banner.png', '../../images/banner.png', '../../images/banner.png'],
     titleChoosed: 'project',
     projectList: [],

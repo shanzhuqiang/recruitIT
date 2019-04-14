@@ -9,39 +9,6 @@ App({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
     })
-    wx.getLocation({
-      type: 'wgs84',
-      success(res) {
-        console.log(res)
-        const latitude = res.latitude
-        const longitude = res.longitude
-        const speed = res.speed
-        const accuracy = res.accuracy
-      },
-      fail (res) {
-        console.log(res)
-      }
-    })
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          wx.getUserInfo({
-            success: res => {
-              console.log(res)
-              this.globalData.userInfo = res.userInfo
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
-              }
-            }
-          })
-        } else {
-          this.globalData.authMask = true
-          if (this.userInfoReadyCallback) {
-            this.userInfoReadyCallback('authMask')
-          }
-        }
-      }
-    })
   },
   loginSesskey(code) {
     wx.request({
@@ -53,11 +20,6 @@ App({
       success: (res) => {
         let resData = res.data.bizobj.data
         this.globalData.sess_key = resData.sess_key
-        if (resData.user_info) {
-          this.globalData.sess_key = resData.sess_key
-        } else {
-
-        }
         console.log(res.data.bizobj.data)
       },
       fail: (res) => {
@@ -71,8 +33,8 @@ App({
   globalData: {
     baseUrl: 'http://118.31.72.207:3000/mock/16/api',
     userInfo: null,
+    cityInfo: null,
     sess_key: '',
-    authMask: false,
     imgSrc: '../../images',
     userType: ''
   }

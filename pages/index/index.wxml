@@ -4,9 +4,24 @@
   <view class='chooseOneWrap'>
     <image class='chooseOne' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/chooseOne.png'></image>
   </view>
-  <view class='homeBtn' bindtap="goFindPartTime" data-id="engineer">我要找兼职</view>
+  <view class='homeBtn' bindtap="goHomePage" data-id="engineer">我要找兼职</view>
   <view class='chooseTwoWrap'>
     <image class='chooseTwo' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/chooseTwo.png'></image>
   </view>
-  <view class='homeBtn' bindtap="goFindPartTime" data-id="hr">我要找人</view>
+  <view class='homeBtn' bindtap="goHomePage" data-id="hr">我要找人</view>
+  <!-- 个人信息不授权提示 -->
+  <view class='noAuthWrap' wx:if="{{ noAuthWrap }}">
+    <view class='noAuthBox'>
+      <view class='titleNo'>警告</view>
+      <view class='content'>请授权个人信息，若不授权则无法使用小程序</view>
+      <view class='bottomBtn'>
+        <view class='leftBtn fl' bindtap='noAuto'>不授权</view>
+        <button class='rightBtn fr' open-type="getUserInfo" bindgetuserinfo="autoGetUserInfo" lang="zh_CN">授权</button>
+      </view>
+    </view>
+  </view>
+  <!-- 位置信息不授权提示 -->
+  <i-modal title="提示" visible="{{ noLocation }}" bind:ok="closeNoLocation"  ok-text="授权" show-cancel="{{ false }}">
+    <view>请授权位置信息，否则无法使用小程序</view>
+  </i-modal>
 </view>
