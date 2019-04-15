@@ -18,6 +18,20 @@ Page({
     // getPhoneMaskOnOff: true
     getPhoneMaskOnOff: false
   },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.setData({
+      userType: app.globalData.userType,
+      imgSrc: app.globalData.imgSrc
+    })
+    this.initProjectData()
+    this.initQuartersData()
+    // this.initAuth()
+    // this.initQuartersData()
+  },
+  // 初始化授权
   initAuth() {
     if (app.globalData.userInfo) {
       // if (app.globalData.userInfo && app.globalData.userInfo.phone) {
@@ -36,18 +50,6 @@ Page({
       console.log(e.detail.iv)
       console.log(e.detail.encryptedData)
     }
-  },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    this.setData({
-      userType: app.globalData.userType,
-      imgSrc: app.globalData.imgSrc
-    })
-    this.initProjectData()
-    this.initAuth()
-    // this.initQuartersData()
   },
   // 进入赏金平台
   goBountyPlatform() {
@@ -109,71 +111,72 @@ Page({
     })
   },
   // 项目信息
-  goProjectDetail() {
+  goProjectDetail(e) {
     wx.navigateTo({
-      url: '../projectDetail/projectDetail'
+        url: `../projectDetail/projectDetail?id=${e.currentTarget.dataset.id}`
     })
   },
   // 最新项目初始化
   initProjectData() {
-    let projectList = [
-      {
-        title: '我需要app设计我需要app设计我需要app设计',
-        money: '20k-30k/月',
-        address: '杭州',
-        time: '3-5年',
-        typeOne: '短期兼职',
-        content: '需要ad阿萨德阿萨德开发啊是，需要ad阿萨德阿萨德开发啊是，需要ad阿萨德阿萨德开发啊是，需要ad阿萨德阿萨德开发啊是',
-        peopleNum: '3'
+    wx.request({
+      url: `${app.globalData.baseUrl}/Project/projectList.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        page_size: 20
       },
-      {
-        title: '我需要ap',
-        money: '21k-32k/月',
-        address: '杭州',
-        time: '3-8年',
-        typeOne: '短期兼职',
-        content: '需要ad阿萨德阿萨德开发要ad阿萨德阿萨德开发啊是，需要ad阿萨德阿萨德开发啊是',
-        peopleNum: '4'
+      method: 'POST',
+      success: (res) => {
+        let listData = res.data.bizobj.data.project_list
+        listData.forEach((el, index) => {
+          el['mini_salary1'] = Math.round(el.mini_salary / 1000) + 'k'
+          el['max_salary1'] = Math.round(el.max_salary / 1000) + 'k'
+        })
+        this.setData({
+          projectList: listData
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
       }
-    ]
-    this.setData({
-      projectList: projectList
     })
   },
   // 最新岗位初始化
   initQuartersData() {
-    let quartersList = [
-      {
-        title: '前端工程师',
-        money: '10-20万',
-        address: '杭州',
-        time: '3-5年',
-        education: '本科',
-        name: '杭州平面设计有限公司',
-        typeOne: '互联网·电商',
-        img: '../../images/logo.png'
+    wx.request({
+      url: `${app.globalData.baseUrl}/Work/workList.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        page_size: 20
+      },
+      method: 'POST',
+      success: (res) => {
+        console.log(res)
+        let listData = res.data.bizobj.data.job_list
+        listData.forEach((el, index) => {
+          el['mini_salary1'] = Math.round(el.mini_salary / 1000) + 'k'
+          el['max_salary1'] = Math.round(el.max_salary / 1000) + 'k'
+        })
+        this.setData({
+          quartersList: listData
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
       }
-    ]
-    this.setData({
-      quartersList: quartersList
     })
   },
   // title切换
   chooseTitle (e) {
     let key = e.currentTarget.dataset.id
-    if (key === 'project') {
-      this.setData({
-        quartersList: [],
-        titleChoosed: key
-      })
-      this.initProjectData()
-    } else {
-      this.setData({
-        projectList: [],
-        titleChoosed: key
-      })
-      this.initQuartersData()
-    }
+    this.setData({
+      titleChoosed: key
+    })
   },
   // 搜索
   goHomeSearch () {

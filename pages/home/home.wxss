@@ -156,10 +156,9 @@ page{
 }
 /* 最新项目 */
 .homeWrap .itemWrap{
-  height: 250rpx;
   background: #fff;
   border-bottom: 16rpx solid #f8f8f8;
-  padding: 50rpx 30rpx 0;
+  padding: 50rpx 30rpx 70rpx;
   position: relative;
 }
 .homeWrap .itemWrap .first{
@@ -238,11 +237,11 @@ page{
 	color: #ccc;
   position: absolute;
   right: 30rpx;
-  bottom: 30rpx;
+  bottom: 20rpx;
 }
 /* 最新岗位 */
 .homeWrap .itemWrap.itemWrapTwo{
-  height: 240rpx;
+  padding-bottom: 30rpx;
 }
 .homeWrap .itemWrap.itemWrapTwo .first .title{
   left: 0rpx;

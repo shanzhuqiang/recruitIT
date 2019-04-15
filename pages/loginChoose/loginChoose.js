@@ -1,4 +1,4 @@
-// pages/postDetail/postDetail.js
+// pages/loginChoose/loginChoose.js
 const app = getApp()
 Page({
 
@@ -13,28 +13,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getInfo(options.id)
     this.setData({
       imgSrc: app.globalData.imgSrc
     })
-  },
-  getInfo (id) {
-    wx.request({
-      url: `${app.globalData.baseUrl}/Project/projectDetail.html`,
-      data: {
-        sess_key: app.globalData.sess_key,
-        id: id
-      },
-      method: 'POST',
-      success: (res) => {
-        console.log(res.data.bizobj.data.job_info)
-      },
-      fail: (res) => {
-        wx.showToast({
-          icon: 'none',
-          title: '网络请求失败',
-        })
-      }
+  },  
+  goLogin () {
+    wx.navigateTo({
+      url: '../login/login'
     })
   },
   /**

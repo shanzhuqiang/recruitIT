@@ -1,4 +1,4 @@
-// pages/postDetail/postDetail.js
+// pages/login/login.js
 const app = getApp()
 Page({
 
@@ -6,35 +6,29 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imgSrc: ''
+    imgSrc: '',
+    typeBtn: 'code'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getInfo(options.id)
     this.setData({
       imgSrc: app.globalData.imgSrc
     })
   },
-  getInfo (id) {
-    wx.request({
-      url: `${app.globalData.baseUrl}/Project/projectDetail.html`,
-      data: {
-        sess_key: app.globalData.sess_key,
-        id: id
-      },
-      method: 'POST',
-      success: (res) => {
-        console.log(res.data.bizobj.data.job_info)
-      },
-      fail: (res) => {
-        wx.showToast({
-          icon: 'none',
-          title: '网络请求失败',
-        })
-      }
+  // 忘记密码
+  goPassword () {
+    wx.navigateTo({
+      url: '../settingPassword/settingPassword'
+    })
+  },
+  // 选择方式
+  chooseType(e) {
+    let key = e.currentTarget.dataset.id
+    this.setData({
+      typeBtn: key
     })
   },
   /**

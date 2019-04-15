@@ -60,7 +60,9 @@
     "pages/businessLicense/businessLicense",
     "pages/checkTime/checkTime",
     "pages/checkTimePull/checkTimePull",
-    "pages/checkTimeStep/checkTimeStep"
+    "pages/checkTimeStep/checkTimeStep",
+    "pages/loginChoose/loginChoose",
+    "pages/login/login"
   ],
   "window": {
     "backgroundTextStyle": "light",
