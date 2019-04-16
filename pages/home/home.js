@@ -23,6 +23,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
+      cityInfo: app.globalData.cityInfo,
       userType: app.globalData.userType,
       imgSrc: app.globalData.imgSrc
     })

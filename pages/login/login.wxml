@@ -27,7 +27,7 @@
       <image class='password2' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/password2.png'></image>
       <input class='inputBox' placeholder='请输入密码'></input>
     </view>
-    <view class='loginBtn'>登录</view>
-    <view class='forget' bindtap='goPassword'>忘记密码？</view>
   </view>
+  <view class='loginBtn'>登录</view>
+  <view class='forget' bindtap='goPassword'>忘记密码？</view>
 </view>

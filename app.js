@@ -12,12 +12,13 @@ App({
   },
   loginSesskey(code) {
     wx.request({
-      url: `${this.globalData.baseUrl}/Login/login.html_1554704801303`,
+      url: `${this.globalData.baseUrl}/Login/login.html`,
       data: {
         'code': code
       },
       method: 'POST',
       success: (res) => {
+        console.log(res)
         let resData = res.data.bizobj.data
         this.globalData.sess_key = resData.sess_key
         console.log(res.data.bizobj.data)

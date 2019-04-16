@@ -4,7 +4,7 @@
       <image class='logoImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/logo.png'></image>
       <view class='topInfoRight'>
         <view class='topTitle'>
-          杭州魅智科技有限公司杭州魅智科技有限公司杭州魅智科技有限公司杭州魅智科技有限公司
+          {{ company_info.name }}
         </view>
         <view class='guanzhuGag' bindtap='guanzhuClick'>{{ guanzhuOnOff ? '已关注' : '+关注' }}</view>
         <view class='bottomTag'>
@@ -13,7 +13,7 @@
           <text class='borderBoth'>15-50人</text>
           <text>移动互联网</text>
         </view>
-        <view class='okBox'>
+        <view class='okBox' wx:if="{{ company_info.status === 1 }}">
           <image class='okImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/ok.png'></image>
           已认证
         </view>
@@ -29,16 +29,16 @@
     <view class='addressWrap'>
       <view class='addressOne'>
       <image class='localImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/local.png'></image>
-      杭州市滨江区
+        {{ company_info.area }}
       </view>
-      <view class='addressTwo'>六合路六合桥六和塔</view>
+      <view class='addressTwo'>{{ company_info.address }}</view>
     </view>
     <view class='title'>公司介绍</view>
     <view class='xianqgingImgWrap'>
       <image class='xianqgingImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/xianqging.png'></image>
     </view>
     <view class='content'>
-      啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦
+      {{ company_info.instruction }}
     </view>
   </view>
   <view class='zhiweiWrap' wx:if='{{ tabCurrent === "zhiwei" }}'>

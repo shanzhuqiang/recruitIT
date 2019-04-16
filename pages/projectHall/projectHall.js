@@ -6,14 +6,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    address: '杭州',
+    loading: false,
+    cityInfo: null,
+    mask: false,
+    page: 1,
     imgSrc: '',
     topFilterBtn: '',
-    filterBtn: '',
-    filterBtnZhouqi: '',
-    maskOnOff: false,
-    filterTitle: '',
-    filterList: [],
     quyuData: [
       ["不限", "上城区", "下城区"],
       ["江干区", "拱墅区", "西湖区"],
@@ -21,93 +19,182 @@ Page({
       ["桐庐县", "淳安县", "建德市"],
       ["富阳市", "临安市", ""]
     ],
-    jiageData: [
-      ["最低价", "最高价", ""]
-    ],
+    quyuChoose: '不限',
     shaixuanData: [
-      ["不限", "应届毕业生", "3年以内"],
-      ["3-5年", "5-10年", "10年以上"]
+      [
+        {
+          id: '',
+          name: "不限"
+        },
+        {
+          id: 1,
+          name: "应届毕业生"
+        },
+        {
+          id: 2,
+          name: "3年以内"
+        }
+      ],
+      [
+        {
+          id: 3,
+          name: "3-5年"
+        },
+        {
+          id: 4,
+          name: "5-10年"
+        },
+        {
+          id: 5,
+          name: "10年以上"
+        }
+      ]
     ],
-    projectList: [
-      {
-        title: '我需要app设计我需要app设计我需要app设计',
-        money: '20k-30k/月',
-        address: '杭州',
-        time: '3-5年',
-        typeOne: '短期兼职',
-        content: '需要ad阿萨德阿萨德开发啊是，需要ad阿萨德阿萨德开发啊是，需要ad阿萨德阿萨德开发啊是，需要ad阿萨德阿萨德开发啊是',
-        peopleNum: '3'
-      },
-      {
-        title: '我需要ap',
-        money: '21k-32k/月',
-        address: '杭州',
-        time: '3-8年',
-        typeOne: '短期兼职',
-        content: '需要ad阿萨德阿萨德开发要ad阿萨德阿萨德开发啊是，需要ad阿萨德阿萨德开发啊是',
-        peopleNum: '4'
-      }
-    ]
-  },
-  // 选择过滤类型弹窗
-  topFilter(e) {
-    let id = e.currentTarget.dataset.id
-    if (id === 'quyu') {
-      this.setData({
-        filterList: this.data.quyuData,
-        filterTitle: '工作区域',
-        filterBtn: '不限',
-        topFilterBtn: 'quyu'
-      }, () => {
-        this.setData({
-          maskOnOff: true
-        })
-      })
-    } else if (id === 'jiage') {
-      this.setData({
-        filterList: this.data.jiageData,
-        filterTitle: '价格区间（元）',
-        filterBtn: '',
-        topFilterBtn: 'jiage'
-      }, () => {
-        this.setData({
-          maskOnOff: true
-        })
-      })
-    } else if (id === 'shaixuan') {
-      this.setData({
-        filterList: this.data.shaixuanData,
-        filterTitle: '工作经验',
-        filterBtn: '不限',
-        filterBtnZhouqi: '不限',
-        topFilterBtn: 'shaixuan'
-      }, () => {
-        this.setData({
-          maskOnOff: true
-        })
-      })
-    }
-  },
-  // 选择过滤内容按钮
-  chooseFilter(e) {
-    let id = e.currentTarget.dataset.id
-    this.setData({
-      filterBtn: id
-    })
-  },
-  // 工作周期选择过滤内容按钮
-  chooseFilterZhouqi(e) {
-    let id = e.currentTarget.dataset.id
-    this.setData({
-      filterBtnZhouqi: id
-    })
+    shaixuan1: '',
+    shaixuan2: '',
+    listData: []
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.setData({
+      cityInfo: app.globalData.cityInfo,
       imgSrc: app.globalData.imgSrc
+    })
+    this.getList()
+  },
+  miniSalaryChange(e) {
+    this.setData({
+      mini_salary: e.detail.value
+    })
+  },
+  maxSalaryChange(e) {
+    this.setData({
+      max_salary: e.detail.value
+    })
+  },
+  // 区域选择过滤内容按钮
+  quyuChooseFilter(e) {
+    let id = e.currentTarget.dataset.id
+    this.setData({
+      page: 1,
+      mask: false,
+      quyuChoose: id,
+      mini_salary: '',
+      max_salary: '',
+      shaixuan1: '',
+      shaixuan2: ''
+    })
+    this.getList()
+  },
+  // 价格确定
+  confirmFilterjiage() {
+    this.setData({
+      page: 1,
+      mask: false,
+      quyuChoose: '不限',
+      shaixuan1: '',
+      shaixuan2: ''
+    })
+    this.getList()
+  },
+  // 筛选确定
+  confirmFilter() {
+    this.setData({
+      page: 1,
+      mask: false,
+      quyuChoose: '不限',
+      mini_salary: '',
+      max_salary: ''
+    })
+    this.getList()
+  },
+  // 最新项目初始化
+  getList() {
+    console.log()
+    this.setData({
+      loading: true
+    })
+    wx.request({
+      url: `${app.globalData.baseUrl}/Project/projectList.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        city_code: this.data.cityInfo.city_code,
+        district_code: this.data.quyuChoose,
+        mini_salary: this.data.mini_salary,
+        max_salary: this.data.max_salary,
+        job_experience: this.data.shaixuan1,
+        nature: this.data.shaixuan2,
+        page_size: 10,
+        page: this.data.page
+      },
+      method: 'POST',
+      success: (res) => {
+        let listData = res.data.bizobj.data.project_list
+        console.log(listData)
+        if (listData.length > 0) {
+          listData.forEach((el, index) => {
+            el['mini_salary1'] = Math.round(el.mini_salary / 1000) + 'k'
+            el['max_salary1'] = Math.round(el.max_salary / 1000) + 'k'
+          })
+          let newList = this.data.listData
+          this.setData({
+            listData: [...newList, ...listData],
+            page: this.data.page + 1
+          })
+        }
+        this.setData({
+          loading: false
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 选择过滤类型弹窗
+  topFilter(e) {
+    let id = e.currentTarget.dataset.id
+    if (this.data.topFilterBtn === id && this.setData.mask) {
+      this.setData({
+        mask: false
+      })
+    } else {
+      if (id === 'quyu') {
+        this.setData({
+          mask: true,
+          topFilterBtn: 'quyu'
+        })
+      } else if (id === 'jiage') {
+        this.setData({
+          mask: true,
+          topFilterBtn: 'jiage'
+        })
+      } else if (id === 'shaixuan') {
+        this.setData({
+          mask: true,
+          topFilterBtn: 'shaixuan'
+        })
+      }
+    }
+  },
+  // 工作经验选择
+  shaixuanchooseFilter1(e) {
+    let id = e.currentTarget.dataset.id
+    console.log(id)
+    this.setData({
+      shaixuan1: id
+    })
+  },
+  // 工作周期选择
+  shaixuanchooseFilter2(e) {
+    let id = e.currentTarget.dataset.id
+    this.setData({
+      shaixuan2: id
     })
   },
 
@@ -150,7 +237,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.getList()
   },
 
   /**

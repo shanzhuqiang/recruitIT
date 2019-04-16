@@ -24,4 +24,8 @@
   <i-modal title="提示" visible="{{ noLocation }}" bind:ok="closeNoLocation"  ok-text="授权" show-cancel="{{ false }}">
     <view>请授权位置信息，否则无法使用小程序</view>
   </i-modal>
+  <!-- 有密码要求登录 -->
+  <i-modal title="提示" visible="{{ passwordMask }}" bind:ok="goPassword"  ok-text="登录" show-cancel="{{ false }}">
+    <view>请先登录小程序</view>
+  </i-modal>
 </view>

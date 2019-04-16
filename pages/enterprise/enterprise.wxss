@@ -52,6 +52,9 @@
   height: 32rpx;
   line-height: 32rpx;
 	color: #333;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
 .enterpriseWrap .itemBox .topRow .rightTitle .downNum{
 	font-family: PingFangSC-Regular;
@@ -113,6 +116,9 @@
 	font-family: PingFangSC-Regular;
 	font-size: 24rpx;
 	color: #666;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
 .enterpriseWrap .filterMask .maskBody .filterBtnWrap .filterBtn.active{
 	color: #2e70f9;
