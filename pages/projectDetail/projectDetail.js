@@ -6,13 +6,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imgSrc: ''
+    imgSrc: '',
+    job_info: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
     this.getInfo(options.id)
     this.setData({
       imgSrc: app.globalData.imgSrc
@@ -27,7 +29,12 @@ Page({
       },
       method: 'POST',
       success: (res) => {
-        console.log(res.data.bizobj.data.job_info)
+        let data = res.data.bizobj.data.job_info
+        data['mini_salary1'] = Math.round(data.mini_salary / 1000) + 'k'
+        data['max_salary1'] = Math.round(data.max_salary / 1000) + 'k'
+        this.setData({
+          job_info: data
+        })
       },
       fail: (res) => {
         wx.showToast({

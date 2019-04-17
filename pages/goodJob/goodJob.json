@@ -1,5 +1,7 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "i-load-more": "../../dist/load-more/index"
+  },
   "navigationBarTitleText": "职位精选",
   "navigationBarBackgroundColor": "#fff"
 }

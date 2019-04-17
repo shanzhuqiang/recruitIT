@@ -7,7 +7,7 @@ Page({
    */
   data: {
     imgSrc: '',
-    cityInfo:  null,
+    userInfo:  null,
     bannerImg: ['../../images/banner.png', '../../images/banner.png', '../../images/banner.png'],
     titleChoosed: 'project',
     projectList: [],
@@ -23,7 +23,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      cityInfo: app.globalData.cityInfo,
+      userInfo: app.globalData.userInfo,
       userType: app.globalData.userType,
       imgSrc: app.globalData.imgSrc
     })
@@ -123,6 +123,9 @@ Page({
       url: `${app.globalData.baseUrl}/Project/projectList.html`,
       data: {
         sess_key: app.globalData.sess_key,
+        city_code: this.data.userInfo.city_code,
+        sort: 1,
+        page: 1,
         page_size: 20
       },
       method: 'POST',
@@ -150,6 +153,9 @@ Page({
       url: `${app.globalData.baseUrl}/Work/workList.html`,
       data: {
         sess_key: app.globalData.sess_key,
+        city_code: this.data.userInfo.city_code,
+        sort: 1,
+        page: 1,
         page_size: 20
       },
       method: 'POST',

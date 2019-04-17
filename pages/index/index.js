@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    firstMask: true,
     noAuthWrap: false,
     imgSrc: '',
     authMask: false,
@@ -17,37 +18,49 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.initAuto()
+    setTimeout(() => {
+      this.initAuto()
+    }, 1000)
     this.setData({
       imgSrc: app.globalData.imgSrc
     })
 
   },
-  initAuto () {
-    let data = {
-      mustAuto: false,
-      password: false
-    }
-    if (data.password) {
-      if (data.mustAuto) {
+  // 授权成功后添加用户信息
+  addUserInfo(data) {
+    let obj = app.globalData.userInfo
+    obj['avatar'] = data.avatarUrl
+    obj['gender'] = data.gender
+    obj['nickname'] = data.nickName
+    app.globalData.userInfo = obj
+  },
+  initAuto() {
+    this.setData({
+      firstMask: false
+    })
+    if (app.globalData.has_password == 1) {
+      // 有密码的情况
+      if (app.globalData.need_auth == 1) {
+        // 需要强制授权
         this.setData({
-          passwordMask: true
+          password: true
         })
-        this.initUserInfo()
         this.initLocation()
+        this.initUserInfo()
       } else {
+        // 不需要强制授权，去登录页面
         this.setData({
           passwordMask: true
         })
       }
     } else {
-      this.initUserInfo()
+      // 没有密码必须要强制授权
       this.initLocation()
+      this.initUserInfo()
     }
   },
   // 打开登录提示
   openPassword() {
-    if (app.globalData.userInfo && app.globalData.userInfo)
     this.setData({
       passwordMask: true
     })
@@ -89,7 +102,7 @@ Page({
           wx.getUserInfo({
             success: res => {
               console.log('个人信息', res)
-              app.globalData.userInfo = res.userInfo
+              this.addUserInfo(res.userInfo)
               if (this.data.password) {
                 this.openPassword()
               }
@@ -126,11 +139,13 @@ Page({
       },
       method: 'POST',
       success: (res) => {
-        console.log(res.data.bizobj.location_info)
-        app.globalData.cityInfo = res.data.bizobj.location_info
-        if (this.data.password) {
-          this.openPassword()
-        }
+        let data = res.data.bizobj.location_info
+        let obj = app.globalData.userInfo
+        console.log(obj)
+        console.log(data)
+        obj['city_code'] = data.city_code
+        obj['city_name'] = data.city_name
+        app.globalData.userInfo = obj
       },
       fail: (res) => {
         wx.showToast({
@@ -147,7 +162,7 @@ Page({
         authMask: false,
         noAuthWrap: false
       })
-      app.globalData.userInfo = res.detail.userInfo
+      this.addUserInfo(res.detail.userInfo)
       if (this.data.password) {
         this.openPassword()
       }
@@ -163,7 +178,7 @@ Page({
       this.setData({
         authMask: false
       })
-      app.globalData.userInfo = res.detail.userInfo
+      this.addUserInfo(res.detail.userInfo)
       if (this.data.password) {
         this.openPassword()
       }

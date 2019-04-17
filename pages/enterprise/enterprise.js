@@ -205,10 +205,9 @@ Page({
   // 选择过滤类型弹窗
   topFilter(e) {
     let id = e.currentTarget.dataset.id
-    if (id === this.data.topFilterBtn) {
+    if (id === this.data.topFilterBtn && this.data.maskOnOff) {
       this.setData({
-        maskOnOff: false,
-        topFilterBtn: ''
+        maskOnOff: false
       })
     } else {
       if (id === 'rongzi') {
@@ -249,7 +248,6 @@ Page({
   },
   // 进入详情
   goEnterpriseInfo(e) {
-    let id = 
     wx.navigateTo({
         url: `../enterpriseInfo/enterpriseInfo?id=${e.currentTarget.dataset.id}`
     })
@@ -288,7 +286,6 @@ Page({
       this.getList()
     }
     this.setData({
-      topFilterBtn: '',
       maskOnOff: false
     })
   },

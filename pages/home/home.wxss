@@ -23,27 +23,27 @@ page{
 }
 .homeWrap .headRow .addressWrap{
   float: left;
-  width: 140rpx;
+  width: 110rpx;
 }
 .homeWrap .headRow .addressWrap .address{
 	font-family: PingFangSC-Regular;
 	font-size: 26rpx;
   color: #333;
-  width: 110rpx;
+  width: 80rpx;
   text-align: right;
   float: left;
   overflow: hidden;
-  text-overflow:ellipsis;
+  /* text-overflow:ellipsis; */
   white-space: nowrap;
 }
 .homeWrap .headRow .addressWrap .xiala{
   width: 15rpx;
   height: 10rpx;
   float: right;
-  margin: 35rpx 15rpx 0 0;
+  margin: 35rpx 0 0 10rpx;
 }
 .homeWrap .headRow .serachIptWrap{
-  margin-left: 140rpx;
+  margin-left: 120rpx;
   background-color: #f4f4f4;
 	border-radius: 2px;
   height: 62rpx;

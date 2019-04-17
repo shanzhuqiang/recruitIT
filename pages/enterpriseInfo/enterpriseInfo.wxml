@@ -42,31 +42,31 @@
     </view>
   </view>
   <view class='zhiweiWrap' wx:if='{{ tabCurrent === "zhiwei" }}'>
-    <view class='zhiweiItemWrap'>
+    <view class='zhiweiItemWrap' wx:for="{{ quartersList }}" wx:key="" data-id="{{ item.id }}" bindtap='goPostDetail'>
       <view class='zhiweiItem'>
-        <view class='title'>高级PHP后台工程师</view>
+        <view class='title'>{{ item.name }}</view>
         <view class='tagWrap'>
-          <text style='padding-left: 0'>杭州</text>
-          <text class='middleTag'>3-5年</text>
-          <text>本科</text>
+          <text style='padding-left: 0'>{{ item.job_label1 }}</text>
+          <text class='middleTag'>{{ item.job_label2 }}</text>
+          <text>{{ item.job_label3 }}</text>
         </view>
-        <view class='money'>25K-35K</view>
+        <view class='money'>{{ item.mini_salary1 + '-' + item.max_salary1 + '/月' }}</view>
         <view class='time'>今天发布</view>
       </view>
     </view>
     <i-load-more tip="没有更多了" loading="{{ false }}" />
   </view>
   <view class='zhiweiWrap' wx:if='{{ tabCurrent === "xiangmu" }}'>
-    <view class='zhiweiItemWrap'>
+    <view class='zhiweiItemWrap' wx:for="{{ projectList }}" wx:key="" data-id="{{ item.id }}" bindtap='goProjectDetail'>
       <view class='zhiweiItem'>
-        <view class='title'>小程序开发</view>
+        <view class='title'>{{ item.name }}</view>
         <view class='tagWrap'>
-          <text style='padding-left: 0'>杭州</text>
-          <text class='middleTag'>3-5年</text>
-          <text>短期兼职</text>
+          <text style='padding-left: 0'>{{ item.project_label1 }}</text>
+          <text class='middleTag'>{{ item.project_label2 }}</text>
+          <text>{{ item.project_label3 }}</text>
         </view>
-        <view class='money'>25K-35K</view>
-        <view class='time'>3人已投递</view>
+        <view class='money'>{{ item.mini_salary1 + '-' + item.max_salary1 + '/月' }}</view>
+        <view class='time'>{{ item.sign_num }}人已投递</view>
       </view>
     </view>
     <i-load-more tip="没有更多了" loading="{{ false }}" />

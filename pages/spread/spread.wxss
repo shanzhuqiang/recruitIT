@@ -1,6 +1,10 @@
 /* pages/spread/spread.wxss */
+page{
+  height: 100%;
+}
 .spreadWrap{
-  height: 1186rpx;
+  min-height: 1186rpx;
+  height: 100%;
   position: relative;
 }
 .spreadWrap .spreadWrapBg{

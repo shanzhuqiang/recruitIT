@@ -7,15 +7,47 @@ Page({
    */
   data: {
     imgSrc: '',
-
+    listData: []
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.setData({
       imgSrc: app.globalData.imgSrc
+    })
+    this.getList()
+  },
+  // 进入企业详情
+  goEnterpriseInfo(e) {
+    console.log(e.currentTarget.dataset.id)
+    wx.navigateTo({
+      url: `../enterpriseInfo/enterpriseInfo?id=${e.currentTarget.dataset.id}`
+    })
+  },
+  // 获取职位列表
+  getList() {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Company/CollectCompanyList.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        page: 1,
+        page_size: 99999
+      },
+      method: 'POST',
+      success: (res) => {
+        let listData = res.data.bizobj.data.company_list
+        console.log(listData)
+        this.setData({
+          listData: listData
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
     })
   },
 

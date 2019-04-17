@@ -2,7 +2,7 @@
   <button class='getPhoneMask' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{ getPhoneMaskOnOff }}"></button>
   <view class='headRow'>
     <view class='addressWrap' bindtap="goChooseCity">
-      <text class='address'>{{ cityInfo.city_name }}</text>
+      <text class='address'>{{ userInfo.city_name }}</text>
       <image class='xiala' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/xiala.png'></image>
     </view>
     <view class='serachIptWrap' bindtap='goHomeSearch'>

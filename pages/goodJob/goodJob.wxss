@@ -19,23 +19,27 @@
 }
 .goodJobWrap .headRowWrap .headRow .addressWrap{
   float: left;
-  width: 100rpx;
+  width: 110rpx;
 }
 .goodJobWrap .headRowWrap .headRow .addressWrap .address{
 	font-family: PingFangSC-Regular;
 	font-size: 26rpx;
   color: #333;
-  width: 75rpx;
+  width: 80rpx;
+  float: left;
   text-align: right;
+  overflow: hidden;
+  /* text-overflow:ellipsis; */
+  white-space: nowrap;
 }
 .goodJobWrap .headRowWrap .headRow .addressWrap .xiala{
   width: 15rpx;
   height: 10rpx;
-  vertical-align: middle;
-  margin-left: 15rpx;
+  float: right;
+  margin: 35rpx 0 0 10rpx;
 }
 .goodJobWrap .headRowWrap .headRow .serachIptWrap{
-  margin-left: 100rpx;
+  margin-left: 120rpx;
   background-color: #f4f4f4;
 	border-radius: 2px;
   height: 62rpx;
@@ -134,10 +138,9 @@
 }
 /* 最新岗位 */
 .goodJobWrap .itemWrap{
-  height: 250rpx;
   background: #fff;
   border-bottom: 16rpx solid #f8f8f8;
-  padding: 50rpx 30rpx 0;
+  padding: 50rpx 30rpx 20rpx;
   position: relative;
 }
 .goodJobWrap .itemWrap .first{
@@ -196,10 +199,13 @@
 .goodJobWrap .itemWrap .picBox .right .logoName{
 	font-family: PingFangSC-Regular;
 	font-size: 28rpx;
+  height: 28rpx;
+  line-height: 28rpx;
 	color: #333;
 }
 .goodJobWrap .itemWrap .picBox .right .logoType{
 	font-family: PingFangSC-Regular;
 	font-size: 24rpx;
 	color: #999;
+  padding-top: 10rpx;
 }

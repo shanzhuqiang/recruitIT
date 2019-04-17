@@ -7,7 +7,7 @@ Page({
    */
   data: {
     loading: false,
-    cityInfo: null,
+    userInfo: null,
     mask: false,
     page: 1,
     imgSrc: '',
@@ -59,7 +59,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      cityInfo: app.globalData.cityInfo,
+      userInfo: app.globalData.userInfo,
       imgSrc: app.globalData.imgSrc
     })
     this.getList()
@@ -84,7 +84,8 @@ Page({
       mini_salary: '',
       max_salary: '',
       shaixuan1: '',
-      shaixuan2: ''
+      shaixuan2: '',
+      listData: []
     })
     this.getList()
   },
@@ -95,7 +96,8 @@ Page({
       mask: false,
       quyuChoose: '不限',
       shaixuan1: '',
-      shaixuan2: ''
+      shaixuan2: '',
+      listData: []
     })
     this.getList()
   },
@@ -106,7 +108,8 @@ Page({
       mask: false,
       quyuChoose: '不限',
       mini_salary: '',
-      max_salary: ''
+      max_salary: '',
+      listData: []
     })
     this.getList()
   },
@@ -120,7 +123,7 @@ Page({
       url: `${app.globalData.baseUrl}/Project/projectList.html`,
       data: {
         sess_key: app.globalData.sess_key,
-        city_code: this.data.cityInfo.city_code,
+        city_code: this.data.userInfo.city_code,
         district_code: this.data.quyuChoose,
         mini_salary: this.data.mini_salary,
         max_salary: this.data.max_salary,
@@ -159,27 +162,15 @@ Page({
   // 选择过滤类型弹窗
   topFilter(e) {
     let id = e.currentTarget.dataset.id
-    if (this.data.topFilterBtn === id && this.setData.mask) {
+    if (this.data.topFilterBtn === id && this.data.mask) {
       this.setData({
         mask: false
       })
     } else {
-      if (id === 'quyu') {
-        this.setData({
-          mask: true,
-          topFilterBtn: 'quyu'
-        })
-      } else if (id === 'jiage') {
-        this.setData({
-          mask: true,
-          topFilterBtn: 'jiage'
-        })
-      } else if (id === 'shaixuan') {
-        this.setData({
-          mask: true,
-          topFilterBtn: 'shaixuan'
-        })
-      }
+      this.setData({
+        mask: true,
+        topFilterBtn: id
+      })
     }
   },
   // 工作经验选择
