@@ -95,7 +95,7 @@
         </view>
         <view class='picBox'>
           <view class='left'>
-            <image class='logoImg' wx:if="{{item.img !== ''}}" src='{{ item.img }}' ></image>
+            <image class='logoImg' src='{{ item.company_icon }}' ></image>
           </view>
           <view class='right'>
             <view class='logoName'>{{ item.company_name }}</view>
@@ -113,29 +113,29 @@
     <view class='jinyingItemWrap' wx:for="{{ talentResumeList }}" wx:key="" bindtap='goResumeDetail'>
       <view class='firstRow'>
         <view class='leftImgBox'>
-          <image class='leftImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc + "/logo.png" }}'></image>
+          <image class='leftImg' src='{{ item.avatar }}'></image>
         </view>
         <view class='rightBox'>
           <view class='firstTitle'>
-            <text class='nameText mosaic'>王大伟</text>
-            <text class='typeName'>高级UI设计师</text>
+            <text class='nameText mosaic'>{{ item.name }}</text>
+            <text class='typeName'>{{ item.job_name }}</text>
           </view>
           <view class='secondTags'>
-            <text style='padding-left: 0'>三年</text>
-            <text class='middleTag'>本科</text>
-            <text>10k-14k</text>
+            <text style='padding-left: 0'>{{ item.work_years }}</text>
+            <text class='middleTag'>{{ item.education_name }}</text>
+          <text>{{ item.mini_salary1 + '-' + item.max_salary1 }}</text>
           </view>
           <view class='thirdTags'>
-            <text>PS</text>
-            <text>AI</text>
-            <text>Axure</text>
-            <text>AE</text>
+            <text>{{ item.label1 }}</text>
+            <text>{{ item.label2 }}</text>
+            <text>{{ item.label3 }}</text>
+            <text>{{ item.label_4 }}</text>
           </view>
         </view>
       </view>
       <view class='contentWrap'>
         <view class='content'>
-          我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程我熟悉java编程
+          {{ item.introduction }}
         </view>
       </view>
     </view>

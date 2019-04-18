@@ -7,45 +7,409 @@ Page({
    */
   data: {
     imgSrc: '',
-    address: '杭州',
+    userInfo: null,
     typeStr: 'xiangmu',
-    keyVal: '',
+    keyWord: '',
     filterStr: '',
-    sortVal: '',
-    sortList: [],
-    filtertList: [],
-    projectList: [
-      {
-      title: '我需要app设计我需要app设计我需要app设计',
-      money: '20k-30k/月',
-      address: '杭州',
-      time: '3-5年',
-      typeOne: '短期兼职',
-      content: '需要ad阿萨德阿萨德开发啊是，需要ad阿萨德阿萨德开发啊是，需要ad阿萨德阿萨德开发啊是，需要ad阿萨德阿萨德开发啊是',
-      peopleNum: '3'
-    },
-      {
-        title: '我需要ap',
-        money: '21k-32k/月',
-        address: '杭州',
-        time: '3-8年',
-        typeOne: '短期兼职',
-        content: '需要ad阿萨德阿萨德开发要ad阿萨德阿萨德开发啊是，需要ad阿萨德阿萨德开发啊是',
-        peopleNum: '4'
-      }
+    xiangmuMask: false,
+    quyuData: [],
+    quyuChoose: '',
+    xiangmuSort: '',
+    xiangmuFiltertList: [],
+    mini_salary: '',
+    max_salary: '',
+    xmJingyanData: [
+      [
+        {
+          id: '',
+          name: "不限"
+        },
+        {
+          id: 1,
+          name: "应届毕业生"
+        },
+        {
+          id: 2,
+          name: "3年以内"
+        }
+      ],
+      [
+        {
+          id: 3,
+          name: "3-5年"
+        },
+        {
+          id: 4,
+          name: "5-10年"
+        },
+        {
+          id: 5,
+          name: "10年以上"
+        }
+      ]
     ],
-    quartersList: [
-      {
-        title: '前端工程师',
-        money: '10-20万',
-        address: '杭州',
-        time: '3-5年',
-        education: '本科',
-        name: '杭州平面设计有限公司',
-        typeOne: '互联网·电商',
-        img: '../../images/logo.png'
+    xmJingyanChoose: '',
+    xmZhouqiChoose: '',
+    gangweiMask: false,
+    gangweiSort: '',
+    gwJingyanChoose: '',
+    xueliData: [
+      [
+        {
+          id: 1,
+          name: "不限"
+        },
+        {
+          id: 5,
+          name: "大专"
+        },
+        {
+          id: 6,
+          name: "本科"
+        }
+      ],
+      [
+        {
+          id: 7,
+          name: "硕士"
+        }
+      ]
+    ],
+    timeData: [
+      [{
+        id: '1',
+        name: '不限'
+      }, {
+          id: '2',
+          name: '今天发布'
+        }, {
+          id: '3',
+          name: '三日内'
+        }],
+      [{
+        id: '4',
+        name: '一周内'
+      }, {
+        id: '5',
+        name: '两周内'
+      }, {
+        id: '',
+        name: null
+      }]
+    ],
+    gwXueliChoose: '1',
+    gwTimeChoose: '1',
+    gwZhouqiChoose: '',
+    projectList: [],
+    quartersList: []
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.setData({
+      userInfo: app.globalData.userInfo,
+      imgSrc: app.globalData.imgSrc
+    })
+    this.getArea()
+  },
+  // 项目筛选确认
+  xiangmuConfirm () {
+    this.setData({
+      xiangmuMask: false
+    })
+    this.searchProjectList()
+  },
+  // 项目工作经验
+  xmJingyanChooseFilter (e) {
+    this.setData({
+      xmJingyanChoose: e.currentTarget.dataset.id
+    })
+  },
+  // 项目工作周期
+  xmZhouqiChooseFilter(e) {
+    this.setData({
+      xmZhouqiChoose: e.currentTarget.dataset.id
+    })
+  },
+  // 项目最低价输入
+  miniSalaryChange(e) {
+    this.setData({
+      mini_salary: e.detail.value
+    })
+  },
+  // 项目最高价输入
+  maxSalaryChange(e) {
+    this.setData({
+      max_salary: e.detail.value
+    })
+  },
+  // 项目排序
+  xiangmuSortChoose (e) {
+    this.setData({
+      xiangmuSort: e.currentTarget.dataset.id,
+      xiangmuMask: false
+    })
+    this.searchProjectList()
+  },
+  // 项目区域选择
+  quyuChooseFilter (e) {
+    this.setData({
+      quyuChoose: e.currentTarget.dataset.id
+    })
+  },
+  // 岗位筛选确认
+  gangweiConfirm () {
+    this.setData({
+      gangweiMask: false
+    })
+    this.searchWorkList()
+  },
+  // 岗位排序
+  gangweiSortChoose(e) {
+    this.setData({
+      gangweiSort: e.currentTarget.dataset.id,
+      gangweiMask: false
+    })
+    this.searchWorkList()
+  },
+  // 岗位经验
+  gwJingyanChooseFilter (e) {
+    this.setData({
+      gwJingyanChoose: e.currentTarget.dataset.id
+    })
+  },
+  // 岗位学历
+  gwXueliChooseFilter(e) {
+    this.setData({
+      gwXueliChoose: e.currentTarget.dataset.id
+    })
+  },
+  // 岗位发布时间
+  gwTimeChooseFilter (e) {
+    this.setData({
+      gwTimeChoose: e.currentTarget.dataset.id
+    })
+  },
+  // 岗位发布周期
+  gwZhouqiChooseFilter (e) {
+    this.setData({
+      gwZhouqiChoose: e.currentTarget.dataset.id
+    })
+  },
+  // 打开默认排序
+  openSort (e) {
+    let key = e.currentTarget.dataset.id
+    if (this.data.typeStr === "xiangmu") {
+      if (this.data.filterStr === key && this.data.xiangmuMask) {
+        this.setData({
+          xiangmuMask: false
+        })
+      } else {
+        this.setData({
+          xiangmuMask: true,
+          filterStr: 'sort'
+        })
       }
-    ]
+    } else if (this.data.typeStr === "gangwei") {
+      if (this.data.filterStr === key && this.data.gangweiMask) {
+        this.setData({
+          gangweiMask: false
+        })
+      } else {
+        this.setData({
+          gangweiMask: true,
+          filterStr: 'sort'
+        })
+      }
+    }
+  },
+  // 打开过滤
+  openFilter(e) {
+    let key = e.currentTarget.dataset.id
+    let filtertListData
+    if (this.data.typeStr === "xiangmu") {
+      if (this.data.filterStr === key && this.data.xiangmuMask) {
+        this.setData({
+          xiangmuMask: false
+        })
+      } else {
+        this.setData({
+          xiangmuMask: true,
+          filterStr: 'filter'
+        })
+      }
+    } else if (this.data.typeStr === "gangwei") {
+      if (this.data.filterStr === key && this.data.gangweiMask) {
+        this.setData({
+          gangweiMask: false
+        })
+      } else {
+        this.setData({
+          gangweiMask: true,
+          filterStr: 'filter'
+        })
+      }
+    }
+  },
+  // 输入框内容改变
+  clearList (e) {
+    if (e.detail.value === '') {
+      this.setData({
+        filterStr: '',
+        projectList: [],
+        quartersList: [],
+        xiangmuMask: false,
+        gangweiMask: false
+      })
+    }
+  },
+  // 输入框确认
+  iptChange (e) {
+    this.setData({
+      keyWord: e.detail.value
+    })
+    if (this.data.typeStr === 'xiangmu') {
+      this.setData({
+        filterStr: '',
+        xiangmuSort: '',
+        quyuChoose: '',
+        mini_salary: '',
+        max_salary: '',
+        xmJingyanChoose: '',
+        xmZhouqiChoose: '',
+        xiangmuMask: false
+      })
+      this.searchProjectList()
+    } else {
+      this.setData({
+        filterStr: '',
+        gangweiSort: '',
+        gwJingyanChoose: '',
+        gwXueliChoose: '1',
+        gwTimeChoose: '1',
+        gwZhouqiChoose: '',
+        gangweiMask: false
+      })
+      this.searchWorkList()
+    }
+  },
+  // 搜索项目
+  searchProjectList() {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Project/projectList.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        city_code: this.data.userInfo.city_code,
+        district_code: this.data.quyuChoose,
+        mini_salary: this.data.mini_salary,
+        max_salary: this.data.max_salary,
+        job_experience: this.data.xmJingyanChoose,
+        nature: this.data.xmZhouqiChoose,
+        page: 1,
+        page_size: 99999,
+        keyword: this.data.keyWord,
+        sort: this.data.xiangmuSort
+      },
+      method: 'POST',
+      success: (res) => {
+        let listData = res.data.bizobj.data.project_list
+        listData.forEach((el, index) => {
+          el['mini_salary1'] = Math.round(el.mini_salary / 1000) + 'k'
+          el['max_salary1'] = Math.round(el.max_salary / 1000) + 'k'
+        })
+        this.setData({
+          projectList: listData
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 搜索岗位
+  searchWorkList() {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Work/workList.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        city_code: this.data.userInfo.city_code,
+        sort: this.data.gangweiSort,
+        nature: this.data.gwZhouqiChoose, 
+        create_time: this.data.gwTimeChoose,
+        education: this.data.gwXueliChoose,
+        job_experience: this.data.gwJingyanChoose,
+        page: 1,
+        page_size: 99999,
+        keyword: this.data.keyWord
+      },
+      method: 'POST',
+      success: (res) => {
+        let listData = res.data.bizobj.data.job_list
+        listData.forEach((el, index) => {
+          el['mini_salary1'] = Math.round(el.mini_salary / 1000) + 'k'
+          el['max_salary1'] = Math.round(el.max_salary / 1000) + 'k'
+        })
+        this.setData({
+          quartersList: listData
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 获取区域
+  getArea() {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Addr/prov2CityList.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        city_code: this.data.userInfo.city_code
+      },
+      method: 'POST',
+      success: (res) => {
+        let listData = res.data.bizobj.data.area_list
+        console.log(listData)
+        listData.unshift({
+          city_code: '',
+          city_name: '不限'
+        })
+        let hangyeData = []
+        let length = parseInt(listData.length / 3)
+        let n = 0;
+        for (let i = 1; i <= length; i++) {
+          var star = (i - 1) * 3;
+          hangyeData[n++] = listData.slice(star, star + 3);
+        }
+        let y = listData.length - length * 3;
+        if (y > 0) {
+          let newArr = listData.slice(length * 3)
+          if (newArr.length === 2) {
+            newArr.push({
+              id: '',
+              name: null
+            })
+          }
+          hangyeData[n++] = newArr
+        }
+        this.setData({
+          quyuData: hangyeData
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
   },
   // 切换城市
   goChooseCity() {
@@ -53,136 +417,12 @@ Page({
       url: '../chooseCity/chooseCity'
     })
   },
-  // 打开默认排序
-  openSort () {
-    if (this.data.typeStr === "xiangmu") {
-      this.setData({
-        sortList: ["最新发布", "热门项目", "薪资最高", "离我最近", "智能排序"]
-      }, () => {
-        this.setData({
-          filterStr: 'sort'
-        })
-      })
-    } else if (this.data.typeStr === "gangwei") {
-      this.setData({
-        sortList: ["智能排序", "时间排序"]
-      }, () => {
-        this.setData({
-          filterStr: 'sort'
-        })
-      })
-    }
-  },
-  // 选择排序方式
-  chooseSort(e) {
-    let key = e.currentTarget.dataset.id
-    this.setData({
-      sortVal: key
-    })
-  },
-  // 打开过滤
-  openFilter() {
-    let filtertListData
-    if (this.data.typeStr === "xiangmu") {
-      filtertListData = [
-        {
-          title: '工作区域',
-          item: [
-            ["不限", "上城区", "下城区"],
-            ["江干区", "拱墅区", "西湖区"],
-            ["滨江区", "萧山区", "余杭区"],
-            ["桐庐县", "淳安县", "建德市"],
-            ["富阳市", "临安市", ""]
-          ]
-        },
-        {
-          title: '价格区间（元）',
-          item: [
-            ["最低价", "最高价"]
-          ]
-        },
-        {
-          title: '工作经验',
-          item: [
-            ["不限", "应届毕业生", "3年以内"],
-            ["3-5年", "5-10年", "10年以上"]
-          ]
-        },
-        {
-          title: '工作周期',
-          item: [
-            ["不限", "长期兼职", "短期兼职"],
-          ]
-        }
-      ]
-    } else if (this.data.typeStr === "gangwei") {
-      filtertListData = [
-        {
-          title: '工作经验',
-          item: [
-            ["不限", "应届毕业生", "3年以内"],
-            ["3-5年", "5-10年", "10年以上"]
-          ]
-        },
-        {
-          title: '学历要求',
-          item: [
-            ["不限", "大专", "本科"],
-            ["硕士"]
-          ]
-        },
-        {
-          title: '发布时间',
-          item: [
-            ["不限", "今天发布", "三天内"],
-            ["一周内", "两周内", ""]
-          ]
-        },
-        {
-          title: '工作周期',
-          item: [
-            ["不限", "长期兼职", "短期兼职"],
-          ]
-        }
-      ]
-    }
-    this.setData({
-      filtertList: filtertListData
-    }, () => {
-      this.setData({
-        filterStr: 'filter'
-      })
-    })
-  },
-  // 输入框输入内容
-  iptChange (e) {
-    let val = e.detail.value
-    this.setData({
-      keyVal: val
-    })
-    if (val === '') {
-      this.setData({
-        sortVal: '',
-        filterStr: ''
-      })
-    }
-  },
   // 改变搜索类型
   chooseType(e) {
-    let key = e.currentTarget.dataset.id
     this.setData({
-      typeStr: key
+      typeStr: e.currentTarget.dataset.id
     })
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    this.setData({
-      imgSrc: app.globalData.imgSrc
-    })
-  },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

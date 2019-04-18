@@ -2,15 +2,16 @@
 <view class='searchFirstWrap'>
   <view class='headRow'>
     <view class='addressWrap' bindtap="goChooseCity">
-      <text class='address'>{{ address }}</text>
+      <text class='address'>{{ userInfo.city_name }}</text>
       <image class='xiala' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/xiala.png'></image>
     </view>
     <view class='serachIptWrap'>
       <image class='search' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/search.png'></image>
-      <input class='serachIpt' placeholder="你想搜什么？" bindinput="iptChange"/>
+      <input class='serachIpt' placeholder="你想搜什么？" bindconfirm="iptChange" bindinput='clearList' confirm-type="搜索"/>
     </view>
   </view>
-  <view class='historyWrap' wx:if="{{ keyVal === '' }}">
+  <!-- 搜索记录 -->
+  <view class='historyWrap' wx:if="{{ projectList.length == 0 && quartersList.length == 0 }}">
     <view class='typeWrap'>
       <view class='{{ typeStr === "xiangmu" ? "active" : "" }}' bindtap='chooseType' data-id="xiangmu">项目</view>
       <view class='{{ typeStr === "gangwei" ? "active" : "" }}' bindtap='chooseType' data-id="gangwei">岗位</view>
@@ -32,72 +33,143 @@
       </view>
     </view>
   </view>
-  <view class='filterWrap' wx:if="{{ keyVal !== '' }}">
-    <view class='{{ filterStr === "sort" ? "active" : "" }}' bindtap='openSort'>
+  <!-- 排序/筛选top -->
+  <view class='filterWrap' wx:if="{{ projectList.length != 0 || quartersList.length != 0 }}">
+    <view class='{{ filterStr === "sort" ? "active" : "" }}' data-id="sort" bindtap='openSort'>
       默认排序
       <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ filterStr === "sort" ? imgSrc + "/arrowUp.png" : imgSrc + "/arrowDown.png" }}'></image>
     </view>
-    <view class='{{ filterStr === "filter" ? "active" : "" }}' bindtap='openFilter'>
+    <view class='{{ filterStr === "filter" ? "active" : "" }}' data-id="filter" bindtap='openFilter'>
       筛选
       <image class='filter' wx:if="{{imgSrc !== ''}}" src='{{ filterStr === "filter" ? imgSrc + "/filterTwo.png" : imgSrc + "/filter.png" }}'></image>
     </view>
   </view>
-  <view class='projectWrap' wx:if="{{ keyVal !== '' && typeStr === 'xiangmu' }}">
+  <!-- 项目list -->
+  <view class='projectWrap' wx:if="{{ projectList.length != 0 && typeStr === 'xiangmu' }}">
     <view class='itemWrap' wx:for="{{ projectList }}" wx:key="">
       <view class='first'>
         <view class='box'>招标</view>
-        <view class='title'>{{ item.title }}</view>
-        <view class='money'>{{ item.money }}</view>
+        <view class='title'>{{ item.name }}</view>
+        <view class='money'>{{ item.mini_salary1 + '-' + item.max_salary1 + '/月' }}</view>
       </view>
       <view class='second'>
-        <text style='padding-left: 0'>{{ item.address }}</text>
-        <text class='middleText'>{{ item.time }}</text>
-        <text>{{ item.typeOne }}</text>
+        <text style='padding-left: 0'>{{ item.project_label1 }}</text>
+        <text class='middleText'>{{ item.project_label2 }}</text>
+        <text>{{ item.project_label3 }}</text>
       </view>
       <view class='content'>
-        {{ item.content }}
+        {{ item.company_name }}
       </view>
       <view class='peopleNum'>
-        {{ item.peopleNum }}人已投递
+        {{ item.sign_num }}人已投递
       </view>
     </view>
   </view>
-  <view class='projectWrap' wx:if="{{ keyVal !== '' && typeStr === 'gangwei' }}">
+  <!-- 岗位list -->
+  <view class='projectWrap' wx:if="{{ quartersList.length != 0 && typeStr === 'gangwei' }}">
     <view class='itemWrap itemWrapTwo' wx:for="{{ quartersList }}" wx:key="">
       <view class='first'>
-        <view class='title'>{{ item.title }}</view>
-        <view class='money'>{{ item.money }}</view>
+        <view class='title'>{{ item.name }}</view>
+        <view class='money'>{{ item.mini_salary1 + '-' + item.max_salary1 + '/月' }}</view>
       </view>
       <view class='second'>
-        <text style='padding-left: 0'>{{ item.address }}</text>
-        <text class='middleText'>{{ item.time }}</text>
-        <text>{{ item.education }}</text>
+        <text style='padding-left: 0'>{{ item.job_label1 }}</text>
+        <text class='middleText'>{{ item.job_label2 }}</text>
+        <text>{{ item.job_label3 }}</text>
       </view>
       <view class='picBox'>
         <view class='left'>
-          <image class='logoImg' wx:if="{{item.img !== ''}}" src='{{ item.img }}' ></image>
+          <image class='logoImg' src='{{ item.company_icon }}' ></image>
         </view>
         <view class='right'>
-          <view class='logoName'>{{ item.name }}</view>
-          <view class='logoType'>{{ item.typeOne }}</view>
+          <view class='logoName'>{{ item.company_name }}</view>
+          <view class='logoType'>{{ item.company_label1 + '·' + item.company_label2 }}</view>
         </view>
       </view>
     </view>
   </view>
-  <view class='makWrap' wx:if="{{ filterStr !== '' }}">
+  <!-- 项目过滤遮罩 -->
+  <view class='makWrap' wx:if="{{ filterStr !== '' && xiangmuMask }}">
     <view class='sortBox' wx:if="{{ filterStr === 'sort' }}">
-      <view class='{{ sortVal === item ? "active" : "" }}' wx:for="{{ sortList }}" wx:key="" bindtap='chooseSort' data-id="{{ item }}">{{ item }}</view>
+      <view class='{{ xiangmuSort == 1 ? "active" : "" }}' bindtap='xiangmuSortChoose' data-id="1">最新发布</view>
+      <view class='{{ xiangmuSort == 2 ? "active" : "" }}' bindtap='xiangmuSortChoose' data-id="2">热门工作</view>
+      <view class='{{ xiangmuSort == 3 ? "active" : "" }}' bindtap='xiangmuSortChoose' data-id="3">薪资最高</view>
+      <view class='{{ xiangmuSort == 4 ? "active" : "" }}' bindtap='xiangmuSortChoose' data-id="4">离我最近</view>
+      <view class='{{ xiangmuSort == 5 ? "active" : "" }}' bindtap='xiangmuSortChoose' data-id="5">智能排序</view>
     </view>
     <view class='filterBox' wx:if="{{ filterStr === 'filter' }}">
       <view class='filterScroll'>
-        <view wx:for="{{ filtertList }}" wx:key="">
-          <view class='titleRow'>{{ item.title }}</view>
-          <view class='tagRow' wx:for="{{ item.item }}" wx:key="">
-            <view class='tagBtn' style='{{item === "" ? "visibility:hidden" : ""}}' wx:for="{{ item }}" wx:key="">{{ item }}</view>
+        <view>
+          <view class='titleRow'>工作区域</view>
+          <view class='tagRow' wx:for="{{ quyuData }}" wx:key="">
+            <view class='tagBtn {{ quyuChoose === item.city_code ? "active" : ""}}' style='{{item.city_name === null ? "visibility:hidden" : ""}}' wx:for="{{ item }}" data-id='{{ item.city_code }}' bindtap='quyuChooseFilter' wx:key="">{{ item.city_name }}</view>
+          </view>
+        </view>
+        <view>
+          <view class='titleRow'>价格区间（元）</view>
+          <view class='tagRow'>
+            <view class='fl'>
+              <input type='number' placeholder='最低价' value='{{ mini_salary }}' bindinput="miniSalaryChange"></input>
+            </view>
+            <view class='fr'>
+              <input type='number' placeholder='最高价' value='{{ max_salary }}' bindinput="maxSalaryChange"></input>
+            </view>
+          </view>
+        </view>
+        <view>
+          <view class='titleRow'>工作经验</view>
+          <view class='tagRow' wx:for="{{ xmJingyanData }}" wx:key="">
+            <view class='tagBtn  {{ xmJingyanChoose === item.id ? "active" : ""}}' wx:for="{{ item }}" data-id="{{ item.id }}" bindtap='xmJingyanChooseFilter' wx:key="">{{ item.name }}</view>
+          </view>
+        </view>
+        <view>
+          <view class='titleRow'>工作周期</view>
+          <view class='tagRow' wx:key="">
+            <view class='tagBtn  {{ xmZhouqiChoose == "" ? "active" : ""}}' data-id="" bindtap='xmZhouqiChooseFilter' wx:key="">不限</view>
+            <view class='tagBtn  {{ xmZhouqiChoose == 2 ? "active" : ""}}' data-id="2" bindtap='xmZhouqiChooseFilter' wx:key="">长期兼职</view>
+            <view class='tagBtn  {{ xmZhouqiChoose == 1 ? "active" : ""}}' data-id="1" bindtap='xmZhouqiChooseFilter' wx:key="">短期兼职</view>
           </view>
         </view>
       </view>
-      <view class='bottomBtn'>确定</view>
+      <view class='bottomBtn' bindtap='xiangmuConfirm'>确定</view>
+    </view>
+  </view>
+  <!-- 岗位过滤遮罩 -->
+  <view class='makWrap' wx:if="{{ filterStr !== '' && gangweiMask }}">
+    <view class='sortBox' wx:if="{{ filterStr === 'sort' }}">
+      <view class='{{ gangweiSort == 5 ? "active" : "" }}' bindtap='gangweiSortChoose' data-id="5">智能排序</view>
+      <view class='{{ gangweiSort == 1 ? "active" : "" }}' bindtap='gangweiSortChoose' data-id="1">时间排序</view>
+    </view>
+    <view class='filterBox' wx:if="{{ filterStr === 'filter' }}">
+      <view class='filterScroll'>
+        <view>
+          <view class='titleRow'>工作经验</view>
+          <view class='tagRow' wx:for="{{ xmJingyanData }}" wx:key="">
+            <view class='tagBtn  {{ gwJingyanChoose == item.id ? "active" : ""}}' wx:for="{{ item }}" data-id="{{ item.id }}" bindtap='gwJingyanChooseFilter' wx:key="">{{ item.name }}</view>
+          </view>
+        </view>
+        <view>
+          <view class='titleRow'>学历要求</view>
+          <view class='tagRow' wx:for="{{ xueliData }}" wx:key="">
+            <view class='tagBtn  {{ gwXueliChoose == item.id ? "active" : ""}}' wx:for="{{ item }}" data-id="{{ item.id }}" bindtap='gwXueliChooseFilter' wx:key="">{{ item.name }}</view>
+          </view>
+        </view>
+        <view>
+          <view class='titleRow'>发布时间</view>
+          <view class='tagRow' wx:for="{{ timeData }}" wx:key="">
+            <view class='tagBtn  {{ gwTimeChoose == item.id ? "active" : ""}}' style='{{item.name === null ? "visibility:hidden" : ""}}' wx:for="{{ item }}" data-id="{{ item.id }}" bindtap='gwTimeChooseFilter' wx:key="">{{ item.name }}</view>
+          </view>
+        </view>
+        <view>
+          <view class='titleRow'>工作周期</view>
+          <view class='tagRow' wx:key="">
+            <view class='tagBtn  {{ gwZhouqiChoose == "" ? "active" : ""}}' data-id="" bindtap='gwZhouqiChooseFilter' wx:key="">不限</view>
+            <view class='tagBtn  {{ gwZhouqiChoose == 2 ? "active" : ""}}' data-id="2" bindtap='gwZhouqiChooseFilter' wx:key="">长期兼职</view>
+            <view class='tagBtn  {{ gwZhouqiChoose == 1 ? "active" : ""}}' data-id="1" bindtap='gwZhouqiChooseFilter' wx:key="">短期兼职</view>
+          </view>
+        </view>
+      </view>
+      <view class='bottomBtn' bindtap='gangweiConfirm'>确定</view>
     </view>
   </view>
 </view>

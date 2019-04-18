@@ -8,23 +8,27 @@
 }
 .searchFirstWrap .headRow .addressWrap{
   float: left;
-  width: 100rpx;
+  width: 110rpx;
 }
 .searchFirstWrap .headRow .addressWrap .address{
 	font-family: PingFangSC-Regular;
 	font-size: 26rpx;
   color: #333;
-  width: 75rpx;
+  width: 80rpx;
   text-align: right;
+  float: left;
+  overflow: hidden;
+  /* text-overflow:ellipsis; */
+  white-space: nowrap;
 }
 .searchFirstWrap .headRow .addressWrap .xiala{
   width: 15rpx;
   height: 10rpx;
-  vertical-align: middle;
-  margin-left: 15rpx;
+  float: right;
+  margin: 35rpx 0 0 10rpx;
 }
 .searchFirstWrap .headRow .serachIptWrap{
-  margin-left: 100rpx;
+  margin-left: 120rpx;
   background-color: #f4f4f4;
 	border-radius: 2px;
   height: 62rpx;
@@ -172,6 +176,14 @@
   justify-content: space-between;
   margin-top: 17rpx;
 }
+.searchFirstWrap .makWrap .filterBox .tagRow > view{
+  height: 60rpx;
+  width: 280rpx;
+	border: solid 1rpx #f0f0f0;
+	font-family: PingFangSC-Regular;
+	font-size: 24rpx;
+  text-align: center;
+}
 .searchFirstWrap .makWrap .filterBox .tagRow .tagBtn{
 	width: 214rpx;
 	height: 62rpx;
@@ -183,6 +195,9 @@
 	font-family: PingFangSC-Regular;
 	font-size: 24rpx;
 	color: #666;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
 .searchFirstWrap .makWrap .filterBox .tagRow .tagBtn.active{
 	color: #2e70f9;
@@ -203,10 +218,9 @@
 }
 /* 项目 */
 .searchFirstWrap .projectWrap .itemWrap{
-  height: 250rpx;
   background: #fff;
   border-bottom: 16rpx solid #f8f8f8;
-  padding: 50rpx 30rpx 0;
+  padding: 50rpx 30rpx 79rpx;
   position: relative;
 }
 .searchFirstWrap .projectWrap .itemWrap .first{
@@ -290,6 +304,7 @@
 /* 岗位 */
 .searchFirstWrap .projectWrap .itemWrap.itemWrapTwo{
   height: 240rpx;
+  padding-bottom: 0;
 }
 .searchFirstWrap .projectWrap .itemWrap.itemWrapTwo .first .title{
   left: 0rpx;

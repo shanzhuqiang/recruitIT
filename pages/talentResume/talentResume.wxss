@@ -63,6 +63,9 @@
 	font-family: PingFangSC-Regular;
 	font-size: 24rpx;
 	color: #666;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
 .talentResumeWrap .filterMask .maskBody .filterBtnWrap .filterBtn.active{
 	color: #2e70f9;
@@ -97,6 +100,13 @@
   height: 34rpx;
   line-height: 34rpx;
 	color: #333;
+}
+.talentResumeWrap .itemWrap .firstRow .rightBox .firstTitle .nameText{
+  max-width: 200rpx;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
 .talentResumeWrap .itemWrap .firstRow .rightBox .firstTitle .typeName{
 	font-family: PingFangSC-Regular;

@@ -29,7 +29,7 @@
     </view>
   </view>
   <!-- 职位list -->
-  <view class='itemWrap' wx:for="{{ listData }}" wx:key="">
+  <view class='itemWrap' wx:for="{{ listData }}" wx:key="" data-id="{{ item.id }}" bindtap='goPostDetail'>
     <view class='first'>
       <view class='title'>{{ item.name }}</view>
       <view class='money'>{{ item.mini_salary1 + '-' + item.max_salary1 + '/月' }}</view>
@@ -41,7 +41,7 @@
     </view>
     <view class='picBox'>
       <view class='left'>
-        <image class='logoImg' wx:if="{{item.img !== ''}}" src='{{ imgSrc }}/logo.png' ></image>
+        <image class='logoImg' src='{{ item.company_icon }}' ></image>
       </view>
       <view class='right'>
         <view class='logoName'>{{ item.company_name }}</view>

@@ -280,7 +280,6 @@ page{
   border-bottom: 16rpx solid #f8f8f8;
 }
 .homeWrap .typeTitleWrap .jinyingItemWrap .firstRow{
-  height: 130rpx;
   padding: 40rpx 0 20rpx;
   border-bottom: 1rpx solid #f0f0f0;
 }
@@ -303,6 +302,11 @@ page{
   height: 34rpx;
   line-height: 34rpx;
 	color: #333;
+  max-width: 200rpx;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
 .homeWrap .typeTitleWrap .jinyingItemWrap .firstRow .rightBox .firstTitle .typeName{
 	font-family: PingFangSC-Regular;

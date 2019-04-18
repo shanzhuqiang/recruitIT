@@ -12,7 +12,7 @@ Page({
     titleChoosed: 'project',
     projectList: [],
     quartersList: [],
-    talentResumeList: [{}],
+    talentResumeList: [],
     userType: '',
     releaseMark: false,
     // getPhoneMaskOnOff: true
@@ -27,8 +27,12 @@ Page({
       userType: app.globalData.userType,
       imgSrc: app.globalData.imgSrc
     })
-    this.initProjectData()
-    this.initQuartersData()
+    if (this.data.userType === 'engineer') {
+      this.initProjectData()
+      this.initQuartersData()
+    } else {
+      this.initResumeData()
+    }
     // this.initAuth()
     // this.initQuartersData()
   },
@@ -41,17 +45,17 @@ Page({
       })
     }
   },
-  getPhoneNumber(e) {
-    if (e.detail.errMsg === 'getPhoneNumber:ok') {
-      this.setData({
-        getPhoneMaskOnOff: false
-      })
-      console.log(e)
-      console.log(e.detail.errMsg)
-      console.log(e.detail.iv)
-      console.log(e.detail.encryptedData)
-    }
-  },
+  // getPhoneNumber(e) {
+  //   if (e.detail.errMsg === 'getPhoneNumber:ok') {
+  //     this.setData({
+  //       getPhoneMaskOnOff: false
+  //     })
+  //     console.log(e)
+  //     console.log(e.detail.errMsg)
+  //     console.log(e.detail.iv)
+  //     console.log(e.detail.encryptedData)
+  //   }
+  // },
   // 进入赏金平台
   goBountyPlatform() {
     wx.navigateTo({
@@ -168,6 +172,36 @@ Page({
         })
         this.setData({
           quartersList: listData
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 最新简历初始化
+  initResumeData () {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Resume/resumeList.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        city_code: this.data.userInfo.city_code,
+        sort: 1,
+        page: 1,
+        page_size: 20
+      },
+      method: 'POST',
+      success: (res) => {
+        let listData = res.data.bizobj.data.resume_list
+        listData.forEach((el, index) => {
+          el['mini_salary1'] = Math.round(el.mini_salary / 1000) + 'k'
+          el['max_salary1'] = Math.round(el.max_salary / 1000) + 'k'
+        })
+        this.setData({
+          talentResumeList: listData
         })
       },
       fail: (res) => {

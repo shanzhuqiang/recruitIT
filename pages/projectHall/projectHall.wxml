@@ -14,7 +14,7 @@
       <image class='filterImg' wx:if="{{imgSrc !== ''}}" src='{{ topFilterBtn === "shaixuan" ? imgSrc + "/filterTwo.png" : imgSrc + "/filter.png" }}'></image>
     </view>
   </view>
-  <view class='itemWrap' wx:for="{{ listData }}" wx:key="">
+  <view class='itemWrap' wx:for="{{ listData }}" wx:key="" data-id="{{ item.id }}" bindtap='goProjectDetail'>
     <view class='first'>
       <view class='box'>招标</view>
       <view class='title'>{{ item.name }}</view>
@@ -38,7 +38,7 @@
     <view class='maskBody'>
       <view class='title'>工作区域</view>
       <view class='filterBtnWrap' wx:for="{{ quyuData }}" wx:key="">
-        <view class='filterBtn {{ quyuChoose === item ? "active" : ""}}' style='{{item === "" ? "visibility:hidden" : ""}}' wx:for="{{ item }}" data-id='{{ item }}' bindtap='quyuChooseFilter' wx:key="">{{ item }}</view>
+        <view class='filterBtn {{ quyuChoose === item.city_code ? "active" : ""}}' style='{{item.city_name === null ? "visibility:hidden" : ""}}' wx:for="{{ item }}" data-id='{{ item.city_code }}' bindtap='quyuChooseFilter' wx:key="">{{ item.city_name }}</view>
       </view>
     </view>
   </view>

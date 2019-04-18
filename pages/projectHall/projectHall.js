@@ -12,14 +12,8 @@ Page({
     page: 1,
     imgSrc: '',
     topFilterBtn: '',
-    quyuData: [
-      ["不限", "上城区", "下城区"],
-      ["江干区", "拱墅区", "西湖区"],
-      ["滨江区", "萧山区", "余杭区"],
-      ["桐庐县", "淳安县", "建德市"],
-      ["富阳市", "临安市", ""]
-    ],
-    quyuChoose: '不限',
+    quyuData: [],
+    quyuChoose: '',
     shaixuanData: [
       [
         {
@@ -62,6 +56,7 @@ Page({
       userInfo: app.globalData.userInfo,
       imgSrc: app.globalData.imgSrc
     })
+    this.getArea()
     this.getList()
   },
   miniSalaryChange(e) {
@@ -72,6 +67,12 @@ Page({
   maxSalaryChange(e) {
     this.setData({
       max_salary: e.detail.value
+    })
+  },
+  // 进入项目详情
+  goProjectDetail (e) {
+    wx.navigateTo({
+      url: `../projectDetail/projectDetail?id=${e.currentTarget.dataset.id}`
     })
   },
   // 区域选择过滤内容按钮
@@ -94,7 +95,7 @@ Page({
     this.setData({
       page: 1,
       mask: false,
-      quyuChoose: '不限',
+      quyuChoose: '',
       shaixuan1: '',
       shaixuan2: '',
       listData: []
@@ -106,14 +107,61 @@ Page({
     this.setData({
       page: 1,
       mask: false,
-      quyuChoose: '不限',
+      quyuChoose: '',
       mini_salary: '',
       max_salary: '',
       listData: []
     })
     this.getList()
   },
-  // 最新项目初始化
+  // 获取区域
+  getArea () {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Addr/prov2CityList.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        city_code: this.data.userInfo.city_code
+      },
+      method: 'POST',
+      success: (res) => {
+        let listData = res.data.bizobj.data.area_list
+        console.log(listData)
+        listData.unshift({
+          city_code: '',
+          city_name: '不限'
+        })
+        let hangyeData = []
+        let length = parseInt(listData.length / 3)
+        let n = 0;
+        for (let i = 1; i <= length; i++) {
+          var star = (i - 1) * 3;
+          hangyeData[n++] = listData.slice(star, star + 3);
+        }
+        let y = listData.length - length * 3;
+        if (y > 0) {
+          let newArr = listData.slice(length * 3)
+          if (newArr.length === 2) {
+            newArr.push({
+              id: '',
+              name: null
+            })
+          }
+          hangyeData[n++] = newArr
+        }
+        this.setData({
+          quyuData: hangyeData
+        })
+        console.log(hangyeData)
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 获取项目
   getList() {
     console.log()
     this.setData({

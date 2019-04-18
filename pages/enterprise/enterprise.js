@@ -97,7 +97,7 @@ Page({
     ],
     guimoDataFilter: '',
     hangyeData: [],
-    hangyeDataFilter: 'unlimit',
+    hangyeDataFilter: '',
     listData: []
   },
   // ["不限", "移动互联网", "电子商务"],
@@ -128,7 +128,7 @@ Page({
       success: (res) => {
         let data = res.data.bizobj.data.line_list
         data.unshift({
-          id: 'unlimit',
+          id: '',
           name: '不限'
         })
         console.log(data)
@@ -261,7 +261,7 @@ Page({
       this.setData({
         rongziDataFilter: id,
         guimoDataFilter: '',
-        hangyeDataFilter: 'unlimit',
+        hangyeDataFilter: '',
         page: 1,
         listData: []
       })
@@ -270,7 +270,7 @@ Page({
       this.setData({
         rongziDataFilter: 0,
         guimoDataFilter: id,
-        hangyeDataFilter: 'unlimit',
+        hangyeDataFilter: '',
         page: 1,
         listData: []
       })

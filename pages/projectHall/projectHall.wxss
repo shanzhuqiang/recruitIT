@@ -77,6 +77,9 @@
 	font-family: PingFangSC-Regular;
 	font-size: 24rpx;
 	color: #666;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
 .projectHallWrap .filterMask .maskBody .filterBtnWrap .filterBtn.active{
 	color: #2e70f9;

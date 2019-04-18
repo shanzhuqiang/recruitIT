@@ -7,83 +7,230 @@ Page({
    */
   data: {
     imgSrc: '',
-    topFilterBtn: '',
-    filterBtn: '',
+    userInfo: null,
+    page: 1,
+    loading: false,
     maskOnOff: false,
-    filterTitle: '',
-    filterList: [],
-    quyuData: [
-      ["不限", "上城区", "下城区"],
-      ["江干区", "拱墅区", "西湖区"],
-      ["滨江区", "萧山区", "余杭区"],
-      ["桐庐县", "淳安县", "建德市"],
-      ["富阳市", "临安市", ""]
-    ],
+    topFilterBtn: '',
+    quyuData: [],
+    quyuChoose: '',
     jingyanData: [
-      ["不限", "应届毕业生", "3年以内"],
-      ["3-5年", "5-10年", "10年以上"]
+      [{
+        id: '',
+        name: '不限'
+      }, {
+        id: '1',
+        name: '应届毕业生'
+      }, {
+        id: '2',
+        name: '3年以内'
+      }],
+      [{
+        id: '3',
+        name: '3-5年'
+      }, {
+        id: '4',
+        name: '5-10年'
+      }, {
+        id: '5',
+        name: '10年以上'
+      }]
     ],
+    jingyanChoose: '',
     yuexinData: [
-      ["不限", "2K以下", "2K-5K"],
-      ["5K-10K", "10K-15K", "15K-25K"],
-      ["25K-50K", "50K以上", ""]
+      [{
+        id: '1',
+        name: '不限'
+      }, {
+        id: '2',
+        name: '2K以下'
+      }, {
+        id: '3',
+        name: '2K-5K'
+        }],
+      [{
+        id: '4',
+        name: '5K-10K'
+      }, {
+        id: '5',
+        name: '10K-15K'
+      }, {
+        id: '6',
+        name: '15K-25K'
+        }],
+      [{
+        id: '7',
+        name: '25K-50K'
+      }, {
+        id: '8',
+          name: '50K以上'
+      }, {
+        id: '',
+        name: null
+      }]
     ],
-    talentResumeList: [
-      {}
-    ]
-  },
-  // 选择过滤类型弹窗
-  topFilter(e) {
-    let id = e.currentTarget.dataset.id
-    if (id === 'quyu') {
-      this.setData({
-        filterList: this.data.quyuData,
-        filterTitle: '工作区域',
-        filterBtn: '不限',
-        topFilterBtn: 'quyu'
-      }, () => {
-        this.setData({
-          maskOnOff: true
-        })
-      })
-    } else if (id === 'jingyan') {
-      this.setData({
-        filterList: this.data.jingyanData,
-        filterTitle: '工作经验',
-        filterBtn: '不限',
-        topFilterBtn: 'jingyan'
-      }, () => {
-        this.setData({
-          maskOnOff: true
-        })
-      })
-    } else if (id === 'yuexin') {
-      this.setData({
-        filterList: this.data.yuexinData,
-        filterTitle: '月薪范围',
-        filterBtn: '不限',
-        topFilterBtn: 'yuexin'
-      }, () => {
-        this.setData({
-          maskOnOff: true
-        })
-      })
-    }
-  },
-  // 选择过滤内容按钮
-  chooseFilter(e) {
-    let id = e.currentTarget.dataset.id
-    this.setData({
-      filterBtn: id
-    })
+    yuexinChoose: 1,
+    listData: []
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.setData({
+      userInfo: app.globalData.userInfo,
       imgSrc: app.globalData.imgSrc
     })
+    this.gitArea()
+    this.getList()
+  },
+  // 区域筛选确定
+  quyuChooseFilter(e) {
+    let id = e.currentTarget.dataset.id
+    this.setData({
+      page: 1,
+      maskOnOff: false,
+      quyuChoose: id,
+      jingyanChoose: '',
+      yuexinChoose: 1,
+      listData: []
+    })
+    this.getList()
+  },
+  // 经验筛选确定
+  jingyanChooseFilter(e) {
+    let id = e.currentTarget.dataset.id
+    this.setData({
+      page: 1,
+      maskOnOff: false,
+      quyuChoose: '',
+      jingyanChoose: id,
+      yuexinChoose: 1,
+      listData: []
+    })
+    this.getList()
+
+  },
+  // 月薪确定
+  yuexinChooseFilter(e) {
+    let id = e.currentTarget.dataset.id
+    this.setData({
+      page: 1,
+      maskOnOff: false,
+      quyuChoose: '',
+      jingyanChoose: '',
+      yuexinChoose: id,
+      listData: []
+    })
+    this.getList()
+  },
+  goResumeDetail(e) {
+    wx.navigateTo({
+      url: `../resumeDetail/resumeDetail?id=${e.currentTarget.dataset.id}`
+    })
+  },
+  // 获取区域
+  gitArea() {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Addr/prov2CityList.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        city_code: this.data.userInfo.city_code
+      },
+      method: 'POST',
+      success: (res) => {
+        let listData = res.data.bizobj.data.area_list
+        listData.unshift({
+          city_code: '',
+          city_name: '不限'
+        })
+        console.log(listData)
+        let hangyeData = []
+        let length = parseInt(listData.length / 3)
+        let n = 0;
+        for (let i = 1; i <= length; i++) {
+          var star = (i - 1) * 3;
+          hangyeData[n++] = listData.slice(star, star + 3);
+        }
+        let y = listData.length - length * 3;
+        if (y > 0) {
+          let newArr = listData.slice(length * 3)
+          if (newArr.length === 2) {
+            newArr.push({
+              id: '',
+              name: null
+            })
+          }
+          hangyeData[n++] = newArr
+        }
+        this.setData({
+          quyuData: hangyeData
+        })
+        console.log(hangyeData)
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 获取简历列表
+  getList() {
+    this.setData({
+      loading: true
+    })
+    wx.request({
+      url: `${app.globalData.baseUrl}/Resume/resumeList.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        city_code: this.data.userInfo.city_code,
+        district_code: this.data.quyuChoose,
+        job_experience: this.data.jingyanChoose,
+        salary_range: this.data.yuexinChoose,
+        page_size: 10,
+        page: this.data.page
+      },
+      method: 'POST',
+      success: (res) => {
+        let listData = res.data.bizobj.data.resume_list
+        console.log(listData)
+        if (listData.length > 0) {
+          listData.forEach((el, index) => {
+            el['mini_salary1'] = Math.round(el.mini_salary / 1000) + 'k'
+            el['max_salary1'] = Math.round(el.max_salary / 1000) + 'k'
+          })
+          let newList = this.data.listData
+          this.setData({
+            listData: [...newList, ...listData],
+            page: this.data.page + 1
+          })
+        }
+        this.setData({
+          loading: false
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 选择过滤类型弹窗
+  topFilter(e) {
+    let id = e.currentTarget.dataset.id
+    if (id === this.data.topFilterBtn && this.data.maskOnOff) {
+      this.setData({
+        maskOnOff: false
+      })
+    } else {
+      this.setData({
+        topFilterBtn: id,
+        maskOnOff: true
+      })
+    }
   },
 
   /**
@@ -125,7 +272,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.getList()
   },
 
   /**
