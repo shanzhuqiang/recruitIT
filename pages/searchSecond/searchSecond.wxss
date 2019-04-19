@@ -8,23 +8,27 @@
 }
 .searchFirstWrap .headRow .addressWrap{
   float: left;
-  width: 100rpx;
+  width: 110rpx;
 }
 .searchFirstWrap .headRow .addressWrap .address{
 	font-family: PingFangSC-Regular;
 	font-size: 26rpx;
   color: #333;
-  width: 75rpx;
+  width: 80rpx;
   text-align: right;
+  float: left;
+  overflow: hidden;
+  /* text-overflow:ellipsis; */
+  white-space: nowrap;
 }
 .searchFirstWrap .headRow .addressWrap .xiala{
   width: 15rpx;
   height: 10rpx;
-  vertical-align: middle;
-  margin-left: 15rpx;
+  float: right;
+  margin: 35rpx 0 0 10rpx;
 }
 .searchFirstWrap .headRow .serachIptWrap{
-  margin-left: 100rpx;
+  margin-left: 120rpx;
   background-color: #f4f4f4;
 	border-radius: 2px;
   height: 62rpx;

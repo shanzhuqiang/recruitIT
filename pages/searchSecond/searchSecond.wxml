@@ -2,33 +2,32 @@
 <view class='searchFirstWrap'>
   <view class='headRow'>
     <view class='addressWrap' bindtap="goChooseCity">
-      <text class='address'>{{ address }}</text>
+      <text class='address'>{{ userInfo.city_name }}</text>
       <image class='xiala' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/xiala.png'></image>
     </view>
     <view class='serachIptWrap'>
       <image class='search' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/search.png'></image>
-      <input class='serachIpt' placeholder="你想搜什么？" bindinput="iptChange"/>
+      <input class='serachIpt' value='{{ keyWord }}' placeholder="你想搜什么？" bindconfirm="iptChange" confirm-type="搜索"/>
     </view>
   </view>
-  <view class='historyWrap' wx:if="{{ keyVal === '' }}">
+  <view class='historyWrap' wx:if="{{ dataList.length === '' }}">
     <view class='historyBox'>
       <view class='historyTitle'>搜索历史</view>
       <view class='historyTag'>
-        <text>日结</text>
-        <text>周末兼职</text>
+        <text wx:for="{{ historyArray }}" wx:key="" data-id="{{ item }}" bindtap='searchHistory'>{{ item }}</text>
       </view>
       <view class='historyTitle'>热门推荐</view>
       <view class='historyTag'>
-        <text>日结</text>
-        <text>周末兼职</text>
-        <text>服务员</text>
-        <text>家教</text>
-        <text>派单</text>
-        <text style='margin-right: 0'>客服</text>
+        <text data-id="日结" bindtap='searchHistory'>日结</text>
+        <text data-id="周末兼职" bindtap='searchHistory'>周末兼职</text>
+        <text data-id="服务员" bindtap='searchHistory'>服务员</text>
+        <text data-id="家教" bindtap='searchHistory'>家教</text>
+        <text data-id="派单" bindtap='searchHistory'>派单</text>
+        <text style='margin-right: 0' data-id="客服" bindtap='searchHistory'>客服</text>
       </view>
     </view>
   </view>
-  <view class='filterWrap' wx:if="{{ keyVal !== '' }}">
+  <view class='filterWrap' wx:if="{{ dataList.length !== '' }}">
     <view class='{{ filterStr === "sort" ? "active" : "" }}' bindtap='openSort'>
       默认排序
       <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ filterStr === "sort" ? imgSrc + "/arrowUp.png" : imgSrc + "/arrowDown.png" }}'></image>
@@ -38,8 +37,8 @@
       <image class='filter' wx:if="{{imgSrc !== ''}}" src='{{ filterStr === "filter" ? imgSrc + "/filterTwo.png" : imgSrc + "/filter.png" }}'></image>
     </view>
   </view>
-  <view class='typeTitleWrap' wx:if="{{ keyVal !== '' }}">
-    <view class='jinyingItemWrap' wx:for="{{ talentResumeList }}" wx:key="">
+  <view class='typeTitleWrap' wx:if="{{ dataList.length !== '' }}">
+    <view class='jinyingItemWrap' wx:for="{{ dataList }}" wx:key="">
       <view class='firstRow'>
         <view class='leftImgBox'>
           <image class='leftImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc + "/logo.png" }}'></image>

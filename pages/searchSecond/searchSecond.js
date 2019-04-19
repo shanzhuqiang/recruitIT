@@ -7,8 +7,9 @@ Page({
    */
   data: {
     imgSrc: '',
-    address: '杭州',
-    keyVal: '',
+    userInfo: null,
+    keyWord: '',
+    dataList: [],
     filterStr: '',
     sortVal: '',
     filtertList: [
@@ -36,7 +37,37 @@ Page({
         ]
       }
     ],
-    talentResumeList: [{}]
+    historyArray: [],
+    keyWord: ''
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.setData({
+      userInfo: app.globalData.userInfo,
+      imgSrc: app.globalData.imgSrc
+    })
+    // 获取搜索缓存记录
+    this.initGetStorage()
+  },
+  // 获取搜索缓存记录
+  initGetStorage() {
+    wx.getStorage({
+      key: 'firstSearchKey',
+      success: (res) => {
+        this.setData({
+          historyArray: res.data
+        })
+      }
+    })
+  },
+  // 点击历史记录搜索
+  searchHistory(e) {
+    let key = e.currentTarget.dataset.id
+    this.setData({
+      keyWord: key
+    })
   },
   // 切换城市
   goChooseCity() {
@@ -63,28 +94,54 @@ Page({
       filterStr: 'filter'
     }) 
   },
-  // 输入框输入内容
+  // 确认输入
   iptChange(e) {
-    let val = e.detail.value
+    let keyWord = e.detail.value
     this.setData({
-      keyVal: val
+      keyWord: keyWord
     })
-    if (val === '') {
-      this.setData({
-        sortVal: '',
-        filterStr: ''
-      })
-    }
+    this.getData()
+    // let val = e.detail.value
+    // this.setData({
+    //   keyVal: val
+    // })
+    // if (val === '') {
+    //   this.setData({
+    //     sortVal: '',
+    //     filterStr: ''
+    //   })
+    // }
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    this.setData({
-      imgSrc: app.globalData.imgSrc
+  // 获取简历数据
+  getData () {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Resume/resumeList.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        city_code: this.data.userInfo.city_code,
+        page: 1,
+        page_size: 99999,
+        keyword: this.data.keyWord
+      },
+      method: 'POST',
+      success: (res) => {
+        let listData = res.data.bizobj.data.resume_list
+        listData.forEach((el, index) => {
+          el['mini_salary1'] = Math.round(el.mini_salary / 1000) + 'k'
+          el['max_salary1'] = Math.round(el.max_salary / 1000) + 'k'
+        })
+        this.setData({
+          dataList: listData
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
     })
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

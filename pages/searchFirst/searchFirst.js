@@ -101,7 +101,8 @@ Page({
     gwTimeChoose: '1',
     gwZhouqiChoose: '',
     projectList: [],
-    quartersList: []
+    quartersList: [],
+    historyArray: []
   },
   /**
    * 生命周期函数--监听页面加载
@@ -111,7 +112,21 @@ Page({
       userInfo: app.globalData.userInfo,
       imgSrc: app.globalData.imgSrc
     })
+    // 获取城市下的区
     this.getArea()
+    // 获取搜索缓存记录
+    this.initGetStorage()
+  },
+  // 获取搜索缓存记录
+  initGetStorage () {
+    wx.getStorage({
+      key: 'firstSearchKey',
+      success: (res) => {
+        this.setData({
+          historyArray: res.data
+        })
+      }
+    })
   },
   // 项目筛选确认
   xiangmuConfirm () {
@@ -264,10 +279,11 @@ Page({
       })
     }
   },
-  // 输入框确认
-  iptChange (e) {
+  // 点击历史记录搜索
+  searchHistory(e) {
+    let key = e.currentTarget.dataset.id
     this.setData({
-      keyWord: e.detail.value
+      keyWord: key
     })
     if (this.data.typeStr === 'xiangmu') {
       this.setData({
@@ -293,6 +309,52 @@ Page({
       })
       this.searchWorkList()
     }
+  },
+  // 输入框确认
+  iptChange (e) {
+    let keyWord = e.detail.value
+    this.setData({
+      keyWord: keyWord
+    })
+    if (this.data.typeStr === 'xiangmu') {
+      this.setData({
+        filterStr: '',
+        xiangmuSort: '',
+        quyuChoose: '',
+        mini_salary: '',
+        max_salary: '',
+        xmJingyanChoose: '',
+        xmZhouqiChoose: '',
+        xiangmuMask: false
+      })
+      this.searchProjectList()
+    } else {
+      this.setData({
+        filterStr: '',
+        gangweiSort: '',
+        gwJingyanChoose: '',
+        gwXueliChoose: '1',
+        gwTimeChoose: '1',
+        gwZhouqiChoose: '',
+        gangweiMask: false
+      })
+      this.searchWorkList()
+    }
+    // 存入本地缓存
+    let newHistoryArray = []
+    let historyArray = this.data.historyArray
+    if (historyArray.length > 4) {
+      newHistoryArray = [keyWord, ...historyArray.slice(0, 4)]
+    } else {
+      newHistoryArray = [keyWord, ...historyArray]
+    }
+    this.setData({
+      historyArray: newHistoryArray
+    })
+    wx.setStorage({
+      key: 'firstSearchKey',
+      data: newHistoryArray
+    })
   },
   // 搜索项目
   searchProjectList() {

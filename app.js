@@ -25,7 +25,6 @@ App({
         // this.globalData.has_password = resData.has_password
         this.globalData.has_password = 2
         this.globalData.need_auth = resData.need_auth
-        console.log(res.data.bizobj.data)
         // 是否需要强制授权 1: 需要 2: 不需要(不需要授权的情况下用户信息不为空)
         // 用户是否有密码 1: 有密码 2: 无密码
       },

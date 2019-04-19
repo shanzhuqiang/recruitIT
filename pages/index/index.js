@@ -24,7 +24,6 @@ Page({
     this.setData({
       imgSrc: app.globalData.imgSrc
     })
-
   },
   // 授权成功后添加用户信息
   addUserInfo(data) {
@@ -33,7 +32,33 @@ Page({
     obj['gender'] = data.gender
     obj['nickname'] = data.nickName
     app.globalData.userInfo = obj
+    this.updateUserinfo()
   },
+  // 更新用户信息
+  updateUserinfo () {
+    let data = app.globalData.userInfo
+    wx.request({
+      url: `${app.globalData.baseUrl}/User/updateUserInfo.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        nickname: data.nickname,
+        avatar: data.avatar,
+        gender: data.gender,
+        lat: data.lat,
+        lng: data.lng
+      },
+      method: 'POST',
+      success: (res) => {
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 初始化判断授权
   initAuto() {
     this.setData({
       firstMask: false
@@ -145,6 +170,8 @@ Page({
         console.log(data)
         obj['city_code'] = data.city_code
         obj['city_name'] = data.city_name
+        obj['lat'] = lat
+        obj['lng'] = lng
         app.globalData.userInfo = obj
       },
       fail: (res) => {

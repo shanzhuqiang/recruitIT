@@ -1,4 +1,5 @@
 // pages/chooseCity/chooseCity.js
+const app = getApp()
 Page({
 
   /**
@@ -6,140 +7,86 @@ Page({
    */
   data: {
     chooseActive: 'used',
-    cityList: [
-      {
-        label: "河北",
-        id: 1
-      },
-      {
-        label: "山西",
-        id: 2
-      },
-      {
-        label: "吉林",
-        id: 2
-      },
-      {
-        label: "辽宁",
-        id: 2
-      },
-      {
-        label: "黑龙江",
-        id: 2
-      },
-      {
-        label: "陕西",
-        id: 2
-      },
-      {
-        label: "甘肃",
-        id: 2
-      },
-      {
-        label: "青海",
-        id: 2
-      },
-      {
-        label: "山东",
-        id: 2
-      },
-      {
-        label: "福建",
-        id: 2
-      },
-      {
-        label: "浙江",
-        id: 2
-      },
-      {
-        label: "河南",
-        id: 2
-      },
-      {
-        label: "湖北",
-        id: 2
-      },
-      {
-        label: "湖南",
-        id: 2
-      },
-      {
-        label: "江西",
-        id: 2
-      },
-      {
-        label: "江苏",
-        id: 2
-      },
-      {
-        label: "安徽",
-        id: 2
-      },
-      {
-        label: "广东",
-        id: 2
-      },
-      {
-        label: "海南",
-        id: 2
-      },
-      {
-        label: "四川",
-        id: 2
-      },
-      {
-        label: "贵州",
-        id: 2
-      },
-      {
-        label: "云南",
-        id: 2
-      },
-      {
-        label: "内蒙古",
-        id: 2
-      },
-      {
-        label: "新疆",
-        id: 2
-      },
-      {
-        label: "宁夏",
-        id: 2
-      },
-      {
-        label: "广西",
-        id: 2
-      },
-      {
-        label: "西藏",
-        id: 2
-      },
-      {
-        label: "香港",
-        id: 2
-      },
-      {
-        label: "澳门",
-        id: 2
-      }
-    ]
+    btnChoose: '',
+    userInfo: null,
+    common: null,
+    cityList: [],
+    areaList: []
   },
-  chooseCity (e) {
-    let stringId = e.currentTarget.dataset.id
-    console.log(stringId)
-    this.setData({
-      chooseActive: stringId
-    })
-  },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      userInfo: app.globalData.userInfo
+    })
+    this.getData()
   },
-
+  // 初始化获取数据
+  getData () {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Addr/chooseDistrict.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        lat: this.data.userInfo.lat,
+        lng: this.data.userInfo.lng
+      },
+      method: 'POST',
+      success: (res) => {
+        let resData = res.data.bizobj.data
+        this.setData({
+          cityList: resData.prov_list,
+          common: resData.common
+        })
+        console.log(resData)
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 左侧选择省份
+  chooseCity (e) {
+    let key = e.currentTarget.dataset.id
+    this.setData({
+      chooseActive: key
+    })
+    if (key !== 'used' && key !== 'municipality') {
+      this.getProv2CityList(key)
+    }
+  },
+  getProv2CityList(code) {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Addr/prov2CityList.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        prov_code: code
+      },
+      method: 'POST',
+      success: (res) => {
+        let resData = res.data.bizobj.data
+        this.setData({
+          areaList: resData.area_list
+        })
+        console.log(resData)
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 选择城市
+  chooseBtn(e) {
+    this.setData({
+      btnChoose: e.currentTarget.dataset.id
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
