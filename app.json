@@ -62,7 +62,9 @@
     "pages/checkTimePull/checkTimePull",
     "pages/checkTimeStep/checkTimeStep",
     "pages/loginChoose/loginChoose",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/message/message",
+    "pages/faceInfo/faceInfo"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -74,5 +76,6 @@
     "scope.userLocation": {
       "desc": "用于自动定位求职地区和搜索附近名企职位"
     }
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

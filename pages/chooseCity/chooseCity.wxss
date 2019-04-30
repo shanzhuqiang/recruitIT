@@ -55,7 +55,17 @@ page{
   text-overflow:ellipsis;
   white-space: nowrap;
 }
+.chooseCityWrap .rightBox .itemBox .local{
+  width: 22rpx;
+  height: 26rpx;
+  vertical-align: middle;
+  display: inline-block;
+}
 .chooseCityWrap .rightBox .itemBox.active{
 	color: #2e70f9;
 	background-color: #e8eeff;
+}
+.chooseCityWrap .rightBox .itemBox.active2{
+	color: #2e70f9;
+  background-color: #fff;
 }

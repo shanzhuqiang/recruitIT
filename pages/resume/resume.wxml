@@ -1,108 +1,45 @@
 <!--pages/resume/resume.wxml-->
 <view class='resumeWrap'>
   <view class='topBtnWrpa'>
-    <view class='{{ topType === "one" ? "active" : "" }}' bindtap='chooseType' data-id='one'>待查看</view>
-    <view class='{{ topType === "two" ? "active" : "" }}' bindtap='chooseType' data-id='two'>待沟通</view>
-    <view class='{{ topType === "three" ? "active" : "" }}' bindtap='chooseType' data-id='three'>面试</view>
-    <view class='{{ topType === "four" ? "active" : "" }}' bindtap='chooseType' data-id='four'>不合适</view>
+    <view class='{{ topType == "1" ? "active" : "" }}' bindtap='chooseType' data-id='1'>待查看</view>
+    <view class='{{ topType == "2" ? "active" : "" }}' bindtap='chooseType' data-id='2'>待沟通</view>
+    <view class='{{ topType == "3" ? "active" : "" }}' bindtap='chooseType' data-id='3'>面试</view>
+    <view class='{{ topType == "4" ? "active" : "" }}' bindtap='chooseType' data-id='4'>不合适</view>
   </view>
-  <view class='itemWrap' wx:if="{{ topType === 'one' }}">
-    <view class='itemBox'>
+  <view class='itemWrap' wx:for="{{ listData }}" wx:key="">
+    <view class='itemBox' data-id="{{ item.re_resume_id }}" data-ida="{{ item.id }}" data-type="{{ item.type }}" bindtap='goResumeDetail'>
       <view class='leftImg'>
-        <image class='touxiang' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/touxiang.png'></image>
+        <image class='touxiang' wx:if="{{ item.avatar }}" src='{{ item.avatar }}'></image>
       </view>
       <view class='rightText'>
         <view class='firstRow'>
-          <text class='mosaic nameText'>王大伟</text>
-          <text class='typeName'>高级UI设计师</text>
+          <text class='nameText {{ topType == 1 ? "mosaic" : "" }}'>{{ item.username }}</text>
+          <text class='typeName'>{{ item.username }}</text>
         </view>
         <view class='secondRow'>
-          <text>三年</text>
+          <text>{{ item.label1 }}</text>
           <text class='line'>|</text>
-          <text>本科</text>
+          <text>{{ item.label2 }}</text>
           <text class='line'>|</text>
-          <text>10k-14k</text>
+          <text>{{ item.label3 }}</text>
         </view>
-        <view class='threeRow'>最近活跃：9小时前</view>
+        <view class='threeRow'>最近活跃：{{ item.engineer_day }}</view>
       </view>
     </view>
-    <view class='bottomRow'>
-      <view class='bottomBtn'>放弃</view>
+    <view class='bottomRow' wx:if="{{ topType == 1 }}">
+      <view class='bottomBtn' bindtap='giveup' data-id="{{ item.id }}">放弃</view>
     </view>
-  </view>
-  <view class='itemWrap' wx:if="{{ topType === 'two' }}">
-    <view class='itemBox'>
-      <view class='leftImg'>
-        <image class='touxiang' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/touxiang.png'></image>
-      </view>
-      <view class='rightText'>
-        <view class='firstRow'>
-          <text class='nameText'>王大伟</text>
-          <text class='typeName'>高级UI设计师</text>
-        </view>
-        <view class='secondRow'>
-          <text>三年</text>
-          <text class='line'>|</text>
-          <text>本科</text>
-          <text class='line'>|</text>
-          <text>10k-14k</text>
-        </view>
-        <view class='threeRow'>最近活跃：9小时前</view>
-      </view>
+    <view class='bottomRow' wx:if="{{ topType == 2 }}">
+      <view class='yoaqingBtn' bindtap='goInvite' data-id="{{ item.id }}">邀请面试</view>
+      <view class='bottomBtn' bindtap='giveup' data-id="{{ item.id }}">放弃</view>
     </view>
-    <view class='bottomRow'>
-      <view class='yoaqingBtn' bindtap='goInvite'>邀请面试</view>
-      <view class='bottomBtn'>放弃</view>
+    <view class='bottomRow' wx:if="{{ topType == 3 }}">
+      <view class='yoaqingBtn' bindtap='apply' data-id="{{ item.id }}">录用</view>
+      <view class='bottomBtn' bindtap='giveup' data-id="{{ item.id }}">放弃</view>
     </view>
-  </view>
-  <view class='itemWrap' wx:if="{{ topType === 'three' }}">
-    <view class='itemBox'>
-      <view class='leftImg'>
-        <image class='touxiang' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/touxiang.png'></image>
-      </view>
-      <view class='rightText'>
-        <view class='firstRow'>
-          <text class='nameText'>王大伟</text>
-          <text class='typeName'>高级UI设计师</text>
-        </view>
-        <view class='secondRow'>
-          <text>三年</text>
-          <text class='line'>|</text>
-          <text>本科</text>
-          <text class='line'>|</text>
-          <text>10k-14k</text>
-        </view>
-        <view class='threeRow'>最近活跃：9小时前</view>
-      </view>
-    </view>
-    <view class='bottomRow'>
-      <view class='yoaqingBtn'>录用</view>
-      <view class='bottomBtn'>放弃</view>
-    </view>
-  </view>
-  <view class='itemWrap' wx:if="{{ topType === 'four' }}">
-    <view class='itemBox'>
-      <view class='leftImg'>
-        <image class='touxiang' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/touxiang.png'></image>
-      </view>
-      <view class='rightText'>
-        <view class='firstRow'>
-          <text class='nameText'>王大伟</text>
-          <text class='typeName'>高级UI设计师</text>
-        </view>
-        <view class='secondRow'>
-          <text>三年</text>
-          <text class='line'>|</text>
-          <text>本科</text>
-          <text class='line'>|</text>
-          <text>10k-14k</text>
-        </view>
-        <view class='threeRow'>最近活跃：9小时前</view>
-      </view>
-    </view>
-    <view class='bottomRow'>
-      <view class='yoaqingBtn' bindtap='goInvite'>再邀面</view>
-      <view class='bottomBtn'>删除</view>
+    <view class='bottomRow' wx:if="{{ topType == 4 }}">
+      <view class='yoaqingBtn' bindtap='goInvite' data-id="{{ item.id }}">再邀面</view>
+      <view class='bottomBtn'  bindtap='del' data-id="{{ item.id }}">删除</view>
     </view>
   </view>
 </view>

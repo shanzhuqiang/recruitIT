@@ -7,7 +7,8 @@ Page({
    */
   data: {
     imgSrc: '',
-    topType: 'one'
+    topType: '1',
+    listData: []
   },
 
   /**
@@ -17,10 +18,108 @@ Page({
     this.setData({
       imgSrc: app.globalData.imgSrc
     })
+    this.getData()
   },
-  goInvite() {
+  // 获取列表信息
+  getData () {
+    wx.showLoading({
+      mask: true,
+      title: '加载中...',
+    })
+    wx.request({
+      url: `${app.globalData.baseUrl}/apply/apply2MeList.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        offer: this.data.topType,
+        page: 1,
+        page_size: 99999
+      },
+      method: 'POST',
+      success: (res) => {
+        wx.hideLoading()
+        let resData = res.data.bizobj.data.apply_list
+        this.setData({
+          listData: resData
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 放弃
+  giveup(e) {
+    wx.showLoading({
+      mask: true,
+      title: '加载中...',
+    })
+    this.changeInterviewStatus(e.currentTarget.dataset.id, 1)
+  },
+  // 录用
+  apply(e) {
+    wx.showLoading({
+      mask: true,
+      title: '加载中...',
+    })
+    this.changeInterviewStatus(e.currentTarget.dataset.id, 2)
+  },
+  // 删除
+  del(e) {
+    wx.showLoading({
+      mask: true,
+      title: '删除中...',
+    })
+    this.changeInterviewStatus(e.currentTarget.dataset.id, 3)
+  },
+  changeInterviewStatus(id, type) {
+    wx.request({
+      url: `${app.globalData.baseUrl}/apply/interviewStatus.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        re_apply_id: id,
+        type: type
+      },
+      method: 'POST',
+      success: (res) => {
+        wx.hideLoading()
+        wx.showToast({
+          title: '操作成功',
+          mask: true,
+          icon: 'success',
+          success: () => {
+            setTimeout(() => {
+              this.getData()
+            }, 1500)
+          }
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 简历详情/面试详情
+  goResumeDetail(e) {
+    if (this.data.topType == 1 || this.data.topType == 2) {
+      wx.navigateTo({
+        url: `../resumeDetail/resumeDetail?id=${e.currentTarget.dataset.id}`
+      })
+    } else {
+      wx.navigateTo({
+        url: `../faceInfo/faceInfo?id=${e.currentTarget.dataset.ida}?type=${e.currentTarget.dataset.type}`
+      })
+    }
+  },
+  // 邀请面试
+  goInvite(e) {
     wx.navigateTo({
-      url: '../invite/invite'
+      url: `../invite/invite?id=${e.currentTarget.dataset.id}`
     })
   },
   // 选择类型
@@ -29,6 +128,7 @@ Page({
     this.setData({
       topType: key
     })
+    this.getData()
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -1,5 +1,24 @@
 <!--pages/postDetail/postDetail.wxml-->
-<view class='postDetailWrap'>
+<view class='faceInfoWrap'>
+  <view class='detailBox'>
+    <view class='titleOne'>面试信息</view>
+    <view class='rowBox'>
+      <view class='leftName'>面试时间</view>
+      <view class='rightVal'>{{ interviewInfo.time }}</view>
+    </view>
+    <view class='rowBox'>
+      <view class='leftName'>面试地点</view>
+      <view class='rightVal'>{{ interviewInfo.address }}</view>
+    </view>
+    <view class='rowBox'>
+      <view class='leftName'>联系人</view>
+      <view class='rightVal'>{{ interviewInfo.contract }}</view>
+    </view>
+    <view class='rowBox'>
+      <view class='leftName'>联系电话</view>
+      <view class='rightVal'>{{ interviewInfo.mobile }}</view>
+    </view>
+  </view>
   <view class='topBox'>
     <view class='first'>
       <view class='leftTitle'>{{ dataInfo.name }}</view>
@@ -77,7 +96,6 @@
       <view style='padding-top:18rpx;'><image class='share' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/share.png'></image></view>
       <view>推荐</view>
     </view>
-    <view class='rightBtn' bindtap='applyNow' wx:if="{{ dataInfo.is_post }}">立即投递</view>
-    <view class='rightBtn none' wx:if="{{ !dataInfo.is_post }}">已经投递</view>
+    <view class='rightBtn none'>{{ interviewInfo.status == 1 ? '待面试' : interviewInfo.status == 2 ? '面试' : '面试未通过' }}</view>
   </view>
 </view>

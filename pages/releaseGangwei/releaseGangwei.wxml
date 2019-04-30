@@ -3,32 +3,32 @@
   <view class='hallRowWrap'>
     <view class='hallRow'>
       <view class='leftName'>岗位名称</view>
-      <input class='rightInput' placeholder='请输入岗位名称'></input>
+      <input class='rightInput' placeholder='请输入岗位名称' bindinput='nameChange'></input>
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
     </view>
     <view class='hallRow'>
       <view class='leftName'>工作地点</view>
-      <input class='rightInput' placeholder='请输入工作地点'></input>
+      <input class='rightInput' placeholder='请输入工作地点' value='{{ address }}' disabled bindtap='openChooseCity'></input>
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
     </view>
     <view class='hallRow'>
       <view class='leftName'>经验要求</view>
-      <picker bindchange="jingyanChange" range="{{ jingyanArray }}">
-        <input class='rightInput' placeholder="请选择" value='{{ jingyan }}' disabled/>
+      <picker bindchange="jingyanChange" range="{{ jingyanArray }}" range-key="name">
+        <input class='rightInput' placeholder="请选择" value='{{ jingyan.name }}' disabled/>
       </picker>
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
     </view>
     <view class='hallRow'>
       <view class='leftName'>学历</view>
-      <picker bindchange="xueliChange" range="{{ xueliArray }}">
-        <input class='rightInput' placeholder="请选择" value='{{ xueli }}' disabled/>
+      <picker bindchange="xueliChange" range="{{ xueliArray }}" range-key="name">
+        <input class='rightInput' placeholder="请选择" value='{{ xueli.name }}' disabled/>
       </picker>
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
     </view>
     <view class='hallRow'>
       <view class='leftName'>月薪</view>
-      <picker bindchange="moneyChange" range="{{ moneyArray }}">
-        <input class='rightInput' placeholder="请选择" value='{{ money }}' disabled/>
+      <picker bindchange="moneyChange" range="{{ moneyArray }}" range-key="name">
+        <input class='rightInput' placeholder="请选择" value='{{ money.name }}' disabled/>
       </picker>
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
     </view>
@@ -50,7 +50,7 @@
       <view class='addTagBtn' bindtap='addTag'>添加标签+</view>
     </view>
   </view>
-  <view class='bottomBtn'>保存</view>
+  <view class='bottomBtn' bindtap='saveRelease'>保存</view>
   <i-modal title="添加标签" visible="{{ addTag }}" bind:ok="addTagOk" bind:cancel="addTagCancel">
     <i-input i-class='inputBox' value="{{ tagVal }}" placeholder="最多15个字" maxlength="15" bind:change="tagValChange"/>
   </i-modal>
@@ -60,4 +60,54 @@
   <i-modal title="提示" visible="{{ delModal }}" bind:ok="confirmDel" bind:cancel="cancelDel">
       <view>确认删除该标签吗？</view>
   </i-modal>
+  <!-- 城市选择 -->
+  <view class='cityChooseMask' wx:if="{{ cityChooseMask }}">
+    <view class='leftBox'>
+      <scroll-view scroll-y style="height: 100%;">
+        <view class='{{ chooseActive === "used" ? "active" : "" }} item' bindtap='chooseCity' data-id="used">常用</view>
+        <view class='{{ chooseActive === "municipality" ? "active" : "" }} item' bindtap='chooseCity' data-id="municipality">直辖市</view>
+        <view class='{{ chooseActive === item.prov_code ? "active" : "" }} item' bindtap='chooseCity' wx:for="{{ cityList }}" data-id="{{ item.prov_code }}" wx:key="">{{ item.prov_name }}</view>
+      </scroll-view>
+    </view>
+    <view class='rightBox'>
+      <view wx:if='{{ chooseActive === "used" }}'>
+        <view class='title'>当前定位</view>
+        <view class='itemBox active2' data-id="{{ common.position_city.city_code }}" data-ida="{{ common.position_city.city_name }}" bindtap='chooseBtn'>
+          <image class='local' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/local.png'></image>
+          {{ common.position_city.city_name }}
+        </view>
+        <view class='title'>最近访问</view>
+        <view class='itemBox {{ btnChoose === item.city_code ? "active" : "" }}' wx:for="{{ common.rencent_visit }}" data-id="{{ item.city_code }}" data-ida="{{ item.city_name }}" bindtap='chooseBtn' wx:key="">{{ item.city_name }}</view>
+        <view class='title'>热门城市</view>
+        <view class='itemBox {{ btnChoose === item.city_code ? "active" : "" }}' wx:for="{{ common.hot_city }}" data-id="{{ item.city_code }}" data-ida="{{ item.city_name }}" bindtap='chooseBtn' wx:key="">{{ item.city_name }}</view>
+      </view>
+      <view wx:if='{{ chooseActive === "municipality" }}'>
+        <view class='itemBox {{ btnChoose == 1 ? "active" : "" }}' data-id="1" data-ida="北京" bindtap='chooseBtn'>北京</view>
+        <view class='itemBox {{ btnChoose == 2 ? "active" : "" }}' data-id="2" data-ida="上海" bindtap='chooseBtn'>上海</view>
+        <view class='itemBox {{ btnChoose == 3 ? "active" : "" }}' data-id="3" data-ida="天津" bindtap='chooseBtn'>天津</view>
+        <view class='itemBox {{ btnChoose == 4 ? "active" : "" }}' data-id="4" data-ida="重庆" bindtap='chooseBtn'>重庆</view>
+      </view>
+      <view wx:if='{{ chooseActive !== "used" && chooseActive !== "municipality" }}'>
+        <view class='itemBox {{ btnChoose === item.city_code ? "active" : "" }}' wx:for="{{ areaList }}" data-id="{{ item.city_code }}" data-ida="{{ item.city_name }}" bindtap='chooseBtn'>{{ item.city_name }}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 岗位职责 -->
+  <view class='textareaMaskBox' wx:if="{{ gangweiTextareaMaskBox }}">
+    <view class='bgRow'></view>
+    <view class='textareaWrap'>
+      <textarea maxlength="1000" bindinput="gangweiChange" value='{{ instruction }}' class='textareaBox' placeholder="请输入岗位职责" />
+    </view>
+    <view class='wordNum'>{{ instruction.length }}/1000字</view>
+    <view class='saveBtn' bindtap='choseGangwei'>保存</view>
+  </view>
+  <!-- 任职要求 -->
+  <view class='textareaMaskBox' wx:if="{{ yaoqiuTextareaMaskBox }}">
+    <view class='bgRow'></view>
+    <view class='textareaWrap'>
+      <textarea maxlength="1000" bindinput="zhizeChange" value='{{ requirement }}'  class='textareaBox' placeholder="请输入任职要求" />
+    </view>
+    <view class='wordNum'>{{ requirement.length }}/1000字</view>
+    <view class='saveBtn' bindtap='choseYaoqiu'>保存</view>
+  </view>
 </view>

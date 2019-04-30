@@ -36,6 +36,10 @@
   height: 30rpx;
   padding-top: 30rpx;
 }
+.myTaskWrap .itemWrap .itemTop .squareWrap{
+  float: left;
+  height: 30rpx;
+}
 .myTaskWrap .itemWrap .itemTop .square{
   float: left;
 	width: 30rpx;

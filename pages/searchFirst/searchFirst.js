@@ -242,7 +242,6 @@ Page({
   // 打开过滤
   openFilter(e) {
     let key = e.currentTarget.dataset.id
-    let filtertListData
     if (this.data.typeStr === "xiangmu") {
       if (this.data.filterStr === key && this.data.xiangmuMask) {
         this.setData({
@@ -483,6 +482,18 @@ Page({
   chooseType(e) {
     this.setData({
       typeStr: e.currentTarget.dataset.id
+    })
+  },
+  // 进入项目详情
+  goProjectDetail (e) {
+    wx.navigateTo({
+      url: `../projectDetail/projectDetail?id=${e.currentTarget.dataset.id}`
+    })
+  },
+  // 进入岗位详情
+  goPostDetail(e) {
+    wx.navigateTo({
+      url: `../postDetail/postDetail?id=${e.currentTarget.dataset.id}`
     })
   },
   /**

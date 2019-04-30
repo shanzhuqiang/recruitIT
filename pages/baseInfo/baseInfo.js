@@ -7,26 +7,84 @@ Page({
    */
   data: {
     imgSrc: '',
-    xingbieArray: ['男', '女'],
-    xingbie: '',
+    xingbieArray: [
+      {
+        id: 1,
+        name: '男'
+      },
+      {
+        id: 2,
+        name: '女'
+      }
+    ],
+    xingbie: {},
     birthday: '',
-    shenfenArray: ['职场人生', '应届生'],
-    shenfen: '',
+    shenfenArray: [
+      {
+        id: 1,
+        name: '职场人生'
+      },
+      {
+        id: 2,
+        name: '应届生'
+      }
+    ],
+    shenfen: {},
     workTime: '',
-    tagArray: ['PS'],
+    tagArray: [],
     addTag: false,
     tagVal: '',
     maxlengthModal: false,
     delModal: false,
-    delId: ''
+    delId: '',
+    baseInfo: '',
+    name: '',
+    phone: '',
+    email: '',
+    work: '',
+    city: '',
+    cityChooseMask: false,
+    chooseActive: 'used',
+    btnChoose: '',
+    userInfo: null,
+    common: null,
+    cityList: [],
+    areaList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let baseInfo = app.globalData.baseInfo.user_info
     this.setData({
-      imgSrc: app.globalData.imgSrc
+      userInfo: app.globalData.userInfo,
+      imgSrc: app.globalData.imgSrc,
+      baseInfo: app.globalData.baseInfo,
+      name: baseInfo.username,
+      phone: baseInfo.mobile,
+      email: baseInfo.email,
+      work: baseInfo.job_name,
+      birthday: baseInfo.birthday,
+      xingbie: baseInfo.gender == 1 ? { id: 1, name: '男' } : { id: 2, name: '女' },
+      shenfen: baseInfo.identity == 1 ? { id: 1, name: '职场人生' } : { id: 2, name: '应届生' },
+      workTime: baseInfo.work_begin_time,
+      city: baseInfo.city_name,
+      btnChoose: baseInfo.city_code,
+      tagArray: [baseInfo.label1, baseInfo.label2, baseInfo.label3]
+    })
+    this.getData()
+  },
+  // 名字改变
+  nameChange (e) {
+    this.setData({
+      name: e.detail.value
+    })
+  },
+  // 手机号码改变
+  phoneChange(e) {
+    this.setData({
+      phone: e.detail.value
     })
   },
   // 添加标签
@@ -79,7 +137,7 @@ Page({
     let tagVal = this.data.tagVal
     if (tagVal !== '') {
       let tagArray = this.data.tagArray
-      if (tagArray.length > 4) {
+      if (tagArray.length > 2) {
         this.setData({
           addTag: false,
           maxlengthModal: true
@@ -121,6 +179,192 @@ Page({
   xingbieChange(e) {
     this.setData({
       xingbie: this.data.xingbieArray[e.detail.value]
+    })
+  },
+  // 打开选择城市
+  openChooseCity () {
+    this.setData({
+      cityChooseMask: true
+    })
+  },
+  // 保存
+  saveInfo () {
+    let name = this.data.name
+    let xingbie = this.data.xingbie.id
+    let workTime = this.data.workTime
+    let identity = this.data.shenfen.id
+    let phone = this.data.phone
+    let email = this.data.email
+    let job_name = this.data.work
+    let city_code = this.data.btnChoose
+    let tagArray = this.data.tagArray
+    let birthday = this.data.birthday
+    if (name == '') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请输入真实姓名',
+      })
+    } else if (xingbie == '') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请选择性别',
+      })
+    } else if (birthday == '') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请选择出生日期',
+      })
+    } else if (identity == '') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请选择当前身份',
+      })
+    } else if (workTime == '') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请选择参加工作时间',
+      })
+    } else if (phone == '') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请输入手机号',
+      })
+    } else if (email == '') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请输入联系邮箱',
+      })
+    } else if (job_name == '') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请输入所在岗位',
+      })
+    } else if (city_code == '') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请选择所在城市',
+      })
+    } else {
+      wx.showLoading({
+        mask: true,
+        title: '保存中...',
+      })
+      wx.request({
+        url: `${app.globalData.baseUrl}/Resume/resumeFillBasic.html`,
+        data: {
+          sess_key: app.globalData.sess_key,
+          user_name: name,
+          gender: xingbie,
+          work_begin_time: workTime,
+          identity: identity,
+          mobile: phone,
+          email: email,
+          job_name: job_name,
+          city_code: city_code,
+          label1: tagArray[0] || '',
+          label2: tagArray[1] || '',
+          label3: tagArray[2] || '',
+          birthday: birthday
+        },
+        method: 'POST',
+        success: (res) => {
+          wx.hideLoading()
+          wx.showToast({
+            title: '保存成功',
+            mask: true,
+            icon: 'success',
+            success() {
+              setTimeout(() => {
+                wx.navigateBack({
+                  delta: 1
+                })
+              }, 1500)
+            }
+          })
+        },
+        fail: (res) => {
+          wx.showToast({
+            icon: 'none',
+            title: '网络请求失败',
+          })
+        }
+      })
+    }
+  },
+  // 初始化获取数据
+  getData() {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Addr/chooseDistrict.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        lat: this.data.userInfo.lat,
+        lng: this.data.userInfo.lng
+      },
+      method: 'POST',
+      success: (res) => {
+        let resData = res.data.bizobj.data
+        this.setData({
+          cityList: resData.prov_list,
+          common: resData.common
+        })
+        console.log(resData)
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 左侧选择省份
+  chooseCity(e) {
+    let key = e.currentTarget.dataset.id
+    this.setData({
+      chooseActive: key
+    })
+    if (key !== 'used' && key !== 'municipality') {
+      this.getProv2CityList(key)
+    }
+  },
+  getProv2CityList(code) {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Addr/prov2CityList.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        prov_code: code
+      },
+      method: 'POST',
+      success: (res) => {
+        let resData = res.data.bizobj.data
+        this.setData({
+          areaList: resData.area_list
+        })
+        console.log(resData)
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 选择城市
+  chooseBtn(e) {
+    this.setData({
+      btnChoose: e.currentTarget.dataset.id,
+      city: e.currentTarget.dataset.ida,
+      cityChooseMask: false
     })
   },
   /**

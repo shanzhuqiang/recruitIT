@@ -10,7 +10,10 @@
   <view class='rightBox'>
     <view wx:if='{{ chooseActive === "used" }}'>
       <view class='title'>当前定位</view>
-      <view class='itemBox active' data-id="{{ common.position_city.city_code }}">{{ common.position_city.city_name }}</view>
+      <view class='itemBox active2' data-id="{{ common.position_city.city_code }}">
+        <image class='local' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/local.png'></image>
+        {{ common.position_city.city_name }}
+      </view>
       <view class='title'>最近访问</view>
       <view class='itemBox {{ btnChoose === item.city_code ? "active" : "" }}' wx:for="{{ common.rencent_visit }}" data-id="{{ item.city_code }}" bindtap='chooseBtn' wx:key="">{{ item.city_name }}</view>
       <view class='title'>热门城市</view>

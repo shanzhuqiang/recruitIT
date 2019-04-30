@@ -7,9 +7,19 @@ Page({
    */
   data: {
     imgSrc: '',
-    tabType: 'one',
+    tabType: 1,
     typeAll: '全部',
-    typeAllBtn: false
+    typeAllBtn: false,
+    listData: []
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.setData({
+      imgSrc: app.globalData.imgSrc
+    })
+    this.getDataList()
   },
   // 切换类型
   chooseType(e) {
@@ -18,6 +28,7 @@ Page({
       tabType: key,
       typeAllBtn: false
     })
+    this.getDataList()
   },
   // 打开筛选
   openTypeAllBtn () {
@@ -25,19 +36,48 @@ Page({
       typeAllBtn: true
     })
   },
+  // 选择全部或项目或岗位
   chooseAll(e) {
     let key = e.currentTarget.dataset.id
     this.setData({
       typeAll: key,
       typeAllBtn: false
     })
+    this.getDataList()
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    this.setData({
-      imgSrc: app.globalData.imgSrc
+  // 获取数据
+  getDataList() {
+    wx.showLoading({
+      mask: true,
+      title: '加载中...',
+    })
+    wx.request({
+      url: `${app.globalData.baseUrl}/apply/applyList.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        offer: this.data.tabType,
+        type: this.data.typeAll == '项目' ? 2 : this.data.typeAll == '岗位' ? 1 : '',
+        page: 1,
+        page_size: 99999
+      },
+      method: 'POST',
+      success: (res) => {
+        wx.hideLoading()
+        let listData = res.data.bizobj.data.apply_list
+        listData.forEach((el, index) => {
+          el['mini_salary1'] = Math.round(el.mini_salary / 1000) + 'k'
+          el['max_salary1'] = Math.round(el.max_salary / 1000) + 'k'
+        })
+        this.setData({
+          listData: listData
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
     })
   },
 

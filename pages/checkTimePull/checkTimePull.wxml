@@ -2,7 +2,7 @@
 <view class='checkTimePullWrap'>
   <view class='addBoxWrap'>
     <view class='title'>上传凭证</view>
-    <view class='addBox'>
+    <view class='addBox' bindtap='chooseImg'>
       <image class='camera' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/camera.png'></image>
       <text class='addText'>添加</text>
     </view> 

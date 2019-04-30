@@ -10,22 +10,79 @@ Page({
     post: false,
     id: '',
     dataInfo: {},
-    companyInfo: {}
+    companyInfo: {},
+    interviewInfo: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
-    this.getInfo(options.id)
+    console.log(options.id)
+    console.log(options.type)
     this.setData({
       imgSrc: app.globalData.imgSrc,
       id: options.id
     })
+    this.getInfo(options.id, options.type)
+  },
+  // 面试信息
+  getInfo(id, type) {
+    wx.request({
+      url: `${app.globalData.baseUrl}/apply/interviewDetail.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        re_apply_id: id
+      },
+      method: 'POST',
+      success: (res) => {
+        let data = res.data.bizobj.data.interview_info
+        this.setData({
+          interviewInfo: data
+        })
+        this.getCompany(data.re_company_id)
+        if (type == 1) {
+          // 1是岗位2是项目
+          this.getWorkInfo(data.j_id)
+        } else {
+          this.getProjectInfo(data.j_id)
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 获取项目详情
+  getProjectInfo(id) {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Project/projectDetail.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        id: id
+      },
+      method: 'POST',
+      success: (res) => {
+        let data = res.data.bizobj.data.job_info
+        data['mini_salary1'] = Math.round(data.mini_salary / 1000) + 'k'
+        data['max_salary1'] = Math.round(data.max_salary / 1000) + 'k'
+        this.setData({
+          dataInfo: data
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
   },
   // 获取岗位详情
-  getInfo(id) {
+  getWorkInfo(id) {
     wx.request({
       url: `${app.globalData.baseUrl}/Work/workDetail.html`,
       data: {
@@ -40,7 +97,6 @@ Page({
         this.setData({
           dataInfo: data
         })
-        this.getCompany(data.re_company_id)
       },
       fail: (res) => {
         wx.showToast({
@@ -51,7 +107,7 @@ Page({
     })
   },
   // 获取企业信息
-  getCompany (id) {
+  getCompany(id) {
     wx.request({
       url: `${app.globalData.baseUrl}/Company/companyInfo.html`,
       data: {
@@ -101,6 +157,7 @@ Page({
             }, 1500)
           }
         })
+
       },
       fail: (res) => {
         wx.showToast({

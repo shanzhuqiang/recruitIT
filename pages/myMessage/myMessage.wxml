@@ -1,21 +1,10 @@
 <!--pages/myMessage/myMessage.wxml-->
 <view class='myMessageWrap'>
-  <view class='itemBox'>
-    <view class='first'>来自经纪人粥粥粥</view>
-    <view class='second'>给您推荐了一个岗位</view>
-    <view class='three'>刚刚</view>
-    <view class='checkBtn'>查看详情</view>
-  </view>
-  <view class='itemBox'>
-    <view class='first'>来自经纪人粥粥粥</view>
-    <view class='second'>给您推荐了一个岗位</view>
-    <view class='three'>刚刚</view>
-    <view class='checkBtn'>查看详情</view>
-  </view>
-  <view class='itemBox'>
-    <view class='first'>来自经纪人粥粥粥</view>
-    <view class='second'>给您推荐了一个岗位</view>
-    <view class='three'>刚刚</view>
-    <view class='checkBtn'>查看详情</view>
+  <view class='itemBox' wx:for="{{ listData }}" wx:key="">
+    <view class='first'>{{ item.title }}</view>
+    <view class='second'>{{ item.brief_content }}</view>
+    <view class='three'>{{ item.time }}</view>
+    <view class='checkBtn' wx:if="{{ !item.is_read }}" bindtap='goMessage' data-id="{{ item.id }}">查看详情</view>
+    <view class='checkBtn checkBtn2' wx:if="{{ item.is_read }}" bindtap='goMessage' data-id="{{ item.id }}">查看详情</view>
   </view>
 </view>

@@ -6,8 +6,10 @@ Page({
    * 页面的初始数据
    */
   data: {
+    id: '',
     imgSrc: '',
-    job_info: {}
+    job_info: {},
+    companyInfo: {}
   },
 
   /**
@@ -17,9 +19,11 @@ Page({
     console.log(options)
     this.getInfo(options.id)
     this.setData({
-      imgSrc: app.globalData.imgSrc
+      imgSrc: app.globalData.imgSrc,
+      id: options.id
     })
   },
+  // 获取项目详情
   getInfo (id) {
     wx.request({
       url: `${app.globalData.baseUrl}/Project/projectDetail.html`,
@@ -34,6 +38,67 @@ Page({
         data['max_salary1'] = Math.round(data.max_salary / 1000) + 'k'
         this.setData({
           job_info: data
+        })
+        this.getCompany(data.re_company_id)
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 获取企业信息
+  getCompany(id) {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Company/companyInfo.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        id: id
+      },
+      method: 'POST',
+      success: (res) => {
+        let company_info = res.data.bizobj.data.company_info
+        this.setData({
+          companyInfo: company_info
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 立即投递
+  applyNow () {
+    wx.showLoading({
+      mask: true,
+      title: '投递中...',
+    })
+    wx.request({
+      url: `${app.globalData.baseUrl}/apply/apply.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        re_project_id: this.data.id,
+        type: 2
+      },
+      method: 'POST',
+      success: (res) => {
+        wx.hideLoading()
+        wx.showToast({
+          title: '投递成功',
+          mask: true,
+          icon: 'success',
+          success() {
+            setTimeout(() => {
+              wx.navigateBack({
+                delta: 1
+              })
+            }, 1500)
+          }
         })
       },
       fail: (res) => {

@@ -1,8 +1,12 @@
 /* pages/resumeDetail/resumeDetail.wxss */
 .resumeDetailWrap .resumeDetailBox{
-  padding: 0 30rpx 30rpx;
+  padding: 0 30rpx;
   position: relative;
   border-bottom: 16rpx solid #f8f8f8;
+}
+.resumeDetailWrap .resumeDetailBox .jingyanBox{
+  border-bottom: 1rpx solid #f8f8f8;
+  padding-bottom: 30rpx;
 }
 .resumeDetailWrap .resumeDetailBox > .touxiang{
   width: 100rpx;
@@ -26,6 +30,11 @@
 	font-family: PingFangSC-Medium;
 	font-size: 34rpx;
 	color: #333;
+  max-width: 200rpx;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
 .resumeDetailWrap .resumeDetailBox .first .profession{
 	font-family: PingFangSC-Regular;

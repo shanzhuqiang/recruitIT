@@ -123,7 +123,7 @@
           <view class='secondTags'>
             <text style='padding-left: 0'>{{ item.work_years }}</text>
             <text class='middleTag'>{{ item.education_name }}</text>
-          <text>{{ item.mini_salary1 + '-' + item.max_salary1 }}</text>
+            <text>{{ item.mini_salary1 + '-' + item.max_salary1 }}</text>
           </view>
           <view class='thirdTags'>
             <text>{{ item.label1 }}</text>

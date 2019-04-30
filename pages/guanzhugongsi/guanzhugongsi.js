@@ -25,7 +25,7 @@ Page({
       url: `../enterpriseInfo/enterpriseInfo?id=${e.currentTarget.dataset.id}`
     })
   },
-  // 获取职位列表
+  // 获取关注的公司
   getList() {
     wx.request({
       url: `${app.globalData.baseUrl}/Company/CollectCompanyList.html`,

@@ -8,6 +8,9 @@ Page({
   data: {
     inviteDate: '选择日期',
     inviteTime: '选择时间',
+    address: '',
+    name: '',
+    phone: '',
     imgSrc: ''
   },
 
@@ -16,22 +19,103 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      imgSrc: app.globalData.imgSrc
+      imgSrc: app.globalData.imgSrc,
+      id: options.id
+    })
+  },
+  // 面试地点
+  addressChange(e) {
+    this.setData({
+      address: e.detail.value
+    })
+  },
+  // 联系人
+  nameChange(e) {
+    this.setData({
+      name: e.detail.value
+    })
+  },
+  // 电话
+  phoneChange(e) {
+    this.setData({
+      phone: e.detail.value
     })
   },
   finish() {
-    wx.showToast({
-      title: '邀请成功',
-      mask: true,
-      icon: 'success',
-      success() {
-        setTimeout(() => {
-          wx.reLaunch({
-            url: '../my/my'
+    let inviteDate = this.data.inviteDate
+    let inviteTime = this.data.inviteTime
+    let address = this.data.address
+    let name = this.data.name
+    let phone = this.data.phone
+    if (inviteDate == '选择日期') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请选择面试日期',
+      })
+    } else if (inviteTime == '选择时间') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请选择面试时间',
+      })
+    } else if (address == '') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请输入面试地点',
+      })
+    } else if (name == '') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请输入联系人',
+      })
+    } else if (phone == '') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请输入电话',
+      })
+    } else {
+      wx.showLoading({
+        mask: true,
+        title: '提交中...',
+      })
+      wx.request({
+        url: `${app.globalData.baseUrl}/Resume/intension.html`,
+        data: {
+          sess_key: app.globalData.sess_key,
+          re_apply_id: this.data.id,
+          time: inviteDate + ' ' + inviteTime,
+          address: address,
+          contract: name,
+          mobile: phone
+        },
+        method: 'POST',
+        success: (res) => {
+          wx.hideLoading()
+          wx.showToast({
+            title: '提交成功',
+            mask: true,
+            icon: 'success',
+            success() {
+              setTimeout(() => {
+                wx.navigateBack({
+                  delta: 1
+                })
+              }, 1500)
+            }
           })
-        }, 1500)
-      }
-    })
+        },
+        fail: (res) => {
+          wx.showToast({
+            icon: 'none',
+            title: '网络请求失败',
+          })
+        }
+      })
+    }
   },
   bindDateChange(e) {
     this.setData({

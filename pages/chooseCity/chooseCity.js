@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgSrc: '',
     chooseActive: 'used',
     btnChoose: '',
     userInfo: null,
@@ -18,7 +19,8 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      userInfo: app.globalData.userInfo
+      userInfo: app.globalData.userInfo,
+      imgSrc: app.globalData.imgSrc
     })
     this.getData()
   },

@@ -7,6 +7,7 @@ Page({
    */
   data: {
     imgSrc: '',
+    listData: []
   },
 
   /**
@@ -16,8 +17,31 @@ Page({
     this.setData({
       imgSrc: app.globalData.imgSrc
     })
+    this.getList()
   },
-
+  // 获取我的关注
+  getList() {
+    wx.request({
+      url: `${app.globalData.baseUrl}/user/collects.html`,
+      data: {
+        sess_key: app.globalData.sess_key
+      },
+      method: 'POST',
+      success: (res) => {
+        let listData = res.data.bizobj.data.user_list
+        console.log(listData)
+        this.setData({
+          listData: listData
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

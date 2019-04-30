@@ -27,6 +27,7 @@ Page({
       userType: app.globalData.userType,
       imgSrc: app.globalData.imgSrc
     })
+    // 工程师加载项目和岗位
     if (this.data.userType === 'engineer') {
       this.initProjectData()
       this.initQuartersData()
@@ -102,6 +103,24 @@ Page({
     wx.navigateTo({
       url: '../my/my'
     })
+    return false
+    if (this.data.userType === 'engineer' && this.data.userInfo.identity_auth.is_engineer == 2) {
+      wx.navigateTo({
+        url: '../renzheng/renzheng'
+      })  
+    } else if (this.data.userType === 'hr' && this.data.userInfo.identity_auth.is_hr == 2) {
+      wx.navigateTo({
+        url: '../renzheng/renzheng'
+      })
+    } else if (this.data.userType === 'agent' && this.data.userInfo.identity_auth.is_agent == 2) {
+      wx.navigateTo({
+        url: '../renzheng/renzheng'
+      })
+    } else {
+      wx.navigateTo({
+        url: '../my/my'
+      })
+    }
   },
   // 简历
   goResumeDetail() {
@@ -269,9 +288,17 @@ Page({
   },
   // 人才简历
   goTalentResume() {
-    wx.navigateTo({
-      url: '../talentResume/talentResume'
-    })
+    if (this.data.userType === 'engineer') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请切换身份查看',
+      })
+    } else {
+      wx.navigateTo({
+        url: '../talentResume/talentResume'
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

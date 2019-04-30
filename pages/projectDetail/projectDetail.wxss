@@ -113,6 +113,7 @@
 	font-size: 26rpx;
 	line-height: 36rpx;
 	color: #666;
+  width: 100%;
 }
 /* 公司 */
 .projectDetailWrap .companyBox{
@@ -136,15 +137,12 @@
 .projectDetailWrap .companyBox .rightImgBox .rowOne{
 	font-family: PingFangSC-Medium;
 	font-size: 32rpx;
-  height: 32rpx;
   line-height: 32rpx;
 	color: #333;
-
 }
 .projectDetailWrap .companyBox .rightImgBox .rowTwo{
 	font-family: PingFangSC-Regular;
 	font-size: 26rpx;
-  height: 26rpx;
   line-height: 26rpx;
 	color: #666;
   padding-top: 20rpx;

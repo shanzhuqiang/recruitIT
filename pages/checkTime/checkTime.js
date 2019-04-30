@@ -11,7 +11,6 @@ Page({
     endTime: '',
     checkMaskBtn: false
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -20,7 +19,23 @@ Page({
       imgSrc: app.globalData.imgSrc
     })
   },
-  confirm () {
+  // 选择图片
+  chooseImg() {
+    console.log(123)
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success(res) {
+        console.log(res)
+        // tempFilePath可以作为img标签的src属性显示图片
+        const tempFilePaths = res.tempFilePaths
+      }
+    })
+  },
+  formSubmit(e) {
+    let data = e.detail.value
+    console.log('form发生了submit事件，携带数据为：', data)
     this.setData({
       checkMaskBtn: true
     })

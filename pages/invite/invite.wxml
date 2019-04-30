@@ -20,15 +20,15 @@
   </view>
   <view class='hallRow'>
     面试地点
-    <input class='rightInput' placeholder='默认公司地址' placeholder-style='color: #999'></input>
+    <input class='rightInput' placeholder='请输入面试地址' bindinput='addressChange' placeholder-style='color: #999'></input>
   </view>
   <view class='hallRow'>
     联系人
-    <input class='rightInput' placeholder='王王王' placeholder-style='color: #999'></input>
+    <input class='rightInput' placeholder='请输入联系人' bindinput='nameChange' placeholder-style='color: #999'></input>
   </view>
   <view class='hallRow'>
     电话
-    <input class='rightInput' placeholder='18767101022' placeholder-style='color: #999'></input>
+    <input class='rightInput' placeholder='请输入联系电话' bindinput='phoneChange' placeholder-style='color: #999'></input>
   </view>
   <view class='finish' bindtap='finish'>邀请</view>
 </view>

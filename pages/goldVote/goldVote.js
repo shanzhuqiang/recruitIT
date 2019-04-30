@@ -9,7 +9,9 @@ Page({
     imgSrc: '' ,
     maskOnOff: false,
     visible: false,
-    openModalType: ''
+    openModalType: '',
+    page: 1,
+    listData: []
   },
 
   /**
@@ -18,6 +20,37 @@ Page({
   onLoad: function (options) {
     this.setData({
       imgSrc: app.globalData.imgSrc
+    })
+    this.getList()
+  },
+  // 获取数据
+  getList() {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Topic/topicList.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        page: this.data.page,
+        page_size: 20,
+        type: 1
+      },
+      method: 'POST',
+      success: (res) => {
+        let listData = res.data.bizobj.data.topic_list
+        if (listData.length > 0) {
+          let oldList = this.data.listData
+          this.setData({
+            listData: [...oldList, ...listData],
+            page: this.data.page + 1
+          })
+
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
     })
   },
   openRule () {
@@ -31,9 +64,11 @@ Page({
     })
   },
   openModal(e) {
-    let key = e.currentTarget.dataset.id
+    let id = e.currentTarget.dataset.id
+    let on = e.currentTarget.dataset.on
+    let status = e.currentTarget.dataset.status
     this.setData({
-      openModalType: key
+      openModalType: on
     }, () => {
       this.setData({
         visible: true
@@ -94,7 +129,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.getList()
   },
 
   /**

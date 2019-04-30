@@ -6,19 +6,19 @@
     <image class='question' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/question.png' bindtap='openRule'></image>
     <view class='rightTitle' bindtap='goOldGoldVote'>往期话题</view>
   </view>
-  <view class='itemBox'>
+  <view class='itemBox' wx:for="{{ listData }}" wx:key="">
     <view class='firstBox'>
-      #你相信第六感吗？
+      {{ item.title }}
       <view class='lastTime'>
         <image class='huatiImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/huati.png'></image>
-        <text>剩余时间：00:24:00</text>
+        <text>剩余时间：{{ item.time_left }}</text>
       </view>
     </view>
     <view class='secondBox'>
-      <view class='leftBtn' bindtap='openModal' data-id="on">信</view>
-      <view class='rightBtn' bindtap='openModal' data-id="off">不信</view>
+      <view class='leftBtn' bindtap='openModal' data-id="{{ item.id }}" data-status="{{ item.status_ch }}" data-on="on">信</view>
+      <view class='rightBtn' bindtap='openModal' data-id="{{ item.id }}" data-status="{{ item.status_ch }}" data-on="off">不信</view>
     </view>
-    <view class='peopleNum'>500人已参与</view>
+    <view class='peopleNum'>{{ item.total_num }}人已参与</view>
   </view>
   <view class='maskWrap' wx:if="{{ maskOnOff }}">
     <view class='maskBox'>

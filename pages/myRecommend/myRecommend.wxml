@@ -4,164 +4,53 @@
     <view class='item {{ tabType === "all" ? "active" : "" }}' bindtap='chooseType' data-id="all">
       全部
     </view>
-    <view class='item {{ tabType === "success" ? "active" : "" }}' bindtap='chooseType' data-id="success">
+    <view class='item {{ tabType == 5 ? "active" : "" }}' bindtap='chooseType' data-id="5">
       成交
     </view>
-    <view class='item {{ tabType === "fail" ? "active" : "" }}' bindtap='chooseType' data-id="fail">
+    <view class='item {{ tabType == "4" ? "active" : "" }}' bindtap='chooseType' data-id="4">
       不合适
     </view>
   </view>
-  <view class='itemWrapBox' wx:if="{{ tabType === 'all' }}">
+  <view class='itemWrapBox' wx:for="{{ listData }}" wx:key="">
     <view class='itemWrap'>
       <view class='itemTop'>
         <view class='square'>工</view>
         <view class='wordText' bindtap='goEngineer'>
-          工程师：周周周
+          工程师：{{ item.username }}
           <image class='arrowR3' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc + "/arrowR3.png" }}'></image>
         </view>
-        <view class='time'>9月15日 14:00</view>
+        <view class='time'>{{ item.create_time }}</view>
       </view>
-      <view class='itemBox'>
+      <view class='itemBox' wx:if="{{ item.type == 2 }}">
         <view class='leftImg'>招标</view>
         <view class='rightText'>
-          <view class='firstRow'>我需要APP设计</view>
+          <view class='firstRow'>{{ item.name }}</view>
           <view class='secondRow'>
-            <text>杭州</text>
+            <text>{{ item.label1 }}</text>
             <text class='line'>|</text>
-            <text>3-5年</text>
+            <text>{{ item.label2 }}</text>
             <text class='line'>|</text>
-            <text>短期兼职</text>
+            <text>{{ item.label3 }}</text>
           </view>
-        <view class='threeRow'>10k-20k/月</view>
+        <view class='threeRow'>{{ item.mini_salary1 + '-' + item.max_salary1 + '/月' }}</view>
         </view>
       </view>
-    </view>
-    <view class='itemWrap'>
-      <view class='itemTop'>
-        <view class='square'>工</view>
-        <view class='wordText' bindtap='goEngineer'>
-          工程师：周周周
-          <image class='arrowR3' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc + "/arrowR3.png" }}'></image>
-        </view>
-        <view class='time'>9月15日 14:00</view>
-      </view>
-      <view class='itemBox'>
+      <view class='itemBox' wx:if="{{ item.type == 1 }}">
         <view class='leftImg2'>
-          <image class='logoImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc + "/logo.png" }}'></image>
+          <image class='logoImg' wx:if="{{ item.company_icon }}" src='{{ item.company_icon }}'></image>
         </view>
         <view class='rightText rightText2'>
-          <view class='firstRow'>我需要APP设计</view>
+          <view class='firstRow'>{{ item.name }}</view>
           <view class='secondRow'>
-            <text>杭州</text>
+            <text>{{ item.label1 }}</text>
             <text class='line'>|</text>
-          <text>杭州平面设计有限公司</text>
+            <text>{{ item.label2 }}</text>
           </view>
-        <view class='threeRow'>10k-20k/月</view>
+          <view class='threeRow'>{{ item.mini_salary1 + '-' + item.max_salary1 + '/月' }}</view>
         </view>
       </view>
-    </view> 
-  </view>
-  <view class='itemWrapBox' wx:if="{{ tabType === 'success' }}">
-    <view class='itemWrap'>
-      <view class='itemTop'>
-        <view class='square'>工</view>
-        <view class='wordText' bindtap='goEngineer'>
-          工程师：周周周
-          <image class='arrowR3' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc + "/arrowR3.png" }}'></image>
-        </view>
-        <view class='time'>9月15日 14:00</view>
-      </view>
-      <view class='itemBox'>
-        <view class='leftImg'>招标</view>
-        <view class='rightText'>
-          <view class='firstRow'>我需要APP设计</view>
-          <view class='secondRow'>
-            <text>杭州</text>
-            <text class='line'>|</text>
-            <text>3-5年</text>
-            <text class='line'>|</text>
-            <text>短期兼职</text>
-          </view>
-        <view class='threeRow'>10k-20k/月</view>
-        </view>
-      </view>
-      <view class='bottomRow'>赏金：1000元</view>
+      <view class='bottomRow'  wx:if="{{ tabType == 5 }}">赏金：{{ item.bonus }}元</view>
     </view>
-    <view class='itemWrap'>
-      <view class='itemTop'>
-        <view class='square'>工</view>
-        <view class='wordText' bindtap='goEngineer'>
-          工程师：周周周
-          <image class='arrowR3' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc + "/arrowR3.png" }}'></image>
-        </view>
-        <view class='time'>9月15日 14:00</view>
-      </view>
-      <view class='itemBox'>
-        <view class='leftImg2'>
-          <image class='logoImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc + "/logo.png" }}'></image>
-        </view>
-        <view class='rightText rightText2'>
-          <view class='firstRow'>我需要APP设计</view>
-          <view class='secondRow'>
-            <text>杭州</text>
-            <text class='line'>|</text>
-          <text>杭州平面设计有限公司</text>
-          </view>
-        <view class='threeRow'>10k-20k/月</view>
-        </view>
-      </view>
-      <view class='bottomRow'>赏金：1000元</view>
-    </view> 
-  </view>
-  <view class='itemWrapBox' wx:if="{{ tabType === 'fail' }}">
-    <view class='itemWrap'>
-      <view class='itemTop'>
-        <view class='square'>工</view>
-        <view class='wordText' bindtap='goEngineer'>
-          工程师：周周周
-          <image class='arrowR3' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc + "/arrowR3.png" }}'></image>
-        </view>
-        <view class='time'>9月15日 14:00</view>
-      </view>
-      <view class='itemBox'>
-        <view class='leftImg'>招标</view>
-        <view class='rightText'>
-          <view class='firstRow'>我需要APP设计</view>
-          <view class='secondRow'>
-            <text>杭州</text>
-            <text class='line'>|</text>
-            <text>3-5年</text>
-            <text class='line'>|</text>
-            <text>短期兼职</text>
-          </view>
-        <view class='threeRow'>10k-20k/月</view>
-        </view>
-      </view>
-    </view>
-    <view class='itemWrap'>
-      <view class='itemTop'>
-        <view class='square'>工</view>
-        <view class='wordText' bindtap='goEngineer'>
-          工程师：周周周
-          <image class='arrowR3' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc + "/arrowR3.png" }}'></image>
-        </view>
-        <view class='time'>9月15日 14:00</view>
-      </view>
-      <view class='itemBox'>
-        <view class='leftImg2'>
-          <image class='logoImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc + "/logo.png" }}'></image>
-        </view>
-        <view class='rightText rightText2'>
-          <view class='firstRow'>我需要APP设计</view>
-          <view class='secondRow'>
-            <text>杭州</text>
-            <text class='line'>|</text>
-          <text>杭州平面设计有限公司</text>
-          </view>
-        <view class='threeRow'>10k-20k/月</view>
-        </view>
-      </view>
-    </view> 
   </view>
 </view>
 

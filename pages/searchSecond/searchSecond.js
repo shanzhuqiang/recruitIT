@@ -8,37 +8,113 @@ Page({
   data: {
     imgSrc: '',
     userInfo: null,
-    keyWord: '',
     dataList: [],
     filterStr: '',
     sortVal: '',
-    filtertList: [
-      {
-        title: '工作区域',
-        item: [
-          ["不限", "上城区", "下城区"],
-          ["江干区", "拱墅区", "西湖区"],
-          ["滨江区", "萧山区", "余杭区"],
-          ["桐庐县", "淳安县", "建德市"],
-          ["富阳市", "临安市", ""]
-        ]
-      },
-      {
-        title: '学历要求',
-        item: [
-          ["不限", "大专", "本科"],
-          ["硕士"]
-        ]
-      },
-      {
-        title: '薪资区间（元）',
-        item: [
-          ["最低价", "最高价"]
-        ]
-      }
-    ],
     historyArray: [],
-    keyWord: ''
+    keyWord: '',
+    maskOn: false,
+    quyuData: '',
+    quyuChoose: '',
+    jingyanData: [
+      [
+        {
+          id: '',
+          name: "不限"
+        },
+        {
+          id: 1,
+          name: "应届毕业生"
+        },
+        {
+          id: 2,
+          name: "3年以内"
+        }
+      ],
+      [
+        {
+          id: 3,
+          name: "3-5年"
+        },
+        {
+          id: 4,
+          name: "5-10年"
+        },
+        {
+          id: 5,
+          name: "10年以上"
+        }
+      ]
+    ],
+    jingyanChoose: '',
+    xueliData: [
+      [
+        {
+          id: 1,
+          name: "不限"
+        },
+        {
+          id: 5,
+          name: "大专"
+        },
+        {
+          id: 6,
+          name: "本科"
+        }
+      ],
+      [
+        {
+          id: 7,
+          name: "硕士"
+        }
+      ]
+    ],
+    xueliChoose: '1',
+    xinziData: [
+      [
+        {
+          id: 1,
+          name: "不限"
+        },
+        {
+          id: 2,
+          name: "小于2k"
+        },
+        {
+          id: 3,
+          name: "2-5k"
+        }
+      ],
+      [
+        {
+          id: 4,
+          name: "5-10k"
+        },
+        {
+          id: 5,
+          name: "10-15k"
+        },
+        {
+          id: 6,
+          name: "15-25k"
+        }
+      ],
+      [
+        {
+          id: 7,
+          name: "25-50k"
+        },
+        {
+          id: 8,
+          name: "50k+"
+        },
+        {
+          id: '',
+          name: null
+        }
+      ],
+    ],
+    xinziChoose: 1
   },
   /**
    * 生命周期函数--监听页面加载
@@ -50,6 +126,8 @@ Page({
     })
     // 获取搜索缓存记录
     this.initGetStorage()
+    // 获取区域
+    this.getArea()
   },
   // 获取搜索缓存记录
   initGetStorage() {
@@ -66,8 +144,14 @@ Page({
   searchHistory(e) {
     let key = e.currentTarget.dataset.id
     this.setData({
-      keyWord: key
+      keyWord: key,
+      quyuChoose: '',
+      jingyanChoose: '',
+      xueliChoose: '',
+      salary_range: '1',
+      sortVal: ''
     })
+    this.getData()
   },
   // 切换城市
   goChooseCity() {
@@ -77,40 +161,103 @@ Page({
   },
   // 打开默认排序
   openSort() {
-    this.setData({
-      filterStr: 'sort'
-    }) 
+    if (this.data.filterStr === 'sort' && this.data.maskOn) {
+      this.setData({
+        maskOn: false
+      }) 
+    } else {
+      this.setData({
+        filterStr: 'sort',
+        maskOn: true
+      }) 
+    }
   },
   // 选择排序方式
   chooseSort(e) {
-    let key = e.currentTarget.dataset.id
     this.setData({
-      sortVal: key
+      sortVal: e.currentTarget.dataset.id,
+      maskOn: false,
+      quyuChoose: '',
+      jingyanChoose: '',
+      xueliChoose: '',
+      salary_range: '1'
     })
+    this.getData()
   },
   // 打开过滤
   openFilter() {
+    if (this.data.filterStr === 'filter' && this.data.maskOn) {
+      this.setData({
+        maskOn: false
+      })
+    } else {
+      this.setData({
+        filterStr: 'filter',
+        maskOn: true
+      })
+    }
+  },
+  // 过滤经验
+  jingyanChooseFilter (e) {
     this.setData({
-      filterStr: 'filter'
-    }) 
+      jingyanChoose: e.currentTarget.dataset.id
+    })
+  },
+  // 过滤学历
+  xueliChooseFilter(e) {
+    this.setData({
+      xueliChoose: e.currentTarget.dataset.id
+    })
+  },
+  // 过滤薪资
+  xinziChooseFilter(e) {
+    this.setData({
+      xinziChoose: e.currentTarget.dataset.id
+    })
+  },
+  // 确认筛选
+  gangweiConfirm() {
+    this.setData({
+      maskOn: false,
+      sortVal: ''
+    })
+    this.getData()
+  },
+  // 输入框内容改变
+  clearList(e) {
+    if (e.detail.value === '') {
+      this.setData({
+        dataList: []
+      })
+    }
   },
   // 确认输入
   iptChange(e) {
     let keyWord = e.detail.value
     this.setData({
-      keyWord: keyWord
+      keyWord: keyWord,
+      quyuChoose: '',
+      jingyanChoose: '',
+      xueliChoose: '',
+      salary_range: '1',
+      sortVal: ''
     })
     this.getData()
-    // let val = e.detail.value
-    // this.setData({
-    //   keyVal: val
-    // })
-    // if (val === '') {
-    //   this.setData({
-    //     sortVal: '',
-    //     filterStr: ''
-    //   })
-    // }
+    // 存入本地缓存
+    let newHistoryArray = []
+    let historyArray = this.data.historyArray
+    if (historyArray.length > 4) {
+      newHistoryArray = [keyWord, ...historyArray.slice(0, 4)]
+    } else {
+      newHistoryArray = [keyWord, ...historyArray]
+    }
+    this.setData({
+      historyArray: newHistoryArray
+    })
+    wx.setStorage({
+      key: 'firstSearchKey',
+      data: newHistoryArray
+    })
   },
   // 获取简历数据
   getData () {
@@ -121,7 +268,12 @@ Page({
         city_code: this.data.userInfo.city_code,
         page: 1,
         page_size: 99999,
-        keyword: this.data.keyWord
+        keyword: this.data.keyWord,
+        sort: this.data.sortVal,
+        education: this.data.xueliChoose,
+        district_code: this.data.quyuChoose,
+        job_experience: this.data.jingyanChoose,
+        salary_range: this.data.xinziChoose
       },
       method: 'POST',
       success: (res) => {
@@ -140,6 +292,64 @@ Page({
           title: '网络请求失败',
         })
       }
+    })
+  },
+  // 区域选择
+  quyuChooseFilter(e) {
+    this.setData({
+      quyuChoose: e.currentTarget.dataset.id
+    })
+  },
+  // 获取区域
+  getArea() {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Addr/prov2CityList.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        city_code: this.data.userInfo.city_code
+      },
+      method: 'POST',
+      success: (res) => {
+        let listData = res.data.bizobj.data.area_list
+        console.log(listData)
+        listData.unshift({
+          city_code: '',
+          city_name: '不限'
+        })
+        let hangyeData = []
+        let length = parseInt(listData.length / 3)
+        let n = 0;
+        for (let i = 1; i <= length; i++) {
+          var star = (i - 1) * 3;
+          hangyeData[n++] = listData.slice(star, star + 3);
+        }
+        let y = listData.length - length * 3;
+        if (y > 0) {
+          let newArr = listData.slice(length * 3)
+          if (newArr.length === 2) {
+            newArr.push({
+              id: '',
+              name: null
+            })
+          }
+          hangyeData[n++] = newArr
+        }
+        this.setData({
+          quyuData: hangyeData
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 进入简历详情
+  goResumeDetail (e) {
+    wx.navigateTo({
+      url: `../resumeDetail/resumeDetail?id=${e.currentTarget.dataset.id}`
     })
   },
   /**

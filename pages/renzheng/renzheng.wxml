@@ -13,13 +13,13 @@
   <view class='des'>个人信息将得到绝对保护，仅限用于简历使用 </view>
   <view class='rowWrap'>
     <view class='firstRow'>
-        <input class='nameIpt' placeholder="真实姓名"/>
+        <input class='nameIpt' placeholder="真实姓名" bindinput='getName'/>
         <view class='line'></view>
         <view class='xingbie' style='{{ xingbie === "性别" ? "color: #999" : "color: #333" }}' bindtap='chooseXingbie'>{{ xingbie }}</view>
         <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
     </view>
     <view class='hallRow'>
-        <input class='phoneIpt' type='number' placeholder="联系电话"/>
+      <input class='phoneIpt' type='number' placeholder="联系电话" maxlength='11' bindinput='getPhone'/>
     </view>
     <view class='hallRow'>
       <picker mode="date" bindchange="bindDateChange">

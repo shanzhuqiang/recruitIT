@@ -55,6 +55,11 @@
   height: 34rpx;
   line-height: 34rpx;
 	color: #333;
+  max-width: 200rpx;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
 .resumeWrap .itemWrap .itemBox .rightText .firstRow .typeName{
 	font-family: PingFangSC-Regular;

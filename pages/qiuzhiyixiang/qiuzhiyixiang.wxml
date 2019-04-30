@@ -5,7 +5,7 @@
   <view class='listWrap'>
     <view class='listItem'>
       <view class='leftName'>期望职位</view>
-      <input class='iptBox' placeholder="请输入"/>
+      <input class='iptBox' bindinput='changeReJob' placeholder="请输入"/>
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
     </view>
     <view class='listItem'>
@@ -24,9 +24,9 @@
     </view>
     <view class='listItem'>
       <view class='leftName'>工作地点</view>
-      <picker bindchange="xinziChange" range="{{xinziArray}}">
-        <input class='iptBox' placeholder="请选择" value='{{ xingzhi }}' disabled/>
-      </picker>
+      <input class='iptBox' placeholder="请选择" value='{{ address }}' bindtap='addressChange' disabled/>
+      <!-- <picker bindchange="addressChange" mode="region">
+      </picker> -->
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
     </view>
     <view class='listItem'>
@@ -45,4 +45,35 @@
     </view>
   </view>
   <view class='finish' bindtap='finish'>完成</view>
+  <view class='cityChooseMask' wx:if="{{ cityChooseMask }}">
+    <view class='leftBox'>
+      <scroll-view scroll-y style="height: 100%;">
+        <view class='{{ chooseActive === "used" ? "active" : "" }} item' bindtap='chooseCity' data-id="used">常用</view>
+        <view class='{{ chooseActive === "municipality" ? "active" : "" }} item' bindtap='chooseCity' data-id="municipality">直辖市</view>
+        <view class='{{ chooseActive === item.prov_code ? "active" : "" }} item' bindtap='chooseCity' wx:for="{{ cityList }}" data-id="{{ item.prov_code }}" wx:key="">{{ item.prov_name }}</view>
+      </scroll-view>
+    </view>
+    <view class='rightBox'>
+      <view wx:if='{{ chooseActive === "used" }}'>
+        <view class='title'>当前定位</view>
+        <view class='itemBox active2' data-id="{{ common.position_city.city_code }}" data-ida="{{ common.position_city.city_name }}" bindtap='chooseBtn'>
+          <image class='local' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/local.png'></image>
+          {{ common.position_city.city_name }}
+        </view>
+        <view class='title'>最近访问</view>
+        <view class='itemBox {{ btnChoose === item.city_code ? "active" : "" }}' wx:for="{{ common.rencent_visit }}" data-id="{{ item.city_code }}" data-ida="{{ item.city_name }}" bindtap='chooseBtn' wx:key="">{{ item.city_name }}</view>
+        <view class='title'>热门城市</view>
+        <view class='itemBox {{ btnChoose === item.city_code ? "active" : "" }}' wx:for="{{ common.hot_city }}" data-id="{{ item.city_code }}" data-ida="{{ item.city_name }}" bindtap='chooseBtn' wx:key="">{{ item.city_name }}</view>
+      </view>
+      <view wx:if='{{ chooseActive === "municipality" }}'>
+        <view class='itemBox {{ btnChoose == 1 ? "active" : "" }}' data-id="1" data-ida="北京" bindtap='chooseBtn'>北京</view>
+        <view class='itemBox {{ btnChoose == 2 ? "active" : "" }}' data-id="2" data-ida="上海" bindtap='chooseBtn'>上海</view>
+        <view class='itemBox {{ btnChoose == 3 ? "active" : "" }}' data-id="3" data-ida="天津" bindtap='chooseBtn'>天津</view>
+        <view class='itemBox {{ btnChoose == 4 ? "active" : "" }}' data-id="4" data-ida="重庆" bindtap='chooseBtn'>重庆</view>
+      </view>
+      <view wx:if='{{ chooseActive !== "used" && chooseActive !== "municipality" }}'>
+        <view class='itemBox {{ btnChoose === item.city_code ? "active" : "" }}' wx:for="{{ areaList }}" data-id="{{ item.city_code }}" data-ida="{{ item.city_name }}" bindtap='chooseBtn'>{{ item.city_name }}</view>
+      </view>
+    </view>
+  </view>
 </view>

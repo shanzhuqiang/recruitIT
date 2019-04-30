@@ -12,6 +12,7 @@
 	font-size: 22rpx;
 	line-height: 24rpx;
 	color: #999;
+  z-index: 99;
 }
 .btootmNavWrap .btnBox{
   width: 20%;
@@ -102,4 +103,126 @@
 }
 .fr{
   float: right;
+}
+/* 城市选择 */
+.cityChooseMask{
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  z-index: 999999999;
+}
+.cityChooseMask .leftBox{
+  height: 100%;
+  width: 194rpx;
+  background: #f4f4f4;
+  float: left;
+}
+.cityChooseMask .rightBox{
+  margin-left: 194rpx;
+}
+.cityChooseMask .leftBox .item{
+	font-family: PingFangSC-Regular;
+	font-size: 28rpx;
+	color: #666;
+  height: 84rpx;
+  line-height: 84rpx;
+  text-align: center;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.cityChooseMask .leftBox .item.active{
+	font-family: PingFangSC-Medium;
+  color: #333;
+  background: #fff;
+}
+.cityChooseMask .rightBox{
+  padding-left: 35rpx;
+}
+.cityChooseMask .rightBox .title{
+	font-family: PingFangSC-Regular;
+	font-size: 28rpx;
+	color: #333;
+  padding: 20rpx 0 40rpx;
+}
+.cityChooseMask .rightBox .itemBox{
+ width: 150rpx;
+ height: 64rpx;
+ border: 1rpx solid #f0f0f0;
+ border-radius: 4rpx;
+ text-align: center;
+ line-height: 64rpx;
+	font-family: PingFangSC-Regular;
+	font-size: 24rpx;
+	color: #666666;
+  display: inline-block;
+  margin: 0 20rpx 20rpx 0;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.cityChooseMask .rightBox .itemBox .local{
+  width: 22rpx;
+  height: 26rpx;
+  vertical-align: middle;
+  display: inline-block;
+}
+.cityChooseMask .rightBox .itemBox.active{
+	color: #2e70f9;
+	background-color: #e8eeff;
+}
+.cityChooseMask .rightBox .itemBox.active2{
+	color: #2e70f9;
+  background-color: #fff;
+}
+/* 岗位职责/任职要求 textarea */
+.textareaMaskBox{
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  z-index: 999999999;
+}
+.textareaMaskBox .bgRow{
+  height: 16rpx;
+  background: #f8f8f8;
+}
+.textareaMaskBox .textareaWrap{
+  padding: 0 30rpx;
+  height: 400rpx;
+}
+.textareaMaskBox .textareaBox{
+  width: 100%;
+  height: 379rpx;
+  padding: 10rpx 0;
+	font-family: PingFangSC-Regular;
+	font-size: 30rpx;
+	line-height: 24rpx;
+  border-bottom: 1rpx solid #ddd;
+}
+.textareaMaskBox .wordNum{
+  text-align: right;
+	font-family: PingFangSC-Regular;
+	font-size: 30rpx;
+	color: #999;
+  padding: 10rpx 40rpx 0;
+}
+.textareaMaskBox .saveBtn{
+	width: 600rpx;
+	height: 90rpx;
+  line-height: 90rpx;
+	background-color: #4c85fb;
+	box-shadow: 0 4rpx 16rpx 0 
+		rgba(26, 73, 210, 0.46);
+	border-radius: 4rpx;
+  margin: 127rpx auto 0;
+  text-align: center;
+	font-family: PingFangSC-Regular;
+	font-size: 32rpx;
+	color: #fff;
 }

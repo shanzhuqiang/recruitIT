@@ -124,9 +124,9 @@ Page({
   },
   // 认证
   goRenzheng() {
-    wx.navigateTo({
-      url: '../renzheng/renzheng'
-    })
+    // wx.navigateTo({
+    //   url: '../renzheng/renzheng'
+    // })
   },
   // 进入首页
   goHome() {

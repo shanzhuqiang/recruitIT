@@ -5,11 +5,11 @@
       <image class='touxiang' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/touxiang.png'></image>
       <view class='firstRow'>
         <view class='one'>歪脖子树</view>
-        <view class='two'>工程师</view>
-        <view class='three'>
+        <view class='two'>{{ userType === 'engineer' ? '工程师' : userType === 'hr' ? 'HR' : '经纪人' }}</view>
+        <!-- <view class='three'>
           <image class='zuanshi' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/zuanshi.png'></image>
           A会员
-        </view>
+        </view> -->
       </view>
       <view class='renzhengWrap' bindtap='goRenzheng'>
         <image class='renzheng' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/renzheng.png'></image>
@@ -40,7 +40,7 @@
       <view>我的发布</view>
     </view>
   </view>
-  <!-- <view class='middleBox' wx:if="{{ userType === 'hr' }}">
+  <view class='middleBox' wx:if="{{ userType === 'hr' }}">
     <view bindtap='goResume'>
       <image class='jianli' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/jianli.png'></image>
       <view>简历</view>
@@ -57,8 +57,8 @@
       <image class='fabu' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/fabu.png'></image>
       <view>我的发布</view>
     </view>
-  </view> -->
-  <view class='middleBox' wx:if="{{ userType === 'hr' }}">
+  </view>
+  <!-- <view class='middleBox' wx:if="{{ userType === 'hr' }}">
     <view bindtap='goTask'>
       <image class='toudi' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/toudi.png'></image>
       <view>每日任务</view>
@@ -75,7 +75,7 @@
       <image class='fabu' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/fabu.png'></image>
       <view>我的发布</view>
     </view>
-  </view>
+  </view> -->
   <view class='vipWrap'>
     <image class='vipGuanggao' bindtap='goVip' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/vipGuanggao.png'></image>
   </view>

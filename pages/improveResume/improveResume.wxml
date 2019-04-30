@@ -1,39 +1,38 @@
 <!--pages/improveResume/improveResume.wxml-->
 <view class='improveResumeWrap'>
   <view class='resumeDetailBox'>
-    <image class='touxiang' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/touxiang.png'></image>
+    <image class='touxiang' wx:if="{{ resumeInfo.user_info.avatar }}" src='{{ resumeInfo.user_info.avatar }}'></image>
     <view class='title'>
       基本信息
       <view class='editBtn' bindtap='goBaseInfo'>编辑</view>
     </view>
     <view class='first'>
-      <text class='name'>王大伟</text>
-      <text class='profession'>UI设计师</text>
+      <text class='name'>{{ resumeInfo.user_info.username }}</text>
+      <text class='profession'>{{ resumeInfo.user_info.job_name }}</text>
     </view>
     <view class='second'>
-      <text style='padding-left: 0'>男</text>
+      <text style='padding-left: 0'>{{ resumeInfo.user_info.gender == 1 ? '男' : resumeInfo.user_info.gender == 2 ? '女' : '未知' }}</text>
       <text>25岁</text>
-      <text>杭州市</text>
+      <text>{{ resumeInfo.user_info.city_name }}</text>
       <text>4年</text>
-      <text style='border-right: none'>职场人士</text>
+      <text style='border-right: none'>{{ resumeInfo.user_info.identity == 1 ? '职场人士' : '应届毕业生' }}</text>
     </view>
     <view class='three'>
-      <text>PS</text>
-      <text>AI</text>
-      <text>Axure</text>
-      <text>AE</text>
+      <text wx:if="{{ resumeInfo.user_info.label1 !== '' }}">{{ resumeInfo.user_info.label1 }}</text>
+      <text wx:if="{{ resumeInfo.user_info.label2 !== '' }}">{{ resumeInfo.user_info.label2 }}</text>
+      <text wx:if="{{ resumeInfo.user_info.label3 !== '' }}">{{ resumeInfo.user_info.label3 }}</text>
     </view>
     <view class='four'>
       <view class='iconWrap'>
         <image class='phone' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/phone.png'></image>
       </view>
-      <view class='strBox'>18767101033</view>
+      <view class='strBox'>{{resumeInfo.user_info.mobile }}</view>
     </view>
     <view class='five'>
       <view class='iconWrap'>
         <image class='email' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/email.png'></image>
       </view>
-      <view class='strBox'>18767101033@163.com</view>
+      <view class='strBox'>{{ resumeInfo.user_info.email }}</view>
     </view>
   </view>
   <view class='resumeDetailBox'>
@@ -42,65 +41,65 @@
       <view class='editBtn' bindtap='goDesMyself'>编辑</view>
     </view>
     <view class='contentBox'>
-      <view class='content'>我擅长好多好多语言呢我擅长好多好多语言呢我擅长好多好多语言呢我擅长好多好多语言呢我擅长好多好多语言呢我擅长好多好多语言呢我擅长好多好多语言呢</view>
+      <view class='content'>{{ resumeInfo.user_info.self_introduction }}</view>
     </view>
   </view>
   <view class='resumeDetailBox'>
     <view class='title'>工作经历</view>
-    <view class='oneBoxWrap'>
+    <view class='oneBoxWrap' wx:for="{{ resumeInfo.work }}" wx:key="">
       <view class='oneBox'>
         <view class='left'>
-          <image class='gongsiImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/logo.png'></image>
+          <image class='gongsiImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/imgC.png'></image>
         </view>
         <view class='right'>
-          <view class='name1'>UI设计师</view>
-          <view class='gongsi1'>杭州平面设计有限公司</view>
-          <view class='time1'>2018.07-至今</view>
+          <view class='name1'>{{ item.major }}</view>
+          <view class='gongsi1'>{{ item.name }}</view>
+          <view class='time1'>{{ item.start_time }}{{ item.end_time }}</view>
         </view>
-        <view class='editBtn' bindtap='goWorkHistory'>编辑</view>
+        <view class='editBtn' bindtap='goWorkHistory' data-id="{{ item.id }}">编辑</view>
       </view>
       <view class='contentTitle'>工作内容</view>
-      <view class='content2'>这是我的工作的内容这是我的工作的内容这是我的工作的内容这是我的工作的内容这是我的工作的内容这是我的工作的内容这是我的工作的内容这是我的工作的内容这是我的工作的内容这是我的工作的内容这是我的工作的内容这是我的工作的内容这是我的工作的内容这是我的工作的内容</view>
+      <view class='content2'>{{ item.content }}</view>
     </view>
-    <view class='addBtn' bindtap='goWorkHistory'>
+    <view class='addBtn' bindtap='goWorkHistory' data-id="null">
       <text class='addIcon'>+</text>添加工作经验
     </view>
   </view>
   <view class='resumeDetailBox'>
     <view class='title'>教育经历</view>
-    <view class='oneBox borderBottom'>
+    <view class='oneBox borderBottom' wx:for="{{ resumeInfo.education }}" wx:key="">
       <view class='left'>
-        <image class='gongsiImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/logo.png'></image>
+        <image class='gongsiImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/imgR.png'></image>
       </view>
       <view class='right'>
-        <view class='name1'>XX大学</view>
+        <view class='name1'>{{ item.name }}</view>
         <view class='gongsi1'>
-          <text>本科</text>
-          <text class='endText'>XX专业</text>
+          <text>{{ item.level == 4 ? '高中' : item.level == 5 ? '专科' : item.level == 6 ? '本科' : item.level == 7 ? '硕士' : item.level == 8 ? '博士' : '无'  }}</text>
+          <text class='endText'>{{ item.major }}</text>
         </view>
-        <view class='time1'>2012-2016</view>
+        <view class='time1'>{{ item.start_time }}{{ item.end_time }}</view>
       </view>
-      <view class='editBtn' bindtap='goEducation'>编辑</view>
+      <view class='editBtn' bindtap='goEducation' data-id="{{ item.id }}">编辑</view>
     </view>
-    <view class='addBtn' bindtap='goEducation'>
+    <view class='addBtn' bindtap='goEducation' data-id="null">
       <text class='addIcon'>+</text>添加教育经历
     </view>
   </view>
   <view class='resumeDetailBox'>
     <view class='title'>项目经验</view>
-    <view class='oneBoxWrap'>
+    <view class='oneBoxWrap' wx:for="{{ resumeInfo.project }}" wx:key="">
       <view class='oneBox'>
         <view class='right' style='margin-left: 0'>
-          <view class='name1'>XX项目</view>
-          <view class='gongsi1'>ui设计</view>
-          <view class='time1'>2012-2016</view>
+          <view class='name1'>{{ item.name }}</view>
+          <view class='gongsi1'>{{ item.major }}</view>
+          <view class='time1'>{{ item.start_time }}{{ item.end_time }}</view>
         </view>
-        <view class='editBtn' bindtap='goProjectHistory'>编辑</view>
+        <view class='editBtn' bindtap='goProjectHistory' data-id="{{ item.id }}">编辑</view>
       </view>
       <view class='contentTitle'>工作内容</view>
-      <view class='content2'>这是我的工作的内容这是我的工作的内容这是我的工作的内容这是我的工作的内容这是我的工作的内容这是我的工作的内容这是我的工作的内容这是我的工作的内容这是我的工作的内容这是我的工作的内容这是我的工作的内容这是我的工作的内容这是我的工作的内容这是我的工作的内容</view>
+      <view class='content2'>{{ item.content }}</view>
     </view>
-    <view class='addBtn' bindtap='goProjectHistory'>
+    <view class='addBtn' bindtap='goProjectHistory' data-id="null">
       <text class='addIcon'>+</text>添加项目经历
     </view>
   </view>

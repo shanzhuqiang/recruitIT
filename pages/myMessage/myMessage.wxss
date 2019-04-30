@@ -41,3 +41,7 @@
 	color: #4c85fb;
   text-align: center;
 }
+.myMessageWrap .itemBox .checkBtn.checkBtn2{
+	border: solid 1rpx #f0f0f0;
+  color: #666
+}

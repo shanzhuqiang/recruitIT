@@ -41,7 +41,6 @@ Page({
   },
   // 获取公司详情
   getInfo (id) {
-    console.log(id)
     wx.request({
       url: `${app.globalData.baseUrl}/Company/companyInfo.html`,
       data: {
