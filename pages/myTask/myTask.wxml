@@ -12,7 +12,7 @@
     </view>
   </view>
   <view class='itemWrapBox'>
-    <view class='itemWrap' wx:for="{{ listData }}" wx:key="">
+    <view class='itemWrap' wx:for="{{ listData }}" wx:key="" data-id="{{ item.project_id }}" bindtap='goDetail'>
       <view class='itemTop'>
         <view class='squareWrap' wx:if="{{ item.name}}">
           <view class='square squareJ'>经</view>
@@ -42,7 +42,7 @@
         <view class='yoaqingBtn' bindtap='accept' data-id="{{ item.id }}">接受</view>
       </view>
       <view class='bottomRow' wx:if="{{ tabType == '1' }}">
-        <view class='yoaqingBtn' bindtap='goCheckTime' data-id="{{ item.id }}">工时核对</view>
+        <view class='yoaqingBtn' bindtap='goCheckTime' data-name="{{ item.name }}" data-company="{{ item.company_name }}" data-id="{{ item.id }}">工时核对</view>
       </view>
     </view>
     <!-- <view class='itemWrap'>

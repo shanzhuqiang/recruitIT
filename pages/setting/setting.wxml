@@ -3,12 +3,12 @@
   <view class='listWrap'>
     <view class='item' bindtap='goSettingPhone'>
       <view class='first'>手机号</view>
-      <view class='second'>156****8863</view>
+      <view class='second'>{{ mobile }}</view>
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
     </view>
     <view class='item' bindtap='goSettingPassword'>
       <view class='first'>登录密码</view>
-      <view class='second'>更改密码</view>
+      <view class='second'>{{ password }}</view>
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
     </view>
     <view class='item' style='border-bottom: none' bindtap='goShouquan'>

@@ -63,6 +63,7 @@
 .checkTimeWrap .addBoxWrap .bottomBox{
   border-bottom: 1rpx solid #ddd;
   padding: 0 20rpx 58rpx;
+  height: 136rpx;
 }
 .checkTimeWrap .addBoxWrap .bottomBox .addBox{
   width: 136rpx;
@@ -70,6 +71,15 @@
 	background-color: #f1f1f1;
 	border-radius: 4rpx;
   position: relative;
+  float: left;
+}
+.checkTimeWrap .addBoxWrap .bottomBox .addBox.addBox2{
+	background-color: #fff;
+  margin-left: 30rpx;
+}
+.checkTimeWrap .addBoxWrap .bottomBox .addBox.addBox2 .imgBox{
+  width: 100%;
+  height: 100%;
 }
 .checkTimeWrap .addBoxWrap .bottomBox .addBox .camera{
   width: 69rpx;
@@ -145,10 +155,20 @@
 .checkTimeWrap .checkMask .checkBox .fourRow{
 	font-family: PingFangSC-Regular;
 	font-size: 22rpx;
+  height: 22rpx;
+  line-height: 22rpx;
 	color: #999;
   text-align: center;
   padding-top: 30rpx;
 }
-.checkTimeWrap .checkMask .checkBox .fourRow > text{
+.checkTimeWrap .checkMask .checkBox .fourRow > .kefuBtn{
 	color: #2e70f9;
+	font-family: PingFangSC-Regular;
+	font-size: 22rpx;
+  height: 22rpx;
+  line-height: 22rpx;
+  display: inline-block;
+  padding: 0;
+  background: transparent;
+  border: none;
 }

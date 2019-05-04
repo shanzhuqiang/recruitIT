@@ -37,9 +37,9 @@ App({
     })
   },
   globalData: {
-    // baseUrl: 'http://118.31.72.207:3000/mock/16/api',
-    baseUrl: 'https://headhunter.pinecc.cn/api',
-    sess_key: '',
+    baseUrl: 'http://118.31.72.207:3000/mock/16/api',
+    // baseUrl: 'https://headhunter.pinecc.cn/api',
+    sess_key: '12345678',
     need_auth: '',
     has_password: '',
     messageObj: null,

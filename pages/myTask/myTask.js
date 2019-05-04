@@ -14,8 +14,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
     this.setData({
-      imgSrc: app.globalData.imgSrc
+      imgSrc: app.globalData.imgSrc,
+      listData: []
     })
     this.getDataList()
   },
@@ -23,7 +30,8 @@ Page({
   chooseType(e) {
     let key = e.currentTarget.dataset.id
     this.setData({
-      tabType: key
+      tabType: key,
+      listData: []
     })
     this.getDataList()
   },
@@ -89,11 +97,19 @@ Page({
       }
     })
   },
+  // 进入项目详情
+  goDetail (e) {
+    wx.navigateTo({
+      url: `../projectDetail/projectDetail?id=${e.currentTarget.dataset.id}`
+    })
+  },
   // 工时核对
   goCheckTime(e) {
-    let key = e.currentTarget.dataset.id
+    let id = e.currentTarget.dataset.id
+    let name = e.currentTarget.dataset.name
+    let company = e.currentTarget.dataset.company
     wx.navigateTo({
-      url: '../checkTime/checkTime'
+      url: `../checkTime/checkTime?id=${id}&name=${name}&company=${company}`
     })
   },
 
@@ -101,13 +117,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
 
   },
 

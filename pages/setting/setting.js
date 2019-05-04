@@ -7,7 +7,8 @@ Page({
    */
   data: {
     imgSrc: '',
-
+    mobile: '',
+    password: ''
   },
 
   /**
@@ -17,11 +18,38 @@ Page({
     this.setData({
       imgSrc: app.globalData.imgSrc
     })
+    this.init()
   },
+  init() {
+    let mobile = app.globalData.userInfo.mobile
+    let has_password = app.globalData.has_password
+    if (has_password == 1) {
+      this.setData({
+        password: '更改密码'
+      })
+    } else {
+      this.setData({
+        password: '设置密码'
+      })
+    }
+    if (mobile) {
+      this.setData({
+        mobile: mobile
+      })
+    } else {
+      this.setData({
+        mobile: '绑定手机'
+      })
+    }
+  },
+  // 进入手机号页面
   goSettingPhone() {
-    wx.navigateTo({
-      url: '../settingPhone/settingPhone'
-    })
+    let mobile = this.data.mobile
+    if (mobile && mobile === '绑定手机') {
+      wx.navigateTo({
+        url: '../settingPhone/settingPhone'
+      })
+    }
   },
   goSettingPassword() {
     wx.navigateTo({
