@@ -7,17 +7,59 @@
     </view>
   </view>
   <view class='filterWrap'>
-    <view class='colBox {{ topFilterBtn === "tuijian" ? "active" : "" }}' bindtap='topFilter' data-id="tuijian">
+    <view class='colBox {{ topFilterBtn == 1 ? "active" : "" }}' bindtap='topFilter' data-id="1">
       <text>推荐</text>
     </view>
-    <view class='colBox {{ topFilterBtn === "guanzhu" ? "active" : "" }}' bindtap='topFilter' data-id="guanzhu">
+    <view class='colBox {{ topFilterBtn == 2 ? "active" : "" }}' bindtap='topFilter' data-id="2">
       <text>关注</text>
     </view>
-    <view class='colBox {{ topFilterBtn === "shaixuan" ? "active" : "" }}' bindtap='topFilter' data-id="shaixuan">
-      <text>筛选</text>
-      <image class='filterImg' wx:if="{{imgSrc !== ''}}" src='{{ topFilterBtn === "shaixuan" ? imgSrc + "/filterTwo.png" : imgSrc + "/filter.png" }}'></image>
+    <picker bindchange="shaixuanChange"  range="{{ shaixuanArray }}" range-key="name" value="{{ pickerVal }}">
+      <view class='colBox {{ topFilterBtn == 3 ? "active" : "" }}' bindtap='topFilter' data-id="3">
+        <text>筛选</text>
+        <image class='filterImg' wx:if="{{imgSrc !== ''}}" src='{{ topFilterBtn == 3 ? imgSrc + "/filterTwo.png" : imgSrc + "/filter.png" }}'></image>
+      </view>
+    </picker>
+  </view>
+  <!-- 内容 -->
+  <view class='itemBox' wx:for="{{ listData }}" wx:key="">
+    <view class='topName'>
+      <image class='touxiang' src='{{ item.user_info.avatar }}'></image>
+      <view class='name'>{{ item.user_info.username }}</view>
+      <view class='shenfen {{ item.user_info.user_type == 1 ? "one" : item.user_info.user_type == 2 ? "two" : "three" }}'>{{ item.user_info.user_type == 1 ? '工程师' : item.user_info.user_type == 2 ? '企业HR' : '经纪人' }}</view>
+      <view class='time'>{{ item.publish_time }}</view>
+    </view>
+    <view class='title'>{{ item.title }}</view>
+    <view class='bottomBox' wx:if="{{ !item.imgs }}">
+      <view class='content'>{{ item.content }}</view>
+    </view>
+    <view class='bottomBox' wx:if="{{ item.imgs }}">
+      <view class='left'>
+        <view class='content'>{{ item.content }}</view>
+      </view>
+      <view class='right'>
+        <image class='rightImg' src='{{ item.imgs }}'></image>
+      </view>
+    </view>
+    <view class='bottomBtn'>
+      <view class='address'>{{ item.address }}</view>
+      <view class='iconBox'>
+        <image class='discussIcon' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/shareIcon.png'></image>
+        <text class='num'>{{ item.message_count }}</text>
+      </view>
+      <view class='iconBox'>
+        <image class='heartIcon' wx:if="{{imgSrc !== '' && item.is_collect == 1}}" src='{{ imgSrc }}/heartIcon2.png'></image>
+        <image class='heartIcon' wx:if="{{imgSrc !== '' && item.is_collect == 2}}" src='{{ imgSrc }}/heartIcon.png'></image>
+        <image class='heartIcon' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/heartIcon.png'></image>
+        <text class='num'>{{ item.collect_account }}</text>
+      </view>
+      <view class='iconBox'>
+        <image class='discussIcon' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/discussIcon.png'></image>
+        <text class='num'>{{ item.repost_account }}</text>
+      </view>
     </view>
   </view>
+  <i-load-more tip="没有更多了" loading="{{ loading }}" />
+  <!-- 页脚导航 -->
   <view class='btootmNavWrap'>
     <view class='btnBox' bindtap='goHome'>
       <view class='imgBox'>

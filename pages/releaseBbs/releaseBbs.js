@@ -9,9 +9,12 @@ Page({
     imgSrc: '',
     typesArray: ['官方发布', '个人发布'],
     types: '',
-    shenfenArray: ['企业HR', '经纪人', '工程师'],
+    shenfenArray: ['工程师', '企业HR', '经纪人'],
     shenfen: '',
-    address: ''
+    address: '',
+    imgBox: '',
+    title: '',
+    content: ''
   },
 
   /**
@@ -21,6 +24,109 @@ Page({
     this.setData({
       imgSrc: app.globalData.imgSrc
     })
+  },
+  // 标题改变
+  titleChange(e) {
+    this.setData({
+      title: e.detail.value
+    })
+  },
+  // 内容改变
+  contentChange(e) {
+    this.setData({
+      content: e.detail.value
+    })
+  },
+  // 选择图片
+  chooseImg() {
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success: (res) => {
+        this.setData({
+          imgBox: res.tempFilePaths[0]
+        })
+        // tempFilePath可以作为img标签的src属性显示图片
+      }
+    })
+  },
+  confirm() {
+    let title = this.data.title
+    let content = this.data.content
+    let types = this.data.types
+    let shenfen = this.data.shenfen
+    let address = this.data.address
+    if (title == '') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请输入标题',
+      })
+    } else if (content == '') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请输入内容',
+      })
+    } else if (types == '') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请选择发布类型',
+      })
+    } else if (shenfen == '') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请选择发布身份',
+      })
+    } else if (address == '') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请选择公司地址',
+      })
+    } else {
+      wx.showLoading({
+        mask: true,
+        title: '提交中...',
+      })
+      wx.request({
+        url: `${app.globalData.baseUrl}/Post/savePost.html`,
+        data: {
+          sess_key: app.globalData.sess_key,
+          title: title,
+          content: content,
+          imgs: [this.data.imgBox],
+          type: types === '官方发布' ? 2 : 1,
+          user_type: shenfen === '工程师' ? 1 : shenfen === '企业HR' ? 2 : 3,
+          address: address
+        },
+        method: 'POST',
+        success: (res) => {
+          wx.hideLoading()
+          wx.showToast({
+            title: '发布成功',
+            mask: true,
+            icon: 'success',
+            success() {
+              setTimeout(() => {
+                wx.navigateBack({
+                  delta: 1
+                })
+              }, 1500)
+            }
+          })
+        },
+        fail: (res) => {
+          wx.showToast({
+            icon: 'none',
+            title: '网络请求失败',
+          })
+        }
+      })
+    }
   },
   // 发布类别
   typesChange(e) {
