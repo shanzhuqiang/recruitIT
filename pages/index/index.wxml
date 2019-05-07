@@ -5,11 +5,11 @@
   <view class='chooseOneWrap'>
     <image class='chooseOne' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/chooseOne.png'></image>
   </view>
-  <view class='homeBtn' bindtap="goHomePage" data-id="engineer">我要找兼职</view>
+  <view class='homeBtn' bindtap="goHomePage" data-id="">我要找兼职</view>
   <view class='chooseTwoWrap'>
     <image class='chooseTwo' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/chooseTwo.png'></image>
   </view>
-  <view class='homeBtn' bindtap="goHomePage" data-id="hr">我要找人</view>
+  <view class='homeBtn' bindtap="goHomePage2" data-id="">我要找人</view>
   <!-- 个人信息不授权提示 -->
   <view class='noAuthWrap' wx:if="{{ noAuthWrap }}">
     <view class='noAuthBox'>

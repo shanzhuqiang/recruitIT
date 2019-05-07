@@ -106,19 +106,26 @@ Page({
         },
         method: 'POST',
         success: (res) => {
-          wx.hideLoading()
-          wx.showToast({
-            title: '提交成功',
-            mask: true,
-            icon: 'success',
-            success() {
-              setTimeout(() => {
-                wx.reLaunch({
-                  url: '../my/my'
-                })
-              }, 1500)
-            }
-          })
+          if (res.data.error_code == 0) {
+            wx.hideLoading()
+            wx.showToast({
+              title: '提交成功',
+              mask: true,
+              icon: 'success',
+              success() {
+                setTimeout(() => {
+                  wx.reLaunch({
+                    url: '../index/index'
+                  })
+                }, 1500)
+              }
+            })
+          } else {
+            wx.showToast({
+              icon: 'none',
+              title: res.data.msg,
+            })
+          }
         },
         fail: (res) => {
           wx.showToast({

@@ -11,13 +11,19 @@ Page({
     name: '',
     xingbie: "性别",
     phone: '',
-    birthday: '出生年月'
+    birthday: '出生年月',
+    shenfenKey: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let shenfen = options.shenfen
+    this.setData({
+      shenfenKey: shenfen,
+      shenfen: shenfen == 'engineer' ? '工程师' : shenfen == 'hr' ? "企业HR" : "经纪人"
+    })
     this.setData({
       imgSrc: app.globalData.imgSrc
     })
@@ -95,31 +101,41 @@ Page({
       method: 'POST',
       success: (res) => {
         wx.hideLoading()
-        if (type == 1) {
-          wx.showToast({
-            title: '认证成功',
-            mask: true,
-            icon: 'success',
-            success() {
-              setTimeout(() => {
-                wx.reLaunch({
-                  url: '../qiuzhiyixiang/qiuzhiyixiang'
-                })
-              }, 1500)
-            }
-          })
+        if (res.data.error_code == 0) {
+          let shenfenKey = this.data.shenfenKey
+          let obj = app.globalData.userInfo
+          obj.identity_auth[shenfenKey == 'engineer' ? 'is_engineer' : shenfenKey == 'hr' ? "is_hr" : "is_agent"] = 1
+          if (type == 1) {
+            wx.showToast({
+              title: '认证成功',
+              mask: true,
+              icon: 'success',
+              success() {
+                setTimeout(() => {
+                  wx.reLaunch({
+                    url: '../qiuzhiyixiang/qiuzhiyixiang'
+                  })
+                }, 1500)
+              }
+            })
+          } else {
+            wx.showToast({
+              title: '认证成功',
+              mask: true,
+              icon: 'success',
+              success() {
+                setTimeout(() => {
+                  wx.reLaunch({
+                    url: '../my/my'
+                  })
+                }, 1500)
+              }
+            })
+          }
         } else {
           wx.showToast({
-            title: '认证成功',
-            mask: true,
-            icon: 'success',
-            success() {
-              setTimeout(() => {
-                wx.reLaunch({
-                  url: '../my/my'
-                })
-              }, 1500)
-            }
+            icon: 'none',
+            title: res.data.msg,
           })
         }
       },
@@ -131,27 +147,32 @@ Page({
       }
     })
   },
+  gotuiguang () {
+    wx.navigateTo({
+      url: '../spread/spread'
+    })
+  },
   // hr,经纪人完成认证
   finish() {
     this.nextStep()
   },
   // 选择身份
-  chooseShenfen () {
-    let that = this
-    let shenfenList = ["工程师", "企业HR", "经济人"]
-    wx.showActionSheet({
-      itemList: shenfenList,
-      success(res) {
-        that.setData({
-          shenfen: shenfenList[res.tapIndex]
-        })
-        // console.log(res.tapIndex)
-      },
-      fail(res) {
-        // console.log(res.errMsg)
-      }
-    })
-  },
+  // chooseShenfen () {
+  //   let that = this
+  //   let shenfenList = ["工程师", "企业HR", "经纪人"]
+  //   wx.showActionSheet({
+  //     itemList: shenfenList,
+  //     success(res) {
+  //       that.setData({
+  //         shenfen: shenfenList[res.tapIndex]
+  //       })
+  //       // console.log(res.tapIndex)
+  //     },
+  //     fail(res) {
+  //       // console.log(res.errMsg)
+  //     }
+  //   })
+  // },
   // 选择性别
   chooseXingbie() {
     let that = this

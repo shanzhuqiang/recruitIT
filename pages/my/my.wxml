@@ -2,9 +2,9 @@
 <view class='myWrap'>
   <view class='topBoxWrap'>
     <view class='topBox'>
-      <image class='touxiang' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/touxiang.png'></image>
+      <image class='touxiang' src='{{ userInfo.avatar }}'></image>
       <view class='firstRow'>
-        <view class='one'>歪脖子树</view>
+        <view class='one'>{{ userInfo.nickname }}</view>
         <view class='two'>{{ userType === 'engineer' ? '工程师' : userType === 'hr' ? 'HR' : '经纪人' }}</view>
         <!-- <view class='three'>
           <image class='zuanshi' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/zuanshi.png'></image>

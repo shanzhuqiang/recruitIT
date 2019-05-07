@@ -18,25 +18,33 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    setTimeout(() => {
-      this.initAuto()
-    }, 1000)
+    this.getSessKeySuccess()
     this.setData({
       imgSrc: app.globalData.imgSrc
     })
   },
+  getSessKeySuccess () {
+    if (app.globalData.sess_key != '') {
+      this.initAuto()
+    } else {
+      setTimeout(() => {
+        this.getSessKeySuccess()
+      }, 500)
+    }
+  },
   // 授权成功后添加用户信息
   addUserInfo(data) {
-    let obj = app.globalData.userInfo
+    let obj = app.globalData.userInfo || {}
     obj['avatar'] = data.avatarUrl
     obj['gender'] = data.gender
     obj['nickname'] = data.nickName
-    app.globalData.userInfo = obj
+    Object.assign(app.globalData.userInfo, obj)
     this.updateUserinfo()
   },
   // 更新用户信息
   updateUserinfo () {
     let data = app.globalData.userInfo
+    console.log(4555, data)
     wx.request({
       url: `${app.globalData.baseUrl}/User/updateUserInfo.html`,
       data: {
@@ -49,6 +57,15 @@ Page({
       },
       method: 'POST',
       success: (res) => {
+        if (res.data.error_code == 0) {
+          app.globalData.userInfo = res.data.bizobj.data.user_info
+          console.log(app.globalData.userInfo)
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+          })
+        }
       },
       fail: (res) => {
         wx.showToast({
@@ -71,7 +88,6 @@ Page({
           password: true
         })
         this.initLocation()
-        this.initUserInfo()
       } else {
         // 不需要强制授权，去登录页面
         this.setData({
@@ -81,7 +97,6 @@ Page({
     } else {
       // 没有密码必须要强制授权
       this.initLocation()
-      this.initUserInfo()
     }
   },
   // 打开登录提示
@@ -96,7 +111,11 @@ Page({
       type: 'wgs84',
       success: (res) => {
         console.log('位置授权成功回调', res)
-        this.getCityInfo(res.latitude, res.longitude)
+        let obj = app.globalData.userInfo || {}
+        obj['lat'] = res.latitude
+        obj['lng'] = res.longitude
+        Object.assign(app.globalData.userInfo, obj)
+        this.initUserInfo()
       },
       fail: (res) => {
         this.setData({
@@ -154,34 +173,36 @@ Page({
     })
   },
   // 获取城市信息
-  getCityInfo(lat, lng, on) {
-    wx.request({
-      url: `${app.globalData.baseUrl}/User/getUserLocation.html`,
-      data: {
-        sess_key: app.globalData.sess_key,
-        lat: lat,
-        lng: lng
-      },
-      method: 'POST',
-      success: (res) => {
-        let data = res.data.bizobj.location_info
-        let obj = app.globalData.userInfo
-        console.log(obj)
-        console.log(data)
-        obj['city_code'] = data.city_code
-        obj['city_name'] = data.city_name
-        obj['lat'] = lat
-        obj['lng'] = lng
-        app.globalData.userInfo = obj
-      },
-      fail: (res) => {
-        wx.showToast({
-          icon: 'none',
-          title: '网络请求失败',
-        })
-      }
-    })
-  },
+  // getCityInfo(lat, lng, on) {
+  //   wx.request({
+  //     url: `${app.globalData.baseUrl}/User/getUserLocation.html`,
+  //     data: {
+  //       sess_key: app.globalData.sess_key,
+  //       lat: lat,
+  //       lng: lng
+  //     },
+  //     method: 'POST',
+  //     success: (res) => {
+  //       let data = res.data.bizobj
+  //       ? res.data.bizobj.location_info
+  //       : {}
+  //       let obj = app.globalData.userInfo || {}
+  //       console.log(obj)
+  //       console.log(data)
+  //       obj['city_code'] = data.city_code
+  //       obj['city_name'] = data.city_name
+  //       obj['lat'] = lat
+  //       obj['lng'] = lng
+  //       Object.assign(app.globalData.userInfo, obj)
+  //     },
+  //     fail: (res) => {
+  //       wx.showToast({
+  //         icon: 'none',
+  //         title: '网络请求失败',
+  //       })
+  //     }
+  //   })
+  // },
   // 获取用户信息
   autoGetUserInfo(res) {
     if (res.detail.userInfo) {
@@ -211,15 +232,36 @@ Page({
       }
     }
   },
-  goHomePage(e) {
-    let key = e.currentTarget.dataset.id
-    app.globalData.userType = key
-    wx.navigateTo({
-      url: '../home/home'
-    })
-    // wx.navigateTo({
-    //   url: '../home/home'
-    // })
+  // 找兼职
+  goHomePage () {
+    if (app.globalData.userInfo.identity_auth.is_engineer == 1) {
+      app.globalData.userType = "engineer"
+      wx.navigateTo({
+        url: '../home/home'
+      })
+      // wx.navigateTo({
+      //   url: '../home/home'
+      // })
+    } else {
+      wx.navigateTo({
+        url: '../renzheng/renzheng?shenfen=engineer'
+      }) 
+    }
+  },
+  goHomePage2 () {
+    if (app.globalData.userInfo.identity_auth.is_hr == 1) {
+      app.globalData.userType = "hr"
+      wx.navigateTo({
+        url: '../home/home'
+      })
+      // wx.navigateTo({
+      //   url: '../home/home'
+      // })
+    } else {
+      wx.navigateTo({
+        url: '../renzheng/renzheng?shenfen=hr'
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

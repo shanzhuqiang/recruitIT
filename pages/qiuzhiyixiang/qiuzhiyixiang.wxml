@@ -5,26 +5,26 @@
   <view class='listWrap'>
     <view class='listItem'>
       <view class='leftName'>期望职位</view>
-      <input class='iptBox' bindinput='changeReJob' placeholder="请输入"/>
+      <input class='iptBox' type='text' bindinput='changeReJob' placeholder="请输入"/>
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
     </view>
     <view class='listItem'>
       <view class='leftName'>工作性质</view>
       <picker bindchange="xingzhiChange" range="{{xingzhiArray}}">
-        <input class='iptBox' placeholder="请选择" value='{{ xingzhi }}' disabled/>
+        <input class='iptBox' type='text' placeholder="请选择" value='{{ xingzhi }}' disabled/>
       </picker>
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
     </view>
     <view class='listItem'>
       <view class='leftName'>期望月薪</view>
       <picker bindchange="yuexinChange" range="{{yuexinArray}}">
-        <input class='iptBox' placeholder="请选择" value='{{ yuexin }}' disabled/>
+        <input class='iptBox' type='text' placeholder="请选择" value='{{ yuexin }}' disabled/>
       </picker>
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
     </view>
     <view class='listItem'>
       <view class='leftName'>工作地点</view>
-      <input class='iptBox' placeholder="请选择" value='{{ address }}' bindtap='addressChange' disabled/>
+      <input class='iptBox' type='text' placeholder="请选择" value='{{ address }}' bindtap='addressChange' disabled/>
       <!-- <picker bindchange="addressChange" mode="region">
       </picker> -->
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
@@ -32,14 +32,14 @@
     <view class='listItem'>
       <view class='leftName'>当前状态</view>
       <picker bindchange="zhuangtaiChange" range="{{zhuangtaiArray}}">
-        <input class='iptBox' placeholder="请选择" value='{{ zhuangtai }}' disabled/>
+        <input class='iptBox' type='text' placeholder="请选择" value='{{ zhuangtai }}' disabled/>
       </picker>
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
     </view>
     <view class='listItem'>
       <view class='leftName'>到岗时间</view>
       <picker bindchange="shijianChange" range="{{shijianArray}}">
-        <input class='iptBox' placeholder="请选择" value='{{ shijian }}' disabled/>
+        <input class='iptBox' type='text' placeholder="请选择" value='{{ shijian }}' disabled/>
       </picker>
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
     </view>

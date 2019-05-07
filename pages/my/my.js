@@ -7,6 +7,7 @@ Page({
    */
   data: {
     userType: '',
+    userInfo: null,
     releaseMark: false,
     imgSrc: ''
   }, 
@@ -16,6 +17,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
+      userInfo: app.globalData.userInfo,
       userType: app.globalData.userType,
       imgSrc: app.globalData.imgSrc
     })
