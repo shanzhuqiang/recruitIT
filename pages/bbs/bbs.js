@@ -105,17 +105,26 @@ Page({
     wx.navigateTo({
       url: '../releaseBbs/releaseBbs'
     })
+    this.setData({
+      releaseMark: false
+    })
   },
   // 发布岗位
   goReleaseGangwei() {
     wx.navigateTo({
       url: '../releaseGangwei/releaseGangwei'
     })
+    this.setData({
+      releaseMark: false
+    })
   },
   // 发布项目
   goReleaseProject() {
     wx.navigateTo({
       url: '../releaseProject/releaseProject'
+    })
+    this.setData({
+      releaseMark: false
     })
   },
   // 进入首页

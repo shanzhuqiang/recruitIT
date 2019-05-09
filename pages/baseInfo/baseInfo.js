@@ -346,7 +346,7 @@ Page({
     this.setData({
       chooseActive: key
     })
-    if (key !== 'used' && key !== 'municipality') {
+    if (key !== 'used') {
       this.getProv2CityList(key)
     }
   },

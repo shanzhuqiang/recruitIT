@@ -34,7 +34,6 @@ Page({
       userInfo: app.globalData.userInfo,
       imgSrc: app.globalData.imgSrc
     })
-    console.log(app.globalData.userInfo)
     this.getData()
   },
   getIndex (array, str) {
@@ -209,7 +208,7 @@ Page({
     this.setData({
       chooseActive: key
     })
-    if (key !== 'used' && key !== 'municipality') {
+    if (key !== 'used') {
       this.getProv2CityList(key)
     }
   },

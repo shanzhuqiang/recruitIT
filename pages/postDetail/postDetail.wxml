@@ -3,14 +3,14 @@
   <view class='topBox'>
     <view class='first'>
       <view class='leftTitle'>{{ dataInfo.name }}</view>
-      <view class='rightTitle'>{{ dataInfo.mini_salary1 + '-' + dataInfo.max_salary1 }}</view>
+      <view class='rightTitle'>{{ salaryStr }}</view>
     </view>
     <view class='second'>
-      <text>{{ dataInfo.label1 }}</text>
-      <text class='line'>|</text>
-      <text class='middle'>{{ dataInfo.label2 }}</text>
-      <text class='line'>|</text>
-      <text>{{ dataInfo.label3 }}</text>
+      <text wx:if="{{ dataInfo.label1 }}">{{ dataInfo.label1 }}</text>
+      <text class='line' wx:if="{{ dataInfo.label2 }}">|</text>
+      <text class='middle' wx:if="{{ dataInfo.label2 }}">{{ dataInfo.label2 }}</text>
+      <text class='line' wx:if="{{ dataInfo.label3 }}">|</text>
+      <text wx:if="{{ dataInfo.label3 }}">{{ dataInfo.label3 }}</text>
     </view>
     <view class='three'>
       <text>{{ dataInfo.job_label1 }}</text>
@@ -57,7 +57,7 @@
         <text>已认证</text>
       </view>
       <view class='rowThree' wx:if="{{ companyInfo.status == 2 }}">
-        <text>未认证</text>
+        <text style='{{ companyInfo.status == 2 ? "padding-left: 14rpx" : ""}}'>未认证</text>
       </view>
     </view>
     <view class='bottomAddressBox'>

@@ -1,7 +1,7 @@
 <!--pages/enterpriseInfo/enterpriseInfo.wxml-->
 <view class='enterpriseInfoWrap'>
   <view class='topInfo'>
-      <image class='logoImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/logo.png'></image>
+      <image class='logoImg' src='{{ company_info.icon }}'></image>
       <view class='topInfoRight'>
         <view class='topTitle'>
           {{ company_info.name }}
@@ -35,7 +35,7 @@
     </view>
     <view class='title'>公司介绍</view>
     <view class='xianqgingImgWrap'>
-      <image class='xianqgingImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/xianqging.png'></image>
+      <image class='xianqgingImg' src='{{ item.image }}'></image>
     </view>
     <view class='content'>
       {{ company_info.instruction }}
@@ -46,11 +46,11 @@
       <view class='zhiweiItem'>
         <view class='title'>{{ item.name }}</view>
         <view class='tagWrap'>
-          <text style='padding-left: 0'>{{ item.job_label1 }}</text>
-          <text class='middleTag'>{{ item.job_label2 }}</text>
-          <text>{{ item.job_label3 }}</text>
+          <text style='padding-left: 0' wx:if="{{ item.job_label1 }}">{{ item.job_label1 }}</text>
+          <text class='middleText' wx:if="{{ item.job_label2 }}">{{ item.job_label2 }}</text>
+          <text wx:if="{{ item.job_label3 }}">{{ item.job_label3 }}</text>
         </view>
-        <view class='money'>{{ item.mini_salary1 + '-' + item.max_salary1 + '/月' }}</view>
+        <view class='money'>{{ item.salaryStr }}</view>
         <view class='time'>今天发布</view>
       </view>
     </view>
@@ -65,7 +65,7 @@
           <text class='middleTag'>{{ item.project_label2 }}</text>
           <text>{{ item.project_label3 }}</text>
         </view>
-        <view class='money'>{{ item.mini_salary1 + '-' + item.max_salary1 + '/月' }}</view>
+        <view class='money'>{{ item.salaryStr }}</view>
         <view class='time'>{{ item.sign_num }}人已投递</view>
       </view>
     </view>

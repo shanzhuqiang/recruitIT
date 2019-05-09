@@ -34,7 +34,7 @@ Page({
         name: '10年以上'
       }
     ],
-    jingyan: {},
+    jingyan: '',
     xueliArray: [
       {
         id: 1,
@@ -61,7 +61,7 @@ Page({
         name: '博士'
       }
     ],
-    xueli: {},
+    xueli: '',
     moneyArray: [
       {
         id: 1,
@@ -96,7 +96,7 @@ Page({
         name: '50k+'
       }
     ],
-    money: {},
+    money: '',
     tagArray: [],
     addTag: false,
     tagVal:'',
@@ -282,6 +282,7 @@ Page({
     let job_label1 = this.data.tagArray[0] || ''
     let job_label2 = this.data.tagArray[1] || ''
     let job_label3 = this.data.tagArray[2] || ''
+    console.log(job_experience)
     if (name == '') {
       wx.showModal({
         showCancel: false,
@@ -294,19 +295,19 @@ Page({
         title: '提示',
         content: '请选择工作地点',
       })
-    } else if (job_experience == '') {
+    } else if (job_experience === '' || typeof(job_experience) == 'undefined') {
       wx.showModal({
         showCancel: false,
         title: '提示',
         content: '请选择经验要求',
       })
-    } else if (education == '') {
+    } else if (education === '' || typeof(education) == 'undefined') {
       wx.showModal({
         showCancel: false,
         title: '提示',
         content: '请选择学历',
       })
-    } else if (salary_range == '') {
+    } else if (salary_range === '' || typeof(salary_range) == 'undefined') {
       wx.showModal({
         showCancel: false,
         title: '提示',
@@ -347,18 +348,41 @@ Page({
         method: 'POST',
         success: (res) => {
           wx.hideLoading()
-          wx.showToast({
-            title: '发布成功',
-            mask: true,
-            icon: 'success',
-            success() {
-              setTimeout(() => {
-                wx.reLaunch({
-                  url: '../home/home'
-                })
-              }, 1500)
-            }
-          })
+          if (res.data.error_code == 0) {
+            wx.showToast({
+              title: '发布成功',
+              mask: true,
+              icon: 'success',
+              success() {
+                setTimeout(() => {
+                  wx.navigateBack({
+                    delta: 1
+                  })
+                }, 1500)
+              }
+            })
+          } else if (res.data.error_code == 3) {
+            wx.showModal({
+              title: '提示',
+              content: '未认证公司，前往认证',
+              success: (res) => {
+                if (res.confirm) {
+                  wx.redirectTo({
+                    url: '../editCompany/editCompany'
+                  })
+                } else if (res.cancel) {
+                  wx.navigateBack({
+                    delta: 1
+                  })
+                }
+              }
+            })
+          } else {
+            wx.showToast({
+              icon: 'none',
+              title: res.data.msg,
+            })
+          }
         },
         fail: (res) => {
           wx.showToast({
@@ -401,7 +425,7 @@ Page({
     this.setData({
       chooseActive: key
     })
-    if (key !== 'used' && key !== 'municipality') {
+    if (key !== 'used') {
       this.getProv2CityList(key)
     }
   },

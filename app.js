@@ -53,6 +53,7 @@ App({
     baseInfo: null,
     userInfo: null,
     imgSrc: '../../images',
-    userType: ''
+    userType: '',
+    companyObj: null
   }
 })

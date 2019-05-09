@@ -65,7 +65,6 @@ Page({
     })
   },
   maxSalaryChange(e) {
-    console.log(333, e)
     this.setData({
       max_salary: Number(e.detail.value)
     })
@@ -118,7 +117,7 @@ Page({
   // 获取区域
   getArea () {
     wx.request({
-      url: `${app.globalData.baseUrl}/Addr/prov2CityList.html`,
+      url: `${app.globalData.baseUrl}/Addr/city2DistrictList.html`,
       data: {
         sess_key: app.globalData.sess_key,
         city_code: this.data.userInfo.city_code
@@ -128,8 +127,8 @@ Page({
         let listData = res.data.bizobj.data.area_list
         console.log(listData)
         listData.unshift({
-          city_code: '',
-          city_name: '不限'
+          district_code: '',
+          district_name: '不限'
         })
         let hangyeData = []
         let length = parseInt(listData.length / 3)

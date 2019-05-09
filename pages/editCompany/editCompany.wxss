@@ -47,12 +47,16 @@
 	font-family: PingFangSC-Regular;
 	font-size: 28rpx;
 }
+.editCompanyWrap .addBoxWrap{
+  height: 136rpx;
+}
 .editCompanyWrap .addBox{
   width: 136rpx;
   height: 136rpx;
 	background-color: #f1f1f1;
 	border-radius: 4rpx;
   position: relative;
+  float: left;
 }
 .editCompanyWrap .addBox .camera{
   width: 69rpx;
@@ -69,6 +73,14 @@
   position: absolute;
   left: 47rpx;
   top: 91rpx;
+}
+.editCompanyWrap .addBox.addBox2{
+	background-color: #fff;
+  margin-left: 30rpx;
+}
+.editCompanyWrap .addBox.addBox2 .imgBox{
+  width: 100%;
+  height: 100%;
 }
 .editCompanyWrap .saveBtn{
 	width: 600rpx;

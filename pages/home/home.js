@@ -18,11 +18,11 @@ Page({
     // getPhoneMaskOnOff: true
     getPhoneMaskOnOff: false
   },
+
   /**
-   * 生命周期函数--监听页面加载
+   * 生命周期函数--监听页面显示
    */
-  onLoad: function (options) {
-    console.log(333, app.globalData)
+  onShow: function () {
     this.setData({
       userInfo: app.globalData.userInfo,
       userType: app.globalData.userType,
@@ -35,8 +35,11 @@ Page({
     } else {
       this.initResumeData()
     }
-    // this.initAuth()
-    // this.initQuartersData()
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
   },
   // 初始化授权
   initAuth() {
@@ -69,17 +72,26 @@ Page({
     wx.navigateTo({
       url: '../releaseBbs/releaseBbs'
     })
+    this.setData({
+      releaseMark: false
+    })
   },
   // 发布岗位
   goReleaseGangwei() {
     wx.navigateTo({
       url: '../releaseGangwei/releaseGangwei'
     })
+    this.setData({
+      releaseMark: false
+    })
   },
   // 发布项目
   goReleaseProject() {
     wx.navigateTo({
       url: '../releaseProject/releaseProject'
+    })
+    this.setData({
+      releaseMark: false
     })
   },
   // 发布
@@ -187,8 +199,11 @@ Page({
         console.log(res)
         let listData = res.data.bizobj.data.job_list
         listData.forEach((el, index) => {
-          el['mini_salary1'] = Math.round(el.mini_salary / 1000) + 'k'
-          el['max_salary1'] = Math.round(el.max_salary / 1000) + 'k'
+          if (el.max_salary) {
+            el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k/月'
+          } else {
+            el['salaryStr'] = '不限'
+          }
         })
         this.setData({
           quartersList: listData
@@ -305,13 +320,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
 
   },
 

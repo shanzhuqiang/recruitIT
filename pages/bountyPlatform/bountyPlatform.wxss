@@ -226,3 +226,68 @@
 	color: #999;
   padding-top: 10rpx;
 }
+/* 过滤弹框 */
+
+.bountyPlatformWrap .filterMask{
+  position: fixed;
+  left: 0;
+  top: 180rpx;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4)
+}
+.bountyPlatformWrap .filterMask .maskBody{
+  padding: 35rpx 38rpx;
+  background: #fff;
+}
+.bountyPlatformWrap .filterMask .maskBody .title{
+	font-family: PingFangSC-Regular;
+	font-size: 27rpx;
+	color: #333;
+  padding-bottom: 13rpx;
+}
+.bountyPlatformWrap .filterMask .maskBody .filterBtnWrap{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 17rpx;
+  height: 62rpx;
+}
+.bountyPlatformWrap .filterMask .maskBody .filterBtnWrap > view{
+  height: 60rpx;
+  width: 280rpx;
+	border: solid 1rpx #f0f0f0;
+	font-family: PingFangSC-Regular;
+	font-size: 24rpx;
+  text-align: center;
+}
+.bountyPlatformWrap .filterMask .maskBody .filterBtnWrap .filterBtn{
+	width: 214rpx;
+	height: 60rpx;
+	line-height: 62rpx;
+  text-align: center;
+	background-color: #fff;
+	border-radius: 4rpx;
+	border: solid 1rpx #f0f0f0;
+	font-family: PingFangSC-Regular;
+	font-size: 24rpx;
+	color: #666;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.bountyPlatformWrap .filterMask .maskBody .filterBtnWrap .filterBtn.active{
+	color: #2e70f9;
+	background-color: #e8eeff;
+}
+.bountyPlatformWrap .filterMask .maskBody .confirm{
+	width: 600rpx;
+	line-height: 88rpx;
+	height: 88rpx;
+  text-align: center;
+	background-color: #4c85fb;
+	border-radius: 4rpx;
+	font-family: PingFangSC-Regular;
+	font-size: 32rpx;
+	color: #fff;
+  margin: 38rpx auto 0;
+}

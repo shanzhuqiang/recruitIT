@@ -86,12 +86,12 @@
       <view class='itemWrap itemWrapTwo' wx:for="{{ quartersList }}" wx:key="" bindtap='goPostDetail' data-id="{{ item.id }}">
         <view class='first'>
           <view class='title'>{{ item.name }}</view>
-          <view class='money'>{{ item.mini_salary1 + '-' + item.max_salary1 + '/月' }}</view>
+          <view class='money'>{{ item.salaryStr }}</view>
         </view>
         <view class='second'>
-          <text style='padding-left: 0'>{{ item.job_label1 }}</text>
-          <text class='middleText'>{{ item.job_label2 }}</text>
-          <text>{{ item.job_label3 }}</text>
+          <text style='padding-left: 0' wx:if="{{ item.job_label1 }}">{{ item.job_label1 }}</text>
+          <text class='middleText' wx:if="{{ item.job_label2 }}">{{ item.job_label2 }}</text>
+          <text wx:if="{{ item.job_label3 }}">{{ item.job_label3 }}</text>
         </view>
         <view class='picBox'>
           <view class='left'>

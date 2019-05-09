@@ -7,9 +7,42 @@ Page({
    */
   data: {
     imgSrc: '',
-    jingyanArray: ["不限", "应届毕业生", "3年以内", "3-5年", "5-10年", "10年以上"],
+    jingyanArray: [
+      [{
+        id: '',
+        name: '不限'
+      }, {
+        id: '1',
+        name: '应届毕业生'
+      }, {
+        id: '2',
+        name: '3年以内'
+      }],
+      [{
+        id: '3',
+        name: '3-5年'
+      }, {
+        id: '4',
+        name: '5-10年'
+      }, {
+        id: '5',
+        name: '10年以上'
+      }]
+    ],
     jingyan: '',
-    zhouqiArray: ["不限", "长期兼职", "短期兼职"],
+    zhouqiArray: [
+      {
+        id: '',
+        name: '不限'
+      },
+      {
+        id: '2',
+        name: '长期兼职'
+      },
+      {
+        id: '1',
+        name: '短期兼职'
+      }],
     zhouqi: '',
     moneyArray: ["不限", "2K以下", "2K-5K", "5K-10K", "10K-15K", "15K-25K", "25K-50K", "50K以上"],
     money: ''

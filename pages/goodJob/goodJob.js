@@ -84,7 +84,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+  },
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
     this.setData({
+      page: 1,
+      topFilterBtn: '',
+      maskOnOff: false,
+      jingyanChoose: '',
+      xueliChoose: '1',
+      shaixuan1: '1',
+      shaixuan2: '',
+      keyword: '',
+      listData: [],
       userInfo: app.globalData.userInfo,
       imgSrc: app.globalData.imgSrc
     })
@@ -191,8 +205,11 @@ Page({
         console.log(listData)
         if (listData.length > 0) {
           listData.forEach((el, index) => {
-            el['mini_salary1'] = Math.round(el.mini_salary / 1000) + 'k'
-            el['max_salary1'] = Math.round(el.max_salary / 1000) + 'k'
+            if (el.max_salary) {
+              el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k/月'
+            } else {
+              el['salaryStr'] = '不限'
+            }
           })
           let newList = this.data.listData
           this.setData({
@@ -230,13 +247,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
 
   },
 

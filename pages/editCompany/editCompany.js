@@ -7,15 +7,135 @@ Page({
    */
   data: {
     imgSrc: '',
-    rongziArray: ["不需要融资", "未融资", "天使轮", "A轮", "B轮", "C轮", "D轮及以上", "上市公司"],
+    name: '',
+    addressCity: '',
+    rongziArray: [
+      {
+        id: 0,
+        name: '不需要融资'
+      },
+      {
+        id: 1,
+        name: '未融资'
+      },
+      {
+        id: 2,
+        name: '天使轮'
+      },
+      {
+        id: 3,
+        name: 'A轮'
+      },
+      {
+        id: 4,
+        name: 'B轮'
+      },
+      {
+        id: 5,
+        name: 'C轮'
+      },
+      {
+        id: 6,
+        name: 'D轮及以上'
+      },
+      {
+        id: 7,
+        name: '上市公司'
+      }],
     rongzi: '',
-    guimoArray: ["少于15人", "15-50人", "50-150人", "150-500人", "500-2000人", "2000人以上"],
+    // 1.少于15人 2.15-50人 3.50 - 150人 4.150 - 500人 5.500 - 2000人 6.2000人以上
+    guimoArray: [
+      {
+        id: 1,
+        name: '少于15人'
+      },
+      {
+        id: 2,
+        name: '15-50人'
+      },
+      {
+        id: 3,
+        name: '50-150人'
+      },
+      {
+        id: 4,
+        name: '150-500人'
+      },
+      {
+        id: 5,
+        name: '500-2000人'
+      },
+      {
+        id: 6,
+        name: '2000人以上'
+      }],
     guimo: '',
-    hangyeArray: ["移动互联网", "电子商务", "社交网络", "企业服务", "O2O", "教育", "游戏", "旅游", "金融", "医疗健康", "生活服务", "信息安全", "数据服务", "广告营销", "文化娱乐", "硬件", "分类信息", "招聘", "其他"],
+    hangyeArray: [],
     hangye: '',
-    address: '',
+    latitude: '',
+    longitude: '',
     addressInfo: '',
-    introduceChange: ''
+    introduce: '',
+    chooseActive: 'used',
+    btnChoose: '',
+    userInfo: null,
+    common: null,
+    cityList: [],
+    areaList: [],
+    cityChooseMask: false,
+    imgBox: ''
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.setData({
+      userInfo: app.globalData.userInfo,
+      imgSrc: app.globalData.imgSrc
+    })
+    this.getData()
+    this.getLineList()
+  },
+  // 获取行业
+  getLineList () {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Work/lineList.html`,
+      data: {
+        sess_key: app.globalData.sess_key
+      },
+      method: 'POST',
+      success: (res) => {
+        if (res.data.error_code == 0) {
+          let data = res.data.bizobj.data.line_list
+          this.setData({
+            hangyeArray: data
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 公司名字
+  nameChange (e) {
+    this.setData({
+      name: e.detail.value
+    })
+  },
+  // 所在城市
+  openCityChoose(e) {
+    this.setData({
+      cityChooseMask: true
+    })
   },
   // 融资
   rongziChange(e) {
@@ -37,32 +157,195 @@ Page({
   },
   // 公司地址
   addressChange (e) {
-    this.setData({
-      address: e.detail.value
+    wx.chooseLocation({
+      success: (res) => {
+        this.setData({
+          addressInfo: res.address,
+          latitude: res.latitude,
+          longitude: res.longitude
+        })
+      }
     })
+    // this.setData({
+    //   address: e.detail.value
+    // })
   },
   // 详细地址
-  addressInfoChange(e) {
-    this.setData({
-      addressInfo: e.detail.value
-    })
-
-  },
-  // 公司解释
+  // addressInfoChange(e) {
+    // this.setData({
+    //   addressInfo: e.detail.value
+    // })
+  // },
+  // 公司介绍
   introduceChange(e) {
     this.setData({
       introduce: e.detail.value
     })
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    this.setData({
-      imgSrc: app.globalData.imgSrc
+  // 下一步
+  nextStep() {
+    let data = this.data
+    let companyObj = {
+      name: data.name,
+      addressCity: data.addressCity,
+      btnChoose: data.btnChoose,
+      financing: data.rongzi.id,
+      scale: data.guimo.id,
+      re_line_id: data.hangye.id,
+      addressInfo: data.addressInfo,
+      latitude: data.latitude,
+      longitude: data.longitude,
+      instruction: data.introduce,
+      imgBox: data.imgBox
+    }
+    if (companyObj.name == '') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请输入公司名称',
+      })
+    } else if (companyObj.addressCity == '') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请选择所在城市',
+      })
+    } else if (companyObj.financing === '' || typeof(companyObj.financing) == 'undefined') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请选择融资情况',
+      })
+    } else if (companyObj.scale === '' || typeof(companyObj.scale) == 'undefined') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请选择企业规模',
+      })
+    } else if (companyObj.re_line_id === '' || typeof(companyObj.re_line_id) == 'undefined') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请选择行业',
+      })
+    }else if (companyObj.addressInfo == '') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请选择公司地址',
+      })
+    } else if (companyObj.instruction == '') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请输入公司介绍',
+      })
+    } else if (companyObj.imgBox == '') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请选择图片',
+      })
+    } else {
+      app.globalData.companyObj = companyObj
+      wx.navigateTo({
+        url: '../businessLicense/businessLicense'
+      })
+    }
+  },
+  // 选择图片
+  chooseImg() {
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success: (res) => {
+        this.setData({
+          imgBox: res.tempFilePaths[0]
+        })
+        // tempFilePath可以作为img标签的src属性显示图片
+      }
     })
   },
-
+  // 初始化获取数据
+  getData() {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Addr/chooseDistrict.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        lat: this.data.userInfo.lat,
+        lng: this.data.userInfo.lng
+      },
+      method: 'POST',
+      success: (res) => {
+        if (res.data.error_code == 0) {
+          let resData = res.data.bizobj.data
+          this.setData({
+            cityList: resData.prov_list,
+            common: resData.common
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 左侧选择省份
+  chooseCity(e) {
+    let key = e.currentTarget.dataset.id
+    this.setData({
+      chooseActive: key
+    })
+    if (key !== 'used') {
+      this.getProv2CityList(key)
+    }
+  },
+  getProv2CityList(code) {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Addr/prov2CityList.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        prov_code: code
+      },
+      method: 'POST',
+      success: (res) => {
+        if (res.data.error_code == 0) {
+          let resData = res.data.bizobj.data
+          this.setData({
+            areaList: resData.area_list
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 选择城市
+  chooseBtn(e) {
+    this.setData({
+      btnChoose: e.currentTarget.dataset.id,
+      addressCity: e.currentTarget.dataset.ida,
+      cityChooseMask: false
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

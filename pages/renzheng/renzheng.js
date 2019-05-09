@@ -119,18 +119,41 @@ Page({
               }
             })
           } else {
-            wx.showToast({
-              title: '认证成功',
-              mask: true,
-              icon: 'success',
-              success() {
-                setTimeout(() => {
-                  wx.reLaunch({
-                    url: '../my/my'
-                  })
-                }, 1500)
-              }
-            })
+            if (shenfenKey == 'hr') {
+              wx.showModal({
+                title: '认证成功',
+                content: '认证成功,立即前往认证公司',
+                success: (res) => {
+                  if (res.confirm) {
+                    wx.redirectTo({
+                      url: '../editCompany/editCompany'
+                    })
+                  } else if (res.cancel) {
+                    wx.navigateBack({
+                      delta: 1
+                    })
+                  }
+                }
+              })
+            }
+            // wx.showToast({
+            //   title: '认证成功',
+            //   mask: true,
+            //   icon: 'success',
+            //   success() {
+            //     setTimeout(() => {
+            //       if (shenfenKey == 'hr') {
+            //         wx.reLaunch({
+            //           url: '../index/index'
+            //         })
+            //       } else {
+            //         wx.reLaunch({
+            //           url: '../my/my'
+            //         })
+            //       }
+            //     }, 1500)
+            //   }
+            // })
           }
         } else {
           wx.showToast({

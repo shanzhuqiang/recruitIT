@@ -44,12 +44,12 @@ Page({
   },
   // 进入手机号页面
   goSettingPhone() {
-    let mobile = this.data.mobile
-    if (mobile && mobile === '绑定手机') {
+    // let mobile = this.data.mobile
+    // if (mobile && mobile === '绑定手机') {
       wx.navigateTo({
         url: '../settingPhone/settingPhone'
       })
-    }
+    // }
   },
   goSettingPassword() {
     wx.navigateTo({

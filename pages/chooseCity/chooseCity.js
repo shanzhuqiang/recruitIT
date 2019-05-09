@@ -56,7 +56,7 @@ Page({
     this.setData({
       chooseActive: key
     })
-    if (key !== 'used' && key !== 'municipality') {
+    if (key !== 'used') {
       this.getProv2CityList(key)
     }
   },
@@ -85,8 +85,15 @@ Page({
   },
   // 选择城市
   chooseBtn(e) {
+    let data = e.currentTarget.dataset
     this.setData({
-      btnChoose: e.currentTarget.dataset.id
+      btnChoose: data.id
+    })
+    let usrData = app.globalData.userInfo
+    usrData.city_code = data.id
+    usrData.city_name = data.ida
+    wx.navigateBack({
+      delta: 1
     })
   },
   /**

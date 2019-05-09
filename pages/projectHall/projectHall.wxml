@@ -38,7 +38,7 @@
     <view class='maskBody'>
       <view class='title'>工作区域</view>
       <view class='filterBtnWrap' wx:for="{{ quyuData }}" wx:key="">
-        <view class='filterBtn {{ quyuChoose === item.city_code ? "active" : ""}}' style='{{item.city_name === null ? "visibility:hidden" : ""}}' wx:for="{{ item }}" data-id='{{ item.city_code }}' bindtap='quyuChooseFilter' wx:key="">{{ item.city_name }}</view>
+        <view class='filterBtn {{ quyuChoose === item.district_code ? "active" : ""}}' style='{{item.district_name === null ? "visibility:hidden" : ""}}' wx:for="{{ item }}" data-id='{{ item.district_code }}' bindtap='quyuChooseFilter' wx:key="">{{ item.district_name }}</view>
       </view>
     </view>
   </view>

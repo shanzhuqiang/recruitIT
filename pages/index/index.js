@@ -254,9 +254,6 @@ Page({
       wx.navigateTo({
         url: '../home/home'
       })
-      // wx.navigateTo({
-      //   url: '../home/home'
-      // })
     } else {
       wx.navigateTo({
         url: '../renzheng/renzheng?shenfen=hr'

@@ -11,7 +11,8 @@ Page({
     guanzhuOnOff: false,
     company_info: {},
     projectList: [],
-    quartersList: []
+    quartersList: [],
+    id: ''
   },
 
   /**
@@ -19,6 +20,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
+      id: options.id,
       imgSrc: app.globalData.imgSrc
     })
     this.getInfo(options.id)
@@ -50,9 +52,8 @@ Page({
       method: 'POST',
       success: (res) => {
         let company_info = res.data.bizobj.data.company_info
-        console.log(company_info.attention)
         this.setData({
-          guanzhuOnOff: company_info.attention === 1,
+          guanzhuOnOff: company_info.attention == 1,
           company_info: company_info
         })
       },
@@ -79,8 +80,11 @@ Page({
         let listData = res.data.bizobj.data.job_list
         console.log(listData)
         listData.forEach((el, index) => {
-          el['mini_salary1'] = Math.round(el.mini_salary / 1000) + 'k'
-          el['max_salary1'] = Math.round(el.max_salary / 1000) + 'k'
+          if (el.max_salary) {
+            el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k/月'
+          } else {
+            el['salaryStr'] = '不限'
+          }
         })
         this.setData({
           quartersList: listData
@@ -109,8 +113,11 @@ Page({
         let listData = res.data.bizobj.data.project_list
         console.log(listData)
         listData.forEach((el, index) => {
-          el['mini_salary1'] = Math.round(el.mini_salary / 1000) + 'k'
-          el['max_salary1'] = Math.round(el.max_salary / 1000) + 'k'
+          if (el.max_salary) {
+            el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k/月'
+          } else {
+            el['salaryStr'] = '不限'
+          }
         })
         this.setData({
           projectList: listData
@@ -124,10 +131,90 @@ Page({
       }
     })
   },
-  // 关注
+  // 关注/取消关注点击
   guanzhuClick () {
-    this.setData({
-      guanzhuOnOff: !this.data.guanzhuOnOff
+    if (!this.data.guanzhuOnOff) {
+      this.gunzhuOn()
+    } else {
+      this.gunzhuOff()
+    }
+  },
+  // 关注
+  gunzhuOn() {
+    wx.showLoading({
+      mask: true,
+      title: '关注中...',
+    })
+    wx.request({
+      url: `${app.globalData.baseUrl}/company/collectCompany.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        re_company_id: this.data.id
+      },
+      method: 'POST',
+      success: (res) => {
+        if (res.data.error_code == 0) {
+          wx.hideLoading()
+          wx.showToast({
+            title: '关注成功',
+            mask: true,
+            icon: 'success'
+          })
+          this.setData({
+            guanzhuOnOff: true
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 取消关注
+  gunzhuOff() {
+    wx.showLoading({
+      mask: true,
+      title: '取消中...',
+    })
+    wx.request({
+      url: `${app.globalData.baseUrl}/company/unCollectCompany.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        re_company_id: this.data.id
+      },
+      method: 'POST',
+      success: (res) => {
+        if (res.data.error_code == 0) {
+          wx.hideLoading()
+          wx.showToast({
+            title: '取消成功',
+            mask: true,
+            icon: 'success'
+          })
+          this.setData({
+            guanzhuOnOff: false
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
     })
   },
   // 切换tab
