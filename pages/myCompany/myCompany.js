@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imgSrc: ''
+    imgSrc: '',
+    company_info: {}
   },
 
   /**
@@ -15,6 +16,29 @@ Page({
   onLoad: function (options) {
     this.setData({
       imgSrc: app.globalData.imgSrc
+    })
+    this.getInfo()
+  },
+  // 获取公司详情
+  getInfo() {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Company/companyInfo.html`,
+      data: {
+        sess_key: app.globalData.sess_key
+      },
+      method: 'POST',
+      success: (res) => {
+        let company_info = res.data.bizobj.data.company_info
+        this.setData({
+          company_info: company_info
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
     })
   },
   //编辑

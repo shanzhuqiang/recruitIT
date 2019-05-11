@@ -47,7 +47,7 @@
         <view class='title'>{{ item.name }}</view>
         <view class='tagWrap'>
           <text style='padding-left: 0' wx:if="{{ item.job_label1 }}">{{ item.job_label1 }}</text>
-          <text class='middleText' wx:if="{{ item.job_label2 }}">{{ item.job_label2 }}</text>
+          <text class='middleTag' wx:if="{{ item.job_label2 }}">{{ item.job_label2 }}</text>
           <text wx:if="{{ item.job_label3 }}">{{ item.job_label3 }}</text>
         </view>
         <view class='money'>{{ item.salaryStr }}</view>
@@ -61,9 +61,9 @@
       <view class='zhiweiItem'>
         <view class='title'>{{ item.name }}</view>
         <view class='tagWrap'>
-          <text style='padding-left: 0'>{{ item.project_label1 }}</text>
-          <text class='middleTag'>{{ item.project_label2 }}</text>
-          <text>{{ item.project_label3 }}</text>
+          <text style='padding-left: 0' wx:if="{{ item.project_label1 }}">{{ item.project_label1 }}</text>
+          <text class='middleTag' wx:if="{{ item.project_label2 }}">{{ item.project_label2 }}</text>
+          <text wx:if="{{ item.project_label3 }}">{{ item.project_label3 }}</text>
         </view>
         <view class='money'>{{ item.salaryStr }}</view>
         <view class='time'>{{ item.sign_num }}人已投递</view>

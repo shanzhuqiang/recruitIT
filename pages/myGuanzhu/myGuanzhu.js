@@ -42,6 +42,12 @@ Page({
       }
     })
   },
+  // 简历详情
+  goInfo(e) {
+    wx.navigateTo({
+      url: `../resumeDetail/resumeDetail?id=${e.currentTarget.dataset.id}`
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

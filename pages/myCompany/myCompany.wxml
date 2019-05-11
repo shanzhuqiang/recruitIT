@@ -1,19 +1,19 @@
 <!--pages/enterpriseInfo/enterpriseInfo.wxml-->
 <view class='myCompanyWrap'>
   <view class='topInfo'>
-      <image class='logoImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/logo.png'></image>
+      <image class='logoImg' src='{{ company_info.icon }}'></image>
       <view class='topInfoRight'>
         <view class='topTitle'>
-          杭州魅智科技有限公司杭州魅智科技有限公司杭州魅智科技有限公司杭州魅智科技有限公司
+          {{ company_info.name }}
         </view>
-        <view class='guanzhuGag' bindtap='goEditCompany'>编辑</view>
+        <view class='guanzhuGag' bindtap='goEditCompany' data-id="{{ company_info.id }}">编辑</view>
         <view class='bottomTag'>
-          <text style='padding-left: 0'>杭州</text>
-          <text class='borderLeft'>未融资</text>
-          <text class='borderBoth'>15-50人</text>
-          <text>移动互联网</text>
+          <text style='padding-left: 0'>{{ company_info.label1 }}</text>
+          <text class='borderLeft'>{{ company_info.label2 }}</text>
+          <text class='borderBoth'>{{ company_info.label3 }}</text>
+          <text>{{ company_info.label4 }}</text>
         </view>
-        <view class='okBox'>
+        <view class='okBox' wx:if="{{ company_info.status === 1 }}">
           <image class='okImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/ok.png'></image>
           已认证
         </view>
@@ -24,16 +24,16 @@
     <view class='addressWrap'>
       <view class='addressOne'>
       <image class='localImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/local.png'></image>
-      杭州市滨江区
+      {{ company_info.area }}
       </view>
-      <view class='addressTwo'>六合路六合桥六和塔</view>
+      <view class='addressTwo'>{{ company_info.address }}</view>
     </view>
     <view class='title'>公司介绍</view>
     <view class='xianqgingImgWrap'>
-      <image class='xianqgingImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/xianqging.png'></image>
+      <image class='xianqgingImg' src='{{ item.image }}'></image>
     </view>
     <view class='content'>
-      啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦
+      {{ company_info.instruction }}
     </view>
   </view>
 </view>
