@@ -2,7 +2,7 @@
 <view class='guanzhugongsiWrap'>
   <view class='listItem' wx:for="{{ listData }}" data-id="{{ item.id }}" wx:key="" bindtap='goEnterpriseInfo'>
     <view class='left'>
-      <image class='logo' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/logo.png'></image>
+      <image class='logo' src='{{ item.icon }}'></image>
     </view>
     <view class='right'>
       <view class='first'>{{ item.name }}</view>
@@ -15,19 +15,8 @@
       <view class='three'>在找职位(<text>{{ item.job_num }}</text>)</view>
     </view>
   </view>
-  <!-- <view class='listItem'>
-    <view class='left'>
-      <image class='logo' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/logo.png'></image>
-    </view>
-    <view class='right'>
-      <view class='first'>杭州平面设计有限公司</view>
-      <view class='second'>
-        <text style='padding-left: 0'>杭州</text>
-        <text>未融资</text>
-        <text>15-50人</text>
-        <text style='border-right: none'>移动互联网</text>
-      </view>
-      <view class='three'>在找职位(<text>2</text>)</view>
-    </view>
-  </view> -->
+  <view wx:if="{{ listData.length == 0 }}" class='noDataWrap'>
+    <image class='noData' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/noData.png'></image>
+    <view class='textWord'>暂无关注公司</view>
+  </view>
 </view>

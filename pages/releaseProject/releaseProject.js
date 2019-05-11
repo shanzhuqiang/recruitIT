@@ -8,17 +8,19 @@ Page({
   data: {
     imgSrc: '',
     jingyanArray: [
-      [{
-        id: '',
+      {
+        id: '0',
         name: '不限'
-      }, {
+      },
+      {
         id: '1',
         name: '应届毕业生'
-      }, {
+      },
+      {
         id: '2',
         name: '3年以内'
-      }],
-      [{
+      },
+      {
         id: '3',
         name: '3-5年'
       }, {
@@ -27,12 +29,12 @@ Page({
       }, {
         id: '5',
         name: '10年以上'
-      }]
+      }
     ],
     jingyan: '',
     zhouqiArray: [
       {
-        id: '',
+        id: '3',
         name: '不限'
       },
       {
@@ -44,19 +46,94 @@ Page({
         name: '短期兼职'
       }],
     zhouqi: '',
-    moneyArray: ["不限", "2K以下", "2K-5K", "5K-10K", "10K-15K", "15K-25K", "25K-50K", "50K以上"],
-    money: ''
+    moneyArray: [
+      {
+        id: '1',
+        name: '不限'
+      },
+      {
+        id: '2',
+        name: '2K以下'
+      },
+      {
+        id: '3',
+        name: '2K-5K'
+      },
+      {
+        id: '4',
+        name: '5K-10K'
+      },
+      {
+        id: '5',
+        name: '10K-15K'
+      },
+      {
+        id: '6',
+        name: '15K-25K'
+      },
+      {
+        id: '7',
+        name: '25K-50K'
+      },
+      {
+        id: '8',
+        name: '50K以上'
+      }
+    ],
+    money: '',
+    gangweiTextareaMaskBox: false,
+    instruction: '',
+    yaoqiuTextareaMaskBox: false,
+    requirement: ''
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.setData({
+      imgSrc: app.globalData.imgSrc
+    })
+  },
+  // 项目名称
+  nameChange (e) {
+    this.setData({
+      name: e.detail.value
+    })
   },
   // 项目职责
   goProjectZhize() {
-    wx.navigateTo({
-      url: '../projectZhize/projectZhize'
+    this.setData({
+      gangweiTextareaMaskBox: true
+    })
+  },
+  // 关闭岗位职责
+  choseGangwei() {
+    this.setData({
+      gangweiTextareaMaskBox: false
     })
   },
   // 任职要求
   goRenzhiyaoqiu() {
-    wx.navigateTo({
-      url: '../renzhiyaoqiu/renzhiyaoqiu'
+    this.setData({
+      yaoqiuTextareaMaskBox: true
+    })
+  },
+  // 关闭任职要求
+  choseYaoqiu() {
+    this.setData({
+      yaoqiuTextareaMaskBox: false
+    })
+  },
+  // 岗位职责输入框输入内容
+  gangweiChange(e) {
+    this.setData({
+      instruction: e.detail.value
+    })
+  },
+  // 任职要求输入框输入内容
+  zhizeChange(e) {
+    this.setData({
+      requirement: e.detail.value
     })
   },
   // 经验要求
@@ -77,13 +154,114 @@ Page({
       money: this.data.moneyArray[e.detail.value]
     })
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    this.setData({
-      imgSrc: app.globalData.imgSrc
-    })
+  // 发布
+  saveRelease() {
+    let name = this.data.name
+    let job_experience = this.data.jingyan.id
+    let nature = this.data.zhouqi.id
+    let salary_range = this.data.money.id
+    let instruction = this.data.instruction
+    let requirement = this.data.requirement
+    console.log(job_experience)
+    if (name == '') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请输入项目名称',
+      })
+    } else if (job_experience === '' || typeof (job_experience) == 'undefined') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请选择经验要求',
+      })
+    } else if (nature === '' || typeof (nature) == 'undefined') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请选择工作周期',
+      })
+    } else if (salary_range === '' || typeof (salary_range) == 'undefined') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请选择月薪',
+      })
+    } else if (instruction == '') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请输入项目职责',
+      })
+    } else if (requirement == '') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请输入任职要求',
+      })
+    } else {
+      wx.showLoading({
+        mask: true,
+        title: '提交中...',
+      })
+      wx.request({
+        url: `${app.globalData.baseUrl}/Project/publish.html`,
+        data: {
+          sess_key: app.globalData.sess_key,
+          name: name,
+          job_experience: job_experience,
+          nature: nature,
+          salary_range: salary_range,
+          instruction: instruction,
+          requirement: requirement
+        },
+        method: 'POST',
+        success: (res) => {
+          wx.hideLoading()
+          if (res.data.error_code == 0) {
+            wx.showToast({
+              title: '发布成功',
+              mask: true,
+              icon: 'success',
+              success() {
+                setTimeout(() => {
+                  wx.navigateBack({
+                    delta: 1
+                  })
+                }, 1500)
+              }
+            })
+          } else if (res.data.error_code == 3) {
+            wx.showModal({
+              title: '提示',
+              content: '未认证公司，前往认证',
+              success: (res) => {
+                if (res.confirm) {
+                  wx.redirectTo({
+                    url: '../editCompany/editCompany'
+                  })
+                } else if (res.cancel) {
+                  wx.navigateBack({
+                    delta: 1
+                  })
+                }
+              }
+            })
+          } else {
+            wx.showToast({
+              icon: 'none',
+              title: res.data.msg,
+            })
+          }
+        },
+        fail: (res) => {
+          wx.showToast({
+            icon: 'none',
+            title: '网络请求失败',
+          })
+        }
+      })
+    }
   },
 
   /**

@@ -335,7 +335,7 @@ Page({
         data: {
           sess_key: app.globalData.sess_key,
           name: name, 
-          city_code: btnChoose,
+          // city_code: btnChoose,
           job_experience: job_experience,
           education: education,
           salary_range: salary_range,

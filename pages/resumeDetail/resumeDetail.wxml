@@ -4,14 +4,14 @@
     <image class='touxiang' wx:if="{{ resumeInfo.user_info.avatar }}" src='{{ resumeInfo.user_info.avatar }}'></image>
     <view class='title'>基本信息</view>
     <view class='first'>
-      <text class='name {{ pay ? "" : "mosaic" }}'>{{ resumeInfo.user_info.username }}</text>
+      <text class='name {{ download ? "" : "mosaic" }}'>{{ resumeInfo.user_info.username }}</text>
       <text class='profession'>{{ resumeInfo.user_info.job_name }}</text>
     </view>
     <view class='second'>
       <text style='padding-left: 0'>{{ resumeInfo.user_info.gender == 1 ? '男' : resumeInfo.user_info.gender == 2 ? '女' : '未知' }}</text>
-      <text>25岁</text>
+      <text>{{ resumeInfo.user_info.birthday2 }}</text>
       <text>{{ resumeInfo.user_info.city_name }}</text>
-      <text>4年</text>
+      <text>{{ resumeInfo.user_info.workTime }}</text>
       <text style='border-right: none'>{{ resumeInfo.user_info.identity == 1 ? '职场人士' : '应届毕业生' }}</text>
     </view>
     <view class='three'>
@@ -23,13 +23,13 @@
       <view class='iconWrap'>
         <image class='phone' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/phone.png'></image>
       </view>
-      <view class='strBox {{ pay ? "" : "mosaic" }}'>{{resumeInfo.user_info.mobile }}</view>
+      <view class='strBox {{ download ? "" : "mosaic" }}'>{{resumeInfo.user_info.mobile }}</view>
     </view>
     <view class='five'>
       <view class='iconWrap'>
         <image class='email' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/email.png'></image>
       </view>
-      <view class='strBox {{ pay ? "" : "mosaic" }}'>{{ resumeInfo.user_info.email }}</view>
+      <view class='strBox {{ download ? "" : "mosaic" }}'>{{ resumeInfo.user_info.email }}</view>
     </view>
     <view style='height: 30rpx'></view>
   </view>
@@ -49,7 +49,7 @@
         <view class='right'>
           <view class='name1'>{{ item.major }}</view>
           <view class='gongsi1'>{{ item.name }}</view>
-          <view class='time1'>{{ item.start_time }}{{ item.end_time }}</view>
+          <view class='time1'>{{ item.start_time }}-{{ item.end_time }}</view>
         </view>
       </view>
       <view class='contentTitle'>工作内容</view>
@@ -87,12 +87,12 @@
     </view>
   </view>
   <view style='height: 100rpx;'></view>
-  <view class='bottomBtn' bindtap='guanzhu' data-id="{{ item.user_id }}">
-    <view class='leftBtn'>
-      <view style='padding-top:18rpx;'><image class='shoucang' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/shoucang.png'></image></view>
-      <view>关注</view>
+  <view class='bottomBtn'>
+    <view class='leftBtn' bindtap='guanzhu' data-id="{{ resumeInfo.user_info.user_id }}">
+      <view style='padding-top:18rpx;'><image class='shoucang' wx:if="{{imgSrc !== ''}}" src='{{ collect ? imgSrc + "/shoucang2.png" : imgSrc + "/shoucang.png" }}'></image></view>
+      <view>{{ collect ? '已关注' : '关注' }}</view>
     </view>
-    <view class='rightBtn' bindtap='bottomBtn'>{{ pay ? "联系对方" : "下载" }}</view>
+    <view class='rightBtn' bindtap='bottomBtn'>{{ download ? "联系对方" : "下载" }}</view>
   </view>
 </view>
 

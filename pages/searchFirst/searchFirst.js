@@ -274,7 +274,8 @@ Page({
         projectList: [],
         quartersList: [],
         xiangmuMask: false,
-        gangweiMask: false
+        gangweiMask: false,
+        keyWord: ''
       })
     }
   },
@@ -376,8 +377,11 @@ Page({
       success: (res) => {
         let listData = res.data.bizobj.data.project_list
         listData.forEach((el, index) => {
-          el['mini_salary1'] = Math.round(el.mini_salary / 1000) + 'k'
-          el['max_salary1'] = Math.round(el.max_salary / 1000) + 'k'
+          if (el.max_salary) {
+            el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k/月'
+          } else {
+            el['salaryStr'] = '不限'
+          }
         })
         this.setData({
           projectList: listData
@@ -411,8 +415,11 @@ Page({
       success: (res) => {
         let listData = res.data.bizobj.data.job_list
         listData.forEach((el, index) => {
-          el['mini_salary1'] = Math.round(el.mini_salary / 1000) + 'k'
-          el['max_salary1'] = Math.round(el.max_salary / 1000) + 'k'
+          if (el.max_salary) {
+            el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k/月'
+          } else {
+            el['salaryStr'] = '不限'
+          }
         })
         this.setData({
           quartersList: listData

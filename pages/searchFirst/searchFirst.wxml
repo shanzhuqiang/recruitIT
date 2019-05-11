@@ -11,7 +11,7 @@
     </view>
   </view>
   <!-- 搜索记录 -->
-  <view class='historyWrap' wx:if="{{ projectList.length == 0 && quartersList.length == 0 }}">
+  <view class='historyWrap' wx:if="{{ keyWord == '' }}">
     <view class='typeWrap'>
       <view class='{{ typeStr === "xiangmu" ? "active" : "" }}' bindtap='chooseType' data-id="xiangmu">项目</view>
       <view class='{{ typeStr === "gangwei" ? "active" : "" }}' bindtap='chooseType' data-id="gangwei">岗位</view>
@@ -49,12 +49,12 @@
       <view class='first'>
         <view class='box'>招标</view>
         <view class='title'>{{ item.name }}</view>
-        <view class='money'>{{ item.mini_salary1 + '-' + item.max_salary1 + '/月' }}</view>
+        <view class='money'>{{ item.salaryStr }}</view>
       </view>
       <view class='second'>
-        <text style='padding-left: 0'>{{ item.project_label1 }}</text>
-        <text class='middleText'>{{ item.project_label2 }}</text>
-        <text>{{ item.project_label3 }}</text>
+        <text style='padding-left: 0' wx:if="{{ item.project_label1 }}">{{ item.project_label1 }}</text>
+        <text class='middleText' wx:if="{{ item.project_label2 }}">{{ item.project_label2 }}</text>
+        <text wx:if="{{ item.project_label3 }}">{{ item.project_label3 }}</text>
       </view>
       <view class='content'>
         {{ item.company_name }}
@@ -64,17 +64,22 @@
       </view>
     </view>
   </view>
+  <!-- 项目缺省 -->
+  <view wx:if="{{ keyWord !== '' && (projectList.length == 0 && typeStr === 'xiangmu') }}" class='noDataWrap'>
+    <image class='noData' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/noData.png'></image>
+    <view class='textWord'>暂无信息</view>
+  </view>
   <!-- 岗位list -->
   <view class='projectWrap' wx:if="{{ quartersList.length != 0 && typeStr === 'gangwei' }}">
     <view class='itemWrap itemWrapTwo' wx:for="{{ quartersList }}" wx:key="" data-id="{{ item.id }}" bindtap='goPostDetail'>
       <view class='first'>
         <view class='title'>{{ item.name }}</view>
-        <view class='money'>{{ item.mini_salary1 + '-' + item.max_salary1 + '/月' }}</view>
+        <view class='money'>{{ item.salaryStr }}</view>
       </view>
       <view class='second'>
-        <text style='padding-left: 0'>{{ item.job_label1 }}</text>
-        <text class='middleText'>{{ item.job_label2 }}</text>
-        <text>{{ item.job_label3 }}</text>
+        <text style='padding-left: 0' wx:if="{{ item.job_label1 }}">{{ item.job_label1 }}</text>
+        <text class='middleText' wx:if="{{ item.job_label2 }}">{{ item.job_label2 }}</text>
+        <text wx:if="{{ item.job_label3 }}">{{ item.job_label3 }}</text>
       </view>
       <view class='picBox'>
         <view class='left'>
@@ -86,6 +91,11 @@
         </view>
       </view>
     </view>
+  </view>
+  <!-- 岗位缺省 -->
+  <view wx:if="{{ keyWord !== '' && (quartersList.length == 0 && typeStr === 'gangwei') }}" class='noDataWrap'>
+    <image class='noData' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/noData.png'></image>
+    <view class='textWord'>暂无信息</view>
   </view>
   <!-- 项目过滤遮罩 -->
   <view class='makWrap' wx:if="{{ filterStr !== '' && xiangmuMask }}">

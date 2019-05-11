@@ -66,12 +66,12 @@
         <view class='first'>
           <view class='box'>招标</view>
           <view class='title'>{{ item.name }}</view>
-          <view class='money'>{{ item.mini_salary1 + '-' + item.max_salary1 + '/月' }}</view>
+          <view class='money'>{{ item.salaryStr }}</view>
         </view>
         <view class='second'>
-          <text style='padding-left: 0'>{{ item.project_label1 }}</text>
-          <text class='middleText'>{{ item.project_label2 }}</text>
-          <text>{{ item.project_label3 }}</text>
+          <text style='padding-left: 0' wx:if="{{ item.project_label1 }}">{{ item.project_label1 }}</text>
+          <text class='middleText' wx:if="{{ item.project_label2 }}">{{ item.project_label2 }}</text>
+          <text wx:if="{{ item.project_label3 }}">{{ item.project_label3 }}</text>
         </view>
         <view class='content'>
           {{ item.company_name }}
@@ -110,7 +110,7 @@
     <view class='titleSecond'>
       <text>精英简历</text>
     </view>
-    <view class='jinyingItemWrap' wx:for="{{ talentResumeList }}" wx:key="" bindtap='goResumeDetail'>
+    <view class='jinyingItemWrap' wx:for="{{ talentResumeList }}" wx:key="" bindtap='goResumeDetail' data-id="{{ item.id }}">
       <view class='firstRow'>
         <view class='leftImgBox'>
           <image class='leftImg' src='{{ item.avatar }}'></image>

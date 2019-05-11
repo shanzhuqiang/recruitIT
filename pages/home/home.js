@@ -136,9 +136,9 @@ Page({
     }
   },
   // 简历
-  goResumeDetail() {
+  goResumeDetail(e) {
     wx.navigateTo({
-      url: '../resumeDetail/resumeDetail'
+      url: `../resumeDetail/resumeDetail?id=${e.currentTarget.dataset.id}`
     })
   },
   // 岗位信息
@@ -168,8 +168,11 @@ Page({
       success: (res) => {
         let listData = res.data.bizobj.data.project_list
         listData.forEach((el, index) => {
-          el['mini_salary1'] = Math.round(el.mini_salary / 1000) + 'k'
-          el['max_salary1'] = Math.round(el.max_salary / 1000) + 'k'
+          if (el.max_salary) {
+            el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k/月'
+          } else {
+            el['salaryStr'] = '不限'
+          }
         })
         this.setData({
           projectList: listData

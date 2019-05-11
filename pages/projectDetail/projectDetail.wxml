@@ -3,7 +3,7 @@
   <view class='topBox'>
     <view class='first'>
       <view class='leftTitle'>{{ job_info.name }}</view>
-      <view class='rightTitle'>{{ job_info.mini_salary1 + '-' + job_info.max_salary1 }}</view>
+      <view class='rightTitle'>{{ job_info.salaryStr }}</view>
     </view>
     <view class='second'>
       <text>{{ job_info.label1 }}</text>
@@ -19,7 +19,7 @@
     </view>
     <view class='fourBox'>
       <view class='leftImg'>
-        <image class='touxiang' wx:if="{{ dataInfo.hr_icon }}" src='{{ dataInfo.hr_icon }}'></image>
+        <image class='touxiang' wx:if="{{ job_info.hr_icon }}" src='{{ job_info.hr_icon }}'></image>
       </view>
       <view class='rightBox'>
         <view class='firstRow'>
@@ -57,7 +57,7 @@
         <text>已认证</text>
       </view>
       <view class='rowThree' wx:if="{{ companyInfo.status == 2 }}">
-        <text>未认证</text>
+        <text style='padding-left: 14rpx'>未认证</text>
       </view>
     </view>
     <view class='bottomAddressBox'>

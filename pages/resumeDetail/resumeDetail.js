@@ -9,8 +9,8 @@ Page({
     imgSrc: '',
     id: '',
     resumeInfo: null,
-    pay: false,
-    gunzhuIcon: false
+    collect: false,
+    download: false
   },
   /**
    * 生命周期函数--监听页面加载
@@ -25,38 +25,47 @@ Page({
   },
   // 关注
   guanzhu(e) {
-    wx.showLoading({
-      mask: true,
-      title: '关注中...',
-    })
-    wx.request({
-      url: `${app.globalData.baseUrl}/user/collect.html`,
-      data: {
-        sess_key: app.globalData.sess_key,
-        user_id: e.currentTarget.dataset.id
-      },
-      method: 'POST',
-      success: (res) => {
-        wx.hideLoading()
-        wx.showToast({
-          title: '关注成功',
-          icon: 'success'
-        })
-        this.setData({
-          pay: true
-        })
-      },
-      fail: (res) => {
-        wx.showToast({
-          icon: 'none',
-          title: '网络请求失败',
-        })
-      }
-    })
+    if (!this.data.collect) {
+      wx.showLoading({
+        mask: true,
+        title: '关注中...',
+      })
+      wx.request({
+        url: `${app.globalData.baseUrl}/user/collect.html`,
+        data: {
+          sess_key: app.globalData.sess_key,
+          user_id: e.currentTarget.dataset.id
+        },
+        method: 'POST',
+        success: (res) => {
+          wx.hideLoading()
+          if (res.data.error_code == 0) {
+            wx.showToast({
+              title: '关注成功',
+              icon: 'success'
+            })
+            this.setData({
+              collect: true
+            })
+          } else {
+            wx.showToast({
+              icon: 'none',
+              title: res.data.msg,
+            })
+          }
+        },
+        fail: (res) => {
+          wx.showToast({
+            icon: 'none',
+            title: '网络请求失败',
+          })
+        }
+      })
+    }
   },
   // 下载按钮
   bottomBtn() {
-    if (!this.data.pay) {
+    if (!this.data.download) {
       wx.showModal({
         confirmText: '立即下载',
         confirmColor: '#0073ff',
@@ -81,6 +90,7 @@ Page({
       })
     }
   },
+  // 下载简历
   downResume() {
     wx.showLoading({
       mask: true,
@@ -95,13 +105,20 @@ Page({
       method: 'POST',
       success: (res) => {
         wx.hideLoading()
-        wx.showToast({
-          title: '下载成功',
-          icon: 'success'
-        })
-        this.setData({
-          gunzhuIcon: true
-        })
+        if (res.data.error_code == 0) {
+          wx.showToast({
+            title: '下载成功',
+            icon: 'success'
+          })
+          this.setData({
+            download: true
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+          })
+        }
       },
       fail: (res) => {
         wx.showToast({
@@ -122,11 +139,27 @@ Page({
       method: 'POST',
       success: (res) => {
         let resData = res.data.bizobj.data.resume_info
-        console.log(resData)
+        console.log(resData.user_info.birthday)
+        // 计算年龄
+        let year = 1000 * 60 * 60 * 24 * 365;
+        let now = new Date();
+        let birthday = new Date(resData.user_info.birthday);
+        let workStartTime = new Date(resData.user_info.work_begin_time);
+        let age = parseInt((now - birthday) / year);
+        let workTime = parseInt((now - workStartTime) / year);
+        resData.user_info['birthday2'] = age + '岁'
+        resData.user_info['workTime'] = workTime + '年'
+        console.log(age)
         // 1说明已下载
         if (resData.user_info.download_status == 1) {
           this.setData({
-            pay: true
+            download: true
+          })
+        }
+        // 1说明已收藏
+        if (resData.user_info.is_collect == 1) {
+          this.setData({
+            collect: true
           })
         }
         this.setData({

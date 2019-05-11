@@ -21,44 +21,48 @@
     </view>
   </view>
   <view class='itemWrap'>
-  <view wx:for="{{ listData }}" wx:key="">
-    <!-- 项目 -->
-    <view class='itemBox' wx:if="{{ item.type == 2 }}">
-      <view class='leftImg'>招标</view>
-      <view class='rightText'>
-        <view class='firstRow'>
-          {{ item.name }}
-          <view class='time'>{{ item.create_time }}</view>
+    <view wx:for="{{ listData }}" wx:key="">
+      <!-- 项目 -->
+      <view class='itemBox' wx:if="{{ item.type == 2 }}">
+        <view class='leftImg'>招标</view>
+        <view class='rightText'>
+          <view class='firstRow'>
+            {{ item.name }}
+            <view class='time'>{{ item.create_time }}</view>
+          </view>
+          <view class='secondRow'>
+            <text>{{ item.label1 }}</text>
+            <text class='line'>|</text>
+            <text>{{ item.label2 }}</text>
+            <text class='line'>|</text>
+            <text>{{ item.label3 }}</text>
+          </view>
+          <view class='threeRow'>{{ item.mini_salary1 + '-' + item.max_salary1 + '/月' }}</view>
         </view>
-        <view class='secondRow'>
-          <text>{{ item.label1 }}</text>
-          <text class='line'>|</text>
-          <text>{{ item.label2 }}</text>
-          <text class='line'>|</text>
-          <text>{{ item.label3 }}</text>
+      </view>
+      <!-- 岗位 -->
+      <view class='itemBox' wx:if="{{ item.type == 1 }}">
+        <view class='leftImg2'>
+          <image class='logoImg' wx:if="{{imgSrc !== ''}}" src='{{ item.company_icon }}'></image>
         </view>
-        <view class='threeRow'>{{ item.mini_salary1 + '-' + item.max_salary1 + '/月' }}</view>
+        <view class='rightText rightText2'>
+          <view class='firstRow'>
+            {{ item.name }}
+            <view class='time'>{{ item.create_time }}</view>
+          </view>
+          <view class='secondRow'>
+            <text>{{ item.label1 }}</text>
+            <text class='line'>|</text>
+            <text>{{ item.label2 }}</text>
+          </view>
+          <view class='threeRow'>{{ item.mini_salary1 + '-' + item.max_salary1 + '/月' }}</view>
+        </view>
       </view>
     </view>
-    <!-- 岗位 -->
-    <view class='itemBox' wx:if="{{ item.type == 1 }}">
-      <view class='leftImg2'>
-        <image class='logoImg' wx:if="{{imgSrc !== ''}}" src='{{ item.company_icon }}'></image>
-      </view>
-      <view class='rightText rightText2'>
-        <view class='firstRow'>
-          {{ item.name }}
-          <view class='time'>{{ item.create_time }}</view>
-        </view>
-        <view class='secondRow'>
-          <text>{{ item.label1 }}</text>
-          <text class='line'>|</text>
-          <text>{{ item.label2 }}</text>
-        </view>
-        <view class='threeRow'>{{ item.mini_salary1 + '-' + item.max_salary1 + '/月' }}</view>
-      </view>
+    <view wx:if="{{ listData.length == 0 }}" class='noDataWrap'>
+      <image class='noData' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/noData.png'></image>
+      <view class='textWord'>暂无信息</view>
     </view>
-  </view>
   </view>
   <!-- 选择全部或项目或岗位 -->
   <view class='typeAllMask' wx:if="{{ typeAllBtn }}">

@@ -1,4 +1,23 @@
 /**app.wxss**/
+/* 缺省 */
+.noDataWrap{
+  text-align: center;
+  padding-top: 200rpx;
+  position: relative;
+}
+.noDataWrap .noData{
+  width: 561rpx;
+  height: 420rpx;
+}
+.noDataWrap .textWord{
+  font-family: PingFangSC-Regular;
+	font-size: 30rpx;
+	color: #999;
+  position: absolute;
+  bottom: 40rpx;
+  left: 0;
+  right: 0;
+}
 /* 底部导航 */
 .btootmNavWrap{
 	height: 98rpx;

@@ -34,8 +34,11 @@ Page({
       method: 'POST',
       success: (res) => {
         let data = res.data.bizobj.data.job_info
-        data['mini_salary1'] = Math.round(data.mini_salary / 1000) + 'k'
-        data['max_salary1'] = Math.round(data.max_salary / 1000) + 'k'
+        if (data.max_salary) {
+          data['salaryStr'] = Math.round(data.mini_salary / 1000) + 'k-' + Math.round(data.max_salary / 1000) + 'k/月'
+        } else {
+          data['salaryStr'] = '不限'
+        }
         this.setData({
           job_info: data
         })

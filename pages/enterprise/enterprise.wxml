@@ -16,7 +16,7 @@
   </view>
   <view class='itemBox' bindtap='goEnterpriseInfo' wx:for="{{ listData }}" data-id='{{ item.id }}' wx:key="{{ item.id }}">
     <view class='topRow'>
-      <image class='enterpriseImg' src='{{ item.icon.icon }}'></image>
+      <image class='enterpriseImg' src='{{ item.icon }}'></image>
       <view class='rightTitle'>
         <view class='topTitle'>{{ item.name }}</view>
         <view class='downNum'>

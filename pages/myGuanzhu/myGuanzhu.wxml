@@ -6,13 +6,13 @@
         <image class='leftImg' wx:if="{{ item.avatar }}" src='{{ item.avatar }}'></image>
       </view>
       <view class='rightBox'>
-        <view class='firstTitle'>{{ item.username }}<text class='typeName'>{{ item.username }}</text></view>
+        <view class='firstTitle'>{{ item.username }}<text class='typeName'>{{ item.title }}</text></view>
         <view class='secondTags'>
           <text style='padding-left: 0'>三年</text>
           <text class='middleTag'>本科</text>
           <text>10k-14k</text>
         </view>
-        <view class='bottomTime'>最近活跃：9小时前</view>
+        <view class='bottomTime'>最近活跃：{{ item.engineer_day }}</view>
       </view>
     </view>
   </view>

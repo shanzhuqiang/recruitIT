@@ -8,10 +8,10 @@
         </view>
         <view class='guanzhuGag' bindtap='guanzhuClick'>{{ guanzhuOnOff ? '已关注' : '+关注' }}</view>
         <view class='bottomTag'>
-          <text style='padding-left: 0'>杭州</text>
-          <text class='borderLeft'>未融资</text>
-          <text class='borderBoth'>15-50人</text>
-          <text>移动互联网</text>
+          <text style='padding-left: 0'>{{ company_info.label1 }}</text>
+          <text class='borderLeft'>{{ company_info.label2 }}</text>
+          <text class='borderBoth'>{{ company_info.label3 }}</text>
+          <text>{{ company_info.label4 }}</text>
         </view>
         <view class='okBox' wx:if="{{ company_info.status === 1 }}">
           <image class='okImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/ok.png'></image>

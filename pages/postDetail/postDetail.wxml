@@ -57,7 +57,7 @@
         <text>已认证</text>
       </view>
       <view class='rowThree' wx:if="{{ companyInfo.status == 2 }}">
-        <text style='{{ companyInfo.status == 2 ? "padding-left: 14rpx" : ""}}'>未认证</text>
+        <text style='padding-left: 14rpx'>未认证</text>
       </view>
     </view>
     <view class='bottomAddressBox'>

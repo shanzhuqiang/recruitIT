@@ -101,7 +101,7 @@
 	color: #333;
 }
 .resumeDetailWrap .resumeDetailBox .contentBox{
-  padding-top: 30rpx;
+  padding: 30rpx 0;
 }
 .resumeDetailWrap .resumeDetailBox .contentBox .content{
   overflow: hidden;
