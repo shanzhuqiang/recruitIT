@@ -9,17 +9,50 @@ Page({
     userType: '',
     userInfo: null,
     releaseMark: false,
-    imgSrc: ''
+    imgSrc: '',
+    num: ''
   }, 
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
     this.setData({
       userInfo: app.globalData.userInfo,
       userType: app.globalData.userType,
       imgSrc: app.globalData.imgSrc
+    })
+    this.getNum()
+  },
+  // 获取金币/猎币
+  getNum() {
+    let userType = this.data.userType
+    wx.request({
+      url: `${app.globalData.baseUrl}/Coin/coinLog.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        way: this.data.typeStr,
+        user_type: userType === 'engineer' ? 1 : userType === 'hr' ? 2 : 3
+      },
+      method: 'POST',
+      success: (res) => {
+        let listData = res.data.bizobj.data
+        this.setData({
+          num: listData.total_coin
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
     })
   },
   // 发布帖子
@@ -99,9 +132,15 @@ Page({
   },
   // 我的金币
   goMyGold() {
-    wx.navigateTo({
-      url: '../myGold/myGold'
-    })
+    if (this.data.userInfo == 'engineer') {
+      wx.navigateTo({
+        url: '../myGold/myGold'
+      })
+    } else {
+      wx.navigateTo({
+        url: '../myGold2/myGold2'
+      })
+    }
   },
   // 我的钱包
   goMyMoney() {
@@ -184,13 +223,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
 
   },
 

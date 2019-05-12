@@ -15,8 +15,6 @@
   padding-left: 12rpx;
 }
 .rechargeWrap .topBox .itemBoxRow{
-  height: 131rpx;
-  padding-top: 30rpx;
 }
 .rechargeWrap .topBox .itemBoxRow .itemBox{
 	width: 310rpx;
@@ -25,6 +23,7 @@
 	border: solid 3rpx #dfdfdf;
   color: #595959;
   text-align: center;
+  margin-top: 30rpx;
 }
 .rechargeWrap .topBox .itemBoxRow .itemBox.active{
 	color: #2e70f9;
@@ -32,7 +31,7 @@
 }
 .rechargeWrap .topBox .itemBoxRow .itemBox .firstText{
 	font-family: PingFangSC-Regular;
-	font-size: 36rpx;
+	font-size: 32rpx;
 	line-height: 36rpx;
   padding-top: 30rpx;
 }

@@ -65,6 +65,7 @@
   width: 58rpx;
   height: 58rpx;
   vertical-align: middle;
+  border-radius: 50%;
 }
 .postDetailWrap .topBox .fourBox .rightBox{
   margin-left: 80rpx;

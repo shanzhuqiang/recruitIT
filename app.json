@@ -35,6 +35,7 @@
     "pages/sharePage/sharePage",
     "pages/myCompany/myCompany",
     "pages/myGold/myGold",
+    "pages/myGold2/myGold2",
     "pages/myMoney/myMoney",
     "pages/recharge/recharge",
     "pages/realName/realName",

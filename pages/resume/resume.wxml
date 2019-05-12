@@ -23,7 +23,7 @@
           <text class='line'>|</text>
           <text>{{ item.label3 }}</text>
         </view>
-        <view class='threeRow'>最近活跃：{{ item.engineer_day }}</view>
+        <view class='threeRow'>最近活跃：{{ item.eigneer_day }}</view>
       </view>
     </view>
     <view class='bottomRow' wx:if="{{ topType == 1 }}">

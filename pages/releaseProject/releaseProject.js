@@ -248,9 +248,10 @@ Page({
               }
             })
           } else {
-            wx.showToast({
-              icon: 'none',
-              title: res.data.msg,
+            wx.showModal({
+              showCancel: false,
+              title: '提示',
+              content: res.data.msg,
             })
           }
         },

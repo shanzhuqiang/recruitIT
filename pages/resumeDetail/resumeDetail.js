@@ -34,7 +34,8 @@ Page({
         url: `${app.globalData.baseUrl}/user/collect.html`,
         data: {
           sess_key: app.globalData.sess_key,
-          user_id: e.currentTarget.dataset.id
+          user_id: e.currentTarget.dataset.id,
+          re_resume_id: e.currentTarget.dataset.ida
         },
         method: 'POST',
         success: (res) => {
@@ -48,9 +49,10 @@ Page({
               collect: true
             })
           } else {
-            wx.showToast({
-              icon: 'none',
-              title: res.data.msg,
+            wx.showModal({
+              showCancel: false,
+              title: '提示',
+              content: res.data.msg,
             })
           }
         },
@@ -66,14 +68,32 @@ Page({
   // 下载按钮
   bottomBtn() {
     if (!this.data.download) {
+      let userData = this.data.resumeInfo.user_info
       wx.showModal({
         confirmText: '立即下载',
         confirmColor: '#0073ff',
         title: '提示',
-        content: '您将消耗XX猎币下载简历，下载后就可以联系他啦~',
+        content: `您将消耗${userData.download_coin}猎币下载简历，下载后就可以联系他啦~`,
         success: (res) => {
           if (res.confirm) {
-            this.downResume()
+            if (userData.download_coin > userData.coin) {
+              // 消耗的比拥有的多
+              wx.showModal({
+                title: '提示',
+                confirmColor: '#0073ff',
+                confirmText: '前往',
+                content: '您的猎币不够，请前往充值',
+                success: (res) => {
+                  if (res.confirm) {
+                    wx.navigateTo({
+                      url: '../myGold2/myGold2'
+                    })
+                  }
+                }
+              })
+            } else {
+              this.downResume()
+            }
           }
         }
       })
@@ -114,9 +134,10 @@ Page({
             download: true
           })
         } else {
-          wx.showToast({
-            icon: 'none',
-            title: res.data.msg,
+          wx.showModal({
+            showCancel: false,
+            title: '提示',
+            content: res.data.msg,
           })
         }
       },
@@ -138,33 +159,40 @@ Page({
       },
       method: 'POST',
       success: (res) => {
-        let resData = res.data.bizobj.data.resume_info
-        console.log(resData.user_info.birthday)
-        // 计算年龄
-        let year = 1000 * 60 * 60 * 24 * 365;
-        let now = new Date();
-        let birthday = new Date(resData.user_info.birthday);
-        let workStartTime = new Date(resData.user_info.work_begin_time);
-        let age = parseInt((now - birthday) / year);
-        let workTime = parseInt((now - workStartTime) / year);
-        resData.user_info['birthday2'] = age + '岁'
-        resData.user_info['workTime'] = workTime + '年'
-        console.log(age)
-        // 1说明已下载
-        if (resData.user_info.download_status == 1) {
+        if (res.data.error_code == 0) {
+          let resData = res.data.bizobj.data.resume_info
+          console.log(resData.user_info.birthday)
+          // 计算年龄
+          let year = 1000 * 60 * 60 * 24 * 365;
+          let now = new Date();
+          let birthday = new Date(resData.user_info.birthday);
+          let workStartTime = new Date(resData.user_info.work_begin_time);
+          let age = parseInt((now - birthday) / year);
+          let workTime = parseInt((now - workStartTime) / year);
+          resData.user_info['birthday2'] = age + '岁'
+          resData.user_info['workTime'] = workTime + '年'
+          console.log(age)
+          // 1说明已下载
+          if (resData.user_info.download_status == 1) {
+            this.setData({
+              download: true
+            })
+          }
+          // 1说明已收藏
+          if (resData.user_info.is_collect == 1) {
+            this.setData({
+              collect: true
+            })
+          }
           this.setData({
-            download: true
+            resumeInfo: resData
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
           })
         }
-        // 1说明已收藏
-        if (resData.user_info.is_collect == 1) {
-          this.setData({
-            collect: true
-          })
-        }
-        this.setData({
-          resumeInfo: resData
-        })
       },
       fail: (res) => {
         wx.showToast({

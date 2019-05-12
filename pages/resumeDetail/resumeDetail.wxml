@@ -88,7 +88,7 @@
   </view>
   <view style='height: 100rpx;'></view>
   <view class='bottomBtn'>
-    <view class='leftBtn' bindtap='guanzhu' data-id="{{ resumeInfo.user_info.user_id }}">
+    <view class='leftBtn' bindtap='guanzhu' data-id="{{ resumeInfo.user_info.user_id }}" data-ida="{{ resumeInfo.user_info.re_resume_id }}">
       <view style='padding-top:18rpx;'><image class='shoucang' wx:if="{{imgSrc !== ''}}" src='{{ collect ? imgSrc + "/shoucang2.png" : imgSrc + "/shoucang.png" }}'></image></view>
       <view>{{ collect ? '已关注' : '关注' }}</view>
     </view>

@@ -36,13 +36,14 @@ Page({
       success: (res) => {
         let data = res.data.bizobj.data.job_info
         if (data.max_salary) {
-          data['salaryStr'] = Math.round(data.mini_salary / 1000) + 'k-' + Math.round(data.max_salary / 1000) + 'k/月'
+          data['salaryStr'] = Math.round(data.mini_salary) + 'k-' + Math.round(data.max_salary) + 'k/月'
         } else {
           data['salaryStr'] = '不限'
         }
         this.setData({
           dataInfo: data
         })
+        console.log(data)
         this.getCompany(data.re_company_id)
       },
       fail: (res) => {
@@ -86,7 +87,7 @@ Page({
       url: `${app.globalData.baseUrl}/apply/apply.html`,
       data: {
         sess_key: app.globalData.sess_key,
-        re_project_id: this.data.id,
+        re_job_id: this.data.id,
         type: 1
       },
       method: 'POST',

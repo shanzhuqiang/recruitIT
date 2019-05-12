@@ -2,17 +2,15 @@
 <view class='rechargeWrap'>
   <view class='topBox'>
     <view class='title'>充值金额</view>
-    <view class='itemBoxRow'>
-      <view class='itemBox fl active'>
+    <view class='itemBoxRow clearfix'>
+      <view class='itemBox {{ index%2 == 0 ? "fl" : "fr" }} {{ typeCur == item.id ? "active" : "" }}' wx:for="{{ listData }}" wx:key="" data-id="{{ item.id }}" data-price="{{ item.price }}" bindtap='choosePrice'>
+        <view class='firstText'>{{ item.title }}</view>
+        <view class='secondText'>{{ item.subtitle }}</view>
+      </view>
+      <!-- <view class='itemBox fr'>
         <view class='firstText'>5000元</view>
         <view class='secondText'>送10金币</view>
       </view>
-      <view class='itemBox fr'>
-        <view class='firstText'>5000元</view>
-        <view class='secondText'>送10金币</view>
-      </view>
-    </view>
-    <view class='itemBoxRow'>
       <view class='itemBox fl'>
         <view class='firstText'>5000元</view>
         <view class='secondText'>送10金币</view>
@@ -20,10 +18,10 @@
       <view class='itemBox fr'>
         <view class='firstText'>5000元</view>
         <view class='secondText'>送10金币</view>
-      </view>
+      </view> -->
     </view>
     <view class='inputBox'>
-      <input class='input' placeholder='手动输入充值金额'></input>
+      <input class='input' placeholder='手动输入充值金额' bindinput='inputNum'></input>
     </view>
   </view>
   <view class='bottomBox'>
@@ -37,9 +35,9 @@
       账号余额
     </view>
     <radio-group bindchange="radioChange">
-        <radio class='wechatRadio' value="wechat" checked="{{ false }}" />
-        <radio class='rmbRadio' value="rmb" checked="{{ true }}" />
+      <radio class='wechatRadio' value="1" checked="{{ false }}" />
+      <radio class='rmbRadio' value="2" checked="{{ true }}" />
     </radio-group>
   </view>
-  <view class='bottomBtn'>确定</view>
+  <view class='bottomBtn' bindtap='confirm'>确定</view>
 </view>

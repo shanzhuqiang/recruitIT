@@ -85,16 +85,24 @@ Page({
       method: 'POST',
       success: (res) => {
         wx.hideLoading()
-        wx.showToast({
-          title: '操作成功',
-          mask: true,
-          icon: 'success',
-          success: () => {
-            setTimeout(() => {
-              this.getData()
-            }, 1500)
-          }
-        })
+        if (res.data.error_code == 0) {
+          wx.showToast({
+            title: '操作成功',
+            mask: true,
+            icon: 'success',
+            success: () => {
+              setTimeout(() => {
+                this.getData()
+              }, 1500)
+            }
+          })
+        } else {
+          wx.showModal({
+            showCancel: false,
+            title: '提示',
+            content: res.data.msg,
+          })
+        }
       },
       fail: (res) => {
         wx.showToast({

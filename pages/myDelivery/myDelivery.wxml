@@ -37,7 +37,7 @@
             <text class='line'>|</text>
             <text>{{ item.label3 }}</text>
           </view>
-          <view class='threeRow'>{{ item.mini_salary1 + '-' + item.max_salary1 + '/月' }}</view>
+          <view class='threeRow'>{{ item.salaryStr }}</view>
         </view>
       </view>
       <!-- 岗位 -->
@@ -55,7 +55,7 @@
             <text class='line'>|</text>
             <text>{{ item.label2 }}</text>
           </view>
-          <view class='threeRow'>{{ item.mini_salary1 + '-' + item.max_salary1 + '/月' }}</view>
+          <view class='threeRow'>{{ item.salaryStr }}</view>
         </view>
       </view>
     </view>

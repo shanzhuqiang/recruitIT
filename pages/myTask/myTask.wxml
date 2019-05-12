@@ -159,4 +159,8 @@
       </view>
     </view>
   </view> -->
+  <view wx:if="{{ listData.length == 0 }}" class='noDataWrap'>
+    <image class='noData' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/noData.png'></image>
+    <view class='textWord'>暂无信息</view>
+  </view>
 </view>
