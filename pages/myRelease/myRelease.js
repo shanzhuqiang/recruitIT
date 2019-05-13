@@ -30,7 +30,16 @@ Page({
     this.initProjectData()
     this.initQuartersData()
   },
-
+  goProjectDetail(e) {
+    wx.navigateTo({
+      url: `../projectDetail/projectDetail?id=${e.currentTarget.dataset.id}`
+    })
+  },
+  goWordDetail(e) {
+    wx.navigateTo({
+      url: `../postDetail/postDetail?id=${e.currentTarget.dataset.id}`
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

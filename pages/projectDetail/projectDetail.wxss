@@ -236,3 +236,7 @@
   height: 100rpx;
   line-height: 100rpx;
 }
+.projectDetailWrap .bottomBtn .rightBtn.none{
+  background: #ccc;
+  color: #fff;
+}

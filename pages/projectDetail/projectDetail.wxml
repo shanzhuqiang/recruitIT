@@ -77,6 +77,10 @@
       <view style='padding-top:18rpx;'><image class='share' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/share.png'></image></view>
       <view>推荐</view>
     </view>
-    <view class='rightBtn' bindtap='applyNow'>立即投递</view>
+    <view wx:if="{{ userType == 'engineer' }}">
+      <view class='rightBtn' bindtap='applyNow' wx:if="{{ job_info.is_post == 2 }}">立即投递</view>
+      <view class='rightBtn none' wx:if="{{ job_info.is_post == 1 }}">已经投递</view>
+    </view>
+    <view class='rightBtn none' wx:if="{{ userType != 'engineer' }}">当前身份无法投递</view>
   </view>
 </view>

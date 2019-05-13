@@ -7,6 +7,7 @@ Page({
    */
   data: {
     id: '',
+    userType: '',
     imgSrc: '',
     job_info: {},
     companyInfo: {}
@@ -19,6 +20,7 @@ Page({
     console.log(options)
     this.getInfo(options.id)
     this.setData({
+      userType: app.globalData.userType,
       imgSrc: app.globalData.imgSrc,
       id: options.id
     })

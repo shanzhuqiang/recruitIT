@@ -7,6 +7,7 @@ Page({
    */
   data: {
     imgSrc: '',
+    userType: '',
     post: false,
     id: '',
     dataInfo: {},
@@ -20,6 +21,7 @@ Page({
     console.log(options)
     this.getInfo(options.id)
     this.setData({
+      userType: app.globalData.userType,
       imgSrc: app.globalData.imgSrc,
       id: options.id
     })
@@ -36,7 +38,7 @@ Page({
       success: (res) => {
         let data = res.data.bizobj.data.job_info
         if (data.max_salary) {
-          data['salaryStr'] = Math.round(data.mini_salary) + 'k-' + Math.round(data.max_salary) + 'k/月'
+          data['salaryStr'] = Math.round(data.mini_salary / 1000) + 'k-' + Math.round(data.max_salary / 1000) + 'k/月'
         } else {
           data['salaryStr'] = '不限'
         }

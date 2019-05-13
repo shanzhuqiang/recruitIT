@@ -17,11 +17,15 @@
       {{ item.create_at }}
     </view>
   </view>
-  <view class='itemBox'>
+  <view wx:if="{{ listData.length == 0 }}" class='noDataWrap'>
+    <image class='noData' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/noData.png'></image>
+    <view class='textWord'>暂无信息</view>
+  </view>
+  <!-- <view class='itemBox'>
     <view class='first'>平台调整</view>
     <view class='second'>
       <view class='itemNum'>+100金币</view>
       2019-01-14
     </view>
-  </view>
+  </view> -->
 </view>

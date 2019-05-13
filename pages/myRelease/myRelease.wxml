@@ -47,20 +47,22 @@
   <!-- 发布的项目 -->
   <view wx:if="{{ tabType === 'xiangmu' }}">
     <view class='itemWrap' wx:for="{{ projectList }}">
-      <view class='first'>
-        <view class='box'>招标</view>
-        <view class='title'>{{ item.name }}</view>
-        <view class='money'>{{ item.salaryStr }}</view>
+      <view data-id="{{ item.id }}" bindtap='goProjectDetail'>
+        <view class='first'>
+          <view class='box'>招标</view>
+          <view class='title'>{{ item.name }}</view>
+          <view class='money'>{{ item.salaryStr }}</view>
+        </view>
+        <view class='second'>
+          <text style='padding-left: 0'>{{ item.job_label1 }}</text>
+          <text class='middleText'>{{ item.job_label2 }}</text>
+          <text>{{ item.job_label3 }}</text>
+        </view>
+        <view class='content'>
+          {{ item.instruction }}
+        </view>
+        <view class='line'></view>
       </view>
-      <view class='second'>
-        <text style='padding-left: 0'>{{ item.job_label1 }}</text>
-        <text class='middleText'>{{ item.job_label2 }}</text>
-        <text>{{ item.job_label3 }}</text>
-      </view>
-      <view class='content'>
-        需要打打算打算需要打打算打算需要打打算打算需要打打算打算需要打打算打算
-      </view>
-      <view class='line'></view>
       <view class='btnWrap'>
         <view class='timeBtn'>工时核对</view>
       </view>
@@ -72,7 +74,7 @@
   </view>
   <!-- 发布的岗位 -->
   <view wx:if="{{ tabType === 'gangwei' }}">
-    <view class='itemWrap itemWrapTwo' wx:for="{{ quartersList }}">
+    <view class='itemWrap itemWrapTwo' wx:for="{{ quartersList }}" data-id="{{ item.id }}" bindtap='goWordDetail'>
       <view class='first'>
         <view class='title'>{{ item.name }}</view>
         <view class='money'>{{ item.salaryStr }}</view>

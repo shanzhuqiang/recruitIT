@@ -39,6 +39,7 @@ Page({
         console.log(listData)
         this.setData({
           typeCur: listData.length > 0 ? listData[0].id : '',
+          chooseprice: listData.length > 0 ? listData[0].price : '',
           listData: listData
         })
       },
@@ -85,7 +86,7 @@ Page({
         confirmText: '确认充值',
         confirmColor: '#0073ff',
         title: '提示',
-        content: `您将充值${this.data.iptPrice || this.data.chooseprice},请确认`,
+        content: `您将充值${this.data.iptPrice || this.data.chooseprice}元,请确认`,
         success: (res) => {
           if (res.confirm) {
             this.payCoin()
@@ -104,7 +105,7 @@ Page({
     })
     let userType = this.data.userType
     wx.request({
-      url: `${app.globalData.baseUrl}/Coin/payCoin.html`,
+      url: `${app.globalData.baseUrl}/Weixinpay/payCoin.html`,
       data: {
         sess_key: app.globalData.sess_key,
         user_type: userType === 'engineer' ? 1 : userType === 'hr' ? 2 : 3,
@@ -117,15 +118,19 @@ Page({
       success: (res) => {
         wx.hideLoading()
         if (res.data.error_code == 0) {
-          if (this.data.current == 1) {
-            this.wechartPay(res.data.wxconfig)
-          } else {
-            wx.showToast({
-              title: '充值成功',
-              mask: true,
-              icon: 'success'
-            })
-          }
+          wx.showToast({
+            title: '充值成功',
+            mask: true,
+            icon: 'success', success() {
+              setTimeout(() => {
+                wx.navigateBack({
+                  delta: 1
+                })
+              }, 1500)
+            }
+          })
+        } else if (res.data.error_code == 1) {
+          this.wechartPay(res.data.bizobj.data.wxconfig)
         } else {
           wx.showModal({
             showCancel: false,
@@ -144,6 +149,7 @@ Page({
   },
   // 微信支付
   wechartPay (data) {
+    console.log(data)
     wx.requestPayment({
       timeStamp: data.timeStamp,
       nonceStr: data.nonceStr,
@@ -151,7 +157,17 @@ Page({
       signType: 'MD5',
       paySign: data.paySign,
       success: (res) => {
-
+        wx.showToast({
+          title: '充值成功',
+          mask: true,
+          icon: 'success', success() {
+            setTimeout(() => {
+              wx.navigateBack({
+                delta: 1
+              })
+            }, 1500)
+          }
+        })
       },
       fail(res) {}
     })

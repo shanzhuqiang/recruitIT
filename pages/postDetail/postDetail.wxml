@@ -6,16 +6,16 @@
       <view class='rightTitle'>{{ dataInfo.salaryStr }}</view>
     </view>
     <view class='second'>
-      <text>{{ dataInfo.label1 }}</text>
+      <text>{{ dataInfo.city_name + '·' + dataInfo.district_name }}</text>
       <text class='line'>|</text>
-      <text class='middle'>{{ dataInfo.label2 }}</text>
+      <text class='middle'>{{ dataInfo.education }}</text>
       <text class='line'>|</text>
-      <text>{{ dataInfo.label3 }}</text>
+      <text>{{ dataInfo.job_experience }}</text>
     </view>
     <view class='three'>
-      <text wx:if="{{ dataInfo.label1 }}">{{ dataInfo.label1 }}</text>
-      <text wx:if="{{ dataInfo.label2 }}">{{ dataInfo.label2 }}</text>
-      <text wx:if="{{ dataInfo.label3 }}">{{ dataInfo.label3 }}</text>
+      <text wx:if="{{ dataInfo.job_label1 }}">{{ dataInfo.job_label1 }}</text>
+      <text wx:if="{{ dataInfo.job_label2 }}">{{ dataInfo.job_label2 }}</text>
+      <text wx:if="{{ dataInfo.job_label3 }}">{{ dataInfo.job_label3 }}</text>
     </view>
     <view class='fourBox'>
       <view class='leftImg'>
@@ -77,7 +77,10 @@
       <view style='padding-top:18rpx;'><image class='share' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/share.png'></image></view>
       <view>推荐</view>
     </view>
-    <view class='rightBtn' bindtap='applyNow' wx:if="{{ dataInfo.is_post == 2 }}">立即投递</view>
-    <view class='rightBtn none' wx:if="{{ dataInfo.is_post == 1 }}">已经投递</view>
+    <view wx:if="{{ userType == 'engineer' }}">
+      <view class='rightBtn' bindtap='applyNow' wx:if="{{ dataInfo.is_post == 2 }}">立即投递</view>
+      <view class='rightBtn none' wx:if="{{ dataInfo.is_post == 1 }}">已经投递</view>
+    </view>
+    <view class='rightBtn none' wx:if="{{ userType != 'engineer' }}">当前身份无法投递</view>
   </view>
 </view>
