@@ -40,7 +40,7 @@ Page({
         let resData = res.data.bizobj.data.apply_list
         resData.forEach((el, index) => {
           if (el.max_salary) {
-            el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k/月'
+            el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k'
           } else {
             el['salaryStr'] = '不限'
           }
@@ -63,7 +63,7 @@ Page({
       mask: true,
       title: '加载中...',
     })
-    this.changeInterviewStatus(e.currentTarget.dataset.id, 1)
+    this.changeInterviewStatus(e.currentTarget.dataset.id, 2)
   },
   // 录用
   apply(e) {
@@ -71,7 +71,7 @@ Page({
       mask: true,
       title: '加载中...',
     })
-    this.changeInterviewStatus(e.currentTarget.dataset.id, 2)
+    this.changeInterviewStatus(e.currentTarget.dataset.id, 1)
   },
   // 删除
   del(e) {

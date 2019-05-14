@@ -44,7 +44,7 @@ Page({
   //编辑
   goEditCompany() {
     wx.navigateTo({
-      url: '../editCompany/editCompany'
+      url: '../editCompany/editCompany?edit=true'
     })
   },
   /**

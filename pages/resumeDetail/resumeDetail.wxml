@@ -92,7 +92,7 @@
       <view style='padding-top:18rpx;'><image class='shoucang' wx:if="{{imgSrc !== ''}}" src='{{ collect ? imgSrc + "/shoucang2.png" : imgSrc + "/shoucang.png" }}'></image></view>
       <view>{{ collect ? '已关注' : '关注' }}</view>
     </view>
-    <view class='rightBtn' bindtap='bottomBtn'>{{ download ? "联系对方" : "下载" }}</view>
+    <view class='rightBtn' bindtap='bottomBtn' data-id="{{ resumeInfo.user_info.re_apply_id }}">{{ download ? "联系对方" : "下载" }}</view>
   </view>
 </view>
 

@@ -121,7 +121,7 @@
             <text class='typeName'>{{ item.job_name }}</text>
           </view>
           <view class='secondTags'>
-            <text style='padding-left: 0'>{{ item.work_years }}</text>
+            <text style='padding-left: 0'>{{ item.work_yeas }}年</text>
             <text class='middleTag'>{{ item.education_name }}</text>
             <text>{{ item.salaryStr }}</text>
           </view>

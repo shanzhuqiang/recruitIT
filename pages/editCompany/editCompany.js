@@ -89,12 +89,39 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log()
     this.setData({
       userInfo: app.globalData.userInfo,
       imgSrc: app.globalData.imgSrc
     })
     this.getData()
     this.getLineList()
+    if (options.edit) {
+      this.getInfo()
+    }
+  },
+  // 获取公司详情
+  getInfo() {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Company/companyInfo.html`,
+      data: {
+        sess_key: app.globalData.sess_key
+      },
+      method: 'POST',
+      success: (res) => {
+        let company_info = res.data.bizobj.data.company_info
+        this.setData({
+          name: company_info.name,
+          addressCity: company_info.city_name
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
   },
   // 获取行业
   getLineList () {
@@ -247,10 +274,11 @@ Page({
         content: '请选择图片',
       })
     } else {
-      app.globalData.companyObj = companyObj
-      wx.navigateTo({
-        url: '../businessLicense/businessLicense'
+      wx.showLoading({
+        mask: true,
+        title: '提交中...',
       })
+      this.urlTobase64(this.data.imgBox, companyObj) 
     }
   },
   // 选择图片
@@ -264,6 +292,51 @@ Page({
           imgBox: res.tempFilePaths[0]
         })
         // tempFilePath可以作为img标签的src属性显示图片
+      }
+    })
+  },
+  // 上传base64拿url
+  updateImg(baseImage, companyObj) {
+    wx.request({
+      url: `${app.globalData.baseUrl}/File/uploadImagesBase64.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        image: baseImage
+      },
+      method: 'POST',
+      success: (res) => {
+        wx.hideLoading()
+        if (res.data.error_code == 0) {
+          companyObj.imgBox = res.data.bizobj.data.image_url
+          app.globalData.companyObj = companyObj
+          wx.navigateTo({
+            url: '../businessLicense/businessLicense'
+          })
+        } else {
+          wx.showModal({
+            showCancel: false,
+            title: '提示',
+            content: res.data.msg,
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  urlTobase64(url, companyObj) {
+    wx.request({
+      url: url,
+      responseType: 'arraybuffer',
+      success: res => {
+        console.log(base64)
+        let base64 = wx.arrayBufferToBase64(res.data);
+        base64 = 'data:image/jpeg;base64,' + base64
+        this.updateImg(base64, companyObj)
       }
     })
   },

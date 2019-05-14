@@ -68,7 +68,7 @@ Page({
     }
   },
   // 下载按钮
-  bottomBtn() {
+  bottomBtn(e) {
     if (!this.data.download) {
       let userData = this.data.resumeInfo.user_info
       wx.showModal({
@@ -94,7 +94,7 @@ Page({
                 }
               })
             } else {
-              this.downResume()
+              this.downResume(e.currentTarget.dataset.id)
             }
           }
         }
@@ -113,7 +113,7 @@ Page({
     }
   },
   // 下载简历
-  downResume() {
+  downResume(id) {
     wx.showLoading({
       mask: true,
       title: '下载中...',
@@ -124,7 +124,8 @@ Page({
       data: {
         sess_key: app.globalData.sess_key,
         user_type: userType === 'engineer' ? 1 : userType === 'hr' ? 2 : 3,
-        re_resume_id: this.data.id
+        re_resume_id: this.data.id,
+        re_apply_id: id
       },
       method: 'POST',
       success: (res) => {
