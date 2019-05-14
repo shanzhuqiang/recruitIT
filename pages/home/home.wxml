@@ -71,7 +71,7 @@
         <view class='second'>
           <text style='padding-left: 0'>{{ item.job_label1 }}</text>
           <text class='middleText'>{{ item.job_label2 }}</text>
-          <text>{{ item.job_label3 }}</text>
+          <text class='rightText'>{{ item.job_label3 }}</text>
         </view>
         <view class='content'>
           {{ item.company_name }}
@@ -91,7 +91,7 @@
         <view class='second'>
           <text style='padding-left: 0' wx:if="{{ item.job_label1 }}">{{ item.job_label1 }}</text>
           <text class='middleText' wx:if="{{ item.job_label2 }}">{{ item.job_label2 }}</text>
-          <text wx:if="{{ item.job_label3 }}">{{ item.job_label3 }}</text>
+          <text class='rightText' wx:if="{{ item.job_label3 }}">{{ item.job_label3 }}</text>
         </view>
         <view class='picBox'>
           <view class='left'>
@@ -99,7 +99,7 @@
           </view>
           <view class='right'>
             <view class='logoName'>{{ item.company_name }}</view>
-            <view class='logoType'>{{ item.company_label1 + "·" + item.company_label2 }}</view>
+            <view class='logoType'>{{ item.line_name }}</view>
           </view>
         </view>
       </view>

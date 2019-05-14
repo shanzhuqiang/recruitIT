@@ -29,6 +29,18 @@
   line-height: 34rpx;
 	color: #333;
 }
+.myGuanzhuWrap .itemBox .firstRow .rightBox .firstTitle .nameText{
+	font-family: PingFangSC-Medium;
+	font-size: 34rpx;
+  height: 34rpx;
+  line-height: 34rpx;
+	color: #333;
+  max-width: 200rpx;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
 .myGuanzhuWrap .itemBox .firstRow .rightBox .firstTitle .typeName{
 	font-family: PingFangSC-Regular;
 	font-size: 26rpx;

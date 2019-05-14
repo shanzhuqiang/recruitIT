@@ -7,7 +7,7 @@ Page({
    */
   data: {
     imgSrc: '',
-    tabType: 1,
+    tabType: '1',
     typeAll: '全部',
     typeAllBtn: false,
     listData: []

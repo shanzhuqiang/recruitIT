@@ -27,8 +27,10 @@ Page({
       userType: app.globalData.userType,
       imgSrc: app.globalData.imgSrc
     })
-    this.initProjectData()
-    this.initQuartersData()
+    if (this.data.userType === 'hr') {
+      this.initProjectData()
+      this.initQuartersData()
+    }
   },
   goProjectDetail(e) {
     wx.navigateTo({

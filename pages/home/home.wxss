@@ -223,7 +223,9 @@ page{
 }
 .homeWrap .itemWrap .second .middleText{
   border-left: 1rpx solid #666;
-  border-right: 1rpx solid #666;
+}
+.homeWrap .itemWrap .second .rightText{
+  border-left: 1rpx solid #666;
 }
 .homeWrap .itemWrap .content{
   font-family: PingFangSC-Regular;
@@ -273,6 +275,7 @@ page{
 	font-family: PingFangSC-Regular;
 	font-size: 24rpx;
 	color: #999;
+  padding-top: 5rpx;
 }
 /* 精英简历列表 */
 .homeWrap .typeTitleWrap .jinyingItemWrap{

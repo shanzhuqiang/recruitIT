@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userType: '',
     imgSrc: '',
     id: '',
     resumeInfo: null,
@@ -17,11 +18,12 @@ Page({
    */
   onLoad: function (options) {
     console.log(options)
-    this.getDetail(options.id)
     this.setData({
+      userType: app.globalData.userType,
       imgSrc: app.globalData.imgSrc,
       id: options.id
     })
+    this.getDetail(options.id)
   },
   // 关注
   guanzhu(e) {
@@ -116,10 +118,12 @@ Page({
       mask: true,
       title: '下载中...',
     })
+    let userType = this.data.userType
     wx.request({
       url: `${app.globalData.baseUrl}/apply/buyResume.html`,
       data: {
         sess_key: app.globalData.sess_key,
+        user_type: userType === 'engineer' ? 1 : userType === 'hr' ? 2 : 3,
         re_resume_id: this.data.id
       },
       method: 'POST',
@@ -150,11 +154,13 @@ Page({
     })
   },
   // 获取简历详情
-  getDetail (id) {
+  getDetail(id) {
+    let userType = this.data.userType
     wx.request({
       url: `${app.globalData.baseUrl}/Resume/resumeDetail.html`,
       data: {
         sess_key: app.globalData.sess_key,
+        user_type: userType === 'engineer' ? 1 : userType === 'hr' ? 2 : 3,
         id: id
       },
       method: 'POST',

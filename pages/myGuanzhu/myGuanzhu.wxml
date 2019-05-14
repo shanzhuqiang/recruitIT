@@ -6,7 +6,9 @@
         <image class='leftImg' wx:if="{{ item.avatar }}" src='{{ item.avatar }}'></image>
       </view>
       <view class='rightBox'>
-        <view class='firstTitle'>{{ item.username }}<text class='typeName'>{{ item.title }}</text></view>
+        <view class='firstTitle'>
+          <text class='nameText {{ item.is_download == 1 ? "" : "mosaic" }}'>{{ item.username }}</text>
+          <text class='typeName'>{{ item.title }}</text></view>
         <view class='secondTags'>
           <text style='padding-left: 0'>{{ item.work_years }}年</text>
           <text class='middleTag'>{{ item.education }}</text>

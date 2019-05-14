@@ -1,10 +1,11 @@
 Component({
     properties: {
-        target: Number,
-        showDay: Boolean,
-        callback: String,
-        format: Array,
-        clearTimer: Boolean
+      target: Number,
+      showDay: Boolean,
+      showSecond: Boolean,
+      callback: String,
+      format: Array,
+      clearTimer: Boolean
     },
     externalClasses: ['countdown-class'],
     data: {
@@ -60,12 +61,13 @@ Component({
 
                 if (data.changeFormat) time = `${hour}${format[1]}${minute}${format[2]}${second}${format[3]}`;
                 else time = `${hour}:${minute}:${second}`;
-
+                if (data.showSecond) {
+                  time = `${second}`;
+                }
                 if (!data.clearTimer) this.init.call(this);
             } else {
                 this.endfn();
             }
-
             if (data.showDay) {
                 if (data.changeFormat) {
                     result = `${day}${format[0]} ${time}`;
@@ -74,10 +76,10 @@ Component({
                 }
             } else {
                 result = time;
-            }
-            this.setData({
-                time: result
-            });
+          }
+          this.setData({
+              time: result
+          });
 
         },
         formatNum(num) {

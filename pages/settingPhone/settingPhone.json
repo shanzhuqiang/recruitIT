@@ -1,5 +1,7 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "i-count-down": "../../dist/count-down/index"
+  },
   "navigationBarTitleText": "手机号",
   "navigationBarBackgroundColor": "#fff"
 }

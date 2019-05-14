@@ -18,11 +18,19 @@ Page({
     this.setData({
       imgSrc: app.globalData.imgSrc
     })
+  },
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
     this.init()
   },
   init() {
     let mobile = app.globalData.userInfo.mobile
     let has_password = app.globalData.has_password
+    this.setData({
+      mobile: mobile
+    })
     if (has_password == 1) {
       this.setData({
         password: '更改密码'
@@ -32,22 +40,11 @@ Page({
         password: '设置密码'
       })
     }
-    if (mobile) {
-      this.setData({
-        mobile: mobile
-      })
-    } else {
-      this.setData({
-        mobile: '绑定手机'
-      })
-    }
   },
   // 进入手机号页面
   goSettingPhone() {
-    // let mobile = this.data.mobile
-    // if (mobile && mobile === '绑定手机') {
       wx.navigateTo({
-        url: '../settingPhone/settingPhone'
+        url: `../settingPhone/settingPhone?mobile=${this.data.mobile}`
       })
     // }
   },
@@ -63,13 +60,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
 
   },
 

@@ -38,6 +38,13 @@ Page({
       success: (res) => {
         wx.hideLoading()
         let resData = res.data.bizobj.data.apply_list
+        resData.forEach((el, index) => {
+          if (el.max_salary) {
+            el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k/月'
+          } else {
+            el['salaryStr'] = '不限'
+          }
+        })
         this.setData({
           listData: resData
         })

@@ -17,11 +17,11 @@
           <text class='typeName'>{{ item.username }}</text>
         </view>
         <view class='secondRow'>
-          <text>{{ item.label1 }}</text>
+          <text>{{ item.work_years }}年</text>
           <text class='line'>|</text>
-          <text>{{ item.label2 }}</text>
+          <text>{{ item.education }}</text>
           <text class='line'>|</text>
-          <text>{{ item.label3 }}</text>
+          <text>{{ item.salaryStr }}</text>
         </view>
         <view class='threeRow'>最近活跃：{{ item.eigneer_day }}</view>
       </view>
