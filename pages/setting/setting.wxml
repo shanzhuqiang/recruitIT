@@ -17,8 +17,11 @@
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
     </view>
   </view>
-  <view class='qiehuanBox' bindtap='changeUserType' data-id="engineer">切换至工程师</view>
-  <view class='qiehuanBox'>切换至经纪人</view>
-  <view class='qiehuanBox'>切换至企业HR</view>
-  <view class='loginOut'>退出登录</view>
+  <!-- <view wx:if="{{ userType === 'engineer' }}">
+    <view class='qiehuanBox' bindtap='changeUserType' data-id="hr" wx:if="{{ userType !== 'hr' }}">切换至企业HR</view>
+    <view class='qiehuanBox' bindtap='changeUserType' data-id="engineer">切换至工程师</view>
+  </view> -->
+  <view class='qiehuanBox' bindtap='changeUserType' data-id="agent" wx:if="{{ userType === 'hr' }}">切换至经纪人</view>
+  <view class='qiehuanBox' bindtap='changeUserType' data-id="hr" wx:if="{{ userType === 'agent' }}">切换至企业HR</view>
+  <view class='loginOut' bindtap='loginOut'>退出登录</view>
 </view>

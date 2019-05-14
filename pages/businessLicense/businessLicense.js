@@ -46,18 +46,60 @@ Page({
         content: '确认上传该营业执照？',
         success: (res) => {
           if (res.confirm) {
-            this.companyFill()
+            wx.showLoading({
+              mask: true,
+              title: '保存中...',
+            })
+            this.urlTobase64() 
           }
         }
       })
     }
   },
-  // 公司认证
-  companyFill() {
-    wx.showLoading({
-      mask: true,
-      title: '保存中...',
+  // 转base64
+  urlTobase64() {
+    wx.request({
+      url: this.data.imgBox,
+      responseType: 'arraybuffer',
+      success: res => {
+        console.log(base64)
+        let base64 = wx.arrayBufferToBase64(res.data);
+        base64 = 'data:image/jpeg;base64,' + base64
+        this.updateImg(base64)
+      }
     })
+  },
+  // 上传base64拿url
+  updateImg(baseImage) {
+    wx.request({
+      url: `${app.globalData.baseUrl}/File/uploadImagesBase64.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        image: baseImage
+      },
+      method: 'POST',
+      success: (res) => {
+        if (res.data.error_code == 0) {
+          this.companyFill(res.data.bizobj.data.image_url)
+        } else {
+          wx.hideLoading()
+          wx.showModal({
+            showCancel: false,
+            title: '提示',
+            content: res.data.msg,
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 公司认证
+  companyFill(imgUrl) {
     let companyObj = app.globalData.companyObj
     wx.request({
       url: `${app.globalData.baseUrl}/Company/companyFill.html`,
@@ -72,7 +114,7 @@ Page({
         address: companyObj.addressInfo,
         instruction: companyObj.instruction,
         image: companyObj.imgBox,
-        licence_image: this.data.imgBox,
+        licence_image: imgUrl,
         lng: companyObj.longitude,
         lat: companyObj.latitude
       },

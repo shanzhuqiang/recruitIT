@@ -54,7 +54,7 @@
         <view class='right'>
           <view class='name1'>{{ item.major }}</view>
           <view class='gongsi1'>{{ item.name }}</view>
-          <view class='time1'>{{ item.start_time }}{{ item.end_time }}</view>
+          <view class='time1'>{{ item.start_time }}至{{ item.end_time }}</view>
         </view>
         <view class='editBtn' bindtap='goWorkHistory' data-id="{{ item.id }}">编辑</view>
       </view>
@@ -77,7 +77,7 @@
           <text>{{ item.level == 4 ? '高中' : item.level == 5 ? '专科' : item.level == 6 ? '本科' : item.level == 7 ? '硕士' : item.level == 8 ? '博士' : '无'  }}</text>
           <text class='endText'>{{ item.major }}</text>
         </view>
-        <view class='time1'>{{ item.start_time }}{{ item.end_time }}</view>
+        <view class='time1'>{{ item.start_time }}至{{ item.end_time }}</view>
       </view>
       <view class='editBtn' bindtap='goEducation' data-id="{{ item.id }}">编辑</view>
     </view>
@@ -92,7 +92,7 @@
         <view class='right' style='margin-left: 0'>
           <view class='name1'>{{ item.name }}</view>
           <view class='gongsi1'>{{ item.major }}</view>
-          <view class='time1'>{{ item.start_time }}{{ item.end_time }}</view>
+          <view class='time1'>{{ item.start_time }}至{{ item.end_time }}</view>
         </view>
         <view class='editBtn' bindtap='goProjectHistory' data-id="{{ item.id }}">编辑</view>
       </view>

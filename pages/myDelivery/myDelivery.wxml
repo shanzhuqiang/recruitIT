@@ -31,11 +31,11 @@
             <view class='time'>{{ item.create_time }}</view>
           </view>
           <view class='secondRow'>
-            <text>{{ item.label1 }}</text>
+            <text>{{ item.city_name }}</text>
             <text class='line'>|</text>
-            <text>{{ item.label2 }}</text>
+            <text>{{ item.job_experience }}</text>
             <text class='line'>|</text>
-            <text>{{ item.label3 }}</text>
+            <text>{{ item.nature }}</text>
           </view>
           <view class='threeRow'>{{ item.salaryStr }}</view>
         </view>
@@ -51,7 +51,7 @@
             <view class='time'>{{ item.create_time }}</view>
           </view>
           <view class='secondRow'>
-            <text>{{ item.label1 }}</text>
+            <text>{{ item.city_name }}</text>
             <text class='line'>|</text>
             <text>{{ item.label2 }}</text>
           </view>

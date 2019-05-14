@@ -82,6 +82,22 @@
 	font-size: 26rpx;
 	color: #2e70f9;
 }
+.loginWrap .inputWrap .rowItem .countDownWrap{
+  position: absolute;
+  right: 0;
+  top: 12rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+	font-family: PingFangSC-Regular;
+	font-size: 26rpx;
+	color: #2e70f9;
+}
+.loginWrap .inputWrap .rowItem .countDownWrap .countDown{
+  line-height: 1;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
 .loginWrap .loginBtn{
 	width: 600rpx;
 	height: 90rpx;

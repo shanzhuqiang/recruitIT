@@ -58,7 +58,7 @@
       <view>我的发布</view>
     </view>
   </view>
-  <!-- <view class='middleBox' wx:if="{{ userType === 'hr' }}">
+  <view class='middleBox' wx:if="{{ userType === 'agent' }}">
     <view bindtap='goTask'>
       <image class='toudi' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/toudi.png'></image>
       <view>每日任务</view>
@@ -75,7 +75,7 @@
       <image class='fabu' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/fabu.png'></image>
       <view>我的发布</view>
     </view>
-  </view> -->
+  </view>
   <view class='vipWrap'>
     <image class='vipGuanggao' bindtap='goVip' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/vipGuanggao.png'></image>
   </view>

@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userType: '',
     imgSrc: '',
     mobile: '',
     password: ''
@@ -23,6 +24,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.setData({
+      userType: app.globalData.userType
+    })
     this.init()
   },
   init() {
@@ -38,6 +42,47 @@ Page({
     } else {
       this.setData({
         password: '设置密码'
+      })
+    }
+  },
+  // 切换身份
+  changeUserType(e) {
+    let key = e.currentTarget.dataset.id
+    this.setData({
+      userType: key
+    })
+    app.globalData.userType = key
+    wx.showToast({
+      title: '切换成功',
+      mask: true,
+      icon: 'success',
+      success() {
+        setTimeout(() => {
+          wx.navigateBack({
+            delta: 1
+          })
+        }, 1500)
+      }
+    })
+  },
+  loginOut () {
+    if (app.globalData.has_password === 1) {
+      wx.showModal({
+        title: '提示',
+        confirmColor: '#0073ff',
+        confirmText: '前往',
+        content: '退出前请先设置密码',
+        success: (res) => {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '../settingPassword/settingPassword'
+            })
+          }
+        }
+      })
+    } else {
+      wx.reLaunch({
+        url: '../login/login'
       })
     }
   },

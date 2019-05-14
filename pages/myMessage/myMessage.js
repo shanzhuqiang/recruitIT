@@ -7,7 +7,8 @@ Page({
    */
   data: {
     page: 1,
-    listData: []
+    listData: [],
+    imgSrc: ''
   },
 
   /**
@@ -15,6 +16,9 @@ Page({
    */
   onLoad: function (options) {
     this.getListData()
+    this.setData({
+      imgSrc: app.globalData.imgSrc
+    })
   },
   // 获取消息列表
   getListData () {

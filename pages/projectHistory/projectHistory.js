@@ -119,18 +119,27 @@ Page({
       method: 'POST',
       success: (res) => {
         wx.hideLoading()
-        wx.showToast({
-          title: '保存成功',
-          mask: true,
-          icon: 'success',
-          success() {
-            setTimeout(() => {
-              wx.navigateBack({
-                delta: 1
-              })
-            }, 1500)
-          }
-        })
+        if (res.data.error_code == 0) {
+          wx.showToast({
+            title: '保存成功',
+            mask: true,
+            icon: 'success',
+            success() {
+              setTimeout(() => {
+                wx.navigateBack({
+                  delta: 1
+                })
+              }, 1500)
+            }
+          })
+        } else {
+          wx.hideLoading()
+          wx.showModal({
+            showCancel: false,
+            title: '提示',
+            content: res.data.msg,
+          })
+        }
       },
       fail: (res) => {
         wx.showToast({
@@ -156,18 +165,27 @@ Page({
       method: 'POST',
       success: (res) => {
         wx.hideLoading()
-        wx.showToast({
-          title: '删除成功',
-          mask: true,
-          icon: 'success',
-          success() {
-            setTimeout(() => {
-              wx.navigateBack({
-                delta: 1
-              })
-            }, 1500)
-          }
-        })
+        if (res.data.error_code == 0) {
+          wx.showToast({
+            title: '删除成功',
+            mask: true,
+            icon: 'success',
+            success() {
+              setTimeout(() => {
+                wx.navigateBack({
+                  delta: 1
+                })
+              }, 1500)
+            }
+          })
+        } else {
+          wx.hideLoading()
+          wx.showModal({
+            showCancel: false,
+            title: '提示',
+            content: res.data.msg,
+          })
+        }
       },
       fail: (res) => {
         wx.showToast({

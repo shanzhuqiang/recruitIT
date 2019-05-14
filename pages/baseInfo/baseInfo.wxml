@@ -53,7 +53,7 @@
   <view class='bottomBox'>
     <view class='firstTitle'>技能标签</view>
     <view class='tagWrap'>
-      <view class='tag' wx:for="{{ tagArray }}" wx:key="" bindtap='delTag' data-id="{{ item }}">{{ item }}</view>
+      <view class='tag' wx:for="{{ tagArray }}" wx:key="" bindtap='delTag' data-id="{{ item }}" wx:if="{{ item !== '' }}">{{ item }}</view>
       <view class='addTagBtn' bindtap='addTag'>添加标签+</view>
     </view>
   </view>

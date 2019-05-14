@@ -112,7 +112,8 @@ Page({
         let company_info = res.data.bizobj.data.company_info
         this.setData({
           name: company_info.name,
-          addressCity: company_info.city_name
+          addressCity: company_info.city_name,
+          imgBox: company_info.image
         })
       },
       fail: (res) => {
@@ -328,6 +329,7 @@ Page({
       }
     })
   },
+  // 转base64
   urlTobase64(url, companyObj) {
     wx.request({
       url: url,

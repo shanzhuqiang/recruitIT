@@ -30,7 +30,7 @@
     </view>
     <view class='title'>公司介绍</view>
     <view class='xianqgingImgWrap'>
-      <image class='xianqgingImg' src='{{ item.image }}'></image>
+      <image class='xianqgingImg' src='{{ company_info.image }}'></image>
     </view>
     <view class='content'>
       {{ company_info.instruction }}
