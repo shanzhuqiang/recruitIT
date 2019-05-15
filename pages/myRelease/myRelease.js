@@ -28,6 +28,10 @@ Page({
       imgSrc: app.globalData.imgSrc
     })
     if (this.data.userType === 'hr') {
+      wx.showLoading({
+        mask: true,
+        title: '加载中...',
+      })
       this.initProjectData()
       this.initQuartersData()
     }
@@ -39,7 +43,7 @@ Page({
   },
   goWordDetail(e) {
     wx.navigateTo({
-      url: `../postDetail/postDetail?id=${e.currentTarget.dataset.id}`
+      url: `../postDetail2/postDetail2?id=${e.currentTarget.dataset.id}`
     })
   },
   /**
@@ -99,6 +103,7 @@ Page({
       },
       method: 'POST',
       success: (res) => {
+        wx.hideLoading()
         let listData = res.data.bizobj.data.job_list
         listData.forEach((el, index) => {
           if (el.max_salary) {

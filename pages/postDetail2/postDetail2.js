@@ -7,21 +7,16 @@ Page({
    */
   data: {
     imgSrc: '',
-    userType: '',
-    post: false,
     id: '',
-    dataInfo: {},
-    companyInfo: {}
+    dataInfo: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
     this.getInfo(options.id)
     this.setData({
-      userType: app.globalData.userType,
       imgSrc: app.globalData.imgSrc,
       id: options.id
     })
@@ -40,6 +35,7 @@ Page({
       },
       method: 'POST',
       success: (res) => {
+        wx.hideLoading()
         let data = res.data.bizobj.data.job_info
         if (data.max_salary) {
           data['salaryStr'] = Math.round(data.mini_salary / 1000) + 'k-' + Math.round(data.max_salary / 1000) + 'k/月'
@@ -49,75 +45,6 @@ Page({
         this.setData({
           dataInfo: data
         })
-        this.getCompany(data.re_company_id)
-      },
-      fail: (res) => {
-        wx.showToast({
-          icon: 'none',
-          title: '网络请求失败',
-        })
-      }
-    })
-  },
-  // 获取企业信息
-  getCompany (id) {
-    wx.request({
-      url: `${app.globalData.baseUrl}/Company/companyInfo.html`,
-      data: {
-        sess_key: app.globalData.sess_key,
-        id: id
-      },
-      method: 'POST',
-      success: (res) => {
-        wx.hideLoading()
-        let company_info = res.data.bizobj.data.company_info
-        this.setData({
-          companyInfo: company_info
-        })
-      },
-      fail: (res) => {
-        wx.showToast({
-          icon: 'none',
-          title: '网络请求失败',
-        })
-      }
-    })
-  },
-  // 立即投递
-  applyNow() {
-    wx.showLoading({
-      mask: true,
-      title: '投递中...',
-    })
-    wx.request({
-      url: `${app.globalData.baseUrl}/apply/apply.html`,
-      data: {
-        sess_key: app.globalData.sess_key,
-        re_job_id: this.data.id,
-        type: 1
-      },
-      method: 'POST',
-      success: (res) => {
-        wx.hideLoading()
-        if (res.data.error_code == 0) {
-          wx.showToast({
-            title: '投递成功',
-            mask: true,
-            icon: 'success',
-            success() {
-              setTimeout(() => {
-                wx.navigateBack({
-                  delta: 1
-                })
-              }, 1500)
-            }
-          })
-        } else {
-          wx.showToast({
-            icon: 'none',
-            title: res.data.msg,
-          })
-        }
       },
       fail: (res) => {
         wx.showToast({

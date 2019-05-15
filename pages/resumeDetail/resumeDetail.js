@@ -107,14 +107,14 @@ Page({
       })
     } else {
       wx.makePhoneCall({
-        phoneNumber: this.data.resumeInfo.user_info.mobile,
-        complete(res) {
-          wx.showModal({
-            showCancel: false,
-            title: '提示',
-            content: '可在我的-简历-待沟通中邀请面试',
-          })
-        }
+        phoneNumber: this.data.resumeInfo.user_info.mobile
+        // complete(res) {
+        //   wx.showModal({
+        //     showCancel: false,
+        //     title: '提示',
+        //     content: '可在我的-简历-待沟通中邀请面试',
+        //   })
+        // }
       })
     }
   },

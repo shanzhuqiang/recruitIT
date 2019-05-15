@@ -15,7 +15,7 @@
       <view class='rightText'>
         <view class='firstRow'>
           <text class='nameText {{ topType == 1 ? "mosaic" : "" }}'>{{ item.username }}</text>
-          <text class='typeName'>{{ item.username }}</text>
+          <text class='typeName'>{{ item.title }}</text>
         </view>
         <view class='secondRow'>
           <text>{{ item.work_years }}年</text>

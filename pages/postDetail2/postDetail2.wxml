@@ -1,25 +1,29 @@
 <!--pages/postDetail/postDetail.wxml-->
-<view class='projectDetailWrap2'>
+<view class='postDetailWrap'>
   <view class='topBox'>
-    <view class='box'>招标</view>
     <view class='first'>
-      <view class='leftTitle'>{{ job_info.name }}</view>
-      <view class='rightTitle'>{{ job_info.salaryStr }}</view>
+      <view class='leftTitle'>{{ dataInfo.name }}</view>
+      <view class='rightTitle'>{{ dataInfo.salaryStr }}</view>
     </view>
     <view class='second'>
-      <text>{{ job_info.city_name + '·' + job_info.district_name }}</text>
+      <text>{{ dataInfo.city_name + '·' + dataInfo.district_name }}</text>
       <text class='line'>|</text>
-      <text class='middle'>{{ job_info.job_experience }}</text>
+      <text class='middle'>{{ dataInfo.education }}</text>
       <text class='line'>|</text>
-      <text>{{ job_info.nature }}</text>
+      <text>{{ dataInfo.job_experience }}</text>
+    </view>
+    <view class='three'>
+      <text wx:if="{{ dataInfo.job_label1 }}">{{ dataInfo.job_label1 }}</text>
+      <text wx:if="{{ dataInfo.job_label2 }}">{{ dataInfo.job_label2 }}</text>
+      <text wx:if="{{ dataInfo.job_label3 }}">{{ dataInfo.job_label3 }}</text>
     </view>
   </view>
   <view class='detailBox'>
     <view class='titleOne'>岗位详情</view>
     <view class='titleSmall'>岗位职责</view>
-    <textarea class='contentRow' value='{{ job_info.instruction }}' disabled auto-height></textarea>
+    <textarea class='contentRow' value='{{ dataInfo.instruction }}' disabled auto-height></textarea>
     <view class='titleSmall'>任职要求</view>
-    <textarea class='contentRow' value='{{ job_info.requirement }}' disabled auto-height></textarea>
+    <textarea class='contentRow' value='{{ dataInfo.requirement }}' disabled auto-height></textarea>
   </view>
   <view class='detailBox'>
     <view class='titleOne'>招聘数据</view>

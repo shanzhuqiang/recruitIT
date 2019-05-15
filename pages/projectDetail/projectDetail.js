@@ -26,7 +26,11 @@ Page({
     })
   },
   // 获取项目详情
-  getInfo (id) {
+  getInfo(id) {
+    wx.showLoading({
+      mask: true,
+      title: '加载中...',
+    })
     wx.request({
       url: `${app.globalData.baseUrl}/Project/projectDetail.html`,
       data: {
@@ -64,6 +68,7 @@ Page({
       },
       method: 'POST',
       success: (res) => {
+        wx.hideLoading()
         let company_info = res.data.bizobj.data.company_info
         this.setData({
           companyInfo: company_info
@@ -93,18 +98,25 @@ Page({
       method: 'POST',
       success: (res) => {
         wx.hideLoading()
-        wx.showToast({
-          title: '投递成功',
-          mask: true,
-          icon: 'success',
-          success() {
-            setTimeout(() => {
-              wx.navigateBack({
-                delta: 1
-              })
-            }, 1500)
-          }
-        })
+        if (res.data.error_code == 0) {
+          wx.showToast({
+            title: '投递成功',
+            mask: true,
+            icon: 'success',
+            success() {
+              setTimeout(() => {
+                wx.navigateBack({
+                  delta: 1
+                })
+              }, 1500)
+            }
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+          })
+        }
       },
       fail: (res) => {
         wx.showToast({

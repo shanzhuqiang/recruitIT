@@ -4,7 +4,7 @@
 }
 .projectDetailWrap .topBox{
   border-bottom: 16rpx solid #f8f8f8;
-  padding: 0 30rpx;
+  padding: 20rpx 30rpx 0;
 }
 .projectDetailWrap .topBox .first{
   position: relative;

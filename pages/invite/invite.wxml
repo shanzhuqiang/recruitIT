@@ -28,7 +28,7 @@
   </view>
   <view class='hallRow'>
     电话
-    <input class='rightInput' placeholder='请输入联系电话' bindinput='phoneChange' placeholder-style='color: #999'></input>
+    <input class='rightInput' placeholder='请输入联系电话' type='number' maxlength='11' bindinput='phoneChange' placeholder-style='color: #999'></input>
   </view>
   <view class='finish' bindtap='finish'>邀请</view>
 </view>
