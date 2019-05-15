@@ -11,13 +11,19 @@ Page({
     id: '',
     resumeInfo: null,
     collect: false,
-    download: false
+    download: false,
+    re_apply_id: ''
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     console.log(options)
+    if (options.reApplyId) {
+      this.setData({
+        re_apply_id: options.reApplyId
+      })
+    }
     this.setData({
       userType: app.globalData.userType,
       imgSrc: app.globalData.imgSrc,
@@ -68,7 +74,7 @@ Page({
     }
   },
   // 下载按钮
-  bottomBtn(e) {
+  bottomBtn() {
     if (!this.data.download) {
       let userData = this.data.resumeInfo.user_info
       wx.showModal({
@@ -94,7 +100,7 @@ Page({
                 }
               })
             } else {
-              this.downResume(e.currentTarget.dataset.id)
+              this.downResume()
             }
           }
         }
@@ -113,7 +119,7 @@ Page({
     }
   },
   // 下载简历
-  downResume(id) {
+  downResume() {
     wx.showLoading({
       mask: true,
       title: '下载中...',
@@ -125,7 +131,7 @@ Page({
         sess_key: app.globalData.sess_key,
         user_type: userType === 'engineer' ? 1 : userType === 'hr' ? 2 : 3,
         re_resume_id: this.data.id,
-        re_apply_id: id
+        re_apply_id: this.data.re_apply_id
       },
       method: 'POST',
       success: (res) => {

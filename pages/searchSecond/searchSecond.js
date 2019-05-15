@@ -279,8 +279,11 @@ Page({
       success: (res) => {
         let listData = res.data.bizobj.data.resume_list
         listData.forEach((el, index) => {
-          el['mini_salary1'] = Math.round(el.mini_salary / 1000) + 'k'
-          el['max_salary1'] = Math.round(el.max_salary / 1000) + 'k'
+          if (el.max_salary) {
+            el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k/月'
+          } else {
+            el['salaryStr'] = '不限'
+          }
         })
         this.setData({
           dataList: listData
@@ -303,7 +306,7 @@ Page({
   // 获取区域
   getArea() {
     wx.request({
-      url: `${app.globalData.baseUrl}/Addr/prov2CityList.html`,
+      url: `${app.globalData.baseUrl}/Addr/city2DistrictList.html`,
       data: {
         sess_key: app.globalData.sess_key,
         city_code: this.data.userInfo.city_code
@@ -313,8 +316,8 @@ Page({
         let listData = res.data.bizobj.data.area_list
         console.log(listData)
         listData.unshift({
-          city_code: '',
-          city_name: '不限'
+          district_code: '',
+          district_name: '不限'
         })
         let hangyeData = []
         let length = parseInt(listData.length / 3)

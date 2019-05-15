@@ -22,15 +22,14 @@
       <view class='rightBox'>
         <view class='firstTitle'><text class='nameText mosaic'>{{ item.name }}</text><text class='typeName'>{{ item.job_name }}</text></view>
         <view class='secondTags'>
-          <text style='padding-left: 0'>{{ item.work_years }}</text>
+          <text style='padding-left: 0'>{{ item.work_yeas }}年</text>
           <text class='middleTag'>{{ item.education_name }}</text>
           <text>{{ item.mini_salary1 + '-' + item.max_salary1 }}</text>
         </view>
         <view class='thirdTags'>
-          <text>{{ item.label1 }}</text>
-          <text>{{ item.label2 }}</text>
-          <text>{{ item.label3 }}</text>
-          <text>{{ item.label_4 }}</text>
+          <text wx:if="{{ item.label1 }}">{{ item.label1 }}</text>
+          <text wx:if="{{ item.label2 }}">{{ item.label2 }}</text>
+          <text wx:if="{{ item.label3 }}">{{ item.label3 }}</text>
         </view>
       </view>
     </view>

@@ -80,9 +80,9 @@
         <view class='money'>{{ item.salaryStr }}</view>
       </view>
       <view class='second'>
-        <text style='padding-left: 0'>{{ item.job_label1 }}</text>
-        <text class='middleText'>{{ item.job_label2 }}</text>
-        <text>{{ item.job_label3 }}</text>
+        <text style='padding-left: 0'>{{ item.city_name }}</text>
+        <text class='middleText'>{{ item.job_experience }}</text>
+        <text>{{ item.education }}</text>
       </view>
       <view class='picBox'>
         <view class='left'>
@@ -90,7 +90,7 @@
         </view>
         <view class='right'>
           <view class='logoName'>{{ item.company_name }}</view>
-          <view class='logoType'>{{ item.company_label1 }}</view>
+          <view class='logoType'>{{ item.line_name }}</view>
         </view>
       </view>
     </view>

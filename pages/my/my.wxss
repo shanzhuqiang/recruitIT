@@ -211,6 +211,13 @@
   right: 25rpx;
   top: 45rpx;
 }
+.myWrap .listWrap .listItem .downResume{
+  width: 32rpx;
+  height: 36rpx;
+  position: absolute;
+  left: 0;
+  top: 45rpx;
+}
 .myWrap .listWrap .listItem .company{
   width: 33rpx;
   height: 37rpx;

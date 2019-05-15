@@ -34,7 +34,7 @@ Page({
   },
   goProjectDetail(e) {
     wx.navigateTo({
-      url: `../projectDetail/projectDetail?id=${e.currentTarget.dataset.id}`
+      url: `../projectDetail2/projectDetail2?id=${e.currentTarget.dataset.id}`
     })
   },
   goWordDetail(e) {

@@ -436,7 +436,7 @@ Page({
   // 获取区域
   getArea() {
     wx.request({
-      url: `${app.globalData.baseUrl}/Addr/prov2CityList.html`,
+      url: `${app.globalData.baseUrl}/Addr/city2DistrictList.html`,
       data: {
         sess_key: app.globalData.sess_key,
         city_code: this.data.userInfo.city_code

@@ -18,6 +18,12 @@ Page({
     this.setData({
       imgSrc: app.globalData.imgSrc
     })
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
     this.getData()
   },
   // 获取列表信息
@@ -123,7 +129,7 @@ Page({
   goResumeDetail(e) {
     if (this.data.topType == 1 || this.data.topType == 2) {
       wx.navigateTo({
-        url: `../resumeDetail/resumeDetail?id=${e.currentTarget.dataset.id}`
+        url: `../resumeDetail/resumeDetail?id=${e.currentTarget.dataset.id}&reApplyId=${e.currentTarget.dataset.ida}`
       })
     } else {
       wx.navigateTo({
@@ -149,13 +155,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
 
   },
 

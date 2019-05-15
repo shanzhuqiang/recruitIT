@@ -53,7 +53,7 @@
           <view class='secondRow'>
             <text>{{ item.city_name }}</text>
             <text class='line'>|</text>
-            <text>{{ item.label2 }}</text>
+            <text>{{ item.company_name }}</text>
           </view>
           <view class='threeRow'>{{ item.salaryStr }}</view>
         </view>

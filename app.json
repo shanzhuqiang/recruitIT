@@ -31,6 +31,7 @@
     "pages/resumeDetail/resumeDetail",
     "pages/postDetail/postDetail",
     "pages/projectDetail/projectDetail",
+    "pages/projectDetail2/projectDetail2",
     "pages/invite/invite",
     "pages/sharePage/sharePage",
     "pages/myCompany/myCompany",
@@ -65,7 +66,8 @@
     "pages/loginChoose/loginChoose",
     "pages/login/login",
     "pages/message/message",
-    "pages/faceInfo/faceInfo"
+    "pages/faceInfo/faceInfo",
+    "pages/myDown/myDown"
   ],
   "window": {
     "backgroundTextStyle": "light",

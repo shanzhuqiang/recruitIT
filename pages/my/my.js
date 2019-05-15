@@ -123,6 +123,12 @@ Page({
     wx.navigateTo({
       url: '../vip/vip'
     })
+  }, 
+  // 我的下载
+  goMyDownResume() {
+    wx.navigateTo({
+      url: '../myDown/myDown'
+    })
   },
   // 我的公司
   goMyCompany() {

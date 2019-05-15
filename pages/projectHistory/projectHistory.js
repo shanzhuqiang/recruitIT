@@ -151,47 +151,56 @@ Page({
   },
   // 删除工作经验
   delWork() {
-    wx.showLoading({
-      mask: true,
-      title: '删除中...',
-    })
-    wx.request({
-      url: `${app.globalData.baseUrl}/Resume/resumeFillProject.html`,
-      data: {
-        sess_key: app.globalData.sess_key,
-        re_resume_work_id: this.data.id,
-        type: 2
-      },
-      method: 'POST',
+    wx.showModal({
+      title: '提示',
+      confirmColor: '#0073ff',
+      content: '确认删除该经验吗？',
       success: (res) => {
-        wx.hideLoading()
-        if (res.data.error_code == 0) {
-          wx.showToast({
-            title: '删除成功',
+        if (res.confirm) {
+          wx.showLoading({
             mask: true,
-            icon: 'success',
-            success() {
-              setTimeout(() => {
-                wx.navigateBack({
-                  delta: 1
+            title: '删除中...',
+          })
+          wx.request({
+            url: `${app.globalData.baseUrl}/Resume/resumeFillProject.html`,
+            data: {
+              sess_key: app.globalData.sess_key,
+              re_resume_work_id: this.data.id,
+              type: 2
+            },
+            method: 'POST',
+            success: (res) => {
+              wx.hideLoading()
+              if (res.data.error_code == 0) {
+                wx.showToast({
+                  title: '删除成功',
+                  mask: true,
+                  icon: 'success',
+                  success() {
+                    setTimeout(() => {
+                      wx.navigateBack({
+                        delta: 1
+                      })
+                    }, 1500)
+                  }
                 })
-              }, 1500)
+              } else {
+                wx.hideLoading()
+                wx.showModal({
+                  showCancel: false,
+                  title: '提示',
+                  content: res.data.msg,
+                })
+              }
+            },
+            fail: (res) => {
+              wx.showToast({
+                icon: 'none',
+                title: '网络请求失败',
+              })
             }
           })
-        } else {
-          wx.hideLoading()
-          wx.showModal({
-            showCancel: false,
-            title: '提示',
-            content: res.data.msg,
-          })
         }
-      },
-      fail: (res) => {
-        wx.showToast({
-          icon: 'none',
-          title: '网络请求失败',
-        })
       }
     })
   },

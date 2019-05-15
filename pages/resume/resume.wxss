@@ -34,7 +34,16 @@
 }
 .resumeWrap .itemWrap .itemBox{
   border-bottom: 1rpx solid #f0f0f0;
-  padding: 70rpx 0 40rpx;
+  padding: 40rpx 0 40rpx;
+}
+.resumeWrap .itemWrap .itemBox .workName{
+	font-family: PingFangSC-Medium;
+	color: #333;
+	font-size: 30rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  padding-bottom: 20rpx;
+  padding-left: 10rpx;
 }
 .resumeWrap .itemWrap .itemBox .leftImg{
   height: 80rpx;
