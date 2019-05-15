@@ -12,7 +12,7 @@
     </view>
     <view class='rowBox'>
       <view class='leftName'>联系人</view>
-      <view class='rightVal'>{{ interviewInfo.contract }}</view>
+      <view class='rightVal'>{{ interviewInfo.contact }}</view>
     </view>
     <view class='rowBox'>
       <view class='leftName'>联系电话</view>

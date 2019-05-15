@@ -19,6 +19,7 @@ Page({
    */
   onLoad: function (options) {
     console.log(options.id)
+    console.log(options)
     console.log(options.type)
     this.setData({
       imgSrc: app.globalData.imgSrc,
@@ -43,9 +44,9 @@ Page({
         this.getCompany(data.re_company_id)
         if (type == 1) {
           // 1是岗位2是项目
-          this.getWorkInfo(data.j_id)
+          this.getWorkInfo(data.re_job_id)
         } else {
-          this.getProjectInfo(data.j_id)
+          this.getProjectInfo(data.re_job_id)
         }
       },
       fail: (res) => {

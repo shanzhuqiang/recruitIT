@@ -133,7 +133,7 @@ Page({
       })
     } else {
       wx.navigateTo({
-        url: `../faceInfo/faceInfo?id=${e.currentTarget.dataset.ida}?type=${e.currentTarget.dataset.type}`
+        url: `../faceInfo/faceInfo?id=${e.currentTarget.dataset.ida}&type=${e.currentTarget.dataset.type}`
       })
     }
   },

@@ -83,7 +83,7 @@ Page({
         title: '提交中...',
       })
       wx.request({
-        url: `${app.globalData.baseUrl}/Resume/intension.html`,
+        url: `${app.globalData.baseUrl}/apply/interview.html`,
         data: {
           sess_key: app.globalData.sess_key,
           re_apply_id: this.data.id,
@@ -95,18 +95,25 @@ Page({
         method: 'POST',
         success: (res) => {
           wx.hideLoading()
-          wx.showToast({
-            title: '提交成功',
-            mask: true,
-            icon: 'success',
-            success() {
-              setTimeout(() => {
-                wx.navigateBack({
-                  delta: 1
-                })
-              }, 1500)
-            }
-          })
+          if (res.data.error_code == 0) {
+            wx.showToast({
+              title: '提交成功',
+              mask: true,
+              icon: 'success',
+              success() {
+                setTimeout(() => {
+                  wx.navigateBack({
+                    delta: 1
+                  })
+                }, 1500)
+              }
+            })
+          } else {
+            wx.showToast({
+              icon: 'none',
+              title: res.data.msg,
+            })
+          }
         },
         fail: (res) => {
           wx.showToast({
