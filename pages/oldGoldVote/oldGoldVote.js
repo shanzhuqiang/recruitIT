@@ -8,7 +8,8 @@ Page({
   data: {
     page:1,
     imgSrc: '' ,
-    maskOnOff: false
+    maskOnOff: false,
+    listData: []
   },
 
   /**
@@ -44,6 +45,18 @@ Page({
       success: (res) => {
         if (res.data.error_code == 0) {
           let listData = res.data.bizobj.data.topic_list
+          listData.forEach((el, index) => {
+            el['blue_percent'] = (el.blue_percent * 100).toFixed(2)
+            el['red_percent'] = (el.red_percent * 100).toFixed(2)
+            if (el.coin_gain != 0) {
+              let str = el.coin_gain.substr(1, el.coin_gain.length - 1)
+              if (el.coin_gain > 0) {
+                el['coin_gain'] = `获得${str}金币`
+              } else {
+                el['coin_gain'] = `消耗${str}金币`
+              }
+            }
+          })
           if (listData.length > 0) {
             let oldList = this.data.listData
             this.setData({

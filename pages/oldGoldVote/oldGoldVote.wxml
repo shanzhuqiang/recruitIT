@@ -14,13 +14,17 @@
       </view>
     </view>
     <view class='secondBox'>
+      <view class='topText'>
+        <view class='leftText'>信 <text class='yaMoeny' wx:if="{{ item.vote == 1 }}">压{{ item.coin }}个金币</text></view>
+        <view class='rightText'><text class='yaMoeny2' wx:if="{{ item.vote == 2 }}">压{{ item.coin }}个金币</text>不信</view>
+      </view>
       <view class='progressWrap'> 
-        <text class='leftPre'>{{ item.blue_percent * 100 }}%</text>
-        <text class='rightPre'>{{ item.red_percent * 100 }}%</text>
+        <text class='leftPre'>{{ item.blue_percent }}%</text>
+        <text class='rightPre'>{{ item.red_percent }}%</text>
         <view class='progress' style='width: {{ item.blue_percent }}%'></view>
       </view>
     </view>
-    <view class='bottomLeft '>{{ item.coin_gain > 0 ? '消耗' + item.coin_gain + '金币' ： '获得' + item.coin_gain + '金币' }}</view>
+    <view class='bottomLeft' wx:if="{{ item.coin_gain != 0 }}">{{ item.coin_gain }}</view>
     <view class='peopleNum'>{{ item.total_num }}人已参与</view>
   </view>
   <!-- <view class='itemBox'>

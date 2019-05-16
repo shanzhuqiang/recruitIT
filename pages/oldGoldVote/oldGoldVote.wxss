@@ -93,6 +93,12 @@ page{
 	color: #2e70f9;
   margin-left: 10rpx;
 }
+.oldGoldVoteWrap .itemBox .secondBox .topText .rightText .yaMoeny2{
+	font-family: PingFangSC-Regular;
+	font-size: 20rpx;
+	color: #ef4933;
+  margin-right: 10rpx;
+}
 .oldGoldVoteWrap .itemBox .secondBox .topText .rightText{
   text-align: right;
   width: 50%;
