@@ -234,7 +234,8 @@
   top: 180rpx;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.4)
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 999999
 }
 .bountyPlatformWrap .filterMask .maskBody{
   padding: 35rpx 38rpx;

@@ -43,8 +43,8 @@
     </view>
   </view>
   <view class='bottomBtnWrap'>
-    <view class='btn'>结束</view>
-    <view class='btn disabled'>暂停</view>
-    <view class='btn'>重发</view>
+    <view class='btn {{ dataInfo.operate_status == 3 ? "disabled" : "" }}' bindtap='changeStatus' data-id="3">结束</view>
+    <view class='btn {{ dataInfo.operate_status == 2 ? "disabled" : "" }}' bindtap='changeStatus' data-id="2">暂停</view>
+    <view class='btn {{ dataInfo.operate_status == 1 ? "disabled" : "" }}' bindtap='changeStatus' data-id="1">重发</view>
   </view>
 </view>

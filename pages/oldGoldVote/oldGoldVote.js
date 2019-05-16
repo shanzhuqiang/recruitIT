@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    page:1,
     imgSrc: '' ,
     maskOnOff: false
   },
@@ -17,6 +18,7 @@ Page({
     this.setData({
       imgSrc: app.globalData.imgSrc
     })
+    this.getList()
   },
   openRule () {
     this.setData({
@@ -26,6 +28,41 @@ Page({
   closeRule() {
     this.setData({
       maskOnOff: false
+    })
+  },
+  // 获取数据
+  getList() {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Topic/topicList.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        page: this.data.page,
+        page_size: 20,
+        type: 2
+      },
+      method: 'POST',
+      success: (res) => {
+        let listData = res.data.bizobj.data.topic_list
+        if (listData.length > 0) {
+          let oldList = this.data.listData
+          let targetTime = {}
+          listData.forEach((el, index) => {
+            targetTime['id' + el.id] = new Date().getTime() + 590000
+          })
+          this.setData({
+            targetTime: targetTime,
+            listData: [...oldList, ...listData],
+            page: this.data.page + 1
+          })
+        }
+        console.log(this.data.targetTime)
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
     })
   },
   /**
@@ -67,7 +104,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.getList()
   },
 
   /**

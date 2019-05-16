@@ -19,14 +19,6 @@ Page({
       maskOnOff: false
     })
   },
-  openImg() {
-    console.log(312)
-    wx.previewImage({
-      urls: ['https://csdnimg.cn/pubfooter/images/csdn-cxrs.png']
-      // urls: [`${this.data.imgSrc}/shareImg.png`] // 需要预览的图片http链接列表
-    })
-  },
-
   /**
    * 生命周期函数--监听页面加载
    */

@@ -71,8 +71,18 @@ page{
   top: 0;
 }
 .goldVoteWrap .itemBox .firstBox .lastTime text{
-  position: relative;
+  position: absolute;
+  left: 20rpx;
+  top: 0;
   z-index: 1;
+}
+.goldVoteWrap .itemBox .firstBox .lastTime .countDown{
+  position: absolute;
+  top: -13rpx;
+  left: 130rpx;
+  z-index: 9;
+  color: #fff;
+  line-height: 1;
 }
 .goldVoteWrap .itemBox .secondBox{
   height: 74rpx;

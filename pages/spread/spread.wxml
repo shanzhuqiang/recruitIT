@@ -15,7 +15,7 @@
     </view>
     <view class='maskWrap' wx:if="{{ maskOnOff }}">
       <view class='contentBox'>
-        <image class='shareImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/shareImg.png' bindtap='openImg'></image>
+        <image class='shareImg' show-menu-by-longpress wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/shareImg.png'></image>
         <view class='text' bindtap='closeMask'>我知道了</view>
       </view>
     </view>

@@ -6,6 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    targetTime: {},
+    clearTimer: false,
     imgSrc: '' ,
     maskOnOff: false,
     visible: false,
@@ -18,6 +20,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      targetTime: new Date().getTime() + 590000
+    });
     this.setData({
       imgSrc: app.globalData.imgSrc
     })
@@ -38,12 +43,17 @@ Page({
         let listData = res.data.bizobj.data.topic_list
         if (listData.length > 0) {
           let oldList = this.data.listData
+          let targetTime = {}
+          listData.forEach((el, index) => {
+            targetTime['id' + el.id] = new Date().getTime() + 590000
+          })
           this.setData({
+            targetTime: targetTime,
             listData: [...oldList, ...listData],
             page: this.data.page + 1
           })
-
         }
+        console.log(this.data.targetTime)
       },
       fail: (res) => {
         wx.showToast({
@@ -115,7 +125,9 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    this.setData({
+      clearTimer: true
+    })
   },
 
   /**

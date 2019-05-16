@@ -11,7 +11,13 @@
       {{ item.title }}
       <view class='lastTime'>
         <image class='huatiImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/huati.png'></image>
-        <text>剩余时间：{{ item.time_left }}</text>
+        <text>剩余时间：</text>
+        <i-count-down
+          countdown-class="countDown"
+          target="{{ targetTime['id' + item.id] }}"
+          clear-timer="{{clearTimer}}"
+        ></i-count-down>
+        <!-- {{ item.time_left }} -->
       </view>
     </view>
     <view class='secondBox'>
@@ -37,4 +43,5 @@
     <view class='jinbi'>当前金币数：<text class='num'>560</text></view>
     <view class='jinbi'>您将消耗XX金币参与话题投票</view>
   </i-modal>
+
 </view>
