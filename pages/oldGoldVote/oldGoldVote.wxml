@@ -15,15 +15,15 @@
     </view>
     <view class='secondBox'>
       <view class='progressWrap'> 
-        <text class='leftPre'>{{ item.blue_percent }}%</text>
-        <text class='rightPre'>{{ item.red_percent }}%</text>
+        <text class='leftPre'>{{ item.blue_percent * 100 }}%</text>
+        <text class='rightPre'>{{ item.red_percent * 100 }}%</text>
         <view class='progress' style='width: {{ item.blue_percent }}%'></view>
       </view>
     </view>
-    <view class='bottomLeft '>{{ item.status_ch }}</view>
+    <view class='bottomLeft '>{{ item.coin_gain > 0 ? '消耗' + item.coin_gain + '金币' ： '获得' + item.coin_gain + '金币' }}</view>
     <view class='peopleNum'>{{ item.total_num }}人已参与</view>
   </view>
-  <view class='itemBox'>
+  <!-- <view class='itemBox'>
     <view class='firstBox'>
       #你相信第六感吗？
       <view class='lastTime'>
@@ -44,7 +44,7 @@
     </view>
     <view class='bottomLeft blue'>消耗XX个银币</view>
     <view class='peopleNum'>500人已参与</view>
-  </view>
+  </view> -->
   <view class='maskWrap' wx:if="{{ maskOnOff }}">
     <view class='maskBox'>
       <view class='title'>投票规则</view>

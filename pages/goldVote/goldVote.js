@@ -13,7 +13,11 @@ Page({
     visible: false,
     openModalType: '',
     page: 1,
-    listData: []
+    listData: [],
+    userType: '',
+    total_coin: '',
+    costCoin: '',
+    chooseTopicId: ''
   },
 
   /**
@@ -21,12 +25,35 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      targetTime: new Date().getTime() + 590000
-    });
-    this.setData({
+      userType: app.globalData.userType,
       imgSrc: app.globalData.imgSrc
     })
     this.getList()
+    this.getTotalMoney()
+  },
+  // 获取金币数
+  getTotalMoney() {
+    let userType = this.data.userType
+    wx.request({
+      url: `${app.globalData.baseUrl}/Coin/coinLog.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        way: 1,
+        user_type: userType === 'engineer' ? 1 : userType === 'hr' ? 2 : 3
+      },
+      method: 'POST',
+      success: (res) => {
+        this.setData({
+          total_coin: res.data.bizobj.data.total_coin
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
   },
   // 获取数据
   getList() {
@@ -40,20 +67,27 @@ Page({
       },
       method: 'POST',
       success: (res) => {
-        let listData = res.data.bizobj.data.topic_list
-        if (listData.length > 0) {
-          let oldList = this.data.listData
-          let targetTime = {}
-          listData.forEach((el, index) => {
-            targetTime['id' + el.id] = new Date().getTime() + 590000
-          })
-          this.setData({
-            targetTime: targetTime,
-            listData: [...oldList, ...listData],
-            page: this.data.page + 1
+        if (res.data.error_code == 0) {
+          let listData = res.data.bizobj.data.topic_list
+          if (listData.length > 0) {
+            let oldList = this.data.listData
+            let targetTime = {}
+            listData.forEach((el, index) => {
+              targetTime['id' + el.id] = new Date().getTime() + el.time_left * 1000
+            })
+            this.setData({
+              targetTime: targetTime,
+              listData: [...oldList, ...listData],
+              page: this.data.page + 1
+            })
+          }
+          console.log(this.data.targetTime)
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
           })
         }
-        console.log(this.data.targetTime)
       },
       fail: (res) => {
         wx.showToast({
@@ -73,21 +107,64 @@ Page({
       maskOnOff: false
     })
   },
+  // 选择信或不信
   openModal(e) {
-    let id = e.currentTarget.dataset.id
     let on = e.currentTarget.dataset.on
-    let status = e.currentTarget.dataset.status
+    let coin = e.currentTarget.dataset.coin
     this.setData({
-      openModalType: on
+      chooseTopicId: e.currentTarget.dataset.id,
+      openModalType: on,
+      coin: coin
     }, () => {
       this.setData({
         visible: true
       })
     })
   },
+  // 确认投票
   bindOk() {
-    this.setData({
-      visible: false
+    wx.showLoading({
+      mask: true,
+      title: '投票中...',
+    })
+    let userType = this.data.userType
+    wx.request({
+      url: `${app.globalData.baseUrl}/Topic/chooseTopic.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        re_topic_id: this.data.chooseTopicId,
+        vote_side: this.data.openModalType,
+        user_type: userType === 'engineer' ? 1 : userType === 'hr' ? 2 : 3
+      },
+      method: 'POST',
+      success: (res) => {
+        wx.hideLoading()
+        if (res.data.error_code == 0) {
+          wx.showToast({
+            title: '投票成功',
+            mask: true,
+            icon: 'success',
+            success: () => {
+              setTimeout(() => {
+                this.setData({
+                  visible: false
+                })
+              }, 1500)
+            }
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
     })
   },
   bindClose() {

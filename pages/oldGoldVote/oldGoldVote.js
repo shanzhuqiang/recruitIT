@@ -42,20 +42,21 @@ Page({
       },
       method: 'POST',
       success: (res) => {
-        let listData = res.data.bizobj.data.topic_list
-        if (listData.length > 0) {
-          let oldList = this.data.listData
-          let targetTime = {}
-          listData.forEach((el, index) => {
-            targetTime['id' + el.id] = new Date().getTime() + 590000
-          })
-          this.setData({
-            targetTime: targetTime,
-            listData: [...oldList, ...listData],
-            page: this.data.page + 1
+        if (res.data.error_code == 0) {
+          let listData = res.data.bizobj.data.topic_list
+          if (listData.length > 0) {
+            let oldList = this.data.listData
+            this.setData({
+              listData: [...oldList, ...listData],
+              page: this.data.page + 1
+            })
+          }
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
           })
         }
-        console.log(this.data.targetTime)
       },
       fail: (res) => {
         wx.showToast({

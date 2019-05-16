@@ -21,8 +21,8 @@
       </view>
     </view>
     <view class='secondBox'>
-      <view class='leftBtn' bindtap='openModal' data-id="{{ item.id }}" data-status="{{ item.status_ch }}" data-on="on">信</view>
-      <view class='rightBtn' bindtap='openModal' data-id="{{ item.id }}" data-status="{{ item.status_ch }}" data-on="off">不信</view>
+      <view class='leftBtn' bindtap='openModal' data-id="{{ item.id }}" data-coin="{{ item.coin }}" data-on="1">信</view>
+      <view class='rightBtn' bindtap='openModal' data-id="{{ item.id }}" data-coin="{{ item.coin }}" data-on="2">不信</view>
     </view>
     <view class='peopleNum'>{{ item.total_num }}人已参与</view>
   </view>
@@ -39,9 +39,8 @@
   </view>
   
   <i-modal visible="{{ visible }}" bind:ok="bindOk" bind:cancel="bindClose">
-    <image class='modealImg' wx:if="{{imgSrc !== ''}}" src='{{ openModalType === "on" ? imgSrc + "/btn2.png" : imgSrc + "/btn3.png"}}'></image>
-    <view class='jinbi'>当前金币数：<text class='num'>560</text></view>
-    <view class='jinbi'>您将消耗XX金币参与话题投票</view>
+    <image class='modealImg' wx:if="{{imgSrc !== ''}}" src='{{ openModalType == 1 ? imgSrc + "/btn2.png" : imgSrc + "/btn3.png"}}'></image>
+    <view class='jinbi'>当前金币数：<text class='num'>{{ total_coin }}</text></view>
+    <view class='jinbi'>您将消耗{{ coin }}金币参与话题投票</view>
   </i-modal>
-
 </view>
