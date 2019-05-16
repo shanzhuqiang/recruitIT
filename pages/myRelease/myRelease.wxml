@@ -3,12 +3,12 @@
   <view class='topBox' wx:if="{{ userType === 'hr' }}">
     <view class='item {{ tabType === "tiezi" ? "active" : "" }}' bindtap='chooseType' data-id="tiezi">帖子</view>
     <view class='item {{ tabType === "xiangmu" ? "active" : "" }}' bindtap='chooseType' data-id="xiangmu">
-      项目
-      <!-- <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowDown.png'></image> -->
+      {{ projectName }}
+      <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowDown.png'></image>
     </view>
     <view class='item {{ tabType === "gangwei" ? "active" : "" }}' bindtap='chooseType' data-id="gangwei">
-      岗位
-      <!-- <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowDown.png'></image> -->
+      {{ gangweiName }}
+      <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowDown.png'></image>
     </view>
   </view>
   <!-- 发布的帖子 -->
@@ -98,5 +98,20 @@
       <image class='noData' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/noData.png'></image>
       <view class='textWord'>暂无信息</view>
     </view>
+  </view>
+  <!-- 项目状态选择 -->
+  <view class='typeAllMask' wx:if="{{ projectMask }}">
+    <view class='maskRow {{ projectType == "" ? "active" : "" }}' bindtap='chooseProject' data-id="" data-ida="全部项目">全部项目</view>
+    <view class='maskRow {{ projectType == 2 ? "active" : "" }}' bindtap='chooseProject' data-id="2" data-ida="待招聘">待招聘</view>
+    <view class='maskRow {{ projectType == 1 ? "active" : "" }}' bindtap='chooseProject' data-id="1" data-ida="进行中">进行中</view>
+    <view class='maskRow {{ projectType == 3 ? "active" : "" }}' bindtap='chooseProject' data-id="3" data-ida="已完成">已完成</view>
+    <!-- <view class='maskRow {{ typeAll === "岗位" ? "active" : "" }}' bindtap='chooseAll' data-id="岗位">已拒绝</view> -->
+  </view>
+  <!-- 岗位状态选择 -->
+  <view class='typeAllMask' wx:if="{{ gangweiMask }}">
+    <view class='maskRow {{ gangweiType == "" ? "active" : "" }}' bindtap='chooseGangwei' data-id="" data-ida="全部岗位">全部岗位</view>
+    <view class='maskRow {{ gangweiType == 1 ? "active" : "" }}' bindtap='chooseGangwei' data-id="1" data-ida="招聘中">招聘中</view>
+    <view class='maskRow {{ gangweiType == 2 ? "active" : "" }}' bindtap='chooseGangwei' data-id="2" data-ida="暂停中">进行中</view>
+    <view class='maskRow {{ gangweiType == 3 ? "active" : "" }}' bindtap='chooseGangwei' data-id="3" data-ida="已结束">已结束</view>
   </view>
 </view>

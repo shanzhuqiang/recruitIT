@@ -140,6 +140,7 @@ Page({
       success: (res) => {
         wx.hideLoading()
         if (res.data.error_code == 0) {
+          this.getTotalMoney()
           wx.showToast({
             title: '投票成功',
             mask: true,

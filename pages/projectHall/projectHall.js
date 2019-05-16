@@ -182,7 +182,6 @@ Page({
       },
       method: 'POST',
       success: (res) => {
-        console.log(res)
         if (res.statusCode !== 200) {
           this.setData({
             loading: false

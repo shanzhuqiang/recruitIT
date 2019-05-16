@@ -27,7 +27,7 @@
   width: 40rpx;
   height: 6rpx;
   background: #2e70f9;
-  left: 80rpx;
+  left: 70rpx;
   bottom: 0rpx
 }
 .myReleaseWrap .topBox .item .arrowDown{
@@ -283,4 +283,26 @@
 	font-family: PingFangSC-Regular;
 	font-size: 24rpx;
 	color: #999;
+}
+/* 筛选 */
+.myReleaseWrap .typeAllMask{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 91rpx;
+  background: rgba(0, 0, 0, 0.4)
+}
+.myReleaseWrap .typeAllMask .maskRow{
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+	font-family: PingFangSC-Regular;
+	font-size: 28rpx;
+	color: #666;
+  background: #fff;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+.myReleaseWrap .typeAllMask .maskRow.active{
+	color: #2e70f9;
 }

@@ -23,7 +23,7 @@
   <view class='itemWrap'>
     <view wx:for="{{ listData }}" wx:key="">
       <!-- 项目 -->
-      <view class='itemBox' wx:if="{{ item.type == 2 }}">
+      <view class='itemBox' wx:if="{{ item.type == 2 }}" bindtap='goProjectDetail' data-id="{{ item.re_project_id }}" data-ida="{{ item.id }}">
         <view class='leftImg'>招标</view>
         <view class='rightText'>
           <view class='firstRow'>
@@ -41,7 +41,7 @@
         </view>
       </view>
       <!-- 岗位 -->
-      <view class='itemBox' wx:if="{{ item.type == 1 }}">
+      <view class='itemBox' wx:if="{{ item.type == 1 }}" bindtap='goPostDetail' data-id="{{ item.re_job_id }}" data-ida="{{ item.id }}">
         <view class='leftImg2'>
           <image class='logoImg' wx:if="{{imgSrc !== ''}}" src='{{ item.company_icon }}'></image>
         </view>

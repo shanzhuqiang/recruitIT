@@ -83,7 +83,35 @@ Page({
       }
     })
   },
-
+  // 进入岗位详情
+  goPostDetail(e) {
+    let id = e.currentTarget.dataset.id
+    let re_interview_id = e.currentTarget.dataset.ida
+    if (this.data.tabType == 3) {
+      wx.navigateTo({
+        url: `../faceInfo/faceInfo?id=${re_interview_id}&type=1`
+      })
+    } else {
+      wx.navigateTo({
+        url: `../postDetail/postDetail?id=${id}`
+      })
+    }
+    
+  },
+  // 进入项目详情
+  goProjectDetail(e) {
+    let id = e.currentTarget.dataset.id
+    let re_interview_id = e.currentTarget.dataset.ida
+    if (this.data.tabType == 3) {
+      wx.navigateTo({
+        url: `../faceInfo/faceInfo?id=${re_interview_id}&type=2`
+      })
+    } else {
+      wx.navigateTo({
+        url: `../projectDetail/projectDetail?id=${id}`
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

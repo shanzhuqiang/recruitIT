@@ -10,14 +10,14 @@ Page({
     tabType: 'tiezi',
     userType: '',
     projectList: [],
-    quartersList: []
-  },
-  // 切换类型
-  chooseType(e) {
-    let key = e.currentTarget.dataset.id
-    this.setData({
-      tabType: key
-    })
+    projectMask: false,
+    projectName: '项目',
+    projectType: '',
+    quartersList: [],
+    gangweiMask: false,
+    gangweiName: '岗位',
+    gangweiType: '',
+    page: 1,
   },
   /**
    * 生命周期函数--监听页面加载
@@ -27,14 +27,66 @@ Page({
       userType: app.globalData.userType,
       imgSrc: app.globalData.imgSrc
     })
-    if (this.data.userType === 'hr') {
-      wx.showLoading({
-        mask: true,
-        title: '加载中...',
+    // if (this.data.userType === 'hr') {
+    //   wx.showLoading({
+    //     mask: true,
+    //     title: '加载中...',
+    //   })
+    // }
+  },
+  // 切换类型
+  chooseType(e) {
+    let key = e.currentTarget.dataset.id
+    if (key == this.data.tabType && key == 'xiangmu') {
+      this.setData({
+        projectMask: !this.data.projectMask
       })
-      this.initProjectData()
-      this.initQuartersData()
+    } else if (key == this.data.tabType && key == 'gangwei') {
+      this.setData({
+        gangweiMask: !this.data.gangweiMask
+      })
+    } else {
+      this.setData({
+        tabType: key,
+        gangweiName: '岗位',
+        projectName: '项目',
+        projectType: '',
+        gangweiType: '',
+        projectMask: false,
+        gangweiMask: false,
+        projectList: [],
+        quartersList: [],
+        page: 1
+      })
+      if (key == 'xiangmu') {
+        this.initProjectData()
+      }
+      if (key == 'gangwei') {
+        this.initQuartersData()
+      }
     }
+  },
+  // 选择项目status
+  chooseProject(e) {
+    this.setData({
+      projectList: [],
+      projectName: e.currentTarget.dataset.ida,
+      projectType: e.currentTarget.dataset.id,
+      projectMask: false,
+      page: 1
+    })
+    this.initProjectData()
+  },
+  // 选择岗位status
+  chooseGangwei(e) {
+    this.setData({
+      quartersList: [],
+      gangweiName: e.currentTarget.dataset.ida,
+      gangweiType: e.currentTarget.dataset.id,
+      gangweiMask: false,
+      page: 1
+    })
+    this.initQuartersData()
   },
   goProjectDetail(e) {
     wx.navigateTo({
@@ -61,27 +113,44 @@ Page({
   },
   // 我的发布项目
   initProjectData() {
+    wx.showLoading({
+      mask: true,
+      title: '加载中...',
+    })
     wx.request({
       url: `${app.globalData.baseUrl}/Project/projectList.html`,
       data: {
         sess_key: app.globalData.sess_key,
         hr_key: app.globalData.sess_key,
-        page: 1,
-        page_size: 99999
+        status: this.data.projectType,
+        page: this.data.page,
+        page_size: 20
       },
       method: 'POST',
       success: (res) => {
-        let listData = res.data.bizobj.data.project_list
-        listData.forEach((el, index) => {
-          if (el.max_salary) {
-            el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k/月'
-          } else {
-            el['salaryStr'] = '不限'
+        wx.hideLoading()
+        if (res.data.error_code == 0) {
+          let listData = res.data.bizobj.data.project_list
+          if (listData.length > 0) {
+            listData.forEach((el, index) => {
+              if (el.max_salary) {
+                el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k/月'
+              } else {
+                el['salaryStr'] = '不限'
+              }
+            })
+            let oldList = this.data.projectList
+            this.setData({
+              projectList: [...listData, ...oldList],
+              page: this.data.page + 1
+            })
           }
-        })
-        this.setData({
-          projectList: listData
-        })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+          })
+        }
       },
       fail: (res) => {
         wx.showToast({
@@ -91,30 +160,46 @@ Page({
       }
     })
   },
-  // 发布的岗位
+  // 我发布的岗位
   initQuartersData() {
+    wx.showLoading({
+      mask: true,
+      title: '加载中...',
+    })
     wx.request({
       url: `${app.globalData.baseUrl}/Work/workList.html`,
       data: {
         sess_key: app.globalData.sess_key,
         hr_key: app.globalData.sess_key,
-        page: 1,
-        page_size: 99999
+        status: this.data.gangweiType,
+        page: this.data.page,
+        page_size: 20
       },
       method: 'POST',
       success: (res) => {
         wx.hideLoading()
-        let listData = res.data.bizobj.data.job_list
-        listData.forEach((el, index) => {
-          if (el.max_salary) {
-            el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k/月'
-          } else {
-            el['salaryStr'] = '不限'
+        if (res.data.error_code == 0) {
+          let listData = res.data.bizobj.data.job_list
+          if (listData.length > 0) {
+            listData.forEach((el, index) => {
+              if (el.max_salary) {
+                el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k/月'
+              } else {
+                el['salaryStr'] = '不限'
+              }
+            })
+            let oldList = this.data.quartersList
+            this.setData({
+              quartersList: [...listData, ...oldList],
+              page: this.data.page + 1
+            })
           }
-        })
-        this.setData({
-          quartersList: listData
-        })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+          })
+        }
       },
       fail: (res) => {
         wx.showToast({
@@ -149,7 +234,11 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if (this.data.tabType === 'xiangmu') {
+      this.initProjectData()
+    } else if (this.data.tabType === 'gangwei') {
+      this.initQuartersData()
+    }
   },
 
   /**

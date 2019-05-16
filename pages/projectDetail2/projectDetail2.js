@@ -88,15 +88,22 @@ Page({
       method: 'POST',
       success: (res) => {
         wx.hideLoading()
-        let data = res.data.bizobj.data.job_info
-        if (data.max_salary) {
-          data['salaryStr'] = Math.round(data.mini_salary / 1000) + 'k-' + Math.round(data.max_salary / 1000) + 'k/月'
+        if (res.data.error_code == 0) {
+          let data = res.data.bizobj.data.job_info
+          if (data.max_salary) {
+            data['salaryStr'] = Math.round(data.mini_salary / 1000) + 'k-' + Math.round(data.max_salary / 1000) + 'k/月'
+          } else {
+            data['salaryStr'] = '不限'
+          }
+          this.setData({
+            job_info: data
+          })
         } else {
-          data['salaryStr'] = '不限'
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+          })
         }
-        this.setData({
-          job_info: data
-        })
       },
       fail: (res) => {
         wx.showToast({
