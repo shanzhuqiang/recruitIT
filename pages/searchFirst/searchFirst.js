@@ -363,6 +363,7 @@ Page({
       data: {
         sess_key: app.globalData.sess_key,
         city_code: this.data.userInfo.city_code,
+        is_bonus: 2,
         district_code: this.data.quyuChoose,
         mini_salary: this.data.mini_salary,
         max_salary: this.data.max_salary,
@@ -407,6 +408,7 @@ Page({
         create_time: this.data.gwTimeChoose,
         education: this.data.gwXueliChoose,
         job_experience: this.data.gwJingyanChoose,
+        is_bonus: 2,
         page: 1,
         page_size: 99999,
         keyword: this.data.keyWord

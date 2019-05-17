@@ -71,6 +71,7 @@ Page({
       url: `${app.globalData.baseUrl}/Work/workList.html`,
       data: {
         sess_key: app.globalData.sess_key,
+        is_bonus: 2,
         re_company_id: id,
         page: 1,
         page_size: 99999
@@ -104,6 +105,7 @@ Page({
       url: `${app.globalData.baseUrl}/Project/projectList.html`,
       data: {
         sess_key: app.globalData.sess_key,
+        is_bonus: 2,
         re_company_id: id,
         page: 1,
         page_size: 99999

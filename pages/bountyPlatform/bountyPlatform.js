@@ -91,7 +91,10 @@ Page({
       }]
     ],
     xueliChoose: '1',
-    zhouqiChoose: ''
+    zhouqiChoose: '',
+    page: 1,
+    projectList: [],
+    quartersList: []
   },
   /**
    * 生命周期函数--监听页面加载
@@ -102,6 +105,106 @@ Page({
       imgSrc: app.globalData.imgSrc
     })
     this.getArea()
+    this.getProjectList()
+  },
+  // 获取项目
+  getProjectList() {
+    wx.showLoading({
+      mask: true,
+      title: '加载中...',
+    })
+    wx.request({
+      url: `${app.globalData.baseUrl}/Project/projectList.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        is_bonus: 1,
+        city_code: this.data.userInfo.city_code,
+        district_code: this.data.quyuChoose,
+        mini_salary: this.data.mini_salary,
+        max_salary: this.data.max_salary,
+        job_experience: this.data.shaixuan1,
+        nature: this.data.shaixuan2,
+        page_size: 10,
+        page: this.data.page
+      },
+      method: 'POST',
+      success: (res) => {
+        wx.hideLoading()
+        if (res.data.error_code == 0) {
+          let listData = res.data.bizobj.data.project_list
+          listData.forEach((el, index) => {
+            if (el.max_salary) {
+              el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k/月'
+            } else {
+              el['salaryStr'] = '不限'
+            }
+          })
+          this.setData({
+            projectList: listData
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 获取岗位
+  getZhaopinList() {
+    wx.showLoading({
+      mask: true,
+      title: '加载中...',
+    })
+    wx.request({
+      url: `${app.globalData.baseUrl}/Work/workList.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        city_code: this.data.userInfo.city_code,
+        is_bonus: 2,
+        page: this.data.page,
+        create_time: this.data.shaixuan1,
+        nature: this.data.shaixuan2,
+        education: this.data.xueliChoose,
+        job_experience: this.data.jingyanChoose,
+        page_size: 20
+      },
+      method: 'POST',
+      success: (res) => {
+        wx.hideLoading()
+        if (res.data.error_code == 0) {
+          let listData = res.data.bizobj.data.job_list
+          listData.forEach((el, index) => {
+            if (el.max_salary) {
+              el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k/月'
+            } else {
+              el['salaryStr'] = '不限'
+            }
+          })
+          this.setData({
+            quartersList: listData
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
   },
   // 获取区域
   getArea() {
@@ -202,14 +305,6 @@ Page({
     })
     this.getZhaopinList()
   },
-  // 获得招聘列表
-  getZhaopinList() {
-
-  },
-  // 获得项目列表
-  getProjectList() {
-
-  },
   miniSalaryChange(e) {
     this.setData({
       mini_salary: Number(e.detail.value)
@@ -307,6 +402,11 @@ Page({
       xueliChoose: '1',
       zhouqiChoose: ''
     })
+    if (key === 'xiangmu') {
+      this.getProjectList()
+    } else {
+      this.getZhaopinList()
+    }
   },
   // 发布帖子
   goReleaseBbs() {
@@ -416,7 +516,11 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    if (this.data.topType === 'xiangmu') {
+      this.getProjectList()
+    } else {
+      this.getZhaopinList()
+    }
   },
 
   /**

@@ -171,6 +171,7 @@ Page({
       url: `${app.globalData.baseUrl}/Project/projectList.html`,
       data: {
         sess_key: app.globalData.sess_key,
+        is_bonus: 2,
         city_code: this.data.userInfo.city_code,
         district_code: this.data.quyuChoose,
         mini_salary: this.data.mini_salary,

@@ -160,6 +160,7 @@ Page({
       data: {
         sess_key: app.globalData.sess_key,
         city_code: this.data.userInfo.city_code,
+        is_bonus: 2,
         sort: 1,
         page: 1,
         page_size: 20
@@ -193,6 +194,7 @@ Page({
       data: {
         sess_key: app.globalData.sess_key,
         city_code: this.data.userInfo.city_code,
+        is_bonus: 2,
         sort: 1,
         page: 1,
         page_size: 20

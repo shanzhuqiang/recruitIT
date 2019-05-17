@@ -63,17 +63,24 @@ Page({
       method: 'POST',
       success: (res) => {
         wx.hideLoading()
-        let listData = res.data.bizobj.data.apply_list
-        listData.forEach((el, index) => {
-          if (el.max_salary) {
-            el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k/月'
-          } else {
-            el['salaryStr'] = '不限'
-          }
-        })
-        this.setData({
-          listData: listData
-        })
+        if (res.data.error_code == 0) {
+          let listData = res.data.bizobj.data.apply_list
+          listData.forEach((el, index) => {
+            if (el.max_salary) {
+              el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k/月'
+            } else {
+              el['salaryStr'] = '不限'
+            }
+          })
+          this.setData({
+            listData: listData
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+          })
+        }
       },
       fail: (res) => {
         wx.showToast({

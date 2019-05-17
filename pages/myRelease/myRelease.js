@@ -121,6 +121,7 @@ Page({
       url: `${app.globalData.baseUrl}/Project/projectList.html`,
       data: {
         sess_key: app.globalData.sess_key,
+        is_bonus: 2,
         hr_key: app.globalData.sess_key,
         status: this.data.projectType,
         page: this.data.page,
@@ -170,6 +171,7 @@ Page({
       url: `${app.globalData.baseUrl}/Work/workList.html`,
       data: {
         sess_key: app.globalData.sess_key,
+        is_bonus: 2,
         hr_key: app.globalData.sess_key,
         status: this.data.gangweiType,
         page: this.data.page,

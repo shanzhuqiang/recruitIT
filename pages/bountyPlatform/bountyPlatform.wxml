@@ -35,49 +35,53 @@
     </view>
   </view>
   <!-- 赏金项目 -->
-  <view class='itemBox'>
-    <view class='first'>
-      <view class='box'>赏金</view>
-      <view class='title'>我需要UI设计</view>
-      <view class='money'>赏金￥1000</view>
+  <view wx:if="{{ topType === 'xiangmu' }}">
+    <view class='itemBox' wx:for="{{ projectList }}" wx:key="">
+      <view class='first'>
+        <view class='box'>赏金</view>
+        <view class='title'>{{ item.name }}</view>
+        <view class='money'>赏金￥{{ item.reward }}</view>
+      </view>
+      <view class='second'>
+        <text style='padding-left: 0'>{{ item.job_label1 }}</text>
+        <text class='middleText'>{{ item.job_label2 }}</text>
+        <text>{{ item.job_label3 }}</text>
+      </view>
+      <view class='three'>{{ item.salaryStr }}</view>
+      <view class='content'>{{ item.instruction }}</view>
+      <view class='peopleNum'>{{ item.sign_num }}人已投递</view>
     </view>
-    <view class='second'>
-      <text style='padding-left: 0'>杭州</text>
-      <text class='middleText'>3-5年</text>
-      <text>短期兼职</text>
-    </view>
-    <view class='three'>
-      20-30k/月
-    </view>
-    <view class='content'>
-      按实际打算看了打算看了接口的拉屎按实际打算看了打算看了接口的拉屎按实际打算看了打算看了接口的拉屎按实际打算看了打算看了接口的拉屎按实际打算看了打算看了接口的拉屎按实际打算看了打算看了接口的拉屎
-    </view>
-    <view class='peopleNum'>
-      2人已投递
+    <view wx:if="{{ projectList.length == 0 }}" class='noDataWrap'>
+      <image class='noData' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/noData.png'></image>
+      <view class='textWord'>暂无信息</view>
     </view>
   </view>
   <!-- 赏金招聘 -->
-  <view class='itemWrap'>
-    <view class='first'>
-      <view class='title'>前端工程师</view>
-      <view class='money'>赏金￥1000</view>
-    </view>
-    <view class='second'>
-      <text style='padding-left: 0'>杭州西湖区</text>
-      <text class='middleText'>大专及以上</text>
-      <text>经验不限</text>
-    </view>
-    <view class='three'>
-      20-30k/月
-    </view>
-    <view class='picBox'>
-      <view class='left'>
-        <image class='logoImg' src='{{ item.company_icon }}' ></image>
+  <view wx:if="{{ topType === 'zhaopin' }}">
+    <view class='itemWrap' wx:for="{{ quartersList }}" wx:key="">
+      <view class='first'>
+        <view class='title'>{{ item.name }}</view>
+        <view class='money'>赏金￥{{ item.reward }}</view>
       </view>
-      <view class='right'>
-        <view class='logoName'>公司名字公司名字</view>
-        <view class='logoType'>互联网·电商</view>
+      <view class='second'>
+        <text style='padding-left: 0'>{{ item.city_name }}</text>
+        <text class='middleText'>{{ item.education }}</text>
+        <text>{{ item.job_experience }}</text>
       </view>
+      <view class='three'>{{ item.salaryStr }}</view>
+      <view class='picBox'>
+        <view class='left'>
+          <image class='logoImg' src='{{ item.company_icon }}' ></image>
+        </view>
+        <view class='right'>
+          <view class='logoName'>{{ item.company_name }}</view>
+          <view class='logoType'>{{ item.line_name }}</view>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{ quartersList.length == 0 }}" class='noDataWrap'>
+      <image class='noData' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/noData.png'></image>
+      <view class='textWord'>暂无信息</view>
     </view>
   </view>
   <!-- 底部导航 -->

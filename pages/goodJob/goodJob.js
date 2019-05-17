@@ -191,6 +191,7 @@ Page({
       data: {
         sess_key: app.globalData.sess_key,
         city_code: this.data.userInfo.city_code,
+        is_bonus: 2,
         page: this.data.page,
         create_time: this.data.shaixuan1,
         nature: this.data.shaixuan2,
@@ -202,7 +203,6 @@ Page({
       method: 'POST',
       success: (res) => {
         let listData = res.data.bizobj.data.job_list
-        console.log(listData)
         if (listData.length > 0) {
           listData.forEach((el, index) => {
             if (el.max_salary) {
