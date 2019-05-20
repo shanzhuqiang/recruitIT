@@ -1,5 +1,7 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "i-modal": "../../dist/modal/index"
+  },
   "navigationBarTitleText": "每日任务",
   "navigationBarBackgroundColor": "#fff"
 }

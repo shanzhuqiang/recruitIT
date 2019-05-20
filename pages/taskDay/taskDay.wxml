@@ -2,47 +2,57 @@
 <view class='taskDayWrap'>
   <view class='topBox'>
     <view class='dayWrap'>
-      <view class='dayBox'>
+      <view class='dayBox {{ signCount >= 1 ? "blue" : "" }}'>
         <view class='first'>Day</view>
-        <view class='second'>1</view>
+        <view class='second' wx:if="{{ signCount < 7 }}">1</view>
+        <image class='circleOk' wx:if="{{ imgSrc !== '' && signCount >= 7 }}" src='{{ imgSrc }}/ok5.png'></image>
       </view>
       <view class='line'></view>
-      <view class='dayBox'>
+      <view class='dayBox {{ signCount >= 2 ? "blue" : "" }}'>
         <view class='first'>Day</view>
-        <view class='second'>2</view>
+        <view class='second' wx:if="{{ signCount < 7 }}">2</view>
+        <image class='circleOk' wx:if="{{ imgSrc !== '' && signCount >= 7 }}" src='{{ imgSrc }}/ok5.png'></image>
       </view>
       <view class='line'></view>
-      <view class='dayBox'>
+      <view class='dayBox {{ signCount >= 3 ? "blue" : "" }}'>
         <view class='first'>Day</view>
-        <view class='second'>3</view>
+        <view class='second' wx:if="{{ signCount < 7 }}">3</view>
+        <image class='circleOk' wx:if="{{ imgSrc !== '' && signCount >= 7 }}" src='{{ imgSrc }}/ok5.png'></image>
       </view>
       <view class='line'></view>
-      <view class='dayBox'>
+      <view class='dayBox {{ signCount >= 4 ? "blue" : "" }}'>
         <view class='first'>Day</view>
-        <view class='second'>4</view>
+        <view class='second' wx:if="{{ signCount < 7 }}">4</view>
+        <image class='circleOk' wx:if="{{ imgSrc !== '' && signCount >= 7 }}" src='{{ imgSrc }}/ok5.png'></image>
       </view>
       <view class='line'></view>
-      <view class='dayBox'>
+      <view class='dayBox {{ signCount >= 5 ? "blue" : "" }}'>
         <view class='first'>Day</view>
-        <view class='second'>5</view>
+        <view class='second' wx:if="{{ signCount < 7 }}">5</view>
+        <image class='circleOk' wx:if="{{ imgSrc !== '' && signCount >= 7 }}" src='{{ imgSrc }}/ok5.png'></image>
       </view>
       <view class='line'></view>
-      <view class='dayBox'>
+      <view class='dayBox {{ signCount >= 6 ? "blue" : "" }}'>
         <view class='first'>Day</view>
-        <view class='second'>6</view>
+        <view class='second' wx:if="{{ signCount < 7 }}">6</view>
+        <image class='circleOk' wx:if="{{ imgSrc !== '' && signCount >= 7 }}" src='{{ imgSrc }}/ok5.png'></image>
       </view>
       <view class='line'></view>
-      <view class='dayBox'>
+      <view class='dayBox {{ signCount >= 7 ? "blue" : "" }}'>
         <view class='first'>Day</view>
-        <view class='second'>7</view>
+        <view class='second' wx:if="{{ signCount < 7 }}">7</view>
+        <image class='circleOk' wx:if="{{ imgSrc !== '' && signCount >= 7 }}" src='{{ imgSrc }}/ok5.png'></image>
       </view>
     </view>
     <view class='num'>
-      999
+      {{ num }}
     </view>
     <view class='qiandaoDays'>当前金币/连续签到0天</view>
-    <view class='qiandaoBox {{ qiandao ? "qiandao" : "" }}' bindtap='qiandaoBtn'>
+    <view class='qiandaoBox {{ qiandao ? "qiandao" : "" }}' wx:if="{{ signCount < 7 }}" bindtap='qiandaoBtn'>
       {{ qiandao ? "已签到" : "签到" }}
+    </view>
+    <view class='qiandaoBox qiandao' wx:if="{{ signCount >= 7 }}" bindtap='shareNow'>
+      立即分享
     </view>
   </view>
   <view class='title'>
@@ -64,4 +74,10 @@
     <view class='second'>参与话题投票可获得金币</view>
     <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR2.png'></image>
   </view>
+  <!-- 签到7天 -->
+  <!-- <i-modal visible="{{ visible }}" bind:ok="bindOk" bind:cancel="bindClose">
+    <image class='modealImg' wx:if="{{imgSrc !== ''}}" src='{{ openModalType == 1 ? imgSrc + "/btn2.png" : imgSrc + "/btn3.png"}}'></image>
+    <view class='jinbi'>当前金币数：<text class='num'>{{ total_coin }}</text></view>
+    <view class='jinbi'>您将消耗{{ coin }}金币参与话题投票</view>
+  </i-modal> -->
 </view>

@@ -6,19 +6,22 @@ Page({
    */
   data: {
     imgSrc: '',
-    qiandao: false
+    qiandao: false,
+    signCount: 7,
+    num: 0
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getList()
+    this.getSignInfo()
+    this.getMoney()
     this.setData({
       imgSrc: app.globalData.imgSrc
     })
   },
-  // 签到列表
-  getList () {
+  // 获取签到信息
+  getSignInfo () {
     wx.request({
       url: `${app.globalData.baseUrl}/Sign/signLog.html`,
       data: {
@@ -27,7 +30,12 @@ Page({
       method: 'POST',
       success: (res) => {
         if (res.data.error_code == 0) {
-          let listData = res.data.bizobj.data.sign_list
+          let listData = res.data.bizobj.data
+          if (listData.sign_count) {
+            this.setData({
+              // signCount: listData.sign_count
+            })
+          }
           console.log(listData)
         } else {
           wx.showToast({
@@ -44,10 +52,77 @@ Page({
       }
     })
   },
-  qiandaoBtn () {
-    this.setData({
-      qiandao: true
+  // 签到
+  qiandaoBtn() {
+    if (this.data.qiandao) {
+      return false
+    }
+    wx.showLoading({
+      mask: true,
+      title: '签到中...',
     })
+    wx.request({
+      url: `${app.globalData.baseUrl}/Sign/sign.html`,
+      data: {
+        sess_key: app.globalData.sess_key
+      },
+      method: 'POST',
+      success: (res) => {
+        wx.hideLoading()
+        if (res.data.error_code == 0) {
+          wx.showToast({
+            title: '签到成功',
+            mask: true,
+            icon: 'success',
+            success: () => {
+              this.getSignInfo()
+            }
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 获取收支
+  getMoney() {
+    let userType = this.data.userType
+    wx.request({
+      url: `${app.globalData.baseUrl}/Cash/cashLog.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        way: 1,
+        user_type: userType === 'engineer' ? 1 : userType === 'hr' ? 2 : 3,
+        page: 1,
+        page_size: 20
+      },
+      method: 'POST',
+      success: (res) => {
+        let listData = res.data.bizobj.data
+        this.setData({
+          num: parseInt(listData.total_cash)
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 立即分享
+  shareNow () {
+
   },
   openRule () {
 
