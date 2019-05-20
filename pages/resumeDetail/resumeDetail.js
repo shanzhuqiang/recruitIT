@@ -168,7 +168,8 @@ Page({
       data: {
         sess_key: app.globalData.sess_key,
         user_type: userType === 'engineer' ? 1 : userType === 'hr' ? 2 : 3,
-        id: id
+        id: id,
+        re_apply_id: this.data.re_apply_id
       },
       method: 'POST',
       success: (res) => {

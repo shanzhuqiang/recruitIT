@@ -73,7 +73,7 @@
     </view>
   </view>
   <view class='bottomBtn'>
-    <view class='leftBtn'>
+    <view class='leftBtn' bindtap='shareBtn'>
       <view style='padding-top:18rpx;'><image class='share' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/share.png'></image></view>
       <view>推荐</view>
     </view>
@@ -82,5 +82,35 @@
       <view class='rightBtn none' wx:if="{{ dataInfo.is_post == 1 }}">已经投递</view>
     </view>
     <view class='rightBtn none' wx:if="{{ userType != 'engineer' }}">当前身份无法投递</view>
+  </view>
+  <!-- 图片分享 -->
+  <view class='maskWrap' wx:if="{{ maskOnOff }}">
+    <view class='contentBox'>
+      <image class='shareImg' show-menu-by-longpress wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/shareImg.png'></image>
+      <view class='text' bindtap='closeMask'>我知道了</view>
+    </view>
+  </view>
+  <!-- 分享遮罩 -->
+  <view class='shareMask' wx:if="{{ shareMask }}">
+    <view class='bottomBox'>
+      <view class='firstBox'>
+        <view class='shareChooseWord'>分享至</view>
+        <view class='firstBoxWrap'>
+          <view bindtap='shareUser'>
+            <view class='circle' style='background: #4c85fb'></view>
+            <view class='circleWord'>站内分享</view>
+          </view>
+          <view bindtap='sharePhoto'>
+            <view class='circle'></view>
+            <view class='circleWord'>生成分享图</view>
+          </view>
+          <button class='bottonClass' open-type="share">
+            <view class='circle'></view>
+            <view class='circleWord'>链接分享</view>
+          </button>
+        </view>
+      </view>
+      <view class='secondBox' bindtap='cancalShare'>取消</view>
+    </view>
   </view>
 </view>

@@ -49,7 +49,7 @@ Page({
             el['blue_percent'] = (el.blue_percent * 100).toFixed(2)
             el['red_percent'] = (el.red_percent * 100).toFixed(2)
             if (el.coin_gain != 0) {
-              let str = el.coin_gain.substr(1, el.coin_gain.length - 1)
+              let str = String(el.coin_gain).substr(1, String(el.coin_gain).length - 1)
               if (el.coin_gain > 0) {
                 el['coin_gain'] = `获得${str}金币`
               } else {

@@ -23,7 +23,7 @@ Page({
   // 获取消息列表
   getListData () {
     wx.request({
-      url: `${app.globalData.baseUrl}/message/messageInfot.html`,
+      url: `${app.globalData.baseUrl}/notice/noticeInfo.html`,
       data: {
         sess_key: app.globalData.sess_key,
         page_size: 20,
@@ -31,12 +31,19 @@ Page({
       },
       method: 'POST',
       success: (res) => {
-        let data = res.data.bizobj.data.message_list
-        if (data.length > 0) {
-          let oldListData = this.data.listData
-          this.setData({
-            listData: [...oldListData, ...data],
-            page: this.data.page + 1
+        if (res.data.error_code == 0) {
+          let data = res.data.bizobj.data.message_list
+          if (data.length > 0) {
+            let oldListData = this.data.listData
+            this.setData({
+              listData: [...oldListData, ...data],
+              page: this.data.page + 1
+            })
+          }
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
           })
         }
       },

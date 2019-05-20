@@ -11,7 +11,10 @@ Page({
     post: false,
     id: '',
     dataInfo: {},
-    companyInfo: {}
+    companyInfo: {},
+    shareMask: false,
+    maskOnOff: false,
+    user_list: []
   },
 
   /**
@@ -111,6 +114,118 @@ Page({
                 })
               }, 1500)
             }
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 图片分享
+  sharePhoto() {
+    this.setData({
+      shareMask: false,
+      maskOnOff: true
+    })
+  },
+  // 关闭图片分享
+  closeMask() {
+    this.setData({
+      maskOnOff: false
+    })
+  },
+  // 分享
+  shareBtn() {
+    this.getUserCollects()
+    this.setData({
+      shareMask: true
+    })
+  },
+  // 关闭分享
+  cancalShare() {
+    this.setData({
+      shareMask: false
+    })
+  },
+  // 站内分享
+  shareUser() {
+    let user_list = this.data.user_list
+    let newUserList = []
+    user_list.forEach((el, index) => {
+      newUserList.push(el.username)
+    })
+    wx.showActionSheet({
+      itemList: newUserList,
+      success: (res) => {
+        this.shareUserFn(user_list[res.tapIndex])
+      }
+    })
+  },
+  // 站内分享方法
+  shareUserFn(obj) {
+    wx.showLoading({
+      mask: true,
+      title: '分享中...',
+    })
+    let userType = this.data.userType
+    wx.request({
+      url: `${app.globalData.baseUrl}/work/shareInWork.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        user_type: userType === 'engineer' ? 1 : userType === 'hr' ? 2 : 3,
+        re_job_id: this.data.id,
+        to_user_id: obj.id
+      },
+      method: 'POST',
+      success: (res) => {
+        wx.hideLoading()
+        if (res.data.error_code == 0) {
+          wx.showToast({
+            title: '分享成功',
+            mask: true,
+            icon: 'success',
+            success() {
+              this.setData({
+                shareMask: false
+              })
+            }
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 获取站内关注用户
+  getUserCollects() {
+    wx.request({
+      url: `${app.globalData.baseUrl}/user/collects.html`,
+      data: {
+        sess_key: app.globalData.sess_key
+      },
+      method: 'POST',
+      success: (res) => {
+        if (res.data.error_code == 0) {
+          this.setData({
+            user_list: res.data.bizobj.data.user_list
           })
         } else {
           wx.showToast({

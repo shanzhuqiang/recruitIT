@@ -10,6 +10,16 @@
 .clearfix{
   zoom:1;
 }
+.bottonClass{
+  background: transparent;
+  margin: 0;
+  font-size: 24rpx;
+  line-height: 24rpx;
+  padding: 0;
+}
+.bottonClass::after{
+  border: none;
+}
 /* 缺省 */
 .noDataWrap{
   text-align: center;
