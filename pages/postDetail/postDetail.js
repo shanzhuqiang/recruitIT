@@ -193,7 +193,7 @@ Page({
             title: '分享成功',
             mask: true,
             icon: 'success',
-            success() {
+            success: () => {
               this.setData({
                 shareMask: false
               })

@@ -95,8 +95,8 @@
     <view class='bottomBox'>
       <view class='firstBox'>
         <view class='shareChooseWord'>分享至</view>
-        <view class='firstBoxWrap'>
-          <view bindtap='shareUser'>
+        <view class='firstBoxWrap' style='{{ userType === "engineer" ? "padding: 0 200rpx" : "" }}'>
+          <view bindtap='shareUser' wx:if="{{ userType !== 'engineer' }}">
             <view class='circle' style='background: #4c85fb'></view>
             <view class='circleWord'>站内分享</view>
           </view>

@@ -122,7 +122,7 @@ Page({
             title: '投递成功',
             mask: true,
             icon: 'success',
-            success() {
+            success: () => {
               setTimeout(() => {
                 wx.navigateBack({
                   delta: 1
@@ -208,7 +208,7 @@ Page({
             title: '分享成功',
             mask: true,
             icon: 'success',
-            success() {
+            success: () => {
               this.setData({
                 shareMask: false
               })

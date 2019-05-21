@@ -7,7 +7,7 @@ Page({
   data: {
     imgSrc: '',
     qiandao: false,
-    signCount: 7,
+    signCount: 0,
     num: 0
   },
   /**
@@ -33,7 +33,7 @@ Page({
           let listData = res.data.bizobj.data
           if (listData.sign_count) {
             this.setData({
-              // signCount: listData.sign_count
+              signCount: listData.sign_count
             })
           }
           console.log(listData)
