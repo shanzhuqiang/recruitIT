@@ -33,7 +33,8 @@ Page({
           let listData = res.data.bizobj.data
           if (listData.sign_count) {
             this.setData({
-              signCount: listData.sign_count
+              signCount: listData.sign_count,
+              qiandao: listData.today_sign == 1
             })
           }
           console.log(listData)

@@ -102,9 +102,13 @@
   <!-- 项目状态选择 -->
   <view class='typeAllMask' wx:if="{{ projectMask }}">
     <view class='maskRow {{ projectType == "" ? "active" : "" }}' bindtap='chooseProject' data-id="" data-ida="全部项目">全部项目</view>
-    <view class='maskRow {{ projectType == 2 ? "active" : "" }}' bindtap='chooseProject' data-id="2" data-ida="待招聘">待招聘</view>
-    <view class='maskRow {{ projectType == 1 ? "active" : "" }}' bindtap='chooseProject' data-id="1" data-ida="进行中">进行中</view>
-    <view class='maskRow {{ projectType == 3 ? "active" : "" }}' bindtap='chooseProject' data-id="3" data-ida="已完成">已完成</view>
+    <view class='maskRow {{ projectType == 1 ? "active" : "" }}' bindtap='chooseProject' data-id="1" data-ida="招聘中">招聘中</view>
+    <view class='maskRow {{ projectType == 2 ? "active" : "" }}' bindtap='chooseProject' data-id="2" data-ida="暂停中">暂停中</view>
+    <view class='maskRow {{ projectType == 3 ? "active" : "" }}' bindtap='chooseProject' data-id="3" data-ida="已结束">已结束</view>
+    <view class='maskRow {{ projectType == 4 ? "active" : "" }}' bindtap='chooseProject' data-id="4" data-ida="审核中">审核中</view>
+    <view class='maskRow {{ projectType == 5 ? "active" : "" }}' bindtap='chooseProject' data-id="5" data-ida="审核驳回">审核驳回</view>
+    <view class='maskRow {{ projectType == 6 ? "active" : "" }}' bindtap='chooseProject' data-id="6" data-ida="进行中">进行中</view>
+    <view class='maskRow {{ projectType == 7 ? "active" : "" }}' bindtap='chooseProject' data-id="7" data-ida="已完成">已完成</view>
     <!-- <view class='maskRow {{ typeAll === "岗位" ? "active" : "" }}' bindtap='chooseAll' data-id="岗位">已拒绝</view> -->
   </view>
   <!-- 岗位状态选择 -->
@@ -113,5 +117,8 @@
     <view class='maskRow {{ gangweiType == 1 ? "active" : "" }}' bindtap='chooseGangwei' data-id="1" data-ida="招聘中">招聘中</view>
     <view class='maskRow {{ gangweiType == 2 ? "active" : "" }}' bindtap='chooseGangwei' data-id="2" data-ida="暂停中">进行中</view>
     <view class='maskRow {{ gangweiType == 3 ? "active" : "" }}' bindtap='chooseGangwei' data-id="3" data-ida="已结束">已结束</view>
+    <view class='maskRow {{ gangweiType == 4 ? "active" : "" }}' bindtap='chooseGangwei' data-id="4" data-ida="审核中">审核中</view>
+    <view class='maskRow {{ gangweiType == 5 ? "active" : "" }}' bindtap='chooseGangwei' data-id="5" data-ida="审核驳回">审核驳回</view>
+    <view class='maskRow {{ gangweiType == 7 ? "active" : "" }}' bindtap='chooseGangwei' data-id="7" data-ida="已完成">已完成</view>
   </view>
 </view>
