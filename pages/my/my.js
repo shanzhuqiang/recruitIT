@@ -138,7 +138,7 @@ Page({
   },
   // 我的金币
   goMyGold() {
-    if (this.data.userInfo == 'engineer') {
+    if (this.data.userType == 'engineer') {
       wx.navigateTo({
         url: '../myGold/myGold'
       })

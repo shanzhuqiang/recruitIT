@@ -7,23 +7,64 @@ Page({
    */
   data: {
     imgSrc: '',
-    walkNum: 500,
+    walkNum: 0,
     maskOnOff: false,
-    visible: false,
-    ruleOnOff: false
+    needAuto: false,
+    ruleOnOff: false,
+    money: 0,
+    lessWalk: false,
+    getMoneySuccess: false,
+    userType: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getWeRunData()
+    this.setData({
+      userType: app.globalData.userType,
+      imgSrc: app.globalData.imgSrc
+    })
+  },
+  getWeRunData () {
     wx.getWeRunData({
-      success(res) {
-        console.log(res)
+      success: (res) => {
+        this.getUserStep(res.encryptedData, res.iv)
       }
     })
-    this.setData({
-      imgSrc: app.globalData.imgSrc
+  },
+  // 解密获取步数
+  getUserStep(encryptedData, iv) {
+    wx.request({
+      url: `${app.globalData.baseUrl}/User/getUserStep.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        encryptedData: encryptedData,
+        iv: iv
+      },
+      method: 'POST',
+      success: (res) => {
+        if (res.data.error_code == 0) {
+          // let today_step = res.data.bizobj.today_step
+          let today_step = 2499
+          this.setData({
+            walkNum: today_step,
+            money: parseInt(today_step / 500)
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
     })
   },
   // 规则说明
@@ -43,44 +84,95 @@ Page({
       maskOnOff: true
     })
   },
+  // 立即邀请
   closeMask() {
     this.setData({
       maskOnOff: false
     })
   },
-  openImg() {
-    wx.previewImage({
-      urls: ['https://csdnimg.cn/pubfooter/images/csdn-cxrs.png']
-      // urls: [`${this.data.imgSrc}/shareImg.png`] // 需要预览的图片http链接列表
-    })
-  },
-  closeVisible() {
+  // 关闭未授权点击兑换,弹出授权
+  closeNoAuto() {
     this.setData({
-      visible: false
+      needAuto: false
     })
   },
-  closeVisible2() {
+  // 未授权点击兑换,弹出授权
+  openAuto() {
+    wx.openSetting({
+      success: (res) => {
+        if (res.authSetting['scope.werun']) {
+          console.log(res)
+          this.getWeRunData()
+          this.setData({
+            needAuto: false
+          })
+        }
+      }
+    })
+  },
+  // 步数不够提示
+  closeLessWalk() {
     this.setData({
-      visible2: false
+      lessWalk: false
     })
   },
-  closeVisible3() {
-    this.setData({
-      visible3: false
+  // 确认兑换
+  closeGetMoneySuccess() {
+    wx.showLoading({
+      mask: true,
+      title: '签到中...',
+    })
+    let userType = this.data.userType
+    wx.request({
+      url: `${app.globalData.baseUrl}/Coin/coinInc.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        user_type: userType === 'engineer' ? 1 : userType === 'hr' ? 2 : 3,
+        method: 9,
+        coin_num: this.data.money
+      },
+      method: 'POST',
+      success: (res) => {
+        wx.hideLoading()
+        if (res.data.error_code == 0) {
+          wx.showToast({
+            title: '兑换成功',
+            mask: true,
+            icon: 'success',
+            success: () => {
+              this.setData({
+                getMoneySuccess: false
+              })
+            }
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
     })
   },
+  // 点击步数兑换
   shouquan() {
-    if (this.data.walkNum === null) {
+    if (this.data.walkNum == 0) {
       this.setData({
-        visible: true
+        needAuto: true
       })
     } else if (this.data.walkNum < 500) {
       this.setData({
-        visible2: true
+        lessWalk: true
       })
     } else if (this.data.walkNum >= 500) {
       this.setData({
-        visible3: true
+        getMoneySuccess: true
       })
     }
   },

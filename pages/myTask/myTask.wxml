@@ -12,30 +12,36 @@
     </view>
   </view>
   <view class='itemWrapBox'>
-    <view class='itemWrap' wx:for="{{ listData }}" wx:key="" data-id="{{ item.project_id }}" bindtap='goDetail'>
-      <view class='itemTop'>
-        <view class='squareWrap' wx:if="{{ item.name}}">
-          <view class='square squareJ'>经</view>
-          <view class='wordText'>来自经纪人{{ item.ha_name }}</view>
-        </view>
-        <view class='squareWrap' wx:if="{{ !item.name}}">
-          <view class='square squareQ'>企</view>
-          <view class='wordText'>来自HR{{ item.ha_name }}</view>
-        </view>
-        <view class='time'>{{ item.create_at }}</view>
-      </view>
-      <view class='itemBox'>
-        <view class='leftImg'>招标</view>
-        <view class='rightText'>
-          <view class='firstRow'>{{ item.name }}</view>
-          <view class='secondRow'>
-            <text>{{ item.project_label1 }}</text>
-            <text class='line'>|</text>
-            <text>{{ item.project_label2 }}</text>
-            <text class='line'>|</text>
-            <text>{{ item.project_label3 }}</text>
+    <view class='itemWrap' wx:for="{{ listData }}" wx:key="">
+      <view data-id="{{ item.project_id }}" bindtap='goDetail'>
+        <view class='itemTop'>
+          <!-- <view class='squareWrap' wx:if="{{ item.ha_name}}">
+            <view class='square squareJ'>经</view>
+            <view class='wordText'>来自经纪人{{ item.ha_name }}</view>
           </view>
-          <view class='threeRow'>最近活跃：9小时前</view>
+          <view class='squareWrap' wx:if="{{ !item.name}}">
+            <view class='square squareQ'>企</view>
+            <view class='wordText'>来自HR{{ item.ha_name }}</view>
+          </view> -->
+          <view class='squareWrap'>
+            <view class='square squareQ'>企</view>
+            <view class='wordText'>{{ item.ha_name }}</view>
+          </view>
+          <view class='time'>{{ item.create_at }}</view>
+        </view>
+        <view class='itemBox'>
+          <view class='leftImg'>招标</view>
+          <view class='rightText'>
+            <view class='firstRow'>{{ item.name }}</view>
+            <view class='secondRow'>
+              <text>{{ item.project_label1 }}</text>
+              <text class='line'>|</text>
+              <text>{{ item.project_label2 }}</text>
+              <text class='line'>|</text>
+              <text>{{ item.project_label3 }}</text>
+            </view>
+            <view class='threeRow'>最近活跃：9小时前</view>
+          </view>
         </view>
       </view>
       <view class='bottomRow' wx:if="{{ tabType == '0' }}">
