@@ -18,9 +18,35 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.initAutoStyems()
     this.getSessKeySuccess()
     this.setData({
       imgSrc: app.globalData.imgSrc
+    })
+  },
+  initAutoStyems () {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Web/webset.html`,
+      data: {
+        sess_key: app.globalData.sess_key
+      },
+      method: 'POST',
+      success: (res) => {
+        if (res.data.error_code == 0) {
+
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
     })
   },
   getSessKeySuccess () {
