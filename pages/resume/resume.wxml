@@ -35,8 +35,13 @@
       <view class='bottomBtn' bindtap='giveup' data-id="{{ item.id }}">放弃</view>
     </view>
     <view class='bottomRow' wx:if="{{ topType == 3 }}">
-      <view class='yoaqingBtn' bindtap='apply' data-id="{{ item.id }}">录用</view>
-      <view class='bottomBtn' bindtap='giveup' data-id="{{ item.id }}">放弃</view>
+      <view wx:if="{{ item.offer != 5 }}">
+        <view class='yoaqingBtn' bindtap='apply' data-id="{{ item.id }}">录用</view>
+        <view class='bottomBtn' bindtap='giveup' data-id="{{ item.id }}">放弃</view>
+      </view>
+      <view wx:if="{{ item.offer == 5 }}">
+        <view class='bottomBtn'>已录用</view>
+      </view>
     </view>
     <view class='bottomRow' wx:if="{{ topType == 4 }}">
       <view class='yoaqingBtn' bindtap='goInvite' data-id="{{ item.id }}">再邀面</view>
