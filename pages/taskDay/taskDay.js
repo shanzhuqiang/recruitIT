@@ -8,7 +8,8 @@ Page({
     imgSrc: '',
     qiandao: false,
     signCount: 0,
-    num: 0
+    num: 0,
+    userType: ''
   },
   /**
    * 生命周期函数--监听页面加载
@@ -17,6 +18,7 @@ Page({
     this.getSignInfo()
     this.getMoney()
     this.setData({
+      userType: app.globalData.userType,
       imgSrc: app.globalData.imgSrc
     })
   },
@@ -62,10 +64,12 @@ Page({
       mask: true,
       title: '签到中...',
     })
+    let userType = this.data.userType
     wx.request({
       url: `${app.globalData.baseUrl}/Sign/sign.html`,
       data: {
-        sess_key: app.globalData.sess_key
+        sess_key: app.globalData.sess_key,
+        user_type: userType === 'engineer' ? 1 : userType === 'hr' ? 2 : 3
       },
       method: 'POST',
       success: (res) => {
