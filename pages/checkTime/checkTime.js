@@ -9,7 +9,7 @@ Page({
     imgSrc: '',
     startTime: '',
     endTime: '',
-    checkMaskBtn: true,
+    checkMaskBtn: false,
     id: '',
     name: '',
     company: '',
@@ -26,6 +26,11 @@ Page({
       name: options.name,
       company: options.company
     })
+    if (options.status == 1) {
+      this.setData({
+        checkMaskBtn: true
+      })
+    }
   },
   // 选择图片
   chooseImg() {
@@ -68,18 +73,24 @@ Page({
         mask: true,
         title: '提交中...',
       })
-      wx.request({
-        url: `${app.globalData.baseUrl}/Project/beginProject.html`,
-        data: {
-          sess_key: app.globalData.sess_key,
-          re_hour_id: this.data.id,
-          start_time: this.data.startTime,
-          end_time: this.data.endTime,
-          images: [imgBox]
-        },
-        method: 'POST',
-        success: (res) => {
-          wx.hideLoading()
+      this.urlTobase64()
+    }
+  },
+  // 提交工时核对
+  confirmUpdate(imgUrl) {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Project/hourSubmit.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        re_hour_id: this.data.id,
+        start_time: this.data.startTime,
+        end_time: this.data.endTime,
+        images: imgUrl
+      },
+      method: 'POST',
+      success: (res) => {
+        wx.hideLoading()
+        if (res.data.error_code == 0) {
           wx.showToast({
             title: '提交成功',
             mask: true,
@@ -90,15 +101,22 @@ Page({
               })
             }
           })
-        },
-        fail: (res) => {
-          wx.showToast({
-            icon: 'none',
-            title: '网络请求失败',
+        } else {
+          wx.showModal({
+            showCancel: false,
+            title: '提示',
+            content: res.data.msg,
           })
         }
-      })
-    }
+        wx.hideLoading()
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
   },
   // 返回首页
   goHome () {
@@ -122,6 +140,48 @@ Page({
   endTimeChange(e) {
     this.setData({
       endTime: e.detail.value
+    })
+  },
+  // 转base64
+  urlTobase64() {
+    wx.request({
+      url: this.data.imgBox,
+      responseType: 'arraybuffer',
+      success: res => {
+        console.log(base64)
+        let base64 = wx.arrayBufferToBase64(res.data);
+        base64 = 'data:image/jpeg;base64,' + base64
+        this.updateImg(base64)
+      }
+    })
+  },
+  // 上传base64拿url
+  updateImg(baseImage) {
+    wx.request({
+      url: `${app.globalData.baseUrl}/File/uploadImagesBase64.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        image: baseImage
+      },
+      method: 'POST',
+      success: (res) => {
+        if (res.data.error_code == 0) {
+          this.confirmUpdate(res.data.bizobj.data.image_url)
+        } else {
+          wx.hideLoading()
+          wx.showModal({
+            showCancel: false,
+            title: '提示',
+            content: res.data.msg,
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
     })
   },
   /**

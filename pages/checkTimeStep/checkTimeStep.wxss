@@ -105,6 +105,11 @@
   line-height: 32rpx;
   text-align: center;
   padding-top: 30rpx;
+  overflow: inherit;
+  background: transparent;
+}
+.checkTimeStepWrap .bottomBox .stepOneWrap .lianxikefu::after{
+  border: none;
 }
 /* 第二步 */
 .checkTimeStepWrap .bottomBox .stepTwoWrap > .title{

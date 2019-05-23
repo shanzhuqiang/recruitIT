@@ -15,18 +15,18 @@
     <view class='itemWrap' wx:for="{{ listData }}" wx:key="">
       <view data-id="{{ item.project_id }}" bindtap='goDetail'>
         <view class='itemTop'>
-          <!-- <view class='squareWrap' wx:if="{{ item.ha_name}}">
+          <view class='squareWrap' wx:if="{{ item.user_type == 3}}">
             <view class='square squareJ'>经</view>
-            <view class='wordText'>来自经纪人{{ item.ha_name }}</view>
+            <view class='wordText'>{{ item.ha_name }}</view>
           </view>
-          <view class='squareWrap' wx:if="{{ !item.name}}">
-            <view class='square squareQ'>企</view>
-            <view class='wordText'>来自HR{{ item.ha_name }}</view>
-          </view> -->
-          <view class='squareWrap'>
+          <view class='squareWrap' wx:if="{{ item.user_type == 2}}">
             <view class='square squareQ'>企</view>
             <view class='wordText'>{{ item.ha_name }}</view>
           </view>
+          <!-- <view class='squareWrap'>
+            <view class='square squareQ'>企</view>
+            <view class='wordText'>{{ item.ha_name }}</view>
+          </view> -->
           <view class='time'>{{ item.create_at }}</view>
         </view>
         <view class='itemBox'>
@@ -34,13 +34,13 @@
           <view class='rightText'>
             <view class='firstRow'>{{ item.name }}</view>
             <view class='secondRow'>
-              <text>{{ item.project_label1 }}</text>
+              <text>{{ item.city_name }}</text>
               <text class='line'>|</text>
-              <text>{{ item.project_label2 }}</text>
+              <text>{{ item.job_experience }}</text>
               <text class='line'>|</text>
-              <text>{{ item.project_label3 }}</text>
+              <text>{{ item.nature }}</text>
             </view>
-            <view class='threeRow'>最近活跃：9小时前</view>
+            <view class='money'>{{ item.salaryStr }}</view>
           </view>
         </view>
       </view>

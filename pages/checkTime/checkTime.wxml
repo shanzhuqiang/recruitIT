@@ -3,23 +3,23 @@
   <view class='hallRowWrap'>
     <view class='hallRow'>
       <view class='leftName'>公司名称</view>
-      <input class='rightInput' placeholder='请输入公司名称' value='{{ name }}' disabled></input>
+      <input class='rightInput' placeholder='请输入公司名称' value='{{ company }}' disabled></input>
     </view>
     <view class='hallRow'>
       <view class='leftName'>项目名称</view>
-      <input class='rightInput' placeholder='请输入项目名称' value='{{ company }}' disabled></input>
+      <input class='rightInput' placeholder='请输入项目名称' value='{{ name }}' disabled></input>
     </view>
     <view class='hallRow'>
       <view class='leftName'>开始时间</view>
       <picker bindchange="startTimeChange" mode="date">
-        <input class='rightInput' placeholder="请选择" value='{{ startTime }}' disabled/>
+        <input class='rightInput' placeholder="请选择" value='{{ startTime }}'/>
       </picker>
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
     </view>
     <view class='hallRow'>
       <view class='leftName'>预计结束时间</view>
       <picker bindchange="endTimeChange" mode="date">
-        <input class='rightInput' placeholder="请选择" value='{{ endTime }}' disabled/>
+        <input class='rightInput' placeholder="请选择" value='{{ endTime }}'/>
       </picker>
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
     </view>

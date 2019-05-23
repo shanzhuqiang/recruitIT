@@ -53,6 +53,13 @@ Page({
       success: (res) => {
         wx.hideLoading()
         let listData = res.data.bizobj.data.project_list
+        listData.forEach((el, index) => {
+          if (el.max_salary) {
+            el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k/月'
+          } else {
+            el['salaryStr'] = '不限'
+          }
+        })
         this.setData({
           listData: listData
         })
@@ -80,14 +87,21 @@ Page({
       method: 'POST',
       success: (res) => {
         wx.hideLoading()
-        wx.showToast({
-          title: '接受成功',
-          mask: true,
-          icon: 'success',
-          success: () => {
-            this.getDataList()
-          }
-        })
+        if (res.data.error_code == 0) {
+          wx.showToast({
+            title: '接受成功',
+            mask: true,
+            icon: 'success',
+            success: () => {
+              this.getDataList()
+            }
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+          })
+        }
       },
       fail: (res) => {
         wx.showToast({
@@ -105,11 +119,47 @@ Page({
   },
   // 工时核对
   goCheckTime(e) {
+    wx.showLoading({
+      mask: true,
+      title: '核对中...',
+    })
     let id = e.currentTarget.dataset.id
     let name = e.currentTarget.dataset.name
     let company = e.currentTarget.dataset.company
-    wx.navigateTo({
-      url: `../checkTime/checkTime?id=${id}&name=${name}&company=${company}`
+    wx.request({
+      url: `${app.globalData.baseUrl}/Project/hourSubmitInfo.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        re_apply_mission_id: id
+      },
+      method: 'POST',
+      success: (res) => {
+        wx.hideLoading()
+        if (res.data.error_code == 0) {
+          let resData = res.data.bizobj.data.info
+          if (resData.status == 4) {
+            // if (resData.status == 0 || resData.status == 1) {
+            wx.navigateTo({
+              url: `../checkTime/checkTime?status=${resData.status}&id=${id}&name=${name}&company=${company}`
+            })
+          } else {
+            wx.navigateTo({
+              url: `../checkTimeStep/checkTimeStep?status=${resData.status}&id=${id}&name=${name}&company=${company}&start_time=${resData.start_time}&end_time=${resData.end_time}`
+            })
+          }
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
     })
   },
 

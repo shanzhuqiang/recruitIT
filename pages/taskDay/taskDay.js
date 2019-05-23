@@ -161,8 +161,11 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
+  onShow: function (option) {
+    // console.log(shareTicket)
+    // wx.getShareInfo({
+    //   shareTicket
+    // })
   },
 
   /**
@@ -196,7 +199,16 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
+  onShareAppMessage: function (res) {
+    return {
+      title: '寻猿招聘',
+      path: '/index/index',
+      success: res => {
+        console.log(res)
+      },
+      fail: res => {
+        console.log(res)
+      }
+    }
   }
 })

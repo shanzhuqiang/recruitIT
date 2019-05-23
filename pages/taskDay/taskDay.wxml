@@ -51,9 +51,12 @@
     <view class='qiandaoBox {{ qiandao ? "qiandao" : "" }}' wx:if="{{ signCount < 7 }}" bindtap='qiandaoBtn'>
       {{ qiandao ? "已签到" : "签到" }}
     </view>
-    <view class='qiandaoBox qiandao' wx:if="{{ signCount >= 7 }}" bindtap='shareNow'>
+    <button class='qiandaoBox qiandao' open-type="share" wx:if="{{ signCount >= 7 }}">
       立即分享
-    </view>
+    </button>
+    <!-- <view class='qiandaoBox qiandao'  bindtap='shareNow'>
+      立即分享
+    </view> -->
   </view>
   <view class='title'>
     每日任务

@@ -8,15 +8,24 @@ Page({
   data: {
     imgSrc: '',
     success: false,
-    current: 0
+    current: 0,
+    company: '',
+    name: '',
+    start_time: '',
+    end_time: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
     this.setData({
-      imgSrc: app.globalData.imgSrc
+      imgSrc: app.globalData.imgSrc,
+      company: options.company,
+      name: options.name,
+      start_time: options.start_time,
+      end_time: options.end_time
     })
   },
   // 完成1/2

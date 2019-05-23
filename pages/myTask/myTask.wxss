@@ -141,6 +141,11 @@
   line-height: 24rpx;
 	color: #999;
 }
+.myTaskWrap .itemWrap .itemBox .rightText .money{
+	font-family: PingFangSC-Medium;
+	font-size: 24rpx;
+	color: #f34848;
+}
 .myTaskWrap .itemWrap .bottomRow{
   height: 90rpx;
   line-height: 90rpx;
