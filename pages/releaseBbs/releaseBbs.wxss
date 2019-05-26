@@ -26,6 +26,7 @@
 	background-color: #f1f1f1;
 	border-radius: 4rpx;
   position: relative;
+  display: inline-block;
 }
 .releaseBbsWrap .addBox.addBox2{
 	background-color: #fff;

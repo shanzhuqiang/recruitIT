@@ -91,11 +91,11 @@
       </view>
     </view>
   </view>
-  <view class='bottomBtn'>
+  <!-- <view class='bottomBtn'>
     <view class='leftBtn'>
       <view style='padding-top:18rpx;'><image class='share' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/share.png'></image></view>
       <view>推荐</view>
     </view>
     <view class='rightBtn none'>{{ interviewInfo.status == 1 ? '待面试' : interviewInfo.status == 2 ? '面试' : '面试未通过' }}</view>
-  </view>
+  </view> -->
 </view>

@@ -1,11 +1,11 @@
 <!--pages/bbs/bbs.wxml-->
 <view class='bbsWrap'>
-  <view class='headRow'>
+  <!-- <view class='headRow'>
     <view class='serachIptWrap' bindtap='goHomeSearch'>
       <image class='search' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/search.png'></image>
       <input class='serachIpt' placeholder="你想搜什么？" disabled />
     </view>
-  </view>
+  </view> -->
   <view class='filterWrap'>
     <view class='colBox {{ topFilterBtn == 1 ? "active" : "" }}' bindtap='topFilter' data-id="1">
       <text>推荐</text>
@@ -21,7 +21,7 @@
     </picker>
   </view>
   <!-- 内容 -->
-  <view class='itemBox' wx:for="{{ listData }}" wx:key="">
+  <view class='itemBox' wx:for="{{ listData }}" wx:key="" bindtap='goBbsInfo' data-id="{{ item.id }}">
     <view class='topName'>
       <image class='touxiang' src='{{ item.user_info.avatar }}'></image>
       <view class='name'>{{ item.user_info.username }}</view>
@@ -29,15 +29,15 @@
       <view class='time'>{{ item.publish_time }}</view>
     </view>
     <view class='title'>{{ item.title }}</view>
-    <view class='bottomBox' wx:if="{{ !item.imgs }}">
+    <view class='bottomBox' wx:if="{{ item.imgs.length == 0 }}">
       <view class='content'>{{ item.content }}</view>
     </view>
-    <view class='bottomBox' wx:if="{{ item.imgs }}">
+    <view class='bottomBox' wx:if="{{ item.imgs.length > 0 }}">
       <view class='left'>
         <view class='content'>{{ item.content }}</view>
       </view>
       <view class='right'>
-        <image class='rightImg' src='{{ item.imgs }}'></image>
+        <image class='rightImg' src='{{ item.imgs[0] }}'></image>
       </view>
     </view>
     <view class='bottomBtn'>
@@ -57,14 +57,11 @@
         <text class='num'>{{ item.repost_count }}</text>
         <text class='num'>{{ item.collect_account }}</text>
       </view>
-      <view class='iconBox'>
-        <image class='discussIcon' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/discussIcon.png'></image>
-        <text class='num'>{{ item.repost_account }}</text>
-      </view>
     </view>
   </view>
   <i-load-more tip="没有更多了" loading="{{ loading }}" />
   <!-- 页脚导航 -->
+  <view style='height: 90rpx;'></view>
   <view class='btootmNavWrap'>
     <view class='btnBox' bindtap='goHome'>
       <view class='imgBox'>

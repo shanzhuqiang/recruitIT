@@ -31,10 +31,8 @@
       </picker>
     </view>
     <view class='itemRow'>
-      <view class='leftName'>公司地址</view>
-      <picker bindchange="addressChange" mode="region">
-        <input class='rightInput' placeholder="请选择所在地址" value='{{ address }}' disabled/>
-      </picker>
+      <view class='leftName'>所在位置</view>
+      <input class='rightInput' placeholder="请选择所在地址" value='{{ address }}' bindtap='addressChange' disabled/>
     </view>
   </view>
   <!-- <view class='bottomOk'>

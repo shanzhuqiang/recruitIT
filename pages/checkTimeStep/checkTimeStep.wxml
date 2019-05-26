@@ -26,27 +26,12 @@
   <view class='bottomBox'>
     <view class='scrollWrap'>
       <scroll-view class="scrollView" scroll-x>
-        <view class='itemBox'>
-          <image class='desImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/logo.png'></image>
-        </view>
-        <view class='itemBox'>
-          <image class='desImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/logo.png'></image>
-        </view>
-        <view class='itemBox'>
-          <image class='desImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/logo.png'></image>
-        </view>
-        <view class='itemBox'>
-          <image class='desImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/logo.png'></image>
-        </view>
-        <view class='itemBox'>
-          <image class='desImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/logo.png'></image>
-        </view>
-        <view class='itemBox'>
-          <image class='desImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/logo.png'></image>
+        <view class='itemBox' wx:for="{{ images }}" wx:key="">
+          <image class='desImg' src='{{ item }}'></image>
         </view>
       </scroll-view>
     </view>
-    <view class='stepOneWrap' wx:if="{{ current === 0 }}">
+    <view class='stepOneWrap' wx:if="{{ current == 0 }}">
       <view class='row'>
         <view class='leftName'>公司名称</view>
         <view class='rightVal'>{{ company }}</view>
@@ -67,10 +52,15 @@
       <view class='finishHalf' bindtap='stepOneFail' wx:if="{{ !success }}">修改</view>
       <button class='lianxikefu' open-type="contact" bindcontact="handleContact">联系客服</button>
     </view>
-    <view class='stepTwoWrap' wx:if="{{ current === 1 || current === 2 }}">
-      <view class='title'>{{ current === 1 ? "内容描述" : "补充说明" }}</view>
-      <view class='content'>1、用户推荐的前60位设计师进入评委投票阶段; 2、获得过68Design专访、推荐的设计师可直接进入评委投票阶段； 3、评委1、用户推荐的前60位设计师进入评委投票阶段; 2、获得过68Design专访、推荐的设计师可直接进入评委投票阶段； 3、评委</view>
-      <view class='finishHalf' bindtap='finishHalf' wx:if="{{ current === 1 }}">项目结束</view>
+    <view class='stepTwoWrap' wx:if="{{ current == 1 || current == 2 }}">
+      <view class='title'>{{ current == 1 ? "内容描述" : "补充说明" }}</view>
+      <!-- <view class='content'>1、用户推荐的前60位设计师进入评委投票阶段; 2、获得过68Design专访、推荐的设计师可直接进入评委投票阶段； 3、评委1、用户推荐的前60位设计师进入评委投票阶段; 2、获得过68Design专访、推荐的设计师可直接进入评委投票阶段； 3、评委</view> -->
+      <view class='content'>{{ content }}</view>
+      <view wx:if="{{ current == 1 }}">
+        <view class='finishHalf' bindtap='stepTwoFail' wx:if="{{ !success }}">修改</view>
+        <view class='finishHalf' bindtap='finishHalfLast'>项目结束</view>
+      </view>
+      <view class='finishHalf' bindtap='stepLastFail' wx:if="{{ !success && current == 2}}">修改</view>
     </view>
   </view>
 </view>

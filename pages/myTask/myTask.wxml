@@ -48,7 +48,7 @@
         <view class='yoaqingBtn' bindtap='accept' data-id="{{ item.id }}">接受</view>
       </view>
       <view class='bottomRow' wx:if="{{ tabType == '1' }}">
-        <view class='yoaqingBtn' bindtap='goCheckTime' data-name="{{ item.name }}" data-company="{{ item.company_name }}" data-id="{{ item.id }}">工时核对</view>
+        <view class='yoaqingBtn' bindtap='goCheckTime' data-name="{{ item.name }}" data-company="{{ item.company_name }}" data-id="{{ item.id }}" data-hourstatus="{{ item.hour_status }}">工时核对</view>
       </view>
     </view>
     <!-- <view class='itemWrap'>

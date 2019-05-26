@@ -14,6 +14,8 @@ Page({
     address: '',
     imgBox: '',
     title: '',
+    latitude: '',
+    longitude: '',
     content: ''
   },
 
@@ -51,6 +53,49 @@ Page({
       }
     })
   },
+  // 转base64
+  urlTobase64() {
+    wx.request({
+      url: this.data.imgBox,
+      responseType: 'arraybuffer',
+      success: res => {
+        console.log(base64)
+        let base64 = wx.arrayBufferToBase64(res.data);
+        base64 = 'data:image/jpeg;base64,' + base64
+        this.updateImg(base64)
+      }
+    })
+  },
+  // 上传base64拿url
+  updateImg(baseImage) {
+    wx.request({
+      url: `${app.globalData.baseUrl}/File/uploadImagesBase64.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        image: baseImage
+      },
+      method: 'POST',
+      success: (res) => {
+        if (res.data.error_code == 0) {
+          this.confirmAjax(res.data.bizobj.data.image_url)
+        } else {
+          wx.hideLoading()
+          wx.showModal({
+            showCancel: false,
+            title: '提示',
+            content: res.data.msg,
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 发布
   confirm() {
     let title = this.data.title
     let content = this.data.content
@@ -92,20 +137,29 @@ Page({
         mask: true,
         title: '提交中...',
       })
-      wx.request({
-        url: `${app.globalData.baseUrl}/Post/savePost.html`,
-        data: {
-          sess_key: app.globalData.sess_key,
-          title: title,
-          content: content,
-          imgs: [this.data.imgBox],
-          type: types === '官方发布' ? 2 : 1,
-          user_type: shenfen === '工程师' ? 1 : shenfen === '企业HR' ? 2 : 3,
-          address: address
-        },
-        method: 'POST',
-        success: (res) => {
-          wx.hideLoading()
+      this.urlTobase64()
+    }
+  },
+  // 发布清秀
+  confirmAjax(imgUrl) {
+    let shenfen = this.data.shenfen
+    wx.request({
+      url: `${app.globalData.baseUrl}/Post/savePost.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        title: this.data.title,
+        content: this.data.content,
+        imgs: [imgUrl],
+        type: this.data.types === '官方发布' ? 2 : 1,
+        user_type: shenfen === '工程师' ? 1 : shenfen === '企业HR' ? 2 : 3,
+        address: this.data.address,
+        latitude: this.data.latitude,
+        longitude: this.data.longitude
+      },
+      method: 'POST',
+      success: (res) => {
+        wx.hideLoading()
+        if (res.data.error_code == 0) {
           wx.showToast({
             title: '发布成功',
             mask: true,
@@ -118,15 +172,21 @@ Page({
               }, 1500)
             }
           })
-        },
-        fail: (res) => {
-          wx.showToast({
-            icon: 'none',
-            title: '网络请求失败',
+        } else {
+          wx.showModal({
+            showCancel: false,
+            title: '提示',
+            content: res.data.msg,
           })
         }
-      })
-    }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
   },
   // 发布类别
   typesChange(e) {
@@ -140,10 +200,16 @@ Page({
       shenfen: this.data.shenfenArray[e.detail.value]
     })
   },
-  // 所在地址
+  // 公司地址
   addressChange(e) {
-    this.setData({
-      address: e.detail.value
+    wx.chooseLocation({
+      success: (res) => {
+        this.setData({
+          address: res.address,
+          latitude: res.latitude,
+          longitude: res.longitude
+        })
+      }
     })
   },
   /**

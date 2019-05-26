@@ -12,7 +12,8 @@ Page({
     authMask: false,
     noLocation: false,
     password: false,
-    passwordMask: false
+    passwordMask: false,
+    openStatus: 0
   },
   /**
    * 生命周期函数--监听页面加载
@@ -24,6 +25,7 @@ Page({
       imgSrc: app.globalData.imgSrc
     })
   },
+  // 开启/关闭
   initAutoStyems () {
     wx.request({
       url: `${app.globalData.baseUrl}/Web/webset.html`,
@@ -33,7 +35,10 @@ Page({
       method: 'POST',
       success: (res) => {
         if (res.data.error_code == 0) {
-
+          this.setData({
+            // openStatus: res.data.bizobj.config.open_status
+            openStatus: 2
+          })
         } else {
           wx.showToast({
             icon: 'none',

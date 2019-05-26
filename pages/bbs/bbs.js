@@ -38,6 +38,12 @@ Page({
     })
     this.getList()
   },
+  // 论坛详情
+  goBbsInfo(e) {
+    wx.navigateTo({
+      url: `../bbsInfo/bbsInfo?id=${e.currentTarget.dataset.id}`
+    })
+  },
   // top改变
   topFilter(e) {
     let key = e.currentTarget.dataset.id
@@ -48,6 +54,7 @@ Page({
       })
     } else {
       this.setData({
+        listData: [],
         topFilterBtn: key,
         page: 1,
         shaixuan: '',
@@ -96,7 +103,8 @@ Page({
   // 筛选
   shaixuanChange (e) {
     this.setData({
-      shaixuan: this.data.shaixuanArray[e.detail.value].id
+      shaixuan: this.data.shaixuanArray[e.detail.value].id,
+      listData: []
     })
     this.getList()
   },

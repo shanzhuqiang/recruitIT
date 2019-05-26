@@ -11,9 +11,9 @@
     </view>
   </view>
   <view class='bottomWrap'>
-    <view class='title'>内容描述</view>
+    <view class='title'>补充说明</view>
     <view class='textareaWrap'>
-      <textarea class='textareaBox' placeholder='请输入内容描述' bindinput='contentChange'></textarea>
+      <textarea class='textareaBox' placeholder='请输入补充说明' bindinput='contentChange'></textarea>
     </view>
   </view>
   <view class='confirmBtn' bindtap='confirm'>提交</view>

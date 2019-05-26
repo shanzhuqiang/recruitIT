@@ -13,35 +13,47 @@
   </view>
   <!-- 发布的帖子 -->
   <view class='itemBox' wx:if="{{ tabType === 'tiezi' }}">
-    <view class='topName'>
-      <image class='touxiang' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/touxiang.png'></image>
-      <view class='name'>啊实打实打</view>
-      <view class='shenfen'>工程师</view>
-      <view class='time'>刚刚发布</view>
+    <view wx:for="{{ bbsList }}" wx:key="" data-id="{{ item.id }}"  bindtap='goBbsInfo'>
+      <view class='topName'>
+        <image class='touxiang' wx:if="{{imgSrc !== ''}}" src='{{ item.user_info.avatar }}'></image>
+        <view class='name'>{{ item.user_info.username }}</view>
+        <view class='shenfen {{ item.user_info.user_type == 1 ? "one" : item.user_info.user_type == 2 ? "two" : "three" }}'>{{ item.user_info.user_type == 1 ? '工程师' : item.user_info.user_type == 2 ? '企业HR' : '经纪人' }}</view>
+        <view class='time'>{{ item.publish_time }}</view>
+      </view>
+      <view class='title'>{{ item.title }}</view>
+      <view class='bottomBox' wx:if="{{ item.imgs.length == 0 }}">
+        <view class='content'>{{ item.content }}</view>
+      </view>
+      <view class='bottomBox' wx:if="{{ item.imgs.length > 0 }}">
+        <view class='left'>
+          <view class='content'>{{ item.content }}</view>
+        </view>
+        <view class='right'>
+          <image class='rightImg' src='{{ item.imgs[0] }}'></image>
+        </view>
+      </view>
+      <view class='bottomBtn'>
+        <view class='address'>{{ item.address }}</view>
+        <view class='iconBox'>
+          <image class='discussIcon' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/shareIcon.png'></image>
+          <text class='num'>{{ item.message_count }}</text>
+        </view>
+        <view class='iconBox'>
+          <image class='heartIcon' wx:if="{{imgSrc !== '' && item.is_collect == 1}}" src='{{ imgSrc }}/heartIcon2.png'></image>
+          <image class='heartIcon' wx:if="{{imgSrc !== '' && item.is_collect == 2}}" src='{{ imgSrc }}/heartIcon.png'></image>
+          <image class='heartIcon' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/heartIcon.png'></image>
+          <text class='num'>{{ item.collect_count }}</text>
+        </view>
+        <view class='iconBox'>
+          <image class='discussIcon' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/discussIcon.png'></image>
+          <text class='num'>{{ item.repost_count }}</text>
+          <text class='num'>{{ item.collect_account }}</text>
+        </view>
+      </view>
     </view>
-    <view class='title'>你认为程序员和搬砖的哪个挣的多？你认为程序员和搬砖的哪个挣的多？</view>
-    <view class='bottomBox'>
-      <view class='left'>
-        <view class='content'>你认为程序员和搬砖的哪个挣的多？你认为程序员和搬砖的哪个挣的多？你认为程序员和搬砖的哪个挣的多？你认为程序员和搬砖的哪个挣的多？你认为程序员和搬砖的哪个挣的多？你认为程序员和搬砖的哪个挣的多？</view>
-      </view>
-      <view class='right'>
-        <image class='rightImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/logo.png'></image>
-      </view>
-    </view>
-    <view class='bottomBtn'>
-      <view class='address'>滨江·海创园</view>
-      <view class='iconBox'>
-        <image class='discussIcon' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/shareIcon.png'></image>
-        <text class='num'>20</text>
-      </view>
-      <view class='iconBox'>
-        <image class='heartIcon' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/heartIcon.png'></image>
-        <text class='num'>20</text>
-      </view>
-      <view class='iconBox'>
-        <image class='discussIcon' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/discussIcon.png'></image>
-        <text class='num'>20</text>
-      </view>
+    <view wx:if="{{ bbsList.length == 0 }}" class='noDataWrap'>
+      <image class='noData' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/noData.png'></image>
+      <view class='textWord'>暂无信息</view>
     </view>
   </view>
   <!-- 发布的项目 -->
@@ -115,7 +127,7 @@
   <view class='typeAllMask' wx:if="{{ gangweiMask }}">
     <view class='maskRow {{ gangweiType == "" ? "active" : "" }}' bindtap='chooseGangwei' data-id="" data-ida="全部岗位">全部岗位</view>
     <view class='maskRow {{ gangweiType == 1 ? "active" : "" }}' bindtap='chooseGangwei' data-id="1" data-ida="招聘中">招聘中</view>
-    <view class='maskRow {{ gangweiType == 2 ? "active" : "" }}' bindtap='chooseGangwei' data-id="2" data-ida="暂停中">进行中</view>
+    <view class='maskRow {{ gangweiType == 2 ? "active" : "" }}' bindtap='chooseGangwei' data-id="2" data-ida="暂停中">暂停中</view>
     <view class='maskRow {{ gangweiType == 3 ? "active" : "" }}' bindtap='chooseGangwei' data-id="3" data-ida="已结束">已结束</view>
     <view class='maskRow {{ gangweiType == 4 ? "active" : "" }}' bindtap='chooseGangwei' data-id="4" data-ida="审核中">审核中</view>
     <view class='maskRow {{ gangweiType == 5 ? "active" : "" }}' bindtap='chooseGangwei' data-id="5" data-ida="审核驳回">审核驳回</view>

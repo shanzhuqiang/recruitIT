@@ -25,15 +25,15 @@
     <view class='titleOne'>招聘数据</view>
     <view class='bottomRow'>
       <view class='itemBox'>
-        <view class='first'>0</view>
+        <view class='first'>{{ job_info.apply_count }}</view>
         <view class='second'>待录取</view>
       </view>
       <view class='itemBox middle'>
-        <view class='first'>0</view>
+        <view class='first'>{{ job_info.calc_count }}</view>
         <view class='second'>待结算</view>
       </view>
       <view class='itemBox'>
-        <view class='first'>0</view>
+        <view class='first'>{{ job_info.finish_count }}</view>
         <view class='second'>已完成</view>
       </view>
     </view>

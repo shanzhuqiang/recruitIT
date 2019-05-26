@@ -151,7 +151,7 @@ Page({
         re_hour_id: this.data.id,
         content: this.data.content,
         images: [imgUrl],
-        rate: 2
+        rate: 3
       },
       method: 'POST',
       success: (res) => {

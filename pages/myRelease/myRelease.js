@@ -18,6 +18,7 @@ Page({
     gangweiName: '岗位',
     gangweiType: '',
     page: 1,
+    bbsList: []
   },
   /**
    * 生命周期函数--监听页面加载
@@ -27,6 +28,8 @@ Page({
       userType: app.globalData.userType,
       imgSrc: app.globalData.imgSrc
     })
+    // 初始化Bbs
+    this.initBbs()
     // if (this.data.userType === 'hr') {
     //   wx.showLoading({
     //     mask: true,
@@ -56,6 +59,7 @@ Page({
         gangweiMask: false,
         projectList: [],
         quartersList: [],
+        bbsList: [],
         page: 1
       })
       if (key == 'xiangmu') {
@@ -63,6 +67,9 @@ Page({
       }
       if (key == 'gangwei') {
         this.initQuartersData()
+      }
+      if (key == 'tiezi') {
+        this.initBbs()
       }
     }
   },
@@ -110,6 +117,49 @@ Page({
    */
   onShow: function () {
 
+  },
+  // 论坛详情
+  goBbsInfo(e) {
+    wx.navigateTo({
+      url: `../bbsInfo/bbsInfo?id=${e.currentTarget.dataset.id}`
+    })
+  },
+  // 我发布的帖子
+  initBbs () {
+    wx.showLoading({
+      mask: true,
+      title: '加载中...',
+    })
+    wx.request({
+      url: `${app.globalData.baseUrl}/Post/getMemberPostList.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        page: this.data.page,
+        page_size: 20
+      },
+      method: 'POST',
+      success: (res) => {
+        wx.hideLoading()
+        if (res.data.error_code == 0) {
+          let listData = res.data.bizobj.data.post_list
+          this.setData({
+            bbsList: listData
+          })
+          console.log(listData)
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
   },
   // 我的发布项目
   initProjectData() {

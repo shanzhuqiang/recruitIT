@@ -47,7 +47,7 @@
     <view class='num'>
       {{ num }}
     </view>
-    <view class='qiandaoDays'>当前金币/连续签到0天</view>
+    <view class='qiandaoDays'>当前金币/连续签到{{ signCount }}天</view>
     <view class='qiandaoBox {{ qiandao ? "qiandao" : "" }}' wx:if="{{ signCount < 7 }}" bindtap='qiandaoBtn'>
       {{ qiandao ? "已签到" : "签到" }}
     </view>

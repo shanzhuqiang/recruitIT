@@ -13,7 +13,8 @@ Page({
     id: '',
     name: '',
     company: '',
-    imgBox: ''
+    imgBox: '',
+    fromStep: 0
   },
   /**
    * 生命周期函数--监听页面加载
@@ -24,9 +25,10 @@ Page({
       imgSrc: app.globalData.imgSrc,
       id: options.id,
       name: options.name,
-      company: options.company
+      company: options.company,
+      fromStep: options.fromStep
     })
-    if (options.status == 1) {
+    if (options.hourstatus == 1) {
       this.setData({
         checkMaskBtn: true
       })
@@ -46,7 +48,7 @@ Page({
       }
     })
   },
-  confirm(e) {
+  confirm() {
     let startTime = this.data.startTime
     let endTime = this.data.endTime
     let imgBox = this.data.imgBox
@@ -85,7 +87,8 @@ Page({
         re_hour_id: this.data.id,
         start_time: this.data.startTime,
         end_time: this.data.endTime,
-        images: imgUrl
+        images: [imgUrl],
+        rate: 1
       },
       method: 'POST',
       success: (res) => {
@@ -126,9 +129,15 @@ Page({
   },
   // 返回上一页
   backBtn () {
-    wx.navigateBack({
-      delta: 1
-    })
+    if (this.data.fromStep == 2) {
+      wx.navigateBack({
+        delta: 2
+      })
+    } else {
+      wx.navigateBack({
+        delta: 1
+      })
+    }
   },
   // 选择开始时间
   startTimeChange(e) {

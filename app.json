@@ -63,12 +63,14 @@
     "pages/businessLicense/businessLicense",
     "pages/checkTime/checkTime",
     "pages/checkTimePull/checkTimePull",
+    "pages/checkTimePullLast/checkTimePullLast",
     "pages/checkTimeStep/checkTimeStep",
     "pages/loginChoose/loginChoose",
     "pages/login/login",
     "pages/message/message",
     "pages/faceInfo/faceInfo",
-    "pages/myDown/myDown"
+    "pages/myDown/myDown",
+    "pages/bbsInfo/bbsInfo"
   ],
   "window": {
     "backgroundTextStyle": "light",

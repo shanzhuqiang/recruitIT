@@ -246,7 +246,7 @@
   height: 28rpx;
 }
 .faceInfoWrap .bottomBtn .rightBtn{
-  margin-left: 140rpx;
+  /* margin-left: 140rpx; */
   text-align: center;
   background: #4c85fb;
 	font-family: PingFangSC-Regular;
