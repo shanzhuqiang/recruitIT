@@ -6,7 +6,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    imgSrc: '',
+    bbsInfo: {},
+    is_collect: 1,
+    id: ''
   },
 
   /**
@@ -18,11 +21,96 @@ Page({
     })
     this.getInfo(options.id)
   },
+  // 评论
+  iptChange(e) {
+    wx.showLoading({
+      mask: true,
+      title: '评论中...',
+    })
+    wx.request({
+      url: `${app.globalData.baseUrl}/Post/replyPost.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        post_id: this.data.id,
+        content: e.detail.value,
+        parent_id: 0
+      },
+      method: 'POST',
+      success: (res) => {
+        wx.hideLoading()
+        if (res.data.error_code == 0) {
+          wx.showToast({
+            title: '评论成功',
+            mask: true,
+            icon: 'success',
+            success: () => {
+              this.getInfo(this.data.id)
+            }
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 关注
+  guanzhuBtn(e) {
+    wx.showLoading({
+      mask: true,
+      title: '关注中...',
+    })
+    wx.request({
+      url: `${app.globalData.baseUrl}/user/collect.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        user_id: e.currentTarget.dataset.id
+      },
+      method: 'POST',
+      success: (res) => {
+        wx.hideLoading()
+        if (res.data.error_code == 0) {
+          wx.showToast({
+            title: '关注成功',
+            mask: true,
+            icon: 'success',
+            success: () => {
+              this.setData({
+                is_collect: 1
+              })
+            }
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
   // 获取帖子详情
   getInfo(id) {
     wx.showLoading({
       mask: true,
       title: '加载中...',
+    })
+    this.setData({
+      id: id
     })
     wx.request({
       url: `${app.globalData.baseUrl}/Post/getPostInfo.html`,
@@ -34,7 +122,11 @@ Page({
       success: (res) => {
         wx.hideLoading()
         if (res.data.error_code == 0) {
-          let resData = res.data.bizobj.data
+          let resData = res.data.bizobj.data.post_info
+          this.setData({
+            bbsInfo: resData,
+            is_collect: resData.user_info.is_collect
+          })
           console.log(resData)
         } else {
           wx.showToast({

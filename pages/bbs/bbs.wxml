@@ -49,7 +49,6 @@
       <view class='iconBox'>
         <image class='heartIcon' wx:if="{{imgSrc !== '' && item.is_collect == 1}}" src='{{ imgSrc }}/heartIcon2.png'></image>
         <image class='heartIcon' wx:if="{{imgSrc !== '' && item.is_collect == 2}}" src='{{ imgSrc }}/heartIcon.png'></image>
-        <image class='heartIcon' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/heartIcon.png'></image>
         <text class='num'>{{ item.collect_count }}</text>
       </view>
       <view class='iconBox'>
