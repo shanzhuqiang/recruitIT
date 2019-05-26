@@ -2,7 +2,7 @@
 <view class='vipWrap'>
   <view class='title'>充值会员立享多重优惠</view>
   <view class='vipBox'>
-    <view class='vipItem fl active'>
+    <view class='vipItem one fl {{ active == 1 ? "active" : "" }}' bindtap='chooseType'>
       <image class='vipBg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/vipBg.png'></image>
       <view class='firstRow'>
         <image class='queen' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/queenA.png'></image>
@@ -16,7 +16,7 @@
       <view class='threeRow'>（人工）、佣金折扣等</view>
       <view class='fourRow'>有效期至2019.11.11</view>
     </view>
-    <view class='vipItem fr'>
+    <view class='vipItem fr {{ active == 2 ? "active" : "" }}' bindtap='chooseType2'>
       <image class='vipBg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/vipBg.png'></image>
       <view class='firstRow'>
         <image class='queen' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/queenB.png'></image>
@@ -38,8 +38,8 @@
     <view class='itemBox'>
       <image class='wechat' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/wechat.png'></image>
       微信支付
-      <radio class='wechatRadio' value="wechat" checked="{{ false }}" />
+      <radio class='wechatRadio' value="wechat" checked="{{ true }}" />
     </view>
   </view>
-  <view class='bottomBtn'>确认</view>
+  <view class='bottomBtn' bindtap='confirm'>确认</view>
 </view>

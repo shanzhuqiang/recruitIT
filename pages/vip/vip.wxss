@@ -22,12 +22,15 @@
 		rgba(253, 183, 34, 0.35);
 	border-radius: 20rpx;
   position: relative;
+	border: solid 3rpx transparent;
 }
 .vipWrap .vipBox .vipItem.active{
 	border: solid 3rpx #000000;
+}
+.vipWrap .vipBox .vipItem.one{
   position: relative;
 }
-.vipWrap .vipBox .vipItem.active::after{
+.vipWrap .vipBox .vipItem.one::after{
   content: "荐";
 	width: 58rpx;
 	height: 58rpx;

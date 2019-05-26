@@ -6,7 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imgSrc: ''
+    userType: '',
+    imgSrc: '',
+    active: 1
   },
 
   /**
@@ -14,10 +16,66 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
+      userType: app.globalData.userType,
       imgSrc: app.globalData.imgSrc
     })
   },
-
+  // 选择包年
+  chooseType() {
+    this.setData({
+      active: 1
+    })
+  },
+  // 选择包月
+  chooseType2() {
+    this.setData({
+      active: 2
+    })
+  },
+  // 确认充值
+  confirm() {
+    wx.showLoading({
+      mask: true,
+      title: '充值中...',
+    })
+    let userType = this.data.userType
+    wx.request({
+      url: `${app.globalData.baseUrl}/Weixinpay/payMember.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        paytype: 1,
+        type: this.data.active,
+        user_type: userType === 'engineer' ? 1 : userType === 'hr' ? 2 : 3
+      },
+      method: 'POST',
+      success: (res) => {
+        wx.hideLoading()
+        if (res.data.error_code == 0) {
+          wx.showToast({
+            title: '充值成功',
+            mask: true,
+            icon: 'success',
+            success: () => {
+              wx.navigateBack({
+                delta: 1
+              })
+            }
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

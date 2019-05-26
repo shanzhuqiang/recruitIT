@@ -168,7 +168,7 @@
 	font-size: 26rpx;
 	color: #666;
   line-height: 32rpx;
-  padding-top: 24rpx;
+  padding: 24rpx 0 10rpx;
 }
 .bbsInfoWrap .discussItemWrap .discussItem .otherContent{
 	background-color: rgba(213,225,251,0.7);
@@ -227,6 +227,7 @@
 	font-family: PingFangSC-Regular;
 	font-size: 24rpx;
 	color: #999;
+  display: inline-block;
 }
 .bbsInfoWrap .bottomBox .two .discussIcon{
   width: 36rpx;

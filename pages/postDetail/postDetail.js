@@ -288,6 +288,15 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: '寻猿招聘',
+      path: `/pages/index/index`,
+      success: res => {
+        console.log(res)
+      },
+      fail: res => {
+        console.log(res)
+      }
+    }
   }
 })

@@ -33,12 +33,15 @@
           </view>
           <view class='rightBox'>
             <view class='name'>{{ item.user_info.username }}</view>
-            <view class='time'>2019-09-29 14:01</view>
+            <view class='time'>{{ item.create_time }}</view>
           </view>
           <view class='huifu'>回复</view>
         </view>
         <view class='discussContent'>
           {{ item.content }}
+        </view>
+        <view class='otherContent' wx:for="{{ bbsInfo.comment_list }}">
+          <text class='userName'>{{ item.user_info.username }}</text>回复:{{ item.content }}
         </view>
       </view>
       <!-- <view class='discussItem'>
@@ -73,19 +76,19 @@
         </view>
         <view>{{ bbsInfo.message_count }}</view>
       </view>
-      <view class='two'>
+      <view class='two' bindtap='thumbUp'>
         <view>
-        <image class='heartIcon' wx:if="{{imgSrc !== '' && bbsInfo.is_collect == 1}}" src='{{ imgSrc }}/heartIcon2.png'></image>
-        <image class='heartIcon' wx:if="{{imgSrc !== '' && bbsInfo.is_collect == 2}}" src='{{ imgSrc }}/heartIcon.png'></image>
+        <image class='heartIcon' wx:if="{{imgSrc !== '' && shoucang == 1}}" src='{{ imgSrc }}/heartIcon2.png'></image>
+        <image class='heartIcon' wx:if="{{imgSrc !== '' && shoucang == 2}}" src='{{ imgSrc }}/heartIcon.png'></image>
         </view>
         <view>{{ bbsInfo.collect_count }}</view>
       </view>
-      <view class='two'>
+      <button class='bottonClass two' open-type="share">
         <view>
           <image class='shareIcon' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/shareIcon.png'></image>
         </view>
         <view>{{ bbsInfo.repost_count }}</view>
-      </view>
+      </button>
     </view>
   </view>
 </view>

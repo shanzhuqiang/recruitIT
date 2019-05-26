@@ -9,6 +9,7 @@ Page({
     imgSrc: '',
     bbsInfo: {},
     is_collect: 1,
+    shoucang: 2,
     id: ''
   },
 
@@ -20,6 +21,98 @@ Page({
       imgSrc: app.globalData.imgSrc
     })
     this.getInfo(options.id)
+  },
+  // 点赞按钮
+  thumbUp () {
+    if (this.data.bbsInfo.is_collect == 1) {
+      // 已点赞，取消点赞
+      this.upThumbUp()
+    } else if (this.data.bbsInfo.is_collect == 2) {
+      // 未点赞，点赞
+      this.doThumbUp()
+    }
+  },
+  // 未点赞，点赞
+  doThumbUp() {
+    wx.showLoading({
+      mask: true,
+      title: '点赞中...',
+    })
+    wx.request({
+      url: `${app.globalData.baseUrl}/Post/postThumbUp.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        post_id: this.data.id
+      },
+      method: 'POST',
+      success: (res) => {
+        wx.hideLoading()
+        if (res.data.error_code == 0) {
+          wx.showToast({
+            title: '点赞成功',
+            mask: true,
+            icon: 'success',
+            success: () => {
+              this.setData({
+                shoucang: 1
+              })
+            }
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 已点赞，取消点赞
+  upThumbUp() {
+    wx.showLoading({
+      mask: true,
+      title: '取消中...',
+    })
+    wx.request({
+      url: `${app.globalData.baseUrl}/Post/postUnThumbUp.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        post_id: this.data.id
+      },
+      method: 'POST',
+      success: (res) => {
+        wx.hideLoading()
+        if (res.data.error_code == 0) {
+          wx.showToast({
+            title: '取消成功',
+            mask: true,
+            icon: 'success',
+            success: () => {
+              this.setData({
+                shoucang: 2
+              })
+            }
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
   },
   // 评论
   iptChange(e) {
@@ -123,9 +216,11 @@ Page({
         wx.hideLoading()
         if (res.data.error_code == 0) {
           let resData = res.data.bizobj.data.post_info
+          console.log(resData.is_collect)
           this.setData({
             bbsInfo: resData,
-            is_collect: resData.user_info.is_collect
+            is_collect: resData.user_info.is_collect,
+            shoucang: resData.is_collect
           })
           console.log(resData)
         } else {
@@ -189,6 +284,33 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: '寻猿招聘',
+      path: `/pages/index/index`,
+      success: res => {
+        console.log(res)
+      },
+      fail: res => {
+        console.log(res)
+      }
+    }
+    let userType = this.data.userType
+    wx.request({
+      url: `${app.globalData.baseUrl}/Coin/coinInc.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        user_type: userType === 'engineer' ? 1 : userType === 'hr' ? 2 : 3,
+        post_id: this.data.id
+      },
+      method: 'POST',
+      success: (res) => {
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
   }
 })

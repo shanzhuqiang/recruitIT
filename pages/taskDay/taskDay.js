@@ -202,7 +202,7 @@ Page({
   onShareAppMessage: function (res) {
     return {
       title: '寻猿招聘',
-      path: '/index/index',
+      path: `/pages/index/index`,
       success: res => {
         console.log(res)
       },
@@ -210,5 +210,23 @@ Page({
         console.log(res)
       }
     }
+    let userType = this.data.userType
+    wx.request({
+      url: `${app.globalData.baseUrl}/Coin/coinInc.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        user_type: userType === 'engineer' ? 1 : userType === 'hr' ? 2 : 3,
+        method: 8
+      },
+      method: 'POST',
+      success: (res) => {
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
   }
 })
