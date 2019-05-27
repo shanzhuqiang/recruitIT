@@ -68,17 +68,17 @@
   line-height: 34rpx;
   margin: 0 24rpx 0 10rpx;
 }
-.bbsWrap .itemBox .topName .shenfen.one{
+.myReleaseWrap .itemBox .topName .shenfen.one{
 	background-image: linear-gradient(-90deg, 
 		#80a9ff 0%, 
 		#3c7bfd 100%);
 }
-.bbsWrap .itemBox .topName .shenfen.two{
+.myReleaseWrap .itemBox .topName .shenfen.two{
 	background-image: linear-gradient(-90deg, 
 		#4beeda 0%, 
 		#19dfba 100%);
 }
-.bbsWrap .itemBox .topName .shenfen.three{
+.myReleaseWrap .itemBox .topName .shenfen.three{
 	background-image: linear-gradient(-90deg, 
 		#f5d50a 0%, 
 		#ffcc00 42%, 
@@ -138,12 +138,14 @@
   line-height: 60rpx;
 	color: #999;
   float: left;
+  width: 360rpx;
+  
 }
 .myReleaseWrap .itemBox .bottomBtn .iconBox{
   position: relative;
   float: right;
-  margin-right: 50rpx;
-  margin-left: 50rpx
+  margin-right: 40rpx;
+  margin-left: 40rpx
 }
 .myReleaseWrap .itemBox .bottomBtn .iconBox .discussIcon{
   width: 27rpx;

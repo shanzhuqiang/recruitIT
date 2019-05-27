@@ -61,6 +61,8 @@ Page({
               })
             }
           })
+        } else if (res.data.error_code == 1) {
+          this.wechartPay(res.data.bizobj.data.wxconfig)
         } else {
           wx.showToast({
             icon: 'none',
@@ -74,6 +76,24 @@ Page({
           title: '网络请求失败',
         })
       }
+    })
+  },
+  // 微信支付
+  wechartPay(data) {
+    wx.requestPayment({
+      timeStamp: data.timeStamp,
+      nonceStr: data.nonceStr,
+      package: data.package,
+      signType: 'MD5',
+      paySign: data.paySign,
+      success: (res) => {
+        wx.showToast({
+          title: '充值成功',
+          mask: true,
+          icon: 'success'
+        })
+      },
+      fail(res) { }
     })
   },
   /**

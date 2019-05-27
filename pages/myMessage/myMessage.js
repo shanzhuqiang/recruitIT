@@ -32,7 +32,7 @@ Page({
       method: 'POST',
       success: (res) => {
         if (res.data.error_code == 0) {
-          let data = res.data.bizobj.data.message_list
+          let data = res.data.bizobj.data
           if (data.length > 0) {
             let oldListData = this.data.listData
             this.setData({

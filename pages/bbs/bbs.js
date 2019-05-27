@@ -36,7 +36,18 @@ Page({
     this.setData({
       imgSrc: app.globalData.imgSrc
     })
-    this.getList()
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    this.setData({
+      page: 1,
+      listData: []
+    }, () => {
+      this.getList()
+    })
   },
   // 论坛详情
   goBbsInfo(e) {
@@ -183,13 +194,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
 
   },
 

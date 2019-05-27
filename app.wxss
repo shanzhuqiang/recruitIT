@@ -144,6 +144,11 @@
 .fr{
   float: right;
 }
+.overflow{
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
 /* 城市选择 */
 .cityChooseMask{
   position: fixed;

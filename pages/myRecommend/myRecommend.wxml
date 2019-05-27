@@ -11,8 +11,8 @@
       不合适
     </view>
   </view>
-  <view class='itemWrapBox' wx:for="{{ listData }}" wx:key="">
-    <view class='itemWrap'>
+  <view class='itemWrapBox'>
+    <view class='itemWrap' wx:if="{{ listData.length > 0 }}" wx:for="{{ listData }}" wx:key="">
       <view class='itemTop'>
         <view class='square'>工</view>
         <view class='wordText' bindtap='goEngineer'>
@@ -50,6 +50,10 @@
         </view>
       </view>
       <view class='bottomRow'  wx:if="{{ tabType == 5 }}">赏金：{{ item.bonus }}元</view>
+    </view>
+    <view wx:if="{{ listData.length == 0 }}" class='noDataWrap'>
+      <image class='noData' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/noData.png'></image>
+      <view class='textWord'>暂无信息</view>
     </view>
   </view>
 </view>

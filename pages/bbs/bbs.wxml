@@ -41,20 +41,19 @@
       </view>
     </view>
     <view class='bottomBtn'>
-      <view class='address'>{{ item.address }}</view>
+      <view class='address overflow'>{{ item.address }}</view>
       <view class='iconBox'>
-        <image class='discussIcon' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/shareIcon.png'></image>
-        <text class='num'>{{ item.message_count }}</text>
+        <image class='shareIcon' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/shareIcon.png'></image>
+        <text class='num'>{{ item.repost_count }}</text>
       </view>
       <view class='iconBox'>
-        <image class='heartIcon' wx:if="{{imgSrc !== '' && item.is_collect == 1}}" src='{{ imgSrc }}/heartIcon2.png'></image>
-        <image class='heartIcon' wx:if="{{imgSrc !== '' && item.is_collect == 2}}" src='{{ imgSrc }}/heartIcon.png'></image>
+        <image class='heartIcon' wx:if="{{imgSrc !== '' && item.ic_collect == 1}}" src='{{ imgSrc }}/heartIcon2.png'></image>
+        <image class='heartIcon' wx:if="{{imgSrc !== '' && item.ic_collect == 2}}" src='{{ imgSrc }}/heartIcon.png'></image>
         <text class='num'>{{ item.collect_count }}</text>
       </view>
       <view class='iconBox'>
         <image class='discussIcon' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/discussIcon.png'></image>
-        <text class='num'>{{ item.repost_count }}</text>
-        <text class='num'>{{ item.collect_account }}</text>
+        <text class='num'>{{ item.message_count }}</text>
       </view>
     </view>
   </view>

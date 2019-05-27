@@ -149,7 +149,6 @@ Page({
   },
   // 微信支付
   wechartPay (data) {
-    console.log(data)
     wx.requestPayment({
       timeStamp: data.timeStamp,
       nonceStr: data.nonceStr,

@@ -53,9 +53,7 @@ Page({
             mask: true,
             icon: 'success',
             success: () => {
-              this.setData({
-                shoucang: 1
-              })
+              this.getInfo(this.data.id)
             }
           })
         } else {
@@ -94,9 +92,7 @@ Page({
             mask: true,
             icon: 'success',
             success: () => {
-              this.setData({
-                shoucang: 2
-              })
+              this.getInfo(this.data.id)
             }
           })
         } else {
