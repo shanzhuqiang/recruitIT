@@ -55,17 +55,24 @@ Page({
       }
     })
   },
-  goMessage (e) {
+  goMessage(e) {
     let id = e.currentTarget.dataset.id
-    let listData = this.data.listData
-    listData.forEach((el, index) => {
-      if (id === el.id) {
-        app.globalData.messageObj = el
-      }
-    })
-    wx.navigateTo({
-      url: `../message/message`
-    })
+    let type = e.currentTarget.dataset.type
+    let re_job_id = e.currentTarget.dataset.rejobid
+    let re_project_id = e.currentTarget.dataset.reprojectid
+    let from_sess_key = e.currentTarget.dataset.fromsesskey
+    if (type == 1) {
+      // 1是岗位
+      wx.navigateTo({
+        url: `../postDetail/postDetail?id=${re_job_id}&fromsesskey=${from_sess_key}`
+      })
+    } else if (type == 2) {
+      // 2是项目
+      wx.navigateTo({
+        url: `../projectDetail/projectDetail?id=${re_project_id}&fromsesskey=${from_sess_key}`
+      })
+    }
+
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

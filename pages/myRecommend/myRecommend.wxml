@@ -42,9 +42,9 @@
         <view class='rightText rightText2'>
           <view class='firstRow'>{{ item.name }}</view>
           <view class='secondRow'>
-            <text>{{ item.label1 }}</text>
+            <text>{{ item.city_name }}</text>
             <text class='line'>|</text>
-            <text>{{ item.label2 }}</text>
+            <text>{{ item.job_experience }}</text>
           </view>
           <view class='threeRow'>{{ item.salaryStr }}</view>
         </view>

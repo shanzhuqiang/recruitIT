@@ -14,7 +14,8 @@ Page({
     companyInfo: {},
     shareMask: false,
     maskOnOff: false,
-    user_list: []
+    user_list: [],
+    fromsesskey: null
   },
 
   /**
@@ -28,6 +29,11 @@ Page({
       imgSrc: app.globalData.imgSrc,
       id: options.id
     })
+    if (options.fromsesskey) {
+      this.setData({
+        fromsesskey: options.fromsesskey
+      })
+    }
   },
   // 获取岗位详情
   getInfo(id) {
@@ -97,7 +103,8 @@ Page({
       data: {
         sess_key: app.globalData.sess_key,
         re_job_id: this.data.id,
-        type: 1
+        type: 1,
+        agent_sess_key: this.data.fromsesskey
       },
       method: 'POST',
       success: (res) => {

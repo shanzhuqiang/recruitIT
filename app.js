@@ -49,7 +49,6 @@ App({
     sess_key: '',
     need_auth: '',
     has_password: '',
-    messageObj: null,
     baseInfo: null,
     userInfo: null,
     imgSrc: '../../images',

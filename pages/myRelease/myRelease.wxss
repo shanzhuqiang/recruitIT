@@ -110,7 +110,7 @@
   float: left;
   padding-top: 14rpx;
 }
-.myReleaseWrap .itemBox .bottomBox .left .content{
+.myReleaseWrap .itemBox .bottomBox .content{
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;

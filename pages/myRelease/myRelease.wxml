@@ -12,8 +12,8 @@
     </view>
   </view>
   <!-- 发布的帖子 -->
-  <view class='itemBox' wx:if="{{ tabType === 'tiezi' }}">
-    <view wx:for="{{ bbsList }}" wx:key="" data-id="{{ item.id }}"  bindtap='goBbsInfo'>
+  <view wx:if="{{ tabType === 'tiezi' }}">
+    <view class='itemBox' wx:for="{{ bbsList }}" wx:key="" data-id="{{ item.id }}"  bindtap='goBbsInfo'>
       <view class='topName'>
         <image class='touxiang' wx:if="{{imgSrc !== ''}}" src='{{ item.user_info.avatar }}'></image>
         <view class='name'>{{ item.user_info.username }}</view>
