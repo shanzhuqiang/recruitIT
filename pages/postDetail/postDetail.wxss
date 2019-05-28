@@ -283,7 +283,10 @@
   width: 124rpx;
   height: 124rpx;
   border-radius: 50%;
-  background: #fff;
+}
+.postDetailWrap .shareMask .bottomBox .firstBox .firstBoxWrap .circle .shareImg{
+  width: 100%;
+  height: 100%;
 }
 .postDetailWrap .shareMask .bottomBox .firstBox .firstBoxWrap .circleWord{
   padding-top: 14rpx;

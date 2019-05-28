@@ -97,15 +97,21 @@
         <view class='shareChooseWord'>分享至</view>
         <view class='firstBoxWrap'>
           <view bindtap='shareUser' wx:if="{{ userType !== 'engineer' }}">
-            <view class='circle' style='background: #4c85fb'></view>
+            <view class='circle'>
+              <image class='shareImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/share1.png'></image>
+            </view>
             <view class='circleWord'>站内分享</view>
           </view>
           <view bindtap='sharePhoto'>
-            <view class='circle'></view>
+            <view class='circle'>
+              <image class='shareImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/share2.png'></image>
+            </view>
             <view class='circleWord'>生成分享图</view>
           </view>
           <button class='bottonClass' open-type="share">
-            <view class='circle'></view>
+            <view class='circle'>
+              <image class='shareImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/share3.png'></image>
+            </view>
             <view class='circleWord'>链接分享</view>
           </button>
         </view>

@@ -291,12 +291,5 @@ Page({
     } else if (this.data.tabType === 'gangwei') {
       this.initQuartersData()
     }
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   }
 })

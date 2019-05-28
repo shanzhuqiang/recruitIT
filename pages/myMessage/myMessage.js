@@ -33,7 +33,7 @@ Page({
       success: (res) => {
         if (res.data.error_code == 0) {
           let data = res.data.bizobj.data
-          if (data.length > 0) {
+          if (data && data.length > 0) {
             let oldListData = this.data.listData
             this.setData({
               listData: [...oldListData, ...data],
@@ -107,12 +107,5 @@ Page({
    */
   onReachBottom: function () {
     this.getListData()
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   }
 })

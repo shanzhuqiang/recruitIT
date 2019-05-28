@@ -197,8 +197,11 @@ Page({
         console.log(listData)
         if (listData.length > 0) {
           listData.forEach((el, index) => {
-            el['mini_salary1'] = Math.round(el.mini_salary / 1000) + 'k'
-            el['max_salary1'] = Math.round(el.max_salary / 1000) + 'k'
+            if (el.max_salary) {
+              el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k/月'
+            } else {
+              el['salaryStr'] = '不限'
+            }
           })
           let newList = this.data.listData
           this.setData({
@@ -273,12 +276,5 @@ Page({
    */
   onReachBottom: function () {
     this.getList()
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   }
 })

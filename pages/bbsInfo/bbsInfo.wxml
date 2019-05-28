@@ -35,12 +35,12 @@
             <view class='name'>{{ item.user_info.username }}</view>
             <view class='time'>{{ item.create_time }}</view>
           </view>
-          <view class='huifu'>回复</view>
+          <view class='huifu' bindtap='huifu' data-id="{{ item.id }}">回复</view>
         </view>
         <view class='discussContent'>
           {{ item.content }}
         </view>
-        <view class='otherContent' wx:for="{{ bbsInfo.comment_list }}">
+        <view class='otherContent' wx:for="{{ item.sub_comment }}" wx:key="">
           <text class='userName'>{{ item.user_info.username }}</text>回复:{{ item.content }}
         </view>
       </view>
@@ -66,9 +66,9 @@
     <view class='noDiscuess' wx:if="{{ bbsInfo.comment_list.length == 0 }}">暂无评论</view>
     <view style='height: 120rpx;'></view>
     <view class='bottomBox'>
-      <view class='one'>
+      <view class='one' bindtap='huifuTheme'>
         <image class='edit' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/edit.png'></image>
-        <input class='ipt' placeholder='评论点什么吧' bindconfirm="iptChange" confirm-type="评论"></input>
+        <input class='ipt' focus="{{ focus }}" type='text' placeholder='评论点什么吧' bindconfirm="iptChange" confirm-type="评论"></input>
       </view>
       <view class='two'>
         <view>

@@ -10,7 +10,9 @@ Page({
     bbsInfo: {},
     is_collect: 1,
     shoucang: 2,
-    id: ''
+    id: '',
+    parent_id: 0,
+    focus: false
   },
 
   /**
@@ -21,6 +23,19 @@ Page({
       imgSrc: app.globalData.imgSrc
     })
     this.getInfo(options.id)
+  },
+  // 回复
+  huifu (e) {
+    this.setData({
+      parent_id: e.currentTarget.dataset.id,
+      focus: true
+    })
+  },
+  huifuTheme () {
+    this.setData({
+      parent_id: 0,
+      focus: true
+    })
   },
   // 点赞按钮
   thumbUp () {
@@ -122,7 +137,7 @@ Page({
         sess_key: app.globalData.sess_key,
         post_id: this.data.id,
         content: e.detail.value,
-        parent_id: 0
+        parent_id: this.data.parent_id
       },
       method: 'POST',
       success: (res) => {
@@ -280,6 +295,25 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    let userType = this.data.userType
+    wx.request({
+      url: `${app.globalData.baseUrl}/Post/rePost.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        user_type: userType === 'engineer' ? 1 : userType === 'hr' ? 2 : 3,
+        post_id: this.data.id
+      },
+      method: 'POST',
+      success: (res) => {
+        this.getInfo(this.data.id)
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
     return {
       title: '寻猿招聘',
       path: `/pages/index/index`,
@@ -290,23 +324,5 @@ Page({
         console.log(res)
       }
     }
-    let userType = this.data.userType
-    wx.request({
-      url: `${app.globalData.baseUrl}/Coin/coinInc.html`,
-      data: {
-        sess_key: app.globalData.sess_key,
-        user_type: userType === 'engineer' ? 1 : userType === 'hr' ? 2 : 3,
-        post_id: this.data.id
-      },
-      method: 'POST',
-      success: (res) => {
-      },
-      fail: (res) => {
-        wx.showToast({
-          icon: 'none',
-          title: '网络请求失败',
-        })
-      }
-    })
   }
 })

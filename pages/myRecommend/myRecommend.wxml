@@ -26,13 +26,13 @@
         <view class='rightText'>
           <view class='firstRow'>{{ item.name }}</view>
           <view class='secondRow'>
-            <text>{{ item.label1 }}</text>
+            <text>{{ item.city_name }}</text>
             <text class='line'>|</text>
-            <text>{{ item.label2 }}</text>
+            <text>{{ item.job_experience }}</text>
             <text class='line'>|</text>
-            <text>{{ item.label3 }}</text>
+            <text>{{ item.nature }}</text>
           </view>
-        <view class='threeRow'>{{ item.mini_salary1 + '-' + item.max_salary1 + '/月' }}</view>
+        <view class='threeRow'>{{ item.salaryStr }}</view>
         </view>
       </view>
       <view class='itemBox' wx:if="{{ item.type == 1 }}">
@@ -46,7 +46,7 @@
             <text class='line'>|</text>
             <text>{{ item.label2 }}</text>
           </view>
-          <view class='threeRow'>{{ item.mini_salary1 + '-' + item.max_salary1 + '/月' }}</view>
+          <view class='threeRow'>{{ item.salaryStr }}</view>
         </view>
       </view>
       <view class='bottomRow'  wx:if="{{ tabType == 5 }}">赏金：{{ item.bonus }}元</view>

@@ -200,16 +200,6 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function (res) {
-    return {
-      title: '寻猿招聘',
-      path: `/pages/index/index`,
-      success: res => {
-        console.log(res)
-      },
-      fail: res => {
-        console.log(res)
-      }
-    }
     let userType = this.data.userType
     wx.request({
       url: `${app.globalData.baseUrl}/Coin/coinInc.html`,
@@ -228,5 +218,15 @@ Page({
         })
       }
     })
+    return {
+      title: '寻猿招聘',
+      path: `/pages/index/index`,
+      success: res => {
+        console.log(res)
+      },
+      fail: res => {
+        console.log(res)
+      }
+    }
   }
 })
