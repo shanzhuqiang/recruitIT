@@ -34,6 +34,14 @@ Page({
       method: 'POST',
       success: (res) => {
         let resData = res.data.bizobj.data.resume_info
+        let year = 1000 * 60 * 60 * 24 * 365;
+        let now = new Date();
+        let birthday = new Date(resData.user_info.birthday);
+        let workStartTime = new Date(resData.user_info.work_begin_time);
+        let age = parseInt((now - birthday) / year);
+        let workTime = parseInt((now - workStartTime) / year);
+        resData.user_info['birthday2'] = age + '岁'
+        resData.user_info['workTime'] = workTime + '年'
         app.globalData.baseInfo = resData
         this.setData({
           resumeInfo: resData

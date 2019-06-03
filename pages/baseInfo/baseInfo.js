@@ -57,6 +57,16 @@ Page({
    */
   onLoad: function (options) {
     let baseInfo = app.globalData.baseInfo.user_info
+    let tagArray = []
+    if (baseInfo.label1) {
+      tagArray.push(baseInfo.label1)
+    }
+    if (baseInfo.label2) {
+      tagArray.push(baseInfo.label2)
+    }
+    if (baseInfo.label3) {
+      tagArray.push(baseInfo.label3)
+    }
     this.setData({
       userInfo: app.globalData.userInfo,
       imgSrc: app.globalData.imgSrc,
@@ -71,13 +81,12 @@ Page({
       workTime: baseInfo.work_begin_time,
       city: baseInfo.city_name,
       btnChoose: baseInfo.city_code,
-      tagArray: [baseInfo.label1, baseInfo.label2, baseInfo.label3]
+      tagArray: tagArray
     })
     this.getData()
   },
   // 名字改变
   nameChange (e) {
-    console.log(4, e)
     this.setData({
       name: e.detail.value
     })
@@ -150,6 +159,7 @@ Page({
     let tagVal = this.data.tagVal
     if (tagVal !== '') {
       let tagArray = this.data.tagArray
+      console.log(tagArray)
       if (tagArray.length > 2) {
         this.setData({
           addTag: false,

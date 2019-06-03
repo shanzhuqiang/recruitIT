@@ -103,12 +103,11 @@ Page({
   },
   // 转base64
   urlTobase64() {
-    wx.request({
-      url: this.data.imgBox,
-      responseType: 'arraybuffer',
+    wx.getFileSystemManager().readFile({
+      filePath: this.data.imgBox,
+      encoding: 'base64',
       success: res => {
-        let base64 = wx.arrayBufferToBase64(res.data);
-        base64 = 'data:image/jpeg;base64,' + base64
+        let base64 = 'data:image/jpeg;base64,' + res.data
         this.updateImg(base64)
       }
     })

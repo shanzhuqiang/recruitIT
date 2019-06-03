@@ -298,6 +298,7 @@ Page({
   },
   // 上传base64拿url
   updateImg(baseImage, companyObj) {
+    console.log(2222, baseImage)
     wx.request({
       url: `${app.globalData.baseUrl}/File/uploadImagesBase64.html`,
       data: {
@@ -331,16 +332,20 @@ Page({
   },
   // 转base64
   urlTobase64(url, companyObj) {
-    wx.request({
-      url: url,
-      responseType: 'arraybuffer',
+    wx.getFileSystemManager().readFile({
+      filePath: url,
+      encoding: 'base64',
       success: res => {
-        console.log(base64)
-        let base64 = wx.arrayBufferToBase64(res.data);
-        base64 = 'data:image/jpeg;base64,' + base64
+        let base64 = 'data:image/jpeg;base64,' + res.data
         this.updateImg(base64, companyObj)
       }
     })
+    // wx.request({
+    //   url: url,
+    //   responseType: 'arraybuffer',
+    //   success: res => {
+    //   }
+    // })
   },
   // 初始化获取数据
   getData() {

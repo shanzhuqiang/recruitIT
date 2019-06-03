@@ -185,7 +185,6 @@ Page({
           let workTime = parseInt((now - workStartTime) / year);
           resData.user_info['birthday2'] = age + '岁'
           resData.user_info['workTime'] = workTime + '年'
-          console.log(age)
           // 1说明已下载
           if (resData.user_info.download_status == 1) {
             this.setData({

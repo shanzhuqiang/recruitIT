@@ -4,7 +4,7 @@
     <view class='hallRow'>
       <view class='leftName'>项目名称</view>
       <input class='rightInput' placeholder='请输入项目名称' bindinput='nameChange'></input>
-      <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
+      <!-- <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image> -->
     </view>
     <!-- <view class='hallRow'>
       <view class='leftName'>工作地点</view>

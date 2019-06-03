@@ -4,7 +4,7 @@
     <view class='hallRow'>
       <view class='leftName'>岗位名称</view>
       <input class='rightInput' placeholder='请输入岗位名称' bindinput='nameChange'></input>
-      <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
+      <!-- <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image> -->
     </view>
     <view class='hallRow'>
       <view class='leftName'>工作地点</view>
@@ -55,7 +55,7 @@
     <i-input i-class='inputBox' value="{{ tagVal }}" placeholder="最多15个字" maxlength="15" bind:change="tagValChange"/>
   </i-modal>
   <i-modal title="提示" visible="{{ maxlengthModal }}" bind:ok="maxlengthModalClose" show-cancel="{{ false }}">
-      <view>最多添加5个标签，请先删除</view>
+      <view>最多添加3个标签，请先删除</view>
   </i-modal>
   <i-modal title="提示" visible="{{ delModal }}" bind:ok="confirmDel" bind:cancel="cancelDel">
       <view>确认删除该标签吗？</view>

@@ -12,9 +12,9 @@
     </view>
     <view class='second'>
       <text style='padding-left: 0'>{{ resumeInfo.user_info.gender == 1 ? '男' : resumeInfo.user_info.gender == 2 ? '女' : '未知' }}</text>
-      <text>25岁</text>
+      <text>{{ resumeInfo.user_info.birthday2 }}</text>
       <text>{{ resumeInfo.user_info.city_name }}</text>
-      <text>4年</text>
+      <text>{{ resumeInfo.user_info.workTime }}</text>
       <text style='border-right: none'>{{ resumeInfo.user_info.identity == 1 ? '职场人士' : '应届毕业生' }}</text>
     </view>
     <view class='three'>
@@ -41,7 +41,7 @@
       <view class='editBtn' bindtap='goDesMyself'>编辑</view>
     </view>
     <view class='contentBox'>
-      <view class='content'>{{ resumeInfo.user_info.self_introduction }}</view>
+      <view class='content'>{{ resumeInfo.user_info.self_introduction == 'null' ? '' : resumeInfo.user_info.self_introduction }}</view>
     </view>
   </view>
   <view class='resumeDetailBox'>
