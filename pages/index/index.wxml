@@ -1,17 +1,47 @@
-<view class='indexWrap'>
+
+<view class='indexWrapTwo' wx:if="{{ openStatus == 2 }}">
+    <view class='hallRow'>
+      <view class='leftName'>题目</view>
+      <input class='rightInput' value='{{ name }}' placeholder='请输入题目' bindinput='nameChange'></input>
+    </view>
+    <view class='hallRow'>
+      <view class='leftName'>选项A</view>
+      <input class='rightInput' value='{{ name }}' placeholder='请输入选项A' bindinput='nameChange'></input>
+    </view>
+    <view class='hallRow'>
+      <view class='leftName'>选项B</view>
+      <input class='rightInput' value='{{ name }}' placeholder='请输入选项B' bindinput='nameChange'></input>
+    </view>
+    <view class='hallRow'>
+      <view class='leftName'>选项C</view>
+      <input class='rightInput' value='{{ name }}' placeholder='请输入选项C' bindinput='nameChange'></input>
+    </view>
+    <view class='hallRow'>
+      <view class='leftName'>选项D</view>
+      <input class='rightInput' value='{{ name }}' placeholder='请输入选项D' bindinput='nameChange'></input>
+    </view>
+    <view class='bottomBox'>
+      <radio-group bindchange="radioChange">
+        A<radio class='rmbRadio' value="1" checked="{{ true }}" />
+        B<radio class='rmbRadio' value="2" checked="{{ false }}" />
+        C<radio class='rmbRadio' value="3" checked="{{ false }}" />
+        D<radio class='rmbRadio' value="4" checked="{{ false }}" />
+      </radio-group>
+    </view>
+    <view class='fabu' bindtap='fabuBtn'>发布</view>
+</view>
+<view class='indexWrap' wx:if="{{ openStatus == 1 }}">
   <button class='authMask' open-type="getUserInfo" bindgetuserinfo="bindgetuserinfo" lang="zh_CN" wx:if="{{ authMask }}"></button>
   <div class='authMask' wx:if="{{ firstMask }}"></div>
   <view class='homeTitle'>请选择当前进入IT小程序身份</view>
   <view class='chooseOneWrap'>
     <image class='chooseOne' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/chooseOne.png'></image>
   </view>
-  <view class='homeBtn' bindtap="goHomePage" wx:if="{{ openStatus == 2 }}">我要找兼职</view>
-  <view class='homeBtn' wx:if="{{ openStatus == 1 }}">用户</view>
+  <view class='homeBtn' bindtap="goHomePage">我要找兼职</view>
   <view class='chooseTwoWrap'>
     <image class='chooseTwo' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/chooseTwo.png'></image>
   </view>
-  <view class='homeBtn' bindtap="goHomePage2" wx:if="{{ openStatus == 2 }}">我要找人</view>
-  <view class='homeBtn' wx:if="{{ openStatus == 1 }}">商家</view>
+  <view class='homeBtn' bindtap="goHomePage2">我要找人</view>
   <!-- 个人信息不授权提示 -->
   <view class='noAuthWrap' wx:if="{{ noAuthWrap }}">
     <view class='noAuthBox'>

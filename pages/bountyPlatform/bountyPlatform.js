@@ -437,14 +437,8 @@ Page({
   },
   // 进入首页
   goHome() {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../home/home'
-    })
-  },
-  // 进入赏金平台
-  goBountyPlatform() {
-    wx.navigateTo({
-      url: '../bountyPlatform/bountyPlatform'
     })
   },
   // 发布
@@ -460,7 +454,7 @@ Page({
   },
   // 进入论坛
   goBbs() {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../bbs/bbs'
     })
   },
@@ -479,7 +473,7 @@ Page({
         url: '../renzheng/renzheng'
       })
     } else {
-      wx.navigateTo({
+      wx.redirectTo({
         url: '../my/my'
       })
     }

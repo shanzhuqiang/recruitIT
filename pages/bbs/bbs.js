@@ -148,13 +148,13 @@ Page({
   },
   // 进入首页
   goHome() {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../home/home'
     })
   },
   // 进入赏金平台
   goBountyPlatform() {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../bountyPlatform/bountyPlatform'
     })
   },
@@ -184,7 +184,7 @@ Page({
         url: '../renzheng/renzheng'
       })
     } else {
-      wx.navigateTo({
+      wx.redirectTo({
         url: '../my/my'
       })
     }

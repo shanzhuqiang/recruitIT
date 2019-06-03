@@ -25,6 +25,19 @@ Page({
       imgSrc: app.globalData.imgSrc
     })
   },
+  fabuBtn () {
+    wx.showLoading({
+      mask: true,
+      title: '发布中...',
+    })
+    setTimeout(() => {
+      wx.showToast({
+        title: '提交成功',
+        mask: true,
+        icon: 'success'
+      })
+    }, 1000)
+  },
   // 开启/关闭
   initAutoStyems () {
     wx.request({
@@ -36,8 +49,8 @@ Page({
       success: (res) => {
         if (res.data.error_code == 0) {
           this.setData({
-            // openStatus: res.data.bizobj.config.open_status
-            openStatus: 2
+            openStatus: res.data.bizobj.config.open_status
+            // openStatus: 2
           })
         } else {
           wx.showToast({

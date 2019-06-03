@@ -186,13 +186,13 @@ Page({
   },
   // 进入首页
   goHome() {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../home/home'
     })
   },
   // 进入赏金平台
   goBountyPlatform() {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../bountyPlatform/bountyPlatform'
     })
   },
@@ -209,7 +209,7 @@ Page({
   },
   // 进入论坛
   goBbs() {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../bbs/bbs'
     })
   },

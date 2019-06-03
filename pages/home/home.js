@@ -63,7 +63,7 @@ Page({
   // },
   // 进入赏金平台
   goBountyPlatform() {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../bountyPlatform/bountyPlatform'
     })
   },
@@ -107,16 +107,12 @@ Page({
   },
   // 进入论坛
   goBbs() {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../bbs/bbs'
     })
   },
   // 进入我的
   goMy() {
-    wx.navigateTo({
-      url: '../my/my'
-    })
-    return false
     if (this.data.userType === 'engineer' && this.data.userInfo.identity_auth.is_engineer == 2) {
       wx.navigateTo({
         url: '../renzheng/renzheng'
@@ -130,7 +126,7 @@ Page({
         url: '../renzheng/renzheng'
       })
     } else {
-      wx.navigateTo({
+      wx.redirectTo({
         url: '../my/my'
       })
     }
