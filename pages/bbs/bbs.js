@@ -6,6 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userInfo: null,
+    userType: '',
     imgSrc: '',
     releaseMark: false,
     topFilterBtn: 1,
@@ -34,6 +36,8 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
+      userInfo: app.globalData.userInfo,
+      userType: app.globalData.userType,
       imgSrc: app.globalData.imgSrc
     })
   },

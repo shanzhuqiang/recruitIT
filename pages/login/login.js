@@ -145,7 +145,7 @@ Page({
               success() {
                 setTimeout(() => {
                   wx.redirectTo({
-                    url: '../login/login'
+                    url: '../index/index'
                   })
                 }, 1500)
               }

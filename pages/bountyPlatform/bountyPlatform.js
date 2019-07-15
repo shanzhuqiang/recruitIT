@@ -6,6 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userType: '',
+    userInfo: null,
     imgSrc: '',
     releaseMark: false,
     topType: 'xiangmu',
@@ -102,6 +104,7 @@ Page({
   onLoad: function (options) {
     this.setData({
       userInfo: app.globalData.userInfo,
+      userType: app.globalData.userType,
       imgSrc: app.globalData.imgSrc
     })
     this.getArea()
