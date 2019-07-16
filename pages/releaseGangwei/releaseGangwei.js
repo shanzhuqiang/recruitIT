@@ -8,6 +8,7 @@ Page({
   data: {
     imgSrc: '',
     name: '',
+    reward: '',
     jingyanArray: [
       {
         id: 0,
@@ -127,9 +128,15 @@ Page({
     this.getData()
   },
   // 岗位名字
-  nameChange (e) {
+  nameChange(e) {
     this.setData({
       name: e.detail.value
+    })
+  },
+  // 赏金
+  rewardChange(e) {
+    this.setData({
+      reward: e.detail.value
     })
   },
   // 打开城市选择
@@ -273,6 +280,7 @@ Page({
   // 发布
   saveRelease() {
     let name = this.data.name
+    let reward = this.data.reward
     let btnChoose = this.data.btnChoose
     let job_experience = this.data.jingyan.id
     let education = this.data.xueli.id
@@ -288,6 +296,12 @@ Page({
         showCancel: false,
         title: '提示',
         content: '请输入岗位名称',
+      })
+    } else if (reward == '' || reward < 100) {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '赏金最少为100',
       })
     } else if (btnChoose == '') {
       wx.showModal({
@@ -335,6 +349,7 @@ Page({
         data: {
           sess_key: app.globalData.sess_key,
           name: name, 
+          reward: reward,
           // city_code: btnChoose,
           job_experience: job_experience,
           education: education,

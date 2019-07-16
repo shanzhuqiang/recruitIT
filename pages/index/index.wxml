@@ -1,4 +1,5 @@
-<view class='indexWrap' wx:if="{{ showPage }}">
+<view class='indexWrap'>
+  <view class='maskBB' wx:if="{{ showPage }}"></view>
   <button class='authMask' open-type="getUserInfo" bindgetuserinfo="bindgetuserinfo" lang="zh_CN" wx:if="{{ authMask }}"></button>
   <div class='authMask' wx:if="{{ firstMask }}"></div>
   <view class='homeTitle'>请选择当前进入IT小程序身份</view>

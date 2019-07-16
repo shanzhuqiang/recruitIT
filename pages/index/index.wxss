@@ -3,7 +3,15 @@
 page{
   height: 100%;
 }
-.indexWrapTwo .hallRow{
+.indexWrapTwo .maskBB{
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 98;
+}
+/* .indexWrapTwo .hallRow{
   height: 120rpx;
   line-height: 120rpx;
   border-bottom: 1rpx solid #ddd;
@@ -54,7 +62,7 @@ page{
 	font-size: 32rpx;
 	color: #fff;
   margin: 90rpx auto 0;
-}
+} */
 .indexWrap{
   height: 100%;
   background: #fff;

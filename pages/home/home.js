@@ -63,16 +63,19 @@ Page({
   // },
   // 进入赏金平台
   goBountyPlatform() {
-    if (this.data.userType === 'agent') {
-      wx.redirectTo({
-        url: '../bountyPlatform/bountyPlatform'
-      })
-    } else {
-      wx.showModal({
-        title: '提示',
-        content: '该功能仅经纪人可用'
-      })
-    }
+    wx.redirectTo({
+      url: '../bountyPlatform/bountyPlatform'
+    })
+    // if (this.data.userType === 'agent') {
+    //   wx.redirectTo({
+    //     url: '../bountyPlatform/bountyPlatform'
+    //   })
+    // } else {
+    //   wx.showModal({
+    //     title: '提示',
+    //     content: '该功能仅经纪人可用'
+    //   })
+    // }
   },
   // 发布帖子
   goReleaseBbs() {
@@ -199,6 +202,7 @@ Page({
       url: `${app.globalData.baseUrl}/Work/workList.html`,
       data: {
         sess_key: app.globalData.sess_key,
+        education: "1",
         city_code: this.data.userInfo.city_code,
         is_bonus: 2,
         sort: 1,

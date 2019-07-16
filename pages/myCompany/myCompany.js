@@ -28,10 +28,33 @@ Page({
       },
       method: 'POST',
       success: (res) => {
-        let company_info = res.data.bizobj.data.company_info
-        this.setData({
-          company_info: company_info
-        })
+        if (res.data.error_code == 0) {
+          let company_info = res.data.bizobj.data.company_info
+          this.setData({
+            company_info: company_info
+          })
+        } else if (res.data.error_code == 1) {
+          wx.showModal({
+            title: '提示',
+            content: '未认证公司，前往认证',
+            success: (res) => {
+              if (res.confirm) {
+                wx.redirectTo({
+                  url: '../editCompany/editCompany'
+                })
+              } else if (res.cancel) {
+                wx.navigateBack({
+                  delta: 1
+                })
+              }
+            }
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+          })
+        }
       },
       fail: (res) => {
         wx.showToast({
