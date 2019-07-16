@@ -10,6 +10,7 @@ Page({
     imgSrc: '',
     authMask: false,
     noLocation: false,
+    showPage: false
   },
   /**
    * 生命周期函数--监听页面加载
@@ -91,7 +92,28 @@ Page({
       method: 'POST',
       success: (res) => {
         if (res.data.error_code == 0) {
-          app.globalData.userInfo = res.data.bizobj.data.user_info
+          let userInfo = res.data.bizobj.data.user_info
+          app.globalData.userInfo = userInfo
+          if (userInfo.identity_auth.is_engineer == 1) {
+            app.globalData.userType = "engineer"
+            wx.redirectTo({
+              url: '../home/home'
+            })
+          } else if (userInfo.identity_auth.is_hr == 1) {
+            app.globalData.userType = "hr"
+            wx.redirectTo({
+              url: '../home/home'
+            })
+          } else if (userInfo.identity_auth.is_agent == 1) {
+            app.globalData.userType = "agent"
+            wx.redirectTo({
+              url: '../home/home'
+            })
+          }  else {
+            this.setData({
+              showPage: true
+            })
+          }
         } else {
           wx.showToast({
             icon: 'none',
@@ -139,12 +161,9 @@ Page({
   goHomePage () {
     if (app.globalData.userInfo.identity_auth.is_engineer == 1) {
       app.globalData.userType = "engineer"
-      wx.navigateTo({
+      wx.redirectTo({
         url: '../home/home'
       })
-      // wx.navigateTo({
-      //   url: '../home/home'
-      // })
     } else {
       wx.navigateTo({
         url: '../renzheng/renzheng?shenfen=engineer'
@@ -154,7 +173,7 @@ Page({
   goHomePage2() {
     if (app.globalData.userInfo.identity_auth.is_hr == 1) {
       app.globalData.userType = "hr"
-      wx.navigateTo({
+      wx.redirectTo({
         url: '../home/home'
       })
     } else {
@@ -164,20 +183,16 @@ Page({
     }
   },
   goHomePage3() {
-    app.globalData.userType = "agent"
-    wx.navigateTo({
-      url: '../home/home'
-    })
-    // if (app.globalData.userInfo.identity_auth.is_agent == 1) {
-    //   app.globalData.userType = "agent"
-    //   wx.navigateTo({
-    //     url: '../home/home'
-    //   })
-    // } else {
-    //   wx.navigateTo({
-    //     url: '../renzheng/renzheng?shenfen=agent'
-    //   })
-    // }
+    if (app.globalData.userInfo.identity_auth.is_agent == 1) {
+      app.globalData.userType = "agent"
+      wx.redirectTo({
+        url: '../home/home'
+      })
+    } else {
+      wx.navigateTo({
+        url: '../renzheng/renzheng?shenfen=agent'
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -94,7 +94,7 @@ Page({
         sess_key: app.globalData.sess_key,
         mobile: this.data.phone,
         type: type,
-        gender: this.data.xingbie,
+        gender: this.data.xingbie == '男' ? 1 : 2,
         username: this.data.name,
         birthday: this.data.birthday
       },
@@ -103,9 +103,7 @@ Page({
         wx.hideLoading()
         if (res.data.error_code == 0) {
           let shenfenKey = this.data.shenfenKey
-          let obj = app.globalData.userInfo
-          obj.identity_auth[shenfenKey == 'engineer' ? 'is_engineer' : shenfenKey == 'hr' ? "is_hr" : "is_agent"] = 1
-          if (type == 1) {
+          if (shenfenKey == "engineer") {
             wx.showToast({
               title: '认证成功',
               mask: true,
@@ -118,42 +116,34 @@ Page({
                 }, 1500)
               }
             })
-          } else {
-            if (shenfenKey == 'hr') {
-              wx.showModal({
-                title: '认证成功',
-                content: '认证成功,立即前往认证公司',
-                success: (res) => {
-                  if (res.confirm) {
-                    wx.redirectTo({
-                      url: '../editCompany/editCompany'
-                    })
-                  } else if (res.cancel) {
-                    wx.navigateBack({
-                      delta: 1
-                    })
-                  }
+          } else if (shenfenKey == 'hr') {
+            wx.showModal({
+              title: '认证成功',
+              content: '认证成功,立即前往认证公司',
+              success: (res) => {
+                if (res.confirm) {
+                  wx.redirectTo({
+                    url: '../editCompany/editCompany'
+                  })
+                } else if (res.cancel) {
+                  wx.reLaunch({
+                    url: '../home/home'
+                  })
                 }
-              })
-            }
-            // wx.showToast({
-            //   title: '认证成功',
-            //   mask: true,
-            //   icon: 'success',
-            //   success() {
-            //     setTimeout(() => {
-            //       if (shenfenKey == 'hr') {
-            //         wx.reLaunch({
-            //           url: '../index/index'
-            //         })
-            //       } else {
-            //         wx.reLaunch({
-            //           url: '../my/my'
-            //         })
-            //       }
-            //     }, 1500)
-            //   }
-            // })
+              }
+            })
+          } else if (shenfenKey == 'agent') {
+            wx.showToast({
+              title: '认证成功',
+              icon: 'success',
+              success: res => {
+                setTimeout(() => {
+                  wx.reLaunch({
+                    url: '../home/home'
+                  })
+                }, 1500)
+              }
+            })
           }
         } else {
           wx.showModal({
@@ -180,23 +170,6 @@ Page({
   finish() {
     this.nextStep()
   },
-  // 选择身份
-  // chooseShenfen () {
-  //   let that = this
-  //   let shenfenList = ["工程师", "企业HR", "经纪人"]
-  //   wx.showActionSheet({
-  //     itemList: shenfenList,
-  //     success(res) {
-  //       that.setData({
-  //         shenfen: shenfenList[res.tapIndex]
-  //       })
-  //       // console.log(res.tapIndex)
-  //     },
-  //     fail(res) {
-  //       // console.log(res.errMsg)
-  //     }
-  //   })
-  // },
   // 选择性别
   chooseXingbie() {
     let that = this
@@ -207,10 +180,6 @@ Page({
         that.setData({
           xingbie: shenfenList[res.tapIndex]
         })
-        // console.log(res.tapIndex)
-      },
-      fail(res) {
-        // console.log(res.errMsg)
       }
     })
   },
