@@ -7,6 +7,7 @@ Page({
    */
   data: {
     imgSrc: '',
+    reward: '',
     jingyanArray: [
       {
         id: '0',
@@ -100,6 +101,12 @@ Page({
       name: e.detail.value
     })
   },
+  // 赏金
+  rewardChange(e) {
+    this.setData({
+      reward: e.detail.value
+    })
+  },
   // 项目职责
   goProjectZhize() {
     this.setData({
@@ -157,6 +164,7 @@ Page({
   // 发布
   saveRelease() {
     let name = this.data.name
+    let reward = this.data.reward
     let job_experience = this.data.jingyan.id
     let nature = this.data.zhouqi.id
     let salary_range = this.data.money.id
@@ -169,7 +177,13 @@ Page({
         title: '提示',
         content: '请输入项目名称',
       })
-    } else if (job_experience === '' || typeof (job_experience) == 'undefined') {
+    } else if (reward == '' || reward < 100) {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '赏金最少为100',
+      })
+    }  else if (job_experience === '' || typeof (job_experience) == 'undefined') {
       wx.showModal({
         showCancel: false,
         title: '提示',
@@ -211,6 +225,7 @@ Page({
           name: name,
           job_experience: job_experience,
           nature: nature,
+          reward: reward,
           salary_range: salary_range,
           instruction: instruction,
           requirement: requirement

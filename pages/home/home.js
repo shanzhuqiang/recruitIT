@@ -326,7 +326,7 @@ Page({
       wx.showModal({
         showCancel: false,
         title: '提示',
-        content: '请切换身份查看',
+        content: '当前身份不可查看',
       })
     } else {
       wx.navigateTo({

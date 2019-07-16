@@ -4,6 +4,10 @@
     <view class='hallRow'>
       <view class='leftName'>项目名称</view>
       <input class='rightInput' placeholder='请输入项目名称' bindinput='nameChange'></input>
+    </view>
+    <view class='hallRow'>
+      <view class='leftName'>赏金</view>
+      <input class='rightInput' type='number' placeholder='请输入赏金' bindinput='rewardChange'></input>
       <!-- <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image> -->
     </view>
     <!-- <view class='hallRow'>

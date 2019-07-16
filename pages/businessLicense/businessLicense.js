@@ -121,13 +121,13 @@ Page({
         wx.hideLoading()
         if (res.data.error_code == 0) {
           wx.showToast({
-            title: '保存成功',
+            title: '认证成功',
             mask: true,
             icon: 'success',
             success() {
               setTimeout(() => {
-                wx.navigateBack({
-                  delta: 3
+                wx.reLaunch({
+                  url: '../home/home'
                 })
               }, 1500)
             }

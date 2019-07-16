@@ -1,6 +1,5 @@
 /* pages/postDetail/postDetail.wxss */
 .projectDetailWrap{
-  padding-bottom: 100rpx;
 }
 .projectDetailWrap .topBox{
   border-bottom: 16rpx solid #f8f8f8;
@@ -40,7 +39,8 @@
 	font-size: 22rpx;
 	letter-spacing: 1rpx;
 	color: #7a91d5;
-  padding: 25rpx 0 40rpx;
+  /* padding: 25rpx 0 40rpx; */
+  padding-bottom: 20rpx;
 }
 .projectDetailWrap .topBox .three text{
 	height: 40rpx;
@@ -117,7 +117,6 @@
 }
 /* 公司 */
 .projectDetailWrap .companyBox{
-  border-bottom: 16rpx solid #f8f8f8;
   padding: 40rpx 30rpx 0;
 }
 .projectDetailWrap .companyBox .leftImgBox{
@@ -206,6 +205,7 @@
   padding: 22rpx 0 40rpx;
 }
 .projectDetailWrap .bottomBtn{
+  border-top: 16rpx solid #f8f8f8;
   height: 100rpx;
   position: fixed;
   left: 0;
@@ -227,7 +227,6 @@
   height: 28rpx;
 }
 .projectDetailWrap .bottomBtn .rightBtn{
-  margin-left: 140rpx;
   text-align: center;
   background: #4c85fb;
 	font-family: PingFangSC-Regular;

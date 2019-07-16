@@ -114,7 +114,7 @@ Page({
               success() {
                 setTimeout(() => {
                   wx.reLaunch({
-                    url: '../index/index'
+                    url: '../home/home'
                   })
                 }, 1500)
               }

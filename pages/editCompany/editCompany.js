@@ -11,7 +11,7 @@ Page({
     addressCity: '',
     rongziArray: [
       {
-        id: 0,
+        id: 8,
         name: '不需要融资'
       },
       {
@@ -279,7 +279,15 @@ Page({
         mask: true,
         title: '提交中...',
       })
-      this.urlTobase64(this.data.imgBox, companyObj) 
+      if (this.data.imgBox.indexOf("https://headhunter.pinecc.cn") == 0) {
+        companyObj.imgBox = this.data.imgBox
+        app.globalData.companyObj = companyObj
+        wx.navigateTo({
+          url: '../businessLicense/businessLicense'
+        })
+      } else {
+        this.urlTobase64(this.data.imgBox, companyObj) 
+      }
     }
   },
   // 选择图片
@@ -340,12 +348,6 @@ Page({
         this.updateImg(base64, companyObj)
       }
     })
-    // wx.request({
-    //   url: url,
-    //   responseType: 'arraybuffer',
-    //   success: res => {
-    //   }
-    // })
   },
   // 初始化获取数据
   getData() {

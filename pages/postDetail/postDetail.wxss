@@ -1,6 +1,6 @@
 /* pages/postDetail/postDetail.wxss */
 .postDetailWrap{
-  padding-bottom: 100rpx;
+  height: 100%;
 }
 .postDetailWrap .topBox{
   border-bottom: 16rpx solid #f8f8f8;
@@ -118,7 +118,6 @@
 }
 /* 公司 */
 .postDetailWrap .companyBox{
-  border-bottom: 16rpx solid #f8f8f8;
   padding: 40rpx 30rpx 0;
 }
 .postDetailWrap .companyBox .leftImgBox{
@@ -207,6 +206,7 @@
   padding: 22rpx 0 40rpx;
 }
 .postDetailWrap .bottomBtn{
+  border-top: 16rpx solid #f8f8f8;
   height: 100rpx;
   position: fixed;
   left: 0;
@@ -228,7 +228,6 @@
   height: 28rpx;
 }
 .postDetailWrap .bottomBtn .rightBtn{
-  margin-left: 140rpx;
   text-align: center;
   background: #4c85fb;
 	font-family: PingFangSC-Regular;

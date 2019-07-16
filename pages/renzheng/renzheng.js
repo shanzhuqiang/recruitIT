@@ -111,8 +111,11 @@ Page({
               success() {
                 setTimeout(() => {
                   wx.reLaunch({
-                    url: '../qiuzhiyixiang/qiuzhiyixiang'
+                    url: '../home/home'
                   })
+                  // wx.reLaunch({
+                  //   url: '../qiuzhiyixiang/qiuzhiyixiang'
+                  // })
                 }, 1500)
               }
             })

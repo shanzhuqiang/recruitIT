@@ -17,7 +17,7 @@ Page({
     rongziData: [
       [
         {
-          id: 0,
+          id: 8,
           name: "不需要融资"
         },
         {
@@ -53,8 +53,7 @@ Page({
           name: "上市公司"
         },
         {
-          id: 5,
-          name: "C轮"
+          name: null
         }
       ]
     ],

@@ -123,7 +123,9 @@ Page({
     }
     goodJobTimer = setTimeout(() => {
       this.setData({
-        keyword: e.detail.value
+        keyword: e.detail.value,
+        page: 1,
+        listData: [],
       })
       this.getList()
     }, 300)
@@ -194,7 +196,7 @@ Page({
         is_bonus: 2,
         page: this.data.page,
         create_time: this.data.shaixuan1,
-        nature: this.data.shaixuan2,
+        // nature: this.data.shaixuan2,
         education: this.data.xueliChoose,
         job_experience: this.data.jingyanChoose,
         keyword: this.data.keyword,
