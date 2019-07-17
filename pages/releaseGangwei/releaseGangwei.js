@@ -303,12 +303,13 @@ Page({
         title: '提示',
         content: '赏金最少为100',
       })
-    } else if (btnChoose == '') {
-      wx.showModal({
-        showCancel: false,
-        title: '提示',
-        content: '请选择工作地点',
-      })
+    //    else if (btnChoose == '') {
+    //   wx.showModal({
+    //     showCancel: false,
+    //     title: '提示',
+    //     content: '请选择工作地点',
+    //   })
+    // }
     } else if (job_experience === '' || typeof(job_experience) == 'undefined') {
       wx.showModal({
         showCancel: false,
@@ -379,17 +380,11 @@ Page({
           } else if (res.data.error_code == 3) {
             wx.showModal({
               title: '提示',
-              content: '未认证公司，前往认证',
+              content: '未认证公司，需后台审核',
               success: (res) => {
-                if (res.confirm) {
-                  wx.redirectTo({
-                    url: '../editCompany/editCompany'
-                  })
-                } else if (res.cancel) {
-                  wx.navigateBack({
-                    delta: 1
-                  })
-                }
+                wx.navigateBack({
+                  delta: 1
+                })
               }
             })
           } else {

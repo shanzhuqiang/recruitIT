@@ -12,7 +12,9 @@ Page({
     xingbie: "性别",
     phone: '',
     birthday: '出生年月',
-    shenfenKey: ''
+    shenfenKey: '',
+    gongsi: "选择公司",
+    companyList: []
   },
 
   /**
@@ -27,7 +29,39 @@ Page({
     this.setData({
       imgSrc: app.globalData.imgSrc
     })
-
+    if (this.data.shenfenKey === 'hr') {
+      this.getCompany()
+    }
+  },
+  // 获取公司列表
+  getCompany () {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Company/companyList.html`,
+      data: {
+        sess_key: app.globalData.sess_key
+      },
+      method: 'POST',
+      success: (res) => {
+        wx.hideLoading()
+        if (res.data.error_code == 0) {
+          this.setData({
+            companyList: res.data.bizobj.data.company_list
+          })
+        } else {
+          wx.showModal({
+            showCancel: false,
+            title: '提示',
+            content: res.data.msg,
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
   },
   // 输入名字
   getName(e) {
@@ -45,6 +79,7 @@ Page({
   nextStep() {
     let shenfen = this.data.shenfen
     let name = this.data.name
+    let gongsi = this.data.gongsi
     let phone = this.data.phone
     let xingbie = this.data.xingbie
     let birthday = this.data.birthday
@@ -79,14 +114,60 @@ Page({
         content: '请选择出生年月',
       })
     } else {
-      this.identify()
+      if (this.data.shenfenKey == 'hr') {
+        if (gongsi == '选择公司') {
+          wx.showModal({
+            showCancel: false,
+            title: '提示',
+            content: '请选择公司',
+          })
+        } else {
+          wx.showLoading({
+            mask: true,
+            title: '认证中...',
+          })
+          this.applyCompany()
+        }
+      } else {
+        wx.showLoading({
+          mask: true,
+          title: '认证中...',
+        })
+        this.identify()
+      }
     }
   },
-  identify() {
-    wx.showLoading({
-      mask: true,
-      title: '认证中...',
+  // 认证公司
+  applyCompany () {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Company/applyCompany.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        re_company_id: this.data.gongsiVal
+      },
+      method: 'POST',
+      success: (res) => {
+        wx.hideLoading()
+        if (res.data.error_code == 0) {
+          this.identify()
+        } else {
+          wx.showModal({
+            showCancel: false,
+            title: '提示',
+            content: res.data.msg,
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
     })
+  },
+  // 认证
+  identify() {
     let type = this.data.shenfen === '工程师' ? 1 : this.data.shenfen === '企业HR' ? 2 : 3
     wx.request({
       url: `${app.globalData.baseUrl}/User/identify.html`,
@@ -120,19 +201,16 @@ Page({
               }
             })
           } else if (shenfenKey == 'hr') {
-            wx.showModal({
+            wx.showToast({
               title: '认证成功',
-              content: '认证成功,立即前往认证公司',
-              success: (res) => {
-                if (res.confirm) {
-                  wx.redirectTo({
-                    url: '../editCompany/editCompany'
-                  })
-                } else if (res.cancel) {
+              mask: true,
+              icon: 'success',
+              success() {
+                setTimeout(() => {
                   wx.reLaunch({
                     url: '../home/home'
                   })
-                }
+                }, 1500)
               }
             })
           } else if (shenfenKey == 'agent') {
@@ -172,6 +250,25 @@ Page({
   // hr,经纪人完成认证
   finish() {
     this.nextStep()
+  },
+  // 选择公司
+  chooseCompany () {
+    let that = this
+    let shenfenList = []
+    let shenfenValList = []
+    this.data.companyList.forEach(el => {
+      shenfenList.push(el.name)
+      shenfenValList.push(el.id)
+    })
+    wx.showActionSheet({
+      itemList: shenfenList,
+      success(res) {
+        that.setData({
+          gongsi: shenfenList[res.tapIndex],
+          gongsiVal: shenfenValList[res.tapIndex]
+        })
+      }
+    })
   },
   // 选择性别
   chooseXingbie() {

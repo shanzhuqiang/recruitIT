@@ -73,6 +73,55 @@ Page({
       }
     }
   },
+  // 工时核对
+  goCheckTime(e) {
+    let id = e.currentTarget.dataset.id
+    let name = e.currentTarget.dataset.name
+    let company = e.currentTarget.dataset.company
+    let hourstatus = e.currentTarget.dataset.hourstatus
+    if (hourstatus == 0) {
+      wx.showToast({
+        icon: 'none',
+        title: '未提交工时',
+      })
+    } else if ( hourstatus == 1) {
+      wx.navigateTo({
+        url: `../checkTime/checkTime?id=${id}&name=${name}&company=${company}&hourstatus=${hourstatus}&fromStep=1`
+      })
+    } else if (hourstatus == 2) {
+      wx.navigateTo({
+        url: `../checkTimeStep/checkTimeStep?id=${id}&name=${name}&company=${company}&hourstatus=${hourstatus}`
+      })
+    } else if (hourstatus == 3) {
+      wx.navigateTo({
+        url: `../checkTimeStep/checkTimeStep?id=${id}&name=${name}&company=${company}&hourstatus=${hourstatus}`
+      })
+    } else if (hourstatus == 4) {
+      wx.navigateTo({
+        url: `../checkTimePull/checkTimePull?id=${id}&fromStep=1`
+      })
+    } else if (hourstatus == 5) {
+      wx.navigateTo({
+        url: `../checkTimeStep/checkTimeStep?id=${id}&name=${name}&company=${company}&hourstatus=${hourstatus}`
+      })
+    } else if (hourstatus == 6) {
+      wx.navigateTo({
+        url: `../checkTimeStep/checkTimeStep?id=${id}&name=${name}&company=${company}&hourstatus=${hourstatus}`
+      })
+    } else if (hourstatus == 7) {
+      wx.navigateTo({
+        url: `../checkTimePullLast/checkTimePullLast?id=${id}&fromStep=1`
+      })
+    } else if (hourstatus == 8) {
+      wx.navigateTo({
+        url: `../checkTimeStep/checkTimeStep?id=${id}&name=${name}&company=${company}&hourstatus=${hourstatus}`
+      })
+    } else if (hourstatus == 9) {
+      wx.navigateTo({
+        url: `../checkTimeStep/checkTimeStep?id=${id}&name=${name}&company=${company}&hourstatus=${hourstatus}`
+      })
+    }
+  },
   // 选择项目status
   chooseProject(e) {
     this.setData({

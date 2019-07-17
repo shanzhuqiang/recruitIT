@@ -122,8 +122,8 @@ Page({
     let id = e.currentTarget.dataset.id
     let name = e.currentTarget.dataset.name
     let company = e.currentTarget.dataset.company
-    // let hourstatus = e.currentTarget.dataset.hourstatus
-    let hourstatus = 0
+    let hourstatus = e.currentTarget.dataset.hourstatus
+    // let hourstatus = 0
     if (hourstatus == 0 || hourstatus == 1) {
       wx.navigateTo({
         url: `../checkTime/checkTime?id=${id}&name=${name}&company=${company}&hourstatus=${hourstatus}&fromStep=1`

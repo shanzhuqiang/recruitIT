@@ -17,7 +17,7 @@
       </view>
       <view class='tongzhi' bindtap='goMyMessage'>通知</view>
       <view class='topBottomBox'>
-        <view bindtap='goMyGold'>金币 {{ num }}</view>
+        <view bindtap='goMyGold'>{{ userType == 'engineer' ? '金币' : '猎币' }} {{ num }}</view>
         <view bindtap='goMyMoney'>我的钱包</view>
       </view>
     </view>
@@ -80,11 +80,11 @@
     <image class='vipGuanggao' bindtap='goVip' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/vipGuanggao.png'></image>
   </view>
   <view class='listWrap'>
-    <view class='listItem' bindtap='goMyDownResume' wx:if="{{ userType === 'hr' }}">
+    <!-- <view class='listItem' bindtap='goMyDownResume' wx:if="{{ userType === 'hr' }}">
       <image class='downResume' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/downResume.png'></image>
       我的下载
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
-    </view>
+    </view> -->
     <view class='listItem' bindtap='goMyCompany' wx:if="{{ userType === 'hr' }}">
       <image class='company' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/company.png'></image>
       我的公司

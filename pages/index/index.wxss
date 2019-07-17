@@ -3,14 +3,6 @@
 page{
   height: 100%;
 }
-.indexWrapTwo .maskBB{
-  position: fixed;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 98;
-}
 /* .indexWrapTwo .hallRow{
   height: 120rpx;
   line-height: 120rpx;
@@ -73,8 +65,28 @@ page{
   top: 0;
   right: 0;
   bottom: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 99;
+  line-height: 100%;
+  text-align: center;
+}
+.indexWrap .authMask{
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
   background: rgba(0,0,0,0);
-  z-index: 99
+  z-index: 99;
+  line-height: 100%;
+  text-align: center;
+}
+.indexWrap .authMask .btnUser{
+  position: absolute;
+  width: 400rpx;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .indexWrap .homeTitle{
   text-align: center;

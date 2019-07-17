@@ -15,6 +15,7 @@ Page({
     end_time: '',
     content: '',
     id: '',
+    userType: '',
     hourstatus: '',
     images: []
   },
@@ -25,6 +26,7 @@ Page({
   onLoad: function (options) {
     console.log(options)
     this.setData({
+      userType: app.globalData.userType,
       imgSrc: app.globalData.imgSrc,
       company: options.company,
       id: options.id,

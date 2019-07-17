@@ -20,7 +20,7 @@
         <image class='leftImg' src='{{ item.avatar }}'></image>
       </view>
       <view class='rightBox'>
-        <view class='firstTitle'><text class='nameText mosaic'>{{ item.name }}</text><text class='typeName'>{{ item.job_name }}</text></view>
+        <view class='firstTitle'><text class='nameText'>{{ item.name }}</text><text class='typeName'>{{ item.job_name }}</text></view>
         <view class='secondTags'>
           <text style='padding-left: 0'>{{ item.work_yeas }}年</text>
           <text class='middleTag'>{{ item.education_name }}</text>

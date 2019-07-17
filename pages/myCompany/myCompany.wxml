@@ -6,7 +6,7 @@
         <view class='topTitle'>
           {{ company_info.name }}
         </view>
-        <view class='guanzhuGag' bindtap='goEditCompany' data-id="{{ company_info.id }}">编辑</view>
+        <!-- <view class='guanzhuGag' bindtap='goEditCompany' data-id="{{ company_info.id }}">编辑</view> -->
         <view class='bottomTag'>
           <text style='padding-left: 0'>{{ company_info.label1 }}</text>
           <text class='borderLeft'>{{ company_info.label2 }}</text>

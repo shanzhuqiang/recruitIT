@@ -12,14 +12,14 @@
     <view class='hallRow'>
       <view class='leftName'>开始时间</view>
       <picker bindchange="startTimeChange" mode="date">
-        <input class='rightInput' placeholder="请选择" value='{{ startTime }}'/>
+        <input class='rightInput' placeholder="请选择" disabled value='{{ startTime }}'/>
       </picker>
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
     </view>
     <view class='hallRow'>
       <view class='leftName'>预计结束时间</view>
       <picker bindchange="endTimeChange" mode="date">
-        <input class='rightInput' placeholder="请选择" value='{{ endTime }}'/>
+        <input class='rightInput' placeholder="请选择" disabled value='{{ endTime }}'/>
       </picker>
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
     </view>

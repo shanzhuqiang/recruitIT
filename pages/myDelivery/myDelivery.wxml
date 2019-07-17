@@ -38,6 +38,7 @@
             <text>{{ item.nature }}</text>
           </view>
           <view class='threeRow'>{{ item.salaryStr }}</view>
+        <view class='bottomBtn' wx:if="{{ item.status == 5 }}">已录用</view>
         </view>
       </view>
       <!-- 岗位 -->
@@ -56,6 +57,7 @@
             <text>{{ item.company_name }}</text>
           </view>
           <view class='threeRow'>{{ item.salaryStr }}</view>
+        <view class='bottomBtn' wx:if="{{ item.status == 5 }}">已录用</view>
         </view>
       </view>
     </view>

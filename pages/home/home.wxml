@@ -117,7 +117,7 @@
         </view>
         <view class='rightBox'>
           <view class='firstTitle'>
-            <text class='nameText mosaic'>{{ item.name }}</text>
+            <text class='nameText'>{{ item.name }}</text>
             <text class='typeName'>{{ item.job_name }}</text>
           </view>
           <view class='secondTags'>

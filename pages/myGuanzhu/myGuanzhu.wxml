@@ -7,7 +7,7 @@
       </view>
       <view class='rightBox'>
         <view class='firstTitle'>
-          <text class='nameText {{ item.is_download == 1 ? "" : "mosaic" }}'>{{ item.username }}</text>
+          <text class='nameText'>{{ item.username }}</text>
           <text class='typeName'>{{ item.title }}</text></view>
         <view class='secondTags'>
           <text style='padding-left: 0'>{{ item.work_years }}年</text>

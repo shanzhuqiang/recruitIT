@@ -14,7 +14,7 @@
       </view>
       <view class='rightText'>
         <view class='firstRow'>
-          <text class='nameText {{ topType == 1 ? "mosaic" : "" }}'>{{ item.username }}</text>
+          <text class='nameText'>{{ item.username }}</text>
           <text class='typeName'>{{ item.title }}</text>
         </view>
         <view class='secondRow'>

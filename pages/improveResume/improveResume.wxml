@@ -74,7 +74,7 @@
       <view class='right'>
         <view class='name1'>{{ item.name }}</view>
         <view class='gongsi1'>
-          <text>{{ item.level == 4 ? '高中' : item.level == 5 ? '专科' : item.level == 6 ? '本科' : item.level == 7 ? '硕士' : item.level == 8 ? '博士' : '无'  }}</text>
+          <text>{{ item.level == 1 ? '不限' : item.level == 4 ? '高中' : item.level == 5 ? '专科' : item.level == 6 ? '本科' : item.level == 7 ? '硕士' : item.level == 8 ? '博士' : '无'  }}</text>
           <text class='endText'>{{ item.major }}</text>
         </view>
         <view class='time1'>{{ item.start_time }}至{{ item.end_time }}</view>

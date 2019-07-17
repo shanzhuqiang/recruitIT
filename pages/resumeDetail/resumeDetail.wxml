@@ -4,7 +4,7 @@
     <image class='touxiang' wx:if="{{ resumeInfo.user_info.avatar }}" src='{{ resumeInfo.user_info.avatar }}'></image>
     <view class='title'>基本信息</view>
     <view class='first'>
-      <text class='name {{ download ? "" : "mosaic" }}'>{{ resumeInfo.user_info.username }}</text>
+      <text class='name'>{{ resumeInfo.user_info.username }}</text>
       <text class='profession'>{{ resumeInfo.user_info.job_name }}</text>
     </view>
     <view class='second'>
@@ -19,18 +19,18 @@
       <text wx:if="{{ resumeInfo.user_info.label2 !== '' }}">{{ resumeInfo.user_info.label2 }}</text>
       <text wx:if="{{ resumeInfo.user_info.label3 !== '' }}">{{ resumeInfo.user_info.label3 }}</text>
     </view>
-    <view class='four'>
+    <!-- <view class='four'>
       <view class='iconWrap'>
         <image class='phone' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/phone.png'></image>
       </view>
       <view class='strBox {{ download ? "" : "mosaic" }}'>{{resumeInfo.user_info.mobile }}</view>
-    </view>
-    <view class='five'>
+    </view> -->
+    <!-- <view class='five'>
       <view class='iconWrap'>
         <image class='email' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/email.png'></image>
       </view>
       <view class='strBox {{ download ? "" : "mosaic" }}'>{{ resumeInfo.user_info.email }}</view>
-    </view>
+    </view> -->
     <view style='height: 30rpx'></view>
   </view>
   <view class='resumeDetailBox' wx:if="{{ resumeInfo.user_info }}">
@@ -65,7 +65,7 @@
       <view class='right'>
         <view class='name1'>{{ item.name }}</view>
         <view class='gongsi1'>
-          <text>{{ item.level == 4 ? '高中' : item.level == 5 ? '本科' : item.level == 6 ? '硕士' : '无'  }}</text>
+          <text>{{ item.level == 1 ? '不限' : item.level == 4 ? '高中' : item.level == 5 ? '本科' : item.level == 6 ? '硕士' : '无'  }}</text>
           <text class='endText'>{{ item.major }}</text>
         </view>
         <view class='time1'>{{ item.start_time }}{{ item.end_time }}</view>
@@ -92,7 +92,7 @@
       <view style='padding-top:18rpx;'><image class='shoucang' wx:if="{{imgSrc !== ''}}" src='{{ collect ? imgSrc + "/shoucang2.png" : imgSrc + "/shoucang.png" }}'></image></view>
       <view>{{ collect ? '已关注' : '关注' }}</view>
     </view>
-    <view class='rightBtn' bindtap='bottomBtn'>{{ download ? "联系对方" : "下载" }}</view>
+    <view class='rightBtn' bindtap='bottomBtn'>联系管理员</view>
   </view>
 </view>
 

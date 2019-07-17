@@ -249,17 +249,11 @@ Page({
           } else if (res.data.error_code == 3) {
             wx.showModal({
               title: '提示',
-              content: '未认证公司，前往认证',
+              content: '未认证公司，需后台审核',
               success: (res) => {
-                if (res.confirm) {
-                  wx.redirectTo({
-                    url: '../editCompany/editCompany'
-                  })
-                } else if (res.cancel) {
-                  wx.navigateBack({
-                    delta: 1
-                  })
-                }
+                wx.navigateBack({
+                  delta: 1
+                })
               }
             })
           } else {

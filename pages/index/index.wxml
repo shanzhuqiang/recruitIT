@@ -1,7 +1,8 @@
 <view class='indexWrap'>
-  <view class='maskBB' wx:if="{{ showPage }}"></view>
-  <button class='authMask' open-type="getUserInfo" bindgetuserinfo="bindgetuserinfo" lang="zh_CN" wx:if="{{ authMask }}"></button>
-  <div class='authMask' wx:if="{{ firstMask }}"></div>
+  <view  class='authMask' wx:if="{{ authMask }}">
+    <button class='btnUser' open-type="getUserInfo" bindgetuserinfo="bindgetuserinfo" lang="zh_CN">点击授权</button>
+  </view>
+  <div class='authMask2' wx:if="{{ firstMask }}"></div>
   <view class='homeTitle'>请选择当前进入IT小程序身份</view>
   <view class='chooseOneWrap'>
     <image class='chooseOne' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/chooseOne.png'></image>

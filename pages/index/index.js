@@ -9,8 +9,7 @@ Page({
     firstMask: true,
     imgSrc: '',
     authMask: false,
-    noLocation: false,
-    showPage: false
+    noLocation: false
   },
   /**
    * 生命周期函数--监听页面加载
@@ -21,13 +20,42 @@ Page({
       imgSrc: app.globalData.imgSrc
     })
   },
-  // 判断用户信息拿到
-  getSessKeySuccess() {
-    if (app.globalData.sess_key != '') {
+  // 认证过直接进入
+  goPage() {
+    let userInfo = app.globalData.userInfo
+    if (userInfo.identity_auth.is_engineer == 1) {
+      app.globalData.userType = "engineer"
+      wx.redirectTo({
+        url: '../home/home'
+      })
+    } else if (userInfo.identity_auth.is_hr == 1) {
+      app.globalData.userType = "hr"
+      wx.redirectTo({
+        url: '../home/home'
+      })
+    } else if (userInfo.identity_auth.is_agent == 1) {
+      app.globalData.userType = "agent"
+      wx.redirectTo({
+        url: '../home/home'
+      })
+    } else {
       this.setData({
         firstMask: false
       })
       this.initLocation()
+    }
+  },
+  // 判断用户信息拿到
+  getSessKeySuccess() {
+    if (app.globalData.sess_key != '') {
+      if (app.globalData.userInfo.nickname && app.globalData.userInfo.lat) {
+        this.goPage()
+      } else {
+        this.setData({
+          firstMask: false
+        })
+        this.initLocation()
+      }
     } else {
       setTimeout(() => {
         this.getSessKeySuccess()
@@ -94,26 +122,6 @@ Page({
         if (res.data.error_code == 0) {
           let userInfo = res.data.bizobj.data.user_info
           app.globalData.userInfo = userInfo
-          if (userInfo.identity_auth.is_engineer == 1) {
-            app.globalData.userType = "engineer"
-            wx.redirectTo({
-              url: '../home/home'
-            })
-          } else if (userInfo.identity_auth.is_hr == 1) {
-            app.globalData.userType = "hr"
-            wx.redirectTo({
-              url: '../home/home'
-            })
-          } else if (userInfo.identity_auth.is_agent == 1) {
-            app.globalData.userType = "agent"
-            wx.redirectTo({
-              url: '../home/home'
-            })
-          }  else {
-            this.setData({
-              showPage: true
-            })
-          }
         } else {
           wx.showToast({
             icon: 'none',

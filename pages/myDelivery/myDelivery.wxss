@@ -70,12 +70,27 @@
 	color: #2e70f9;
 }
 /* 内容 */
+.myDeliveryWrap .itemWrap .itemBox .bottomBtn{
+	width: 136rpx;
+	height: 50rpx;
+  line-height: 50rpx;
+	border-radius: 4rpx;
+	border: solid 1rpx #cccccc;
+  text-align: center;
+	font-family: PingFangSC-Regular;
+	font-size: 26rpx;
+	color: #999;
+  position: absolute;
+  right: 30rpx;
+  bottom: 20rpx;
+}
 .myDeliveryWrap .itemWrap{
   padding: 0 30rpx;
 }
 .myDeliveryWrap .itemWrap .itemBox{
   border-bottom: 1rpx solid #f0f0f0;
   padding: 40rpx 0;
+  position: relative;
 }
 .myDeliveryWrap .itemWrap .itemBox .leftImg{
 	width: 68rpx;

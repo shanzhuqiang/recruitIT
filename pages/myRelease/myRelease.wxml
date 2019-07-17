@@ -74,7 +74,7 @@
         <view class='line'></view>
       </view>
       <view class='btnWrap'>
-        <view class='timeBtn'>工时核对</view>
+        <view class='timeBtn' bindtap='goCheckTime' data-name="{{ item.name }}" data-company="{{ item.company_name }}" data-id="{{ item.id }}" data-hourstatus="{{ item.hour_status }}">工时核对</view>
       </view>
     </view>
     <view wx:if="{{ projectList.length == 0 }}" class='noDataWrap'>

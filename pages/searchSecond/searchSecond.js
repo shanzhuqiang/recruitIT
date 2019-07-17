@@ -351,9 +351,9 @@ Page({
   },
   // 进入简历详情
   goResumeDetail (e) {
-    wx.navigateTo({
-      url: `../resumeDetail/resumeDetail?id=${e.currentTarget.dataset.id}`
-    })
+    // wx.navigateTo({
+    //   url: `../resumeDetail/resumeDetail?id=${e.currentTarget.dataset.id}`
+    // })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

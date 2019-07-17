@@ -124,9 +124,9 @@ Page({
     this.getList()
   },
   goResumeDetail(e) {
-    wx.navigateTo({
-      url: `../resumeDetail/resumeDetail?id=${e.currentTarget.dataset.id}`
-    })
+    // wx.navigateTo({
+    //   url: `../resumeDetail/resumeDetail?id=${e.currentTarget.dataset.id}`
+    // })
   },
   // 获取区域
   gitArea() {
