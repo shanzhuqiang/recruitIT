@@ -26,6 +26,14 @@
   right: 0rpx;
   top: 0;
 }
+.postDetailWrap .topBox .first .rightTitle2{
+	font-family: PingFangSC-Medium;
+	font-size: 28rpx;
+	color: #fdad06;
+  position: absolute;
+  top: 50rpx;
+  right: 0;
+}
 .postDetailWrap .topBox .second {
 	font-family: PingFangSC-Regular;
 	font-size: 24rpx;
@@ -212,7 +220,6 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: #fff;
 }
 .postDetailWrap .bottomBtn .leftBtn{
   width: 140rpx;

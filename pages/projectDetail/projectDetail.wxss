@@ -25,6 +25,14 @@
   right: 0rpx;
   top: 0;
 }
+.projectDetailWrap .topBox .first .rightTitle2{
+	font-family: PingFangSC-Medium;
+	font-size: 28rpx;
+	color: #fdad06;
+  position: absolute;
+  top: 50rpx;
+  right: 0;
+}
 .projectDetailWrap .topBox .second {
 	font-family: PingFangSC-Regular;
 	font-size: 24rpx;

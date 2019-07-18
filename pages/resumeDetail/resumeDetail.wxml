@@ -92,7 +92,8 @@
       <view style='padding-top:18rpx;'><image class='shoucang' wx:if="{{imgSrc !== ''}}" src='{{ collect ? imgSrc + "/shoucang2.png" : imgSrc + "/shoucang.png" }}'></image></view>
       <view>{{ collect ? '已关注' : '关注' }}</view>
     </view>
-    <view class='rightBtn' bindtap='bottomBtn'>联系管理员</view>
+    <view class='rightBtn' bindtap='bottomBtn' wx:if="{{ userType == 'hr' }}">联系管理员</view>
+    <view class='rightBtn none' wx:if="{{ userType == 'agent' }}">当前身份不可操作</view>
   </view>
 </view>
 

@@ -15,13 +15,13 @@
     <view class='itemWrap' wx:if="{{ listData.length > 0 }}" wx:for="{{ listData }}" wx:key="">
       <view class='itemTop'>
         <view class='square'>工</view>
-        <view class='wordText' bindtap='goEngineer'>
+        <view class='wordText' bindtap='goEngineer' data-id="{{ item.resume_id }}">
           工程师：{{ item.username }}
           <image class='arrowR3' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc + "/arrowR3.png" }}'></image>
         </view>
         <view class='time'>{{ item.create_time }}</view>
       </view>
-      <view class='itemBox' wx:if="{{ item.type == 2 }}">
+      <view class='itemBox' wx:if="{{ item.type == 2 }}" bindtap='goProjectDetail' data-id="{{ item.pj_id }}">
         <view class='leftImg'>招标</view>
         <view class='rightText'>
           <view class='firstRow'>{{ item.name }}</view>
@@ -35,7 +35,7 @@
         <view class='threeRow'>{{ item.salaryStr }}</view>
         </view>
       </view>
-      <view class='itemBox' wx:if="{{ item.type == 1 }}">
+      <view class='itemBox' wx:if="{{ item.type == 1 }}" bindtap='goPostDetail' data-id="{{ item.pj_id }}">
         <view class='leftImg2'>
           <image class='logoImg' wx:if="{{ item.company_icon }}" src='{{ item.company_icon }}'></image>
         </view>

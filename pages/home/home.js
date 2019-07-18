@@ -146,9 +146,11 @@ Page({
   },
   // 简历
   goResumeDetail(e) {
-    // wx.navigateTo({
-    //   url: `../resumeDetail/resumeDetail?id=${e.currentTarget.dataset.id}`
-    // })
+    if (this.data.userType === 'agent') {
+      wx.navigateTo({
+        url: `../resumeDetail/resumeDetail?id=${e.currentTarget.dataset.id}`
+      })
+    }
   },
   // 岗位信息
   goPostDetail(e) {

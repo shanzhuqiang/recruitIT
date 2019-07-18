@@ -196,3 +196,7 @@
   height: 100rpx;
   line-height: 100rpx;
 }
+.resumeDetailWrap .bottomBtn .rightBtn.none{
+  background: #ccc;
+  color: #fff;
+}

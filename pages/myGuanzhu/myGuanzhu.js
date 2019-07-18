@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userType: '',
     imgSrc: '',
     listData: []
   },
@@ -15,6 +16,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
+      userType: app.globalData.userType,
       imgSrc: app.globalData.imgSrc
     })
     this.getList()
@@ -44,9 +46,11 @@ Page({
   },
   // 简历详情
   goInfo(e) {
-    // wx.navigateTo({
-    //   url: `../resumeDetail/resumeDetail?id=${e.currentTarget.dataset.id}`
-    // })
+    if (this.data.userType === 'agent') {
+      wx.navigateTo({
+        url: `../resumeDetail/resumeDetail?id=${e.currentTarget.dataset.id}`
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

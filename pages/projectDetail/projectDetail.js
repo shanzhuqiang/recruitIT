@@ -14,7 +14,8 @@ Page({
     shareMask: false,
     maskOnOff: false,
     user_list: [],
-    fromsesskey: null
+    fromsesskey: null,
+    bonus: ''
   },
 
   /**
@@ -27,8 +28,12 @@ Page({
     this.setData({
       userType: app.globalData.userType,
       imgSrc: app.globalData.imgSrc,
-      id: options.id
+      id: options.id,
+      bonus: options.bonus
     })
+    if (options.bonus == 1) {
+      this.getUserCollects()
+    }
     if (options.fromsesskey) {
       this.setData({
         fromsesskey: options.fromsesskey
@@ -167,7 +172,6 @@ Page({
   },
   // 分享
   shareBtn () {
-    this.getUserCollects()
     this.setData({
       shareMask: true
     })
@@ -213,7 +217,7 @@ Page({
         wx.hideLoading()
         if (res.data.error_code == 0) {
           wx.showToast({
-            title: '分享成功',
+            title: '推荐成功',
             mask: true,
             icon: 'success',
             success: () => {

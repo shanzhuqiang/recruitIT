@@ -110,6 +110,18 @@ Page({
     this.getArea()
     this.getProjectList()
   },
+  // 岗位信息
+  goPostDetail(e) {
+    wx.navigateTo({
+      url: `../postDetail/postDetail?id=${e.currentTarget.dataset.id}&bonus=1`
+    })
+  },
+  // 项目信息
+  goProjectDetail(e) {
+    wx.navigateTo({
+      url: `../projectDetail/projectDetail?id=${e.currentTarget.dataset.id}&bonus=1`
+    })
+  },
   // 获取项目
   getProjectList() {
     wx.showLoading({
@@ -127,8 +139,10 @@ Page({
         max_salary: this.data.max_salary,
         job_experience: this.data.shaixuan1,
         nature: this.data.shaixuan2,
-        page_size: 10,
-        page: this.data.page
+        // page_size: 10,
+        // page: this.data.page
+        page_size: 9999,
+        page: 1
       },
       method: 'POST',
       success: (res) => {
@@ -171,13 +185,14 @@ Page({
       data: {
         sess_key: app.globalData.sess_key,
         city_code: this.data.userInfo.city_code,
-        is_bonus: 2,
+        is_bonus: 1,
         page: this.data.page,
         create_time: this.data.shaixuan1,
         nature: this.data.shaixuan2,
         education: this.data.xueliChoose,
         job_experience: this.data.jingyanChoose,
-        page_size: 20
+        page_size: 9999,
+        page: 1
       },
       method: 'POST',
       success: (res) => {
@@ -513,11 +528,11 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    if (this.data.topType === 'xiangmu') {
-      this.getProjectList()
-    } else {
-      this.getZhaopinList()
-    }
+    // if (this.data.topType === 'xiangmu') {
+    //   this.getProjectList()
+    // } else {
+    //   this.getZhaopinList()
+    // }
   },
 
   /**

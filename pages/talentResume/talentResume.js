@@ -124,9 +124,11 @@ Page({
     this.getList()
   },
   goResumeDetail(e) {
-    // wx.navigateTo({
-    //   url: `../resumeDetail/resumeDetail?id=${e.currentTarget.dataset.id}`
-    // })
+    if (this.data.userType === 'agent') {
+      wx.navigateTo({
+        url: `../resumeDetail/resumeDetail?id=${e.currentTarget.dataset.id}`
+      })
+    }
   },
   // 获取区域
   gitArea() {
@@ -140,8 +142,8 @@ Page({
       success: (res) => {
         let listData = res.data.bizobj.data.area_list
         listData.unshift({
-          city_code: '',
-          city_name: '不限'
+          district_code: '',
+          district_name: '不限'
         })
         console.log(listData)
         let hangyeData = []
@@ -157,7 +159,7 @@ Page({
           if (newArr.length === 2) {
             newArr.push({
               id: '',
-              name: null
+              district_name: null
             })
           }
           hangyeData[n++] = newArr

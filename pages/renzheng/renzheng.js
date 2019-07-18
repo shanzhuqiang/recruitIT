@@ -185,6 +185,7 @@ Page({
         if (res.data.error_code == 0) {
           let shenfenKey = this.data.shenfenKey
           if (shenfenKey == "engineer") {
+            app.globalData.userType = "engineer"
             wx.showToast({
               title: '认证成功',
               mask: true,
@@ -201,6 +202,7 @@ Page({
               }
             })
           } else if (shenfenKey == 'hr') {
+            app.globalData.userType = "hr"
             wx.showToast({
               title: '认证成功',
               mask: true,
@@ -214,6 +216,7 @@ Page({
               }
             })
           } else if (shenfenKey == 'agent') {
+            app.globalData.userType = "agent"
             wx.showToast({
               title: '认证成功',
               icon: 'success',

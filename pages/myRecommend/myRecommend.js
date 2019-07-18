@@ -19,6 +19,24 @@ Page({
     })
     this.getDataList()
   },
+  // 进入简历
+  goEngineer(e) {
+    wx.navigateTo({
+      url: `../resumeDetail/resumeDetail?id=${e.currentTarget.dataset.id}`
+    })
+  },
+  // 岗位信息
+  goPostDetail(e) {
+    wx.navigateTo({
+      url: `../postDetail/postDetail?id=${e.currentTarget.dataset.id}&bonus=1`
+    })
+  },
+  // 项目信息
+  goProjectDetail(e) {
+    wx.navigateTo({
+      url: `../projectDetail/projectDetail?id=${e.currentTarget.dataset.id}&bonus=1`
+    })
+  },
   // 切换类型
   chooseType(e) {
     let key = e.currentTarget.dataset.id
@@ -62,12 +80,6 @@ Page({
           title: '网络请求失败',
         })
       }
-    })
-  },
-  // 进入简历
-  goEngineer() {
-    wx.navigateTo({
-      url: '../resumeDetail/resumeDetail'
     })
   },
 

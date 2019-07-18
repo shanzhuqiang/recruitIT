@@ -70,7 +70,7 @@ page{
   line-height: 100%;
   text-align: center;
 }
-.indexWrap .authMask{
+.indexWrap .authMask2{
   position: fixed;
   left: 0;
   top: 0;

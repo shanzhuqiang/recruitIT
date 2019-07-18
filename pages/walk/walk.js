@@ -120,7 +120,7 @@ Page({
   closeGetMoneySuccess() {
     wx.showLoading({
       mask: true,
-      title: '签到中...',
+      title: '兑换中...',
     })
     let userType = this.data.userType
     wx.request({
