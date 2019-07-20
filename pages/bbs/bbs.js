@@ -29,7 +29,8 @@ Page({
     page: 1,
     listData: [],
     loading: false,
-    pickerVal: 0
+    pickerVal: 0,
+    unReadNum: 0
   },
   /**
    * 生命周期函数--监听页面加载
@@ -46,11 +47,32 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.getUnRead()
     this.setData({
       page: 1,
       listData: []
     }, () => {
       this.getList()
+    })
+  },
+  getUnRead() {
+    wx.request({
+      url: `${app.globalData.baseUrl}/notice/noticeCount.html`,
+      data: {
+        sess_key: app.globalData.sess_key
+      },
+      method: 'POST',
+      success: (res) => {
+        this.setData({
+          unReadNum: res.data.bizobj.data.new_message
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
     })
   },
   // 论坛详情

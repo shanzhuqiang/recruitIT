@@ -173,8 +173,14 @@ Page({
   shaixuan1Filter(e) {
     let id = e.currentTarget.dataset.id
     this.setData({
-      shaixuan1: id
+      xueliChoose: '1',
+      jingyanChoose: '',
+      page: 1,
+      shaixuan1: id,
+      listData: [],
+      maskOnOff: false
     })
+    this.getList()
   },
   // 工作周期
   shaixuan2Filter(e) {

@@ -10,7 +10,8 @@ Page({
     userInfo: null,
     releaseMark: false,
     imgSrc: '',
-    num: ''
+    num: '',
+    unReadNum: 0
   }, 
 
   /**
@@ -29,6 +30,27 @@ Page({
       imgSrc: app.globalData.imgSrc
     })
     this.getNum()
+    this.getUnRead()
+  },
+  getUnRead() {
+    wx.request({
+      url: `${app.globalData.baseUrl}/notice/noticeCount.html`,
+      data: {
+        sess_key: app.globalData.sess_key
+      },
+      method: 'POST',
+      success: (res) => {
+        this.setData({
+          unReadNum: res.data.bizobj.data.new_message
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
   },
   // 获取金币/猎币
   getNum() {

@@ -23,7 +23,7 @@
         <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ topFilterBtn === "xueli" ? imgSrc + "/arrowUp.png" : imgSrc + "/arrowDown.png" }}'></image>
       </view>
       <view class='colBox {{ topFilterBtn === "shaixuan" ? "active" : "" }}' bindtap='topFilter' data-id="shaixuan">
-        <text>筛选</text>
+        <text>时间</text>
         <image class='filterImg' wx:if="{{imgSrc !== ''}}" src='{{ topFilterBtn === "shaixuan" ? imgSrc + "/filterTwo.png" : imgSrc + "/filter.png" }}'></image>
       </view>
     </view>

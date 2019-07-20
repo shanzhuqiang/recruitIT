@@ -16,7 +16,8 @@ Page({
     userType: '',
     releaseMark: false,
     // getPhoneMaskOnOff: true
-    getPhoneMaskOnOff: false
+    getPhoneMaskOnOff: false,
+    unReadNum: 0
   },
 
   /**
@@ -35,11 +36,32 @@ Page({
     } else {
       this.initResumeData()
     }
+    this.getUnRead()
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+  },
+  getUnRead () {
+    wx.request({
+      url: `${app.globalData.baseUrl}/notice/noticeCount.html`,
+      data: {
+        sess_key: app.globalData.sess_key
+      },
+      method: 'POST',
+      success: (res) => {
+        this.setData({
+          unReadNum: res.data.bizobj.data.new_message
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
   },
   // 初始化授权
   initAuth() {
@@ -250,7 +272,7 @@ Page({
         let listData = res.data.bizobj.data.resume_list
         listData.forEach((el, index) => {
           if (el.max_salary) {
-            el['salaryStr'] = Math.round(el.mini_salary) + 'k-' + Math.round(el.max_salary) + 'k/月'
+            el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k/月'
           } else {
             el['salaryStr'] = '不限'
           }

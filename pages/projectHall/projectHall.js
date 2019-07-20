@@ -44,9 +44,42 @@ Page({
         }
       ]
     ],
+    yuexinData: [
+      [{
+        id: '1',
+        name: '不限'
+      }, {
+        id: '2',
+        name: '2K以下'
+      }, {
+        id: '3',
+        name: '2K-5K'
+      }],
+      [{
+        id: '4',
+        name: '5K-10K'
+      }, {
+        id: '5',
+        name: '10K-15K'
+      }, {
+        id: '6',
+        name: '15K-25K'
+      }],
+      [{
+        id: '7',
+        name: '25K-50K'
+      }, {
+        id: '8',
+        name: '50K以上'
+      }, {
+        id: '',
+        name: null
+      }]
+    ],
     shaixuan1: '',
     shaixuan2: '',
-    listData: []
+    listData: [],
+    yuexinChoose: 1
   },
   /**
    * 生命周期函数--监听页面加载
@@ -57,6 +90,23 @@ Page({
       imgSrc: app.globalData.imgSrc
     })
     this.getArea()
+    this.getList()
+  },
+  // 月薪确定
+  yuexinChooseFilter(e) {
+    let id = e.currentTarget.dataset.id
+    this.setData({
+      page: 1,
+      mask: false,
+      quyuChoose: id,
+      quyuChoose: '',
+      mini_salary: '',
+      max_salary: '',
+      shaixuan1: '',
+      shaixuan2: '',
+      yuexinChoose: id,
+      listData: []
+    })
     this.getList()
   },
   miniSalaryChange(e) {
@@ -86,27 +136,29 @@ Page({
       max_salary: '',
       shaixuan1: '',
       shaixuan2: '',
+      yuexinChoose: 1,
       listData: []
     })
     this.getList()
   },
   // 价格确定
-  confirmFilterjiage() {
-    this.setData({
-      page: 1,
-      mask: false,
-      quyuChoose: '',
-      shaixuan1: '',
-      shaixuan2: '',
-      listData: []
-    })
-    this.getList()
-  },
+  // confirmFilterjiage() {
+  //   this.setData({
+  //     page: 1,
+  //     mask: false,
+  //     quyuChoose: '',
+  //     shaixuan1: '',
+  //     shaixuan2: '',
+  //     listData: []
+  //   })
+  //   this.getList()
+  // },
   // 筛选确定
   confirmFilter() {
     this.setData({
       page: 1,
       mask: false,
+      yuexinChoose: 1,
       quyuChoose: '',
       mini_salary: '',
       max_salary: '',
@@ -174,8 +226,9 @@ Page({
         is_bonus: 2,
         city_code: this.data.userInfo.city_code,
         district_code: this.data.quyuChoose,
-        mini_salary: this.data.mini_salary,
-        max_salary: this.data.max_salary,
+        salary_range: this.data.yuexinChoose,
+        // mini_salary: this.data.mini_salary,
+        // max_salary: this.data.max_salary,
         job_experience: this.data.shaixuan1,
         nature: this.data.shaixuan2,
         page_size: 10,

@@ -15,7 +15,10 @@
         <image class='renzheng' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/renzheng.png'></image>
         已认证
       </view>
-      <view class='tongzhi' bindtap='goMyMessage'>通知</view>
+      <view class='tongzhi' bindtap='goMyMessage'>
+        通知
+        <view class='unReadNum' wx:if="{{ unReadNum }}">{{ unReadNum }}</view>
+      </view> 
       <view class='topBottomBox'>
         <view bindtap='goMyGold'>{{ userType == 'engineer' ? '金币' : '猎币' }} {{ num }}</view>
         <view bindtap='goMyMoney'>我的钱包</view>
@@ -149,6 +152,7 @@
         <view>论坛</view>
     </view>
     <view class='btnBox active'>
+    <view class='unReadNum' wx:if="{{ unReadNum }}">{{ unReadNum }}</view>
       <view class='imgBox'>
         <image class='my' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/my2.png'></image>
       </view>

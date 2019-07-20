@@ -165,6 +165,7 @@
         <view>论坛</view>
     </view>
     <view class='btnBox' bindtap='goMy'>
+    <view class='unReadNum' wx:if="{{ unReadNum }}">{{ unReadNum }}</view>
       <view class='imgBox'>
         <image class='my' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/my.png'></image>
       </view>

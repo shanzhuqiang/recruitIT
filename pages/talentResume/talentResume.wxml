@@ -52,7 +52,7 @@
   <!-- 经验 -->
   <view class='filterMask' wx:if="{{ topFilterBtn === 'jingyan' && maskOnOff }}">
     <view class='maskBody'>
-      <view class='title'>工作区域</view>
+      <view class='title'>工作经验</view>
       <view class='filterBtnWrap' wx:for="{{ jingyanData }}" wx:key="">
         <view class='filterBtn {{ jingyanChoose == item.id ? "active" : ""}}' wx:for="{{ item }}" data-id='{{ item.id }}' bindtap='jingyanChooseFilter' wx:key="">{{ item.name }}</view>
       </view>
@@ -61,7 +61,7 @@
   <!-- 月薪 -->
   <view class='filterMask' wx:if="{{ topFilterBtn === 'yuexin' && maskOnOff }}">
     <view class='maskBody'>
-      <view class='title'>工作经验</view>
+      <view class='title'>月薪</view>
       <view class='filterBtnWrap' wx:for="{{ yuexinData }}" wx:key="">
         <view class='filterBtn {{ yuexinChoose == item.id ? "active" : ""}}' style='{{item.name === null ? "visibility:hidden" : ""}}' wx:for="{{ item }}" data-id='{{ item.id }}' bindtap='yuexinChooseFilter' wx:key="">{{ item.name }}</view>
       </view>
