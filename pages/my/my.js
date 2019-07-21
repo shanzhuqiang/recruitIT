@@ -160,15 +160,18 @@ Page({
   },
   // 我的金币
   goMyGold() {
-    if (this.data.userType == 'engineer') {
-      wx.navigateTo({
-        url: '../myGold/myGold'
-      })
-    } else {
-      wx.navigateTo({
-        url: '../myGold2/myGold2'
-      })
-    }
+    wx.navigateTo({
+      url: '../myGold/myGold'
+    })
+    // if (this.data.userType == 'engineer') {
+    //   wx.navigateTo({
+    //     url: '../myGold/myGold'
+    //   })
+    // } else {
+    //   wx.navigateTo({
+    //     url: '../myGold2/myGold2'
+    //   })
+    // }
   },
   // 我的钱包
   goMyMoney() {

@@ -19,7 +19,6 @@ Page({
   onLoad: function (options) {
 
   },
-
   /**
    * 生命周期函数--监听页面显示
    */
@@ -34,7 +33,14 @@ Page({
   // 充值
   goRecharge() {
     wx.navigateTo({
-      url: '../recharge/recharge?type=hr'
+      url: '../recharge/recharge'
+    })
+  },
+
+  // 提现
+  goTixian() {
+    wx.navigateTo({
+      url: `../tixian/tixian?totalCoin=${this.data.num}`
     })
   },
   // 选择类型

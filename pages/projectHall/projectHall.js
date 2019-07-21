@@ -93,22 +93,22 @@ Page({
     this.getList()
   },
   // 月薪确定
-  yuexinChooseFilter(e) {
-    let id = e.currentTarget.dataset.id
-    this.setData({
-      page: 1,
-      mask: false,
-      quyuChoose: id,
-      quyuChoose: '',
-      mini_salary: '',
-      max_salary: '',
-      shaixuan1: '',
-      shaixuan2: '',
-      yuexinChoose: id,
-      listData: []
-    })
-    this.getList()
-  },
+  // yuexinChooseFilter(e) {
+  //   let id = e.currentTarget.dataset.id
+  //   this.setData({
+  //     page: 1,
+  //     mask: false,
+  //     quyuChoose: id,
+  //     quyuChoose: '',
+  //     mini_salary: '',
+  //     max_salary: '',
+  //     shaixuan1: '',
+  //     shaixuan2: '',
+  //     yuexinChoose: id,
+  //     listData: []
+  //   })
+  //   this.getList()
+  // },
   miniSalaryChange(e) {
     this.setData({
       mini_salary: Number(e.detail.value)
@@ -136,29 +136,27 @@ Page({
       max_salary: '',
       shaixuan1: '',
       shaixuan2: '',
-      yuexinChoose: 1,
       listData: []
     })
     this.getList()
   },
   // 价格确定
-  // confirmFilterjiage() {
-  //   this.setData({
-  //     page: 1,
-  //     mask: false,
-  //     quyuChoose: '',
-  //     shaixuan1: '',
-  //     shaixuan2: '',
-  //     listData: []
-  //   })
-  //   this.getList()
-  // },
+  confirmFilterjiage() {
+    this.setData({
+      page: 1,
+      mask: false,
+      quyuChoose: '',
+      shaixuan1: '',
+      shaixuan2: '',
+      listData: []
+    })
+    this.getList()
+  },
   // 筛选确定
   confirmFilter() {
     this.setData({
       page: 1,
       mask: false,
-      yuexinChoose: 1,
       quyuChoose: '',
       mini_salary: '',
       max_salary: '',
@@ -226,9 +224,8 @@ Page({
         is_bonus: 2,
         city_code: this.data.userInfo.city_code,
         district_code: this.data.quyuChoose,
-        salary_range: this.data.yuexinChoose,
-        // mini_salary: this.data.mini_salary,
-        // max_salary: this.data.max_salary,
+        mini_salary: this.data.mini_salary,
+        max_salary: this.data.max_salary,
         job_experience: this.data.shaixuan1,
         nature: this.data.shaixuan2,
         page_size: 10,

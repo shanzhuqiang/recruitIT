@@ -30,13 +30,13 @@
       <image class='wechat' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/wechat.png'></image>
       微信支付
     </view>
-    <view class='itemBox'>
+    <!-- <view class='itemBox'>
       <image class='rmb' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/rmb.png'></image>
       账号余额
-    </view>
+    </view> -->
     <radio-group bindchange="radioChange">
-      <radio class='wechatRadio' value="1" checked="{{ false }}" />
-      <radio class='rmbRadio' value="2" checked="{{ true }}" />
+      <radio class='wechatRadio' value="1" checked="{{ true }}" />
+      <!-- <radio class='rmbRadio' value="2" checked="{{ true }}" /> -->
     </radio-group>
   </view>
   <view class='bottomBtn' bindtap='confirm'>确定</view>

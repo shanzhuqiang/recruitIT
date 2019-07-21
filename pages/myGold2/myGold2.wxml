@@ -2,9 +2,10 @@
 <view class='myGoldWrap'>
   <view class='topImg'>
     <image class='goldBg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/goldBg.png'></image>
-    <view class='first'>当前猎币</view>
+    <view class='first'>当前金币</view>
     <view class='secondNum'>{{ num }}</view>
-    <view class='rightBtn' bindtap='goRecharge'>充值</view>
+    <view class='rightBtn' bindtap='goRecharge' wx:if="{{ userType != 'agent' }}">充值</view>
+    <view class='rightBtn' bindtap='goTixian' wx:if="{{ userType == 'agent' }}">提现</view>
   </view>
   <view class='middleBtnBox'>
     <view class='{{ typeStr == 1 ? "active" : "" }}' bindtap='chooseType' data-id="1">收入</view>
@@ -13,7 +14,7 @@
   <view class='itemBox' wx:for="{{ listData }}" wx:key="">
     <view class='first'>{{ item.title }}</view>
     <view class='second'>
-      <view class='itemNum'>{{ item.way == 1 ? '+' : '-' }}{{ item.num }}猎币</view>
+      <view class='itemNum'>{{ item.way == 1 ? '+' : '-' }}{{ item.num }}金币</view>
       {{ item.create_at }}
     </view>
   </view>

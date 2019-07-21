@@ -84,6 +84,7 @@
       <view class='textWord'>暂无信息</view>
     </view>
   </view>
+  <view style='height: 90rpx;'></view>
   <!-- 底部导航 -->
   <view class='btootmNavWrap'>
     <view class='btnBox'>

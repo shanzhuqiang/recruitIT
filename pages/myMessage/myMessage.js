@@ -15,10 +15,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getListData()
     this.setData({
       imgSrc: app.globalData.imgSrc
     })
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    this.setData({
+      page:1,
+      listData: []
+    })
+    this.getListData()
   },
   // 获取消息列表
   getListData () {
@@ -33,6 +43,11 @@ Page({
       success: (res) => {
         if (res.data.error_code == 0) {
           let data = res.data.bizobj.data
+          data.forEach(el => {
+            if (el.is_read == 2 && el.type == 3) {
+              this.noticeRead(el.id)
+            }
+          })
           if (data && data.length > 0) {
             let oldListData = this.data.listData
             this.setData({
@@ -41,6 +56,30 @@ Page({
             })
           }
         } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  noticeRead(id) {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Notice/noticeRead.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        id: id
+      },
+      method: 'POST',
+      success: (res) => {
+        if (res.data.error_code != 0) {
           wx.showToast({
             icon: 'none',
             title: res.data.msg,
@@ -101,19 +140,11 @@ Page({
         })
       }
     })
-
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
 
   },
 

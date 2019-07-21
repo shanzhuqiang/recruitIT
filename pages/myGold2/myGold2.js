@@ -33,9 +33,16 @@ Page({
   },
   // 充值
   goRecharge() {
-    wx.navigateTo({
-      url: '../recharge/recharge?type=hr'
-    })
+    if (this.data.userType == 'agent') {
+      wx.showToast({
+        icon: 'none',
+        title: '经纪人无法充值',
+      })
+    } else {
+      wx.navigateTo({
+        url: '../recharge/recharge?type=hr'
+      })
+    }
   },
   // 选择类型
   chooseType(e) {

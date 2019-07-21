@@ -46,10 +46,10 @@
   <view class='filterMask' wx:if="{{ topFilterBtn === 'jiage' && mask}}">
     <view class='maskBody'>
       <view class='title'>月薪</view>
-      <view class='filterBtnWrap' wx:for="{{ yuexinData }}" wx:key="">
+      <!-- <view class='filterBtnWrap' wx:for="{{ yuexinData }}" wx:key="">
         <view class='filterBtn {{ yuexinChoose == item.id ? "active" : ""}}' style='{{item.name === null ? "visibility:hidden" : ""}}' wx:for="{{ item }}" data-id='{{ item.id }}' bindtap='yuexinChooseFilter' wx:key="">{{ item.name }}</view>
-      </view>
-      <!-- <view class='filterBtnWrap'>
+      </view> -->
+      <view class='filterBtnWrap'>
         <view class='fl'>
           <input type='number' placeholder='最低价' value='{{ mini_salary }}' bindinput="miniSalaryChange"></input>
         </view>
@@ -57,7 +57,7 @@
           <input type='number' placeholder='最高价' value='{{ max_salary }}' bindinput="maxSalaryChange"></input>
         </view>
       </view>
-      <view class='confirm' bindtap='confirmFilterjiage'>确定</view> -->
+      <view class='confirm' bindtap='confirmFilterjiage'>确定</view>
     </view>
   </view>
   <!-- 筛选 -->

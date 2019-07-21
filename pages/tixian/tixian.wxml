@@ -7,11 +7,11 @@
   </view>
   <view class='middleBox'>
     <view class='title'>
-      当前余额101437.00<text>(30元起提现)</text>
+      当前余额{{ totalCoin }}<text>(30元起提现)</text>
     </view>
     <view class='bottomMoey'>
       <text>￥</text>
-      <input class='input' type='number' placeholder='请输入提现金额'></input>
+      <input class='input' type='number' value='{{ money }}' placeholder='请输入提现金额' bindinput="moneyChange"></input>
     </view>
   </view>
   <view class='confirmBtn'>确定</view>

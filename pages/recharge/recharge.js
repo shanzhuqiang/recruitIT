@@ -10,7 +10,7 @@ Page({
     listData: [],
     typeCur: '',
     chooseprice: '',
-    current: '2',
+    current: '1',
     imgSrc: '',
     iptPrice: ''
   },
@@ -18,7 +18,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.type)
     this.setData({
       userType: app.globalData.userType,
       imgSrc: app.globalData.imgSrc

@@ -20,8 +20,9 @@
         <view class='unReadNum' wx:if="{{ unReadNum }}">{{ unReadNum }}</view>
       </view> 
       <view class='topBottomBox'>
-        <view bindtap='goMyGold'>{{ userType == 'engineer' ? '金币' : '猎币' }} {{ num }}</view>
-        <view bindtap='goMyMoney'>我的钱包</view>
+        <!-- <view bindtap='goMyGold'>{{ userType == 'engineer' ? '金币' : '猎币' }} {{ num }}</view> -->
+        <view bindtap='goMyGold'>金币 {{ num }}</view>
+        <!-- <view bindtap='goMyMoney'>我的钱包</view> -->
       </view>
     </view>
   </view>
