@@ -2,6 +2,23 @@
 .renzhengWrap{
   padding: 20rpx 30rpx 0;
 }
+.renzhengWrap .showCompanyListWrap{
+	width:50vw;
+	height: 100vh;
+	background:#fff;
+}
+.renzhengWrap .showCompanyListWrap .companyItem{
+	font-family: PingFangSC-Regular;
+	font-size: 28rpx;
+	color: #666;
+  height: 84rpx;
+  line-height: 84rpx;
+  border-bottom: 1rpx solid #e5e5e5;
+  text-align: center;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
 .renzhengWrap .tuiguangMoney{
   display: block;
   width: 690rpx;

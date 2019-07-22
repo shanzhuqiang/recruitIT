@@ -10,7 +10,7 @@
     </view>
   </view>
   <view class='myShenfenWrap' wx:if="{{ shenfenKey == 'hr' }}" style='padding:0 15rpx'>
-    <view class='myShenfen' style='{{ gongsi === "选择公司" ? "color: #999" : "color: #333" }};' bindtap='chooseCompany'>{{ gongsi }}
+    <view class='myShenfen' style='{{ gongsi === "选择公司" ? "color: #999" : "color: #333" }};' bindtap='openChooseCompany'>{{ gongsi }}
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image></view>
   </view>
   <view class='title'>个人信息</view>
@@ -35,4 +35,10 @@
   </view>
   <view class='finish' wx:if="{{ shenfen === '企业HR' || shenfen === '经纪人' }}" bindtap='finish'>完成</view>
   <view class='nextStep' wx:if="{{ shenfen === '工程师'}}" bindtap='nextStep'>下一步</view>
+  <view style='height: 40rpx;'></view>
+  <i-drawer mode="right" visible="{{ showCompanyList }}" bind:close="toggleShowCompanyList">
+    <scroll-view class="showCompanyListWrap" scroll-y>
+      <view class='companyItem' wx:for="{{ companyList }}" wx:key="" data-id="{{ item.id }}" data-name="{{ item.name }}" bindtap='chooseCompany'>{{ item.name }}</view>
+    </scroll-view>
+  </i-drawer>
 </view>

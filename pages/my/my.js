@@ -212,7 +212,7 @@ Page({
   // 进入首页
   goHome() {
     wx.redirectTo({
-      url: '../home/home'
+      url: '../index/index'
     })
   },
   // 进入赏金平台

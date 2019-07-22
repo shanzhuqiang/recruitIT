@@ -6,60 +6,104 @@ Page({
    * 页面的初始数据
    */
   data: {
-    firstMask: true,
-    imgSrc: '',
     authMask: false,
-    noLocation: false
+    noLocation: false,
+    // home
+    imgSrc: '',
+    userInfo:  null,
+    bannerImg: ['../../images/banner.png', '../../images/banner.png', '../../images/banner.png'],
+    titleChoosed: 'project',
+    projectList: [],
+    quartersList: [],
+    talentResumeList: [],
+    userType: '',
+    releaseMark: false,
+    // getPhoneMaskOnOff: true
+    getPhoneMaskOnOff: false,
+    unReadNum: 0,
+    basePage: ''
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    // 工程师加载项目和岗位
+    this.getUnRead()
+    // 初始化
+    this.initTimes()
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getSessKeySuccess()
     this.setData({
       imgSrc: app.globalData.imgSrc
     })
+    // 初始化
+    this.getSessKeySuccess()
   },
-  // 认证过直接进入
-  goPage() {
-    let userInfo = app.globalData.userInfo
-    if (userInfo.identity_auth.is_engineer == 1) {
-      app.globalData.userType = "engineer"
-      wx.redirectTo({
-        url: '../home/home'
-      })
-    } else if (userInfo.identity_auth.is_hr == 1) {
-      app.globalData.userType = "hr"
-      wx.redirectTo({
-        url: '../home/home'
-      })
-    } else if (userInfo.identity_auth.is_agent == 1) {
-      app.globalData.userType = "agent"
-      wx.redirectTo({
-        url: '../home/home'
-      })
-    } else {
+  initTimes() {
+    // 拿到登陆信息
+    if (app.globalData.sess_key != '') {
+      let userInfo = app.globalData.userInfo
       this.setData({
-        firstMask: false
+        userInfo: app.globalData.userInfo
       })
-      this.initLocation()
+      console.log("首页", userInfo)
+      // 认证过了
+      let userType = ""
+      if (userInfo.identity_auth) {
+        if (userInfo.identity_auth.is_engineer == 1) {
+          userType = "engineer"
+          app.globalData.userType = userType
+          this.setData({
+            userType: userType,
+            basePage: 'two'
+          })
+          this.initProjectData()
+          this.initQuartersData()
+        } else if (userInfo.identity_auth.is_hr == 1) {
+          userType = "hr"
+          app.globalData.userType = userType
+          this.setData({
+            userType: userType,
+            basePage: 'two'
+          })
+          this.initResumeData()
+        } else if (userInfo.identity_auth.is_agent == 1) {
+          userType = "agent"
+          app.globalData.userType = userType
+          this.setData({
+            userType: userType,
+            basePage: 'two'
+          })
+          this.initResumeData()
+        } else {
+          this.setData({
+            basePage: 'one'
+          })
+        }
+      } else {
+        this.setData({
+          basePage: 'one'
+        })
+      }
+    } else {
+      setTimeout(() => {
+        this.initTimes()
+      }, 100)
     }
   },
   // 判断用户信息拿到
   getSessKeySuccess() {
+    // 拿到登陆信息
     if (app.globalData.sess_key != '') {
-      if (app.globalData.userInfo.nickname && app.globalData.userInfo.lat) {
-        this.goPage()
-      } else {
-        this.setData({
-          firstMask: false
-        })
-        this.initLocation()
-      }
+      this.initLocation()
     } else {
       setTimeout(() => {
         this.getSessKeySuccess()
-      }, 500)
+      }, 100)
     }
   },
   // 初始化地理信息
@@ -97,31 +141,34 @@ Page({
   // 授权成功后添加用户信息
   addUserInfo(data) {
     console.log('个人信息', data)
-    let obj = app.globalData.userInfo || {}
-    obj['avatar'] = data.avatarUrl
-    obj['gender'] = data.gender
-    obj['nickname'] = data.nickName
-    Object.assign(app.globalData.userInfo, obj)
-    this.updateUserinfo()
+    // let obj = app.globalData.userInfo || {}
+    // obj['avatar'] = data.avatarUrl
+    // obj['gender'] = data.gender
+    // obj['nickname'] = data.nickName
+    // Object.assign(app.globalData.userInfo, obj)
+    this.updateUserinfo(data)
   },
   // 更新用户信息
-  updateUserinfo () {
-    let data = app.globalData.userInfo
+  updateUserinfo(data) {
+    let data2 = app.globalData.userInfo
     wx.request({
       url: `${app.globalData.baseUrl}/User/updateUserInfo.html`,
       data: {
         sess_key: app.globalData.sess_key,
-        nickname: data.nickname,
-        avatar: data.avatar,
+        nickname: data.nickName,
+        avatar: data.avatarUrl,
         gender: data.gender,
-        lat: data.lat,
-        lng: data.lng
+        lat: data2.lat,
+        lng: data2.lng
       },
       method: 'POST',
       success: (res) => {
         if (res.data.error_code == 0) {
           let userInfo = res.data.bizobj.data.user_info
           app.globalData.userInfo = userInfo
+          this.setData({
+            userInfo: userInfo
+          })
         } else {
           wx.showToast({
             icon: 'none',
@@ -141,7 +188,6 @@ Page({
   initUserInfo() {
     wx.getSetting({
       success: res => {
-        console.log(res)
         if (res.authSetting['scope.userInfo']) {
           wx.getUserInfo({
             success: res => {
@@ -165,40 +211,325 @@ Page({
       this.addUserInfo(res.detail.userInfo)
     }
   },
+  getUnRead () {
+    if (app.globalData.sess_key) {
+      wx.request({
+        url: `${app.globalData.baseUrl}/notice/noticeCount.html`,
+        data: {
+          sess_key: app.globalData.sess_key
+        },
+        method: 'POST',
+        success: (res) => {
+          this.setData({
+            unReadNum: res.data.bizobj.data.new_message
+          })
+        },
+        fail: (res) => {
+          wx.showToast({
+            icon: 'none',
+            title: '网络请求失败',
+          })
+        }
+      })
+    } else {
+      setTimeout(() => {
+        this.getUnRead()
+      }, 100)
+    }
+  },
+  // 初始化授权
+  initAuth() {
+    if (app.globalData.userInfo) {
+      // if (app.globalData.userInfo && app.globalData.userInfo.phone) {
+      this.setData({
+        getPhoneMaskOnOff: false
+      })
+    }
+  },
   // 找兼职
-  goHomePage () {
-    if (app.globalData.userInfo.identity_auth.is_engineer == 1) {
-      app.globalData.userType = "engineer"
+  goHomePage(e) {
+    wx.navigateTo({
+      url: `../renzheng/renzheng?shenfen=${e.currentTarget.dataset.id}`
+    })
+  },
+  // getPhoneNumber(e) {
+  //   if (e.detail.errMsg === 'getPhoneNumber:ok') {
+  //     this.setData({
+  //       getPhoneMaskOnOff: false
+  //     })
+  //     console.log(e)
+  //     console.log(e.detail.errMsg)
+  //     console.log(e.detail.iv)
+  //     console.log(e.detail.encryptedData)
+  //   }
+  // },
+  // 进入赏金平台
+  goBountyPlatform() {
+    if (this.data.userType === 'agent') {
       wx.redirectTo({
-        url: '../home/home'
+        url: '../bountyPlatform/bountyPlatform'
       })
     } else {
-      wx.navigateTo({
-        url: '../renzheng/renzheng?shenfen=engineer'
-      }) 
+      wx.showModal({
+        title: '提示',
+        content: '该功能仅经纪人可用'
+      })
     }
   },
-  goHomePage2() {
-    if (app.globalData.userInfo.identity_auth.is_hr == 1) {
-      app.globalData.userType = "hr"
-      wx.redirectTo({
-        url: '../home/home'
-      })
-    } else {
+  // 发布帖子
+  goReleaseBbs() {
+    wx.navigateTo({
+      url: '../releaseBbs/releaseBbs'
+    })
+    this.setData({
+      releaseMark: false
+    })
+  },
+  // 发布岗位
+  goReleaseGangwei() {
+    wx.navigateTo({
+      url: '../releaseGangwei/releaseGangwei'
+    })
+    this.setData({
+      releaseMark: false
+    })
+  },
+  // 发布项目
+  goReleaseProject() {
+    wx.navigateTo({
+      url: '../releaseProject/releaseProject'
+    })
+    this.setData({
+      releaseMark: false
+    })
+  },
+  // 发布
+  goRelease() {
+    this.setData({
+      releaseMark: true
+    })
+  },
+  closeRelease() {
+    this.setData({
+      releaseMark: false
+    })
+  },
+  // 进入论坛
+  goBbs() {
+    wx.redirectTo({
+      url: '../bbs/bbs'
+    })
+  },
+  // 进入我的
+  goMy() {
+    wx.redirectTo({
+      url: '../my/my'
+    })
+    // if (this.data.userType === 'engineer' && this.data.userInfo.identity_auth.is_engineer == 2) {
+    //   wx.navigateTo({
+    //     url: '../renzheng/renzheng'
+    //   })  
+    // } else if (this.data.userType === 'hr' && this.data.userInfo.identity_auth.is_hr == 2) {
+    //   wx.navigateTo({
+    //     url: '../renzheng/renzheng'
+    //   })
+    // } else if (this.data.userType === 'agent' && this.data.userInfo.identity_auth.is_agent == 2) {
+    //   wx.navigateTo({
+    //     url: '../renzheng/renzheng'
+    //   })
+    // } else {
+    //   wx.redirectTo({
+    //     url: '../my/my'
+    //   })
+    // }
+  },
+  // 简历
+  goResumeDetail(e) {
+    wx.navigateTo({
+      url: `../resumeDetail/resumeDetail?id=${e.currentTarget.dataset.id}`
+    })
+  },
+  // 岗位信息
+  goPostDetail(e) {
+    wx.navigateTo({
+      url: `../postDetail/postDetail?id=${e.currentTarget.dataset.id}`
+    })
+  },
+  // 项目信息
+  goProjectDetail(e) {
+    wx.navigateTo({
+        url: `../projectDetail/projectDetail?id=${e.currentTarget.dataset.id}`
+    })
+  },
+  // 最新项目初始化
+  initProjectData() {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Project/projectList.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        city_code: this.data.userInfo.city_code,
+        is_bonus: 2,
+        sort: 1,
+        page: 1,
+        page_size: 20
+      },
+      method: 'POST',
+      success: (res) => {
+        let listData = res.data.bizobj.data.project_list
+        listData.forEach((el, index) => {
+          if (el.max_salary) {
+            el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k/月'
+          } else {
+            el['salaryStr'] = '不限'
+          }
+        })
+        this.setData({
+          projectList: listData
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 最新岗位初始化
+  initQuartersData() {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Work/workList.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        education: "1",
+        city_code: this.data.userInfo.city_code,
+        is_bonus: 2,
+        sort: 1,
+        page: 1,
+        page_size: 20
+      },
+      method: 'POST',
+      success: (res) => {
+        console.log(res)
+        let listData = res.data.bizobj.data.job_list
+        listData.forEach((el, index) => {
+          if (el.max_salary) {
+            el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k/月'
+          } else {
+            el['salaryStr'] = '不限'
+          }
+        })
+        this.setData({
+          quartersList: listData
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 最新简历初始化
+  initResumeData () {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Resume/resumeList.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        city_code: this.data.userInfo.city_code,
+        sort: 1,
+        page: 1,
+        page_size: 20
+      },
+      method: 'POST',
+      success: (res) => {
+        let listData = res.data.bizobj.data.resume_list
+        listData.forEach((el, index) => {
+          if (el.max_salary) {
+            el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k/月'
+          } else {
+            el['salaryStr'] = '不限'
+          }
+        })
+        this.setData({
+          talentResumeList: listData
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // title切换
+  chooseTitle (e) {
+    let key = e.currentTarget.dataset.id
+    this.setData({
+      titleChoosed: key
+    })
+  },
+  // 搜索
+  goHomeSearch () {
+    if (this.data.userType === 'engineer') {
       wx.navigateTo({
-        url: '../renzheng/renzheng?shenfen=hr'
+        url: '../searchFirst/searchFirst'
+      })
+    } else if (this.data.userType === 'hr') {
+      wx.navigateTo({
+        url: '../searchSecond/searchSecond'
       })
     }
   },
-  goHomePage3() {
-    if (app.globalData.userInfo.identity_auth.is_agent == 1) {
-      app.globalData.userType = "agent"
-      wx.redirectTo({
-        url: '../home/home'
+  // 切换城市
+  goChooseCity() {
+    wx.navigateTo({
+      url: '../chooseCity/chooseCity'
+    })
+  },
+  // 平台推广
+  goSpread() {
+    wx.navigateTo({
+      url: '../spread/spread'
+    })
+  },
+  // 金币投票
+  goGoldVote() {
+    wx.navigateTo({
+      url: '../goldVote/goldVote'
+    })
+  },
+  // 名企专区
+  goEnterprise() {
+    wx.navigateTo({
+      url: '../enterprise/enterprise'
+    })
+  },
+  // 职位精选
+  goGoodJob() {
+    wx.navigateTo({
+      url: '../goodJob/goodJob'
+    })
+  },
+  // 项目大厅
+  goProjectHall() {
+    wx.navigateTo({
+      url: '../projectHall/projectHall'
+    })
+  },
+  // 人才简历
+  goTalentResume() {
+    if (this.data.userType === 'engineer') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '当前身份不可查看',
       })
     } else {
       wx.navigateTo({
-        url: '../renzheng/renzheng?shenfen=agent'
+        url: '../talentResume/talentResume'
       })
     }
   },
@@ -206,12 +537,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
-  },
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
 
   },
 
@@ -249,13 +574,7 @@ Page({
   onShareAppMessage: function () {
     return {
       title: '寻猿招聘',
-      path: `/pages/index/index`,
-      success: res => {
-        console.log(res)
-      },
-      fail: res => {
-        console.log(res)
-      }
+      path: `/pages/index/index`
     }
   }
 })

@@ -175,7 +175,7 @@ Page({
   // 进入首页
   goHome() {
     wx.redirectTo({
-      url: '../home/home'
+      url: '../index/index'
     })
   },
   // 进入赏金平台
@@ -204,23 +204,26 @@ Page({
   },
   // 进入我的
   goMy() {
-    if (this.data.userType === 'engineer' && this.data.userInfo.identity_auth.is_engineer == 2) {
-      wx.navigateTo({
-        url: '../renzheng/renzheng'
-      })
-    } else if (this.data.userType === 'hr' && this.data.userInfo.identity_auth.is_hr == 2) {
-      wx.navigateTo({
-        url: '../renzheng/renzheng'
-      })
-    } else if (this.data.userType === 'agent' && this.data.userInfo.identity_auth.is_agent == 2) {
-      wx.navigateTo({
-        url: '../renzheng/renzheng'
-      })
-    } else {
-      wx.redirectTo({
-        url: '../my/my'
-      })
-    }
+    wx.redirectTo({
+      url: '../my/my'
+    })
+    // if (this.data.userType === 'engineer' && this.data.userInfo.identity_auth.is_engineer == 2) {
+    //   wx.navigateTo({
+    //     url: '../renzheng/renzheng'
+    //   })
+    // } else if (this.data.userType === 'hr' && this.data.userInfo.identity_auth.is_hr == 2) {
+    //   wx.navigateTo({
+    //     url: '../renzheng/renzheng'
+    //   })
+    // } else if (this.data.userType === 'agent' && this.data.userInfo.identity_auth.is_agent == 2) {
+    //   wx.navigateTo({
+    //     url: '../renzheng/renzheng'
+    //   })
+    // } else {
+    //   wx.redirectTo({
+    //     url: '../my/my'
+    //   })
+    // }
   },
 
   /**

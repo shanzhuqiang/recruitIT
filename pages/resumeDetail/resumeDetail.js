@@ -76,7 +76,7 @@ Page({
   // 联系后台
   bottomBtn() {
     wx.makePhoneCall({
-      phoneNumber: 18767101010
+      phoneNumber: "010-68698480"
     })
     // if (!this.data.download) {
     //   let userData = this.data.resumeInfo.user_info

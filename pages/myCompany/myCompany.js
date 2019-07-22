@@ -36,13 +36,10 @@ Page({
         } else if (res.data.error_code == 1) {
           wx.showModal({
             title: '提示',
-            content: '未认证公司，前往认证',
-            success: (res) => {
+            content: '该公司审核中',
+            showCancel: false,
+            success(res) {
               if (res.confirm) {
-                wx.redirectTo({
-                  url: '../editCompany/editCompany'
-                })
-              } else if (res.cancel) {
                 wx.navigateBack({
                   delta: 1
                 })

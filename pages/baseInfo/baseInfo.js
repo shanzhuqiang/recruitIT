@@ -223,6 +223,7 @@ Page({
     let city_code = this.data.btnChoose
     let tagArray = this.data.tagArray
     let birthday = this.data.birthday
+    var reg = /^0?1[3|4|5|6|7|8][0-9]\d{8}$/;
     if (name == '') {
       wx.showModal({
         showCancel: false,
@@ -253,7 +254,7 @@ Page({
         title: '提示',
         content: '请选择参加工作时间',
       })
-    } else if (phone == '') {
+    } else if (phone == '' || !reg.test(phone)) {
       wx.showModal({
         showCancel: false,
         title: '提示',

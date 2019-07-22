@@ -83,8 +83,8 @@
     </view>
   </view>
   <!-- 发布的岗位 -->
-  <view wx:if="{{ tabType === 'gangwei' }}" wx:key="">
-    <view class='itemWrap itemWrapTwo' wx:for="{{ quartersList }}" data-id="{{ item.id }}" bindtap='goWordDetail'>
+  <view wx:if="{{ tabType === 'gangwei' }}">
+    <view class='itemWrap itemWrapTwo' wx:key="" wx:for="{{ quartersList }}" data-id="{{ item.id }}" bindtap='goWordDetail'>
       <view class='first'>
         <view class='title'>{{ item.name }}</view>
         <view class='money'>{{ item.salaryStr }}</view>

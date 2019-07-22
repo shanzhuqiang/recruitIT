@@ -42,7 +42,7 @@ Page({
   // 返回首页
   goHome() {
     wx.reLaunch({
-      url: '../home/home'
+      url: '../index/index'
     })
   },
   // 返回上一页

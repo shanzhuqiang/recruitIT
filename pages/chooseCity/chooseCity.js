@@ -92,6 +92,7 @@ Page({
     let usrData = app.globalData.userInfo
     usrData.city_code = data.id
     usrData.city_name = data.ida
+    app.globalData.userInfo = usrData
     wx.navigateBack({
       delta: 1
     })

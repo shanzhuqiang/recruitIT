@@ -23,9 +23,9 @@ App({
           console.log(resData)
           this.globalData.sess_key = resData.sess_key
           this.globalData.userInfo = resData.user_info || {}
-          this.globalData.has_password = resData.has_password
+          // this.globalData.has_password = resData.has_password
           // this.globalData.has_password = 2
-          this.globalData.need_auth = resData.need_auth
+          // this.globalData.need_auth = resData.need_auth
           // 是否需要强制授权 1: 需要 2: 不需要(不需要授权的情况下用户信息不为空)
           // 用户是否有密码 1: 有密码 2: 无密码
         } else {
