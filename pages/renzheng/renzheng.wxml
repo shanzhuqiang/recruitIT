@@ -33,12 +33,15 @@
       </picker>
     </view>
   </view>
-  <view class='finish' wx:if="{{ shenfen === '企业HR' || shenfen === '经纪人' }}" bindtap='finish'>完成</view>
-  <view class='nextStep' wx:if="{{ shenfen === '工程师'}}" bindtap='nextStep'>下一步</view>
-  <view style='height: 40rpx;'></view>
+  <view class='finish' bindtap='finish'>完成</view>
+  <!-- <view class='finish' wx:if="{{ shenfen === '企业HR' || shenfen === '经纪人' }}" bindtap='finish'>完成</view> -->
+  <!-- <view class='nextStep' wx:if="{{ shenfen === '工程师'}}" bindtap='nextStep'>下一步</view> -->
+  <view style='height: 30rpx;'></view>
   <i-drawer mode="right" visible="{{ showCompanyList }}" bind:close="toggleShowCompanyList">
     <scroll-view class="showCompanyListWrap" scroll-y>
       <view class='companyItem' wx:for="{{ companyList }}" wx:key="" data-id="{{ item.id }}" data-name="{{ item.name }}" bindtap='chooseCompany'>{{ item.name }}</view>
+      <view style='height:90rpx;'></view>
+      <view class='bottomB' bindtap='bottomBtn'>联系管理员</view>
     </scroll-view>
   </i-drawer>
 </view>

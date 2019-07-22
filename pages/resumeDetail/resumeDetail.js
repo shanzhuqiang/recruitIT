@@ -78,48 +78,6 @@ Page({
     wx.makePhoneCall({
       phoneNumber: "010-68698480"
     })
-    // if (!this.data.download) {
-    //   let userData = this.data.resumeInfo.user_info
-    //   wx.showModal({
-    //     confirmText: '立即下载',
-    //     confirmColor: '#0073ff',
-    //     title: '提示',
-    //     content: `您将消耗${userData.download_coin}猎币下载简历，下载后就可以联系他啦~`,
-    //     success: (res) => {
-    //       if (res.confirm) {
-    //         if (userData.download_coin > userData.coin) {
-    //           // 消耗的比拥有的多
-    //           wx.showModal({
-    //             title: '提示',
-    //             confirmColor: '#0073ff',
-    //             confirmText: '前往',
-    //             content: '您的猎币不够，请前往充值',
-    //             success: (res) => {
-    //               if (res.confirm) {
-    //                 wx.navigateTo({
-    //                   url: '../myGold2/myGold2'
-    //                 })
-    //               }
-    //             }
-    //           })
-    //         } else {
-    //           this.downResume()
-    //         }
-    //       }
-    //     }
-    //   })
-    // } else {
-    //   wx.makePhoneCall({
-    //     phoneNumber: this.data.resumeInfo.user_info.mobile
-    //     complete(res) {
-    //       wx.showModal({
-    //         showCancel: false,
-    //         title: '提示',
-    //         content: '可在我的-简历-待沟通中邀请面试',
-    //       })
-    //     }
-    //   })
-    // }
   },
   // 下载简历
   downResume() {

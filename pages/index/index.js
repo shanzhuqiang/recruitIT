@@ -246,7 +246,7 @@ Page({
       })
     }
   },
-  // 找兼职
+  // 前往认证
   goHomePage(e) {
     wx.navigateTo({
       url: `../renzheng/renzheng?shenfen=${e.currentTarget.dataset.id}`

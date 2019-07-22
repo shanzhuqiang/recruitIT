@@ -76,6 +76,12 @@ Page({
       phone: e.detail.value
     })
   },
+  // 联系后台
+  bottomBtn() {
+    wx.makePhoneCall({
+      phoneNumber: "010-68698480"
+    })
+  },
   // 工程师下一步
   nextStep() {
     let shenfen = this.data.shenfen
@@ -193,10 +199,13 @@ Page({
             app.globalData.userType = "engineer"
             wx.showModal({
               title: '提示',
-              content: '认证成功',
-              showCancel: false,
+              content: '认证成功，前往完善简历',
               success(res) {
                 if (res.confirm) {
+                  wx.redirectTo({
+                    url: '../improveResume/improveResume'
+                  })
+                } else {
                   wx.reLaunch({
                     url: '../index/index'
                   })
