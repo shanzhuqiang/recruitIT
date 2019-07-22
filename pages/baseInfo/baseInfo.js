@@ -49,7 +49,11 @@ Page({
     userInfo: null,
     common: null,
     cityList: [],
-    areaList: []
+    areaList: [],
+    district: '',
+    districtCode: '',
+    showDistrictList: false,
+    districtList: []
   },
 
   /**
@@ -57,6 +61,7 @@ Page({
    */
   onLoad: function (options) {
     let baseInfo = app.globalData.baseInfo.user_info
+    console.log(baseInfo)
     let tagArray = []
     if (baseInfo.label1) {
       tagArray.push(baseInfo.label1)
@@ -76,14 +81,66 @@ Page({
       email: baseInfo.email,
       work: baseInfo.job_name,
       birthday: baseInfo.birthday,
-      xingbie: baseInfo.gender == 1 ? { id: 1, name: '男' } : { id: 2, name: '女' },
-      shenfen: baseInfo.identity == 1 ? { id: 1, name: '职场人生' } : { id: 2, name: '应届生' },
+      xingbie: baseInfo.gender == 1 ? { id: 1, name: '男' } : baseInfo.gender == 2 ? { id: 2, name: '女' } : { id: null, name: '' },
+      shenfen: baseInfo.identity == 1 ? { id: 1, name: '职场人生' } : baseInfo.identity == 2 ? { id: 2, name: '应届生' } : { id: null, name: '' },
       workTime: baseInfo.work_begin_time,
-      city: baseInfo.city_name,
+      city: baseInfo.city_name, 
       btnChoose: baseInfo.city_code,
+      district: baseInfo.district,
+      districtCode: baseInfo.district_code,
       tagArray: tagArray
     })
     this.getData()
+  },
+  // 获取区域
+  getArea(id) {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Addr/city2DistrictList.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        city_code: id
+      },
+      method: 'POST',
+      success: (res) => {
+        this.setData({
+          districtList: res.data.bizobj.data.area_list
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 打开区域遮罩
+  openDistrict () {
+    if (this.data.btnChoose) {
+      this.setData({
+        showDistrictList: true
+      })
+    } else {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请先选择所在城市',
+      })
+    }
+  },
+  // 关闭区域遮罩
+  toggleShowDistrictList() {
+    this.setData({
+      showDistrictList: false
+    })
+  },
+  // 选择区域
+  chooseDistrict(e) {
+    this.setData({
+      district: e.currentTarget.dataset.name,
+      districtCode: e.currentTarget.dataset.id,
+      showDistrictList: false
+    })
   },
   // 名字改变
   nameChange (e) {
@@ -221,62 +278,69 @@ Page({
     let email = this.data.email
     let job_name = this.data.work
     let city_code = this.data.btnChoose
+    let district_code = this.data.districtCode
     let tagArray = this.data.tagArray
     let birthday = this.data.birthday
     var reg = /^0?1[3|4|5|6|7|8][0-9]\d{8}$/;
-    if (name == '') {
+    if (!name) {
       wx.showModal({
         showCancel: false,
         title: '提示',
         content: '请输入真实姓名',
       })
-    } else if (xingbie == '') {
+    } else if (!xingbie) {
       wx.showModal({
         showCancel: false,
         title: '提示',
         content: '请选择性别',
       })
-    } else if (birthday == '') {
+    } else if (!birthday) {
       wx.showModal({
         showCancel: false,
         title: '提示',
         content: '请选择出生日期',
       })
-    } else if (identity == '') {
+    } else if (!identity) {
       wx.showModal({
         showCancel: false,
         title: '提示',
         content: '请选择当前身份',
       })
-    } else if (workTime == '') {
+    } else if (!workTime) {
       wx.showModal({
         showCancel: false,
         title: '提示',
         content: '请选择参加工作时间',
       })
-    } else if (phone == '' || !reg.test(phone)) {
+    } else if (!phone || !reg.test(phone)) {
       wx.showModal({
         showCancel: false,
         title: '提示',
         content: '请输入手机号',
       })
-    } else if (email == '') {
+    } else if (!email) {
       wx.showModal({
         showCancel: false,
         title: '提示',
         content: '请输入联系邮箱',
       })
-    } else if (job_name == '') {
+    } else if (!job_name) {
       wx.showModal({
         showCancel: false,
         title: '提示',
         content: '请输入所在岗位',
       })
-    } else if (city_code == '') {
+    } else if (!city_code) {
       wx.showModal({
         showCancel: false,
         title: '提示',
         content: '请选择所在城市',
+      })
+    } else if (!district_code) {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请选择所在区域',
       })
     } else {
       wx.showLoading({
@@ -293,8 +357,9 @@ Page({
           identity: identity,
           mobile: phone,
           email: email,
-          job_name: job_name,
+          job_name: job_name, 
           city_code: city_code,
+          district_code: district_code,
           label1: tagArray[0] || '',
           label2: tagArray[1] || '',
           label3: tagArray[2] || '',
@@ -398,6 +463,7 @@ Page({
       city: e.currentTarget.dataset.ida,
       cityChooseMask: false
     })
+    this.getArea(e.currentTarget.dataset.id)
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

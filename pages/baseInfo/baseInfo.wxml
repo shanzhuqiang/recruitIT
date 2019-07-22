@@ -35,7 +35,7 @@
     </view>
     <view class='hallRow'>
       <view class='leftName'>手机号码</view>
-      <input class='rightInput' placeholder='请输入手机号码' value='{{ phone }}' bindinput='phoneChange'></input>
+      <input class='rightInput' type='number' placeholder='请输入手机号码' maxlength='11' value='{{ phone }}' bindinput='phoneChange'></input>
     </view>
     <view class='hallRow'>
       <view class='leftName'>联系邮箱</view>
@@ -47,7 +47,11 @@
     </view>
     <view class='hallRow' bindtap='openChooseCity'>
       <view class='leftName'>所在城市</view>
-      <input class='rightInput' placeholder='请输入所在城市' value='{{ city }}' disabled></input>
+      <input class='rightInput' placeholder='请选择所在城市' value='{{ city }}' disabled></input>
+    </view>
+    <view class='hallRow' bindtap='openDistrict'>
+      <view class='leftName'>所在区域</view>
+      <input class='rightInput' placeholder='请选择所在区域' value='{{ district }}' disabled></input>
     </view>
   </view> 
   <view class='bottomBox'>
@@ -92,4 +96,9 @@
       </view>
     </view>
   </view>
+  <i-drawer mode="right" visible="{{ showDistrictList }}" bind:close="toggleShowDistrictList">
+    <scroll-view class="showCompanyListWrap" scroll-y>
+      <view class='companyItem' wx:for="{{ districtList }}" wx:key="" data-id="{{ item.district_code }}" data-name="{{ item.district_name }}" bindtap='chooseDistrict'>{{ item.district_name }}</view>
+    </scroll-view>
+  </i-drawer>
 </view> 
