@@ -279,6 +279,7 @@ Page({
     let job_name = this.data.work
     let city_code = this.data.btnChoose
     let district_code = this.data.districtCode
+    let district = this.data.district
     let tagArray = this.data.tagArray
     let birthday = this.data.birthday
     var reg = /^0?1[3|4|5|6|7|8][0-9]\d{8}$/;
@@ -359,6 +360,7 @@ Page({
           email: email,
           job_name: job_name, 
           city_code: city_code,
+          district_name: district,
           district_code: district_code,
           label1: tagArray[0] || '',
           label2: tagArray[1] || '',
