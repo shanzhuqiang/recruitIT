@@ -40,8 +40,10 @@
   <i-drawer mode="right" visible="{{ showCompanyList }}" bind:close="toggleShowCompanyList">
     <scroll-view class="showCompanyListWrap" scroll-y>
       <view class='companyItem' wx:for="{{ companyList }}" wx:key="" data-id="{{ item.id }}" data-name="{{ item.name }}" bindtap='chooseCompany'>{{ item.name }}</view>
-      <view style='height:90rpx;'></view>
-      <view class='bottomB' bindtap='bottomBtn'>联系管理员</view>
+      <view style='height:106rpx;'></view>
+      <view class='bottomB' bindtap='bottomBtn'>
+        <text>未找到我的公司\n联系管理员</text>
+      </view>
     </scroll-view>
   </i-drawer>
 </view>

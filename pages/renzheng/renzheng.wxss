@@ -25,7 +25,8 @@
 	font-size: 28rpx;
   height: 90rpx;
   text-align: center;
-  line-height: 90rpx;
+  padding-top: 16rpx;
+  /* line-height: 90rpx; */
   background-color: #4c85fb;
   color: #fff;
   position: fixed;
