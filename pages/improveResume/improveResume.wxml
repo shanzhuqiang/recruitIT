@@ -103,4 +103,7 @@
       <text class='addIcon'>+</text>添加项目经历
     </view>
   </view>
+  <view class='finishWrap'>
+    <view class='finish' bindtap='finish'>完成</view>
+  </view>
 </view>

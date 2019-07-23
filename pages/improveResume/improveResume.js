@@ -24,6 +24,12 @@ Page({
   onShow: function () {
     this.getDetail()
   },
+  // 返回
+  finish () {
+    wx.navigateBack({
+      delta: 1
+    })
+  },
   // 获取简历详情
   getDetail() {
     wx.request({

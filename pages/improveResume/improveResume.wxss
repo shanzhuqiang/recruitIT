@@ -1,6 +1,6 @@
 /* pages/improveResume/improveResume.wxss */
 .improveResumeWrap{
-  border-bottom: 70rpx solid #f8f8f8;
+  border-bottom: 40rpx solid #f8f8f8;
 }
 .improveResumeWrap .resumeDetailBox{
   padding: 0 30rpx;
@@ -197,4 +197,22 @@
 	font-size: 26rpx;
 	line-height: 36rpx;
 	color: #999;
+}
+.improveResumeWrap .finishWrap{
+  background: #f8f8f8;
+  padding-top: 30rpx;
+}
+.improveResumeWrap .finishWrap .finish{
+	background-color: #4c85fb;
+	box-shadow: 0 4rpx 16rpx 0 
+		rgba(26, 73, 210, 0.46);
+	border-radius: 4rpx;
+  width: 600rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  text-align: center;
+	font-family: PingFangSC-Regular;
+	font-size: 32rpx;
+	color: #ffffff;
+  margin: 0 auto;
 }

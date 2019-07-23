@@ -477,8 +477,9 @@ Page({
       wx.navigateTo({
         url: '../searchFirst/searchFirst'
       })
-    } else if (this.data.userType === 'hr') {
-      wx.navigateTo({
+    // } else if (this.data.userType === 'hr') {
+     } else {
+       wx.navigateTo({
         url: '../searchSecond/searchSecond'
       })
     }
