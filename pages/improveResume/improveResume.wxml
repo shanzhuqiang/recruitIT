@@ -7,15 +7,15 @@
       <view class='editBtn' bindtap='goBaseInfo'>编辑</view>
     </view>
     <view class='first'>
-      <text class='name'>{{ resumeInfo.user_info.username }}</text>
-      <text class='profession'>{{ resumeInfo.user_info.job_name }}</text>
+      <text class='name'>{{ resumeInfo.user_info.username || '未知' }}</text>
+      <text class='profession'>{{ resumeInfo.user_info.job_name || '未知' }}</text>
     </view>
     <view class='second'>
       <text style='padding-left: 0'>{{ resumeInfo.user_info.gender == 1 ? '男' : resumeInfo.user_info.gender == 2 ? '女' : '未知' }}</text>
       <text>{{ resumeInfo.user_info.birthday2 }}</text>
-      <text>{{ resumeInfo.user_info.city_name }}</text>
+      <text>{{ resumeInfo.user_info.city_name || '未知' }}</text>
       <text>{{ resumeInfo.user_info.workTime }}</text>
-      <text style='border-right: none'>{{ resumeInfo.user_info.identity == 1 ? '职场人士' : '应届毕业生' }}</text>
+      <text style='border-right: none'>{{ resumeInfo.user_info.identity == 1 ? '职场人士' : resumeInfo.user_info.identity == 2 ? '应届毕业生' : '未知'}}</text>
     </view>
     <view class='three'>
       <text wx:if="{{ resumeInfo.user_info.label1 !== '' }}">{{ resumeInfo.user_info.label1 }}</text>
@@ -26,13 +26,13 @@
       <view class='iconWrap'>
         <image class='phone' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/phone.png'></image>
       </view>
-      <view class='strBox'>{{resumeInfo.user_info.mobile }}</view>
+      <view class='strBox'>{{resumeInfo.user_info.mobile || '未知' }}</view>
     </view>
     <view class='five'>
       <view class='iconWrap'>
         <image class='email' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/email.png'></image>
       </view>
-      <view class='strBox'>{{ resumeInfo.user_info.email }}</view>
+      <view class='strBox'>{{ resumeInfo.user_info.email || '未知' }}</view>
     </view>
   </view>
   <view class='resumeDetailBox'>

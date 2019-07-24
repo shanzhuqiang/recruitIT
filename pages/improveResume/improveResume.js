@@ -46,8 +46,16 @@ Page({
         let workStartTime = new Date(resData.user_info.work_begin_time);
         let age = parseInt((now - birthday) / year);
         let workTime = parseInt((now - workStartTime) / year);
-        resData.user_info['birthday2'] = age + '岁'
-        resData.user_info['workTime'] = workTime + '年'
+        if (resData.user_info.work_begin_time) {
+          resData.user_info['workTime'] = workTime + '年'
+        } else {
+          resData.user_info['workTime'] = '未知'
+        }
+        if (resData.user_info.birthday) {
+          resData.user_info['birthday2'] = age + '岁'
+        } else {
+          resData.user_info['birthday2'] = '未知'
+        }
         app.globalData.baseInfo = resData
         this.setData({
           resumeInfo: resData

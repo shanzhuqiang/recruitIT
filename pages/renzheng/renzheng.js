@@ -25,7 +25,7 @@ Page({
     let shenfen = options.shenfen
     this.setData({
       shenfenKey: shenfen,
-      shenfen: shenfen == 'engineer' ? '工程师' : shenfen == 'hr' ? "企业HR" : "经纪人"
+      shenfen: shenfen == 'engineer' ? '工程师' : shenfen == 'hr' ? "客户经理" : "经纪人"
     })
     this.setData({
       imgSrc: app.globalData.imgSrc
@@ -176,7 +176,7 @@ Page({
   },
   // 认证
   identify() {
-    let type = this.data.shenfen === '工程师' ? 1 : this.data.shenfen === '企业HR' ? 2 : 3
+    let type = this.data.shenfen === '工程师' ? 1 : this.data.shenfen === '客户经理' ? 2 : 3
     wx.request({
       url: `${app.globalData.baseUrl}/User/identify.html`,
       data: {

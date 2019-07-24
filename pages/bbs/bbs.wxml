@@ -25,7 +25,7 @@
     <view class='topName'>
       <image class='touxiang' src='{{ item.user_info.avatar }}'></image>
       <view class='name'>{{ item.user_info.username }}</view>
-      <view class='shenfen {{ item.user_info.user_type == 1 ? "one" : item.user_info.user_type == 2 ? "two" : "three" }}'>{{ item.user_info.user_type == 1 ? '工程师' : item.user_info.user_type == 2 ? '企业HR' : '经纪人' }}</view>
+      <view class='shenfen {{ item.user_info.user_type == 1 ? "one" : item.user_info.user_type == 2 ? "two" : "three" }}'>{{ item.user_info.user_type == 1 ? '工程师' : item.user_info.user_type == 2 ? '客户经理' : '经纪人' }}</view>
       <view class='time'>{{ item.publish_time }}</view>
     </view>
     <view class='title'>{{ item.title }}</view>
@@ -101,13 +101,13 @@
         </view>
         <view>发布帖子</view>
       </view>
-      <view class='iconCol' wx:if="{{ userType !== 'engineer' }}" bindtap='goReleaseGangwei'>
+      <view class='iconCol' wx:if="{{ userType == 'hr' }}" bindtap='goReleaseGangwei'>
         <view>
           <image class='fabuTiezi' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/fabuGangwei.png'></image>
         </view>
         <view>发布岗位</view>
       </view>
-      <view class='iconCol' wx:if="{{ userType !== 'engineer' }}" bindtap='goReleaseProject'>
+      <view class='iconCol' wx:if="{{ userType == 'hr' }}" bindtap='goReleaseProject'>
         <view>
           <image class='fabuTiezi' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/fabuXiangmu.png'></image>
         </view>

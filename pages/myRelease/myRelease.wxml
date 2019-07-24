@@ -17,7 +17,7 @@
       <view class='topName'>
         <image class='touxiang' wx:if="{{imgSrc !== ''}}" src='{{ item.user_info.avatar }}'></image>
         <view class='name'>{{ item.user_info.username }}</view>
-        <view class='shenfen {{ item.user_info.user_type == 1 ? "one" : item.user_info.user_type == 2 ? "two" : "three" }}'>{{ item.user_info.user_type == 1 ? '工程师' : item.user_info.user_type == 2 ? '企业HR' : '经纪人' }}</view>
+        <view class='shenfen {{ item.user_info.user_type == 1 ? "one" : item.user_info.user_type == 2 ? "two" : "three" }}'>{{ item.user_info.user_type == 1 ? '工程师' : item.user_info.user_type == 2 ? '客户经理' : '经纪人' }}</view>
         <view class='time'>{{ item.publish_time }}</view>
       </view>
       <view class='title'>{{ item.title }}</view>

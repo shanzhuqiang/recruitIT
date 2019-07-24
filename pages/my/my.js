@@ -11,7 +11,8 @@ Page({
     releaseMark: false,
     imgSrc: '',
     num: '',
-    unReadNum: 0
+    unReadNum: 0,
+    interviewCount: 0
   }, 
 
   /**
@@ -31,7 +32,32 @@ Page({
     })
     this.getNum()
     this.getUnRead()
+    if (this.data.userType == 'engineer') {
+      this.getUnReadInterview()
+    }
   },
+  // 获取面试邀请未读数
+  getUnReadInterview() {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Apply/getUnReadInterview.html`,
+      data: {
+        sess_key: app.globalData.sess_key
+      },
+      method: 'POST',
+      success: (res) => {
+        this.setData({
+          interviewCount: res.data.bizobj.data.interview_count
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 获取消息未读数
   getUnRead() {
     wx.request({
       url: `${app.globalData.baseUrl}/notice/noticeCount.html`,

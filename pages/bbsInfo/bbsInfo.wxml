@@ -7,7 +7,7 @@
     <view class='rightBox'>
       <view>
         <text class='userName'>{{ bbsInfo.user_info.username }}</text>
-        <view class='shenfen {{ bbsInfo.user_info.user_type == 1 ? "one" : bbsInfo.user_info.user_type == 2 ? "two" : "three" }}'>{{ bbsInfo.user_info.user_type == 1 ? '工程师' : bbsInfo.user_info.user_type == 2 ? '企业HR' : '经纪人' }}</view>
+        <view class='shenfen {{ bbsInfo.user_info.user_type == 1 ? "one" : bbsInfo.user_info.user_type == 2 ? "two" : "three" }}'>{{ bbsInfo.user_info.user_type == 1 ? '工程师' : bbsInfo.user_info.user_type == 2 ? '客户经理' : '经纪人' }}</view>
       </view>
       <view class='time'>{{ bbsInfo.publish_time }}<text class='tiameType'>#{{ bbsInfo.type == 1 ? '个人发布' : '官方发布' }}#</text></view>
     </view>

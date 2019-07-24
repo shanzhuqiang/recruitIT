@@ -155,6 +155,19 @@
 	color: #333;
   text-align: center;
   height: 41rpx;
+  position: relative;
+}
+.myWrap .middleBox > view .interviewCount{
+  position: absolute;
+  font-size: 20rpx;
+  background: #f56c6c;
+  padding: 0 10rpx;
+  height: 20rpx;
+  line-height: 20rpx;
+  color: #fff;
+  border-radius: 10rpx;
+  right: 14%;
+  top: -10rpx;
 }
 .myWrap .middleBox > view > view{
   padding-top: 10rpx;
