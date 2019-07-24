@@ -32,9 +32,9 @@ Page({
     })
     this.getNum()
     this.getUnRead()
-    if (this.data.userType == 'engineer') {
-      this.getUnReadInterview()
-    }
+    // if (this.data.userType == 'engineer') {
+    //   this.getUnReadInterview()
+    // }
   },
   // 获取面试邀请未读数
   getUnReadInterview() {

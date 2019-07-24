@@ -5,7 +5,7 @@
     <view class='second'>{{ item.content }}</view>
     <view class='three'>{{ item.time }} <text wx:if="{{ item.is_read == 2 }}">(未读)</text></view>
     <!-- <view class='checkBtn' wx:if="{{ !item.is_read }}" bindtap='goMessage' data-id="{{ item.id }}">查看详情</view> -->
-    <view class='checkBtn' wx:if="{{ item.type == 1 || item.type == 2 }}" bindtap='goMessage' data-id="{{ item.id }}" data-type="{{ item.type }}" data-rejobid="{{ item.re_job_id }}" data-reprojectid="{{ item.re_project_id }}" data-fromsesskey="{{ item.from_sess_key }}">查看详情</view>
+    <view class='checkBtn' wx:if="{{ item.type == 1 || item.type == 2 || item.type == 4 || item.type == 5 }}" bindtap='goMessage' data-id="{{ item.id }}" data-type="{{ item.type }}" data-rejobid="{{ item.re_job_id }}" data-reprojectid="{{ item.re_project_id }}" data-reapplyid="{{ item.re_apply_id }}" data-reresumeid="{{ item.re_resume_id }}" data-fromsesskey="{{ item.from_sess_key }}">查看详情</view>
   </view>
   <view wx:if="{{ listData.length == 0 }}" class='noDataWrap'>
     <image class='noData' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/noData.png'></image>

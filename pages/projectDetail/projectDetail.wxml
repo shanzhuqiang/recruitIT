@@ -125,4 +125,10 @@
       <view class='secondBox' bindtap='cancalShare'>取消</view>
     </view>
   </view>
+  <!-- 推荐列表 -->
+  <i-drawer mode="right" visible="{{ showUsertList }}" bind:close="toggleshowUsertList">
+    <scroll-view class="showCompanyListWrap" scroll-y>
+      <view class='companyItem' wx:for="{{ user_list }}" wx:key="" data-id="{{ item.id }}" data-name="{{ item.username }}" bindtap='chooseDistrict'>{{ item.username }}</view>
+    </scroll-view>
+  </i-drawer>
 </view>

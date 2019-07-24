@@ -104,6 +104,8 @@ Page({
     let type = e.currentTarget.dataset.type
     let re_job_id = e.currentTarget.dataset.rejobid
     let re_project_id = e.currentTarget.dataset.reprojectid
+    let re_resume_id = e.currentTarget.dataset.reresumeid
+    let re_apply_id = e.currentTarget.dataset.reapplyid
     let from_sess_key = e.currentTarget.dataset.fromsesskey
     //该消息置为读取
     wx.request({
@@ -114,6 +116,7 @@ Page({
       },
       method: 'POST',
       success: (res) => {
+        wx.hideLoading()
         if (res.data.error_code == 0) {
           if (type == 1) {
             // 1是岗位
@@ -124,6 +127,22 @@ Page({
             // 2是项目
             wx.navigateTo({
               url: `../projectDetail/projectDetail?id=${re_project_id}&fromsesskey=${from_sess_key}`
+            })
+          } else if (type == 4) {
+            // 4是面试消息提示
+            if (re_job_id) {
+              wx.navigateTo({
+                url: `../faceInfo/faceInfo?id=${re_apply_id}&type=1`
+              })
+            } else {
+              wx.navigateTo({
+                url: `../faceInfo/faceInfo?id=${re_apply_id}&type=2`
+              })
+            }
+          } else if (type == 5) {
+            // 5是投递简历消息提示
+            wx.navigateTo({
+              url: `../resume/resume`
             })
           }
         } else {

@@ -15,7 +15,8 @@ Page({
     maskOnOff: false,
     user_list: [],
     fromsesskey: null,
-    bonus: ''
+    bonus: '',
+    showUsertList: false
   },
 
   /**
@@ -182,50 +183,96 @@ Page({
       shareMask: false
     })
   },
-  // 站内分享
-  shareUser () {
-    let user_list = this.data.user_list
-    let newUserList = []
-    user_list.forEach((el, index) => {
-      newUserList.push(el.username)
-    })
-    wx.showActionSheet({
-      itemList: newUserList,
-      success: (res) => {
-        this.shareUserFn(user_list[res.tapIndex])
-      }
+  // 打开推荐
+  shareUser() {
+    if (this.data.user_list.length > 0) {
+      this.setData({
+        showUsertList: true
+      })
+    } else {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请先关注工程师',
+      })
+    }
+  },
+  // 关闭推荐
+  toggleshowUsertList() {
+    this.setData({
+      showUsertList: false
     })
   },
+  // 选择推荐的人
+  chooseDistrict(e) {
+    this.shareUserFn(e.currentTarget.dataset.id)
+  },
   // 站内分享方法
-  shareUserFn (obj) {
+  shareUserFn(id) {
     wx.showLoading({
       mask: true,
-      title: '分享中...',
+      title: '推荐中...',
     })
-    let userType = this.data.userType
+    // 先检测是否已推荐
     wx.request({
-      url: `${app.globalData.baseUrl}/work/shareInWork.html`,
+      url: `${app.globalData.baseUrl}/Apply/checkRec.html`,
       data: {
-        sess_key: app.globalData.sess_key,
-        user_type: userType === 'engineer' ? 1 : userType === 'hr' ? 2 : 3,
-        re_project_id: this.data.id,
-        to_user_id: obj.id,
+        agent_key: app.globalData.sess_key,
+        engineer_id: id,
+        id: this.data.id,
         type: 2
       },
       method: 'POST',
       success: (res) => {
-        wx.hideLoading()
         if (res.data.error_code == 0) {
-          wx.showToast({
-            title: '推荐成功',
-            mask: true,
-            icon: 'success',
-            success: () => {
-              this.setData({
-                shareMask: false
-              })
-            }
-          })
+          if (res.data.bizobj.flag == 0) {
+            // 0为未推荐过
+            let userType = this.data.userType
+            wx.request({
+              url: `${app.globalData.baseUrl}/work/shareInWork.html`,
+              data: {
+                sess_key: app.globalData.sess_key,
+                user_type: userType === 'engineer' ? 1 : userType === 'hr' ? 2 : 3,
+                re_project_id: this.data.id,
+                to_user_id: id,
+                type: 2
+              },
+              method: 'POST',
+              success: (res) => {
+                wx.hideLoading()
+                if (res.data.error_code == 0) {
+                  wx.showToast({
+                    title: '推荐成功',
+                    mask: true,
+                    icon: 'success',
+                    success: () => {
+                      this.setData({
+                        shareMask: false
+                      })
+                    }
+                  })
+                } else {
+                  wx.showToast({
+                    icon: 'none',
+                    title: res.data.msg,
+                  })
+                }
+              },
+              fail: (res) => {
+                wx.showToast({
+                  icon: 'none',
+                  title: '网络请求失败',
+                })
+              }
+            })
+          } else if (res.data.bizobj.flag == 1) {
+            wx.hideLoading()
+            wx.showModal({
+              showCancel: false,
+              title: '提示',
+              content: '已推荐，请勿重复推荐',
+            })
+          }
         } else {
           wx.showToast({
             icon: 'none',

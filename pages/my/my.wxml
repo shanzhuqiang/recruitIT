@@ -34,7 +34,7 @@
     <view bindtap='goMyDelivery'>
       <image class='toudi' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/toudi.png'></image>
       <view>我的投递</view>
-      <view class='interviewCount' wx:if="{{ interviewCount }}">{{ interviewCount }}</view>
+      <!-- <view class='interviewCount' wx:if="{{ interviewCount }}">{{ interviewCount }}</view> -->
     </view>
     <view bindtap='goMyTask'>
       <image class='renwu' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/renwu.png'></image>

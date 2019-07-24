@@ -1,5 +1,24 @@
 /* pages/postDetail/postDetail.wxss */
 .projectDetailWrap{
+  height: 100%;
+}
+.projectDetailWrap .showCompanyListWrap{
+	width:50vw;
+	height: 100vh;
+	background:#fff;
+  position: relative;
+}
+.projectDetailWrap .showCompanyListWrap .companyItem{
+	font-family: PingFangSC-Regular;
+	font-size: 28rpx;
+	color: #666;
+  height: 84rpx;
+  line-height: 84rpx;
+  border-bottom: 1rpx solid #e5e5e5;
+  text-align: center;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
 .projectDetailWrap .topBox{
   border-bottom: 16rpx solid #f8f8f8;
