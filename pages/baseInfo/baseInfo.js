@@ -86,11 +86,14 @@ Page({
       workTime: baseInfo.work_begin_time,
       city: baseInfo.city_name, 
       btnChoose: baseInfo.city_code,
-      district: baseInfo.district,
+      district: baseInfo.district_name,
       districtCode: baseInfo.district_code,
       tagArray: tagArray
     })
     this.getData()
+    if (this.data.btnChoose) {
+      this.getArea(this.data.btnChoose)
+    }
   },
   // 获取区域
   getArea(id) {
