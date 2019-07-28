@@ -466,6 +466,8 @@ Page({
     this.setData({
       btnChoose: e.currentTarget.dataset.id,
       city: e.currentTarget.dataset.ida,
+      districtCode: '',
+      district: '',
       cityChooseMask: false
     })
     this.getArea(e.currentTarget.dataset.id)

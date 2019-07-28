@@ -380,7 +380,7 @@ Page({
           } else if (res.data.error_code == 3) {
             wx.showModal({
               title: '提示',
-              content: '未认证公司，需后台审核',
+              content: res.data.msg,
               success: (res) => {
                 wx.navigateBack({
                   delta: 1

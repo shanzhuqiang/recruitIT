@@ -44,7 +44,7 @@
       </view>
     </view>
     <view class='bottomRow' wx:if="{{ topType == 4 }}">
-      <view class='yoaqingBtn' bindtap='goInvite' data-id="{{ item.id }}">再邀面</view>
+      <view class='yoaqingBtn' bindtap='goInvite' wx:if="{{ item.status != 3 }}" data-id="{{ item.id }}">再邀面</view>
       <view class='bottomBtn'  bindtap='del' data-id="{{ item.id }}">删除</view>
     </view>
   </view>
