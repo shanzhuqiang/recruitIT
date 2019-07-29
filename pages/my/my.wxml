@@ -5,7 +5,7 @@
       <image class='touxiang' src='{{ userInfo.avatar }}'></image>
       <view class='firstRow'>
         <view class='one'>{{ userInfo.nickname }}</view>
-        <view class='two'>{{ userType === 'engineer' ? '工程师' : userType === 'hr' ? 'HR' : '经纪人' }}</view>
+        <view class='two'>{{ userType === 'engineer' ? '工程师' : userType === 'hr' ? '客户经理' : '经纪人' }}</view>
         <!-- <view class='three'>
           <image class='zuanshi' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/zuanshi.png'></image>
           A会员

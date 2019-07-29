@@ -36,14 +36,11 @@ Page({
         } else if (res.data.error_code == 1) {
           wx.showModal({
             title: '提示',
-            content: '该公司审核中',
-            showCancel: false,
-            success(res) {
-              if (res.confirm) {
-                wx.navigateBack({
-                  delta: 1
-                })
-              }
+            content: res.data.msg,
+            success: (res) => {
+              wx.navigateBack({
+                delta: 1
+              })
             }
           })
         } else {
