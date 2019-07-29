@@ -30,9 +30,21 @@ Page({
       success: (res) => {
         if (res.data.error_code == 0) {
           let company_info = res.data.bizobj.data.company_info
-          this.setData({
-            company_info: company_info
-          })
+          if (Array.isArray(company_info)) {
+            wx.showModal({
+              title: '提示',
+              content: "未认证公司,后台审核",
+              success: (res) => {
+                wx.navigateBack({
+                  delta: 1
+                })
+              }
+            })
+          } else{
+            this.setData({
+              company_info: company_info
+            })
+          } 
         } else if (res.data.error_code == 1) {
           wx.showModal({
             title: '提示',
