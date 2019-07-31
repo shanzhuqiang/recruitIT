@@ -82,6 +82,14 @@ Page({
       }
     ],
     money: '',
+    chooseActive: 'used',
+    address: '',
+    btnChoose: '',
+    userInfo: null,
+    common: null,
+    cityList: [],
+    areaList: [],
+    cityChooseMask: false,
     gangweiTextareaMaskBox: false,
     instruction: '',
     yaoqiuTextareaMaskBox: false,
@@ -92,8 +100,10 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
+      userInfo: app.globalData.userInfo,
       imgSrc: app.globalData.imgSrc
     })
+    this.getData()
   },
   // 项目名称
   nameChange (e) {
@@ -105,6 +115,20 @@ Page({
   rewardChange(e) {
     this.setData({
       reward: e.detail.value
+    })
+  },
+  // 打开城市选择
+  openChooseCity() {
+    this.setData({
+      cityChooseMask: true
+    })
+  },
+  // 选择城市
+  chooseBtn(e) {
+    this.setData({
+      btnChoose: e.currentTarget.dataset.id,
+      address: e.currentTarget.dataset.ida,
+      cityChooseMask: false
     })
   },
   // 项目职责
@@ -165,6 +189,7 @@ Page({
   saveRelease() {
     let name = this.data.name
     let reward = this.data.reward
+    let btnChoose = this.data.btnChoose
     let job_experience = this.data.jingyan.id
     let nature = this.data.zhouqi.id
     let salary_range = this.data.money.id
@@ -183,7 +208,13 @@ Page({
         title: '提示',
         content: '赏金最少为100',
       })
-    }  else if (job_experience === '' || typeof (job_experience) == 'undefined') {
+    } else if (btnChoose == '') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请选择工作地点',
+      })
+    } else if (job_experience === '' || typeof (job_experience) == 'undefined') {
       wx.showModal({
         showCancel: false,
         title: '提示',
@@ -226,6 +257,7 @@ Page({
           job_experience: job_experience,
           nature: nature,
           reward: reward,
+          city_code: btnChoose,
           salary_range: salary_range,
           instruction: instruction,
           requirement: requirement
@@ -273,7 +305,65 @@ Page({
       })
     }
   },
-
+  // 初始化获取数据
+  getData() {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Addr/chooseDistrict.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        lat: this.data.userInfo.lat,
+        lng: this.data.userInfo.lng
+      },
+      method: 'POST',
+      success: (res) => {
+        let resData = res.data.bizobj.data
+        this.setData({
+          cityList: resData.prov_list,
+          common: resData.common
+        })
+        console.log(resData)
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 左侧选择省份
+  chooseCity(e) {
+    let key = e.currentTarget.dataset.id
+    this.setData({
+      chooseActive: key
+    })
+    if (key !== 'used') {
+      this.getProv2CityList(key)
+    }
+  },
+  getProv2CityList(code) {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Addr/prov2CityList.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        prov_code: code
+      },
+      method: 'POST',
+      success: (res) => {
+        let resData = res.data.bizobj.data
+        this.setData({
+          areaList: resData.area_list
+        })
+        console.log(resData)
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

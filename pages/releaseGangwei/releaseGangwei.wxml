@@ -10,11 +10,11 @@
       <view class='leftName'>赏金</view>
       <input class='rightInput' type='number' placeholder='请输入赏金' bindinput='rewardChange'></input>
     </view>
-    <!-- <view class='hallRow'>
+    <view class='hallRow'>
       <view class='leftName'>工作地点</view>
       <input class='rightInput' placeholder='请输入工作地点' value='{{ address }}' disabled bindtap='openChooseCity'></input>
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
-    </view> -->
+    </view>
     <view class='hallRow'>
       <view class='leftName'>经验要求</view>
       <picker bindchange="jingyanChange" range="{{ jingyanArray }}" range-key="name">

@@ -303,13 +303,12 @@ Page({
         title: '提示',
         content: '赏金最少为100',
       })
-    //    else if (btnChoose == '') {
-    //   wx.showModal({
-    //     showCancel: false,
-    //     title: '提示',
-    //     content: '请选择工作地点',
-    //   })
-    // }
+    } else if (btnChoose == '') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请选择工作地点',
+      })
     } else if (job_experience === '' || typeof(job_experience) == 'undefined') {
       wx.showModal({
         showCancel: false,
@@ -351,7 +350,7 @@ Page({
           sess_key: app.globalData.sess_key,
           name: name, 
           reward: reward,
-          // city_code: btnChoose,
+          city_code: btnChoose,
           job_experience: job_experience,
           education: education,
           salary_range: salary_range,
