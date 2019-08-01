@@ -290,50 +290,49 @@ Page({
     let job_label1 = this.data.tagArray[0] || ''
     let job_label2 = this.data.tagArray[1] || ''
     let job_label3 = this.data.tagArray[2] || ''
-    console.log(job_experience)
-    if (name == '') {
+    if (!name) {
       wx.showModal({
         showCancel: false,
         title: '提示',
         content: '请输入岗位名称',
       })
-    } else if (reward == '' || reward < 100) {
+    } else if (!reward || reward < 100) {
       wx.showModal({
         showCancel: false,
         title: '提示',
         content: '赏金最少为100',
       })
-    } else if (btnChoose == '') {
+    } else if (!btnChoose) {
       wx.showModal({
         showCancel: false,
         title: '提示',
         content: '请选择工作地点',
       })
-    } else if (job_experience === '' || typeof(job_experience) == 'undefined') {
+    } else if (!job_experience || typeof(job_experience) == 'undefined') {
       wx.showModal({
         showCancel: false,
         title: '提示',
         content: '请选择经验要求',
       })
-    } else if (education === '' || typeof(education) == 'undefined') {
+    } else if (!education|| typeof(education) == 'undefined') {
       wx.showModal({
         showCancel: false,
         title: '提示',
         content: '请选择学历',
       })
-    } else if (salary_range === '' || typeof(salary_range) == 'undefined') {
+    } else if (!salary_range|| typeof(salary_range) == 'undefined') {
       wx.showModal({
         showCancel: false,
         title: '提示',
-        content: '请选择月薪',
+        content: '请选择月薪范围',
       })
-    } else if (instruction == '') {
+    } else if (!instruction) {
       wx.showModal({
         showCancel: false,
         title: '提示',
         content: '请输入岗位职责',
       })
-    } else if (requirement == '') {
+    } else if (!requirement) {
       wx.showModal({
         showCancel: false,
         title: '提示',

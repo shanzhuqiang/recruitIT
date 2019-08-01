@@ -2,6 +2,6 @@
   "usingComponents": {
     "i-load-more": "../../dist/load-more/index"
   },
-  "navigationBarTitleText": "项目大厅",
+  "navigationBarTitleText": "外包岗位",
   "navigationBarBackgroundColor": "#fff"
 }

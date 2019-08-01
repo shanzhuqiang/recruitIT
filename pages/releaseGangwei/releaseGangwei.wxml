@@ -18,21 +18,21 @@
     <view class='hallRow'>
       <view class='leftName'>经验要求</view>
       <picker bindchange="jingyanChange" range="{{ jingyanArray }}" range-key="name">
-        <input class='rightInput' placeholder="请选择" value='{{ jingyan.name }}' disabled/>
+        <input class='rightInput' placeholder="请选择经验要求" value='{{ jingyan.name }}' disabled/>
       </picker>
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
     </view>
     <view class='hallRow'>
       <view class='leftName'>学历</view>
       <picker bindchange="xueliChange" range="{{ xueliArray }}" range-key="name">
-        <input class='rightInput' placeholder="请选择" value='{{ xueli.name }}' disabled/>
+        <input class='rightInput' placeholder="请选择学历" value='{{ xueli.name }}' disabled/>
       </picker>
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
     </view>
     <view class='hallRow'>
-      <view class='leftName'>月薪</view>
+      <view class='leftName'>月薪范围</view>
       <picker bindchange="moneyChange" range="{{ moneyArray }}" range-key="name">
-        <input class='rightInput' placeholder="请选择" value='{{ money.name }}' disabled/>
+        <input class='rightInput' placeholder="请选择月薪范围" value='{{ money.name }}' disabled/>
       </picker>
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
     </view>

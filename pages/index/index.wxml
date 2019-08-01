@@ -53,13 +53,15 @@
           <view class='imgBox'>
             <image class='zhiwei' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/zhiwei.png'></image>
           </view>
-          <view>职位精选</view>
+          <!-- <view>职位精选</view> -->
+          <view>入职岗位</view>
         </view>
         <view class='colBtn' bindtap='goProjectHall'>
           <view class='imgBox'>
             <image class='xiangmu' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/xiangmu.png'></image>
           </view>
-          <view>项目大厅</view>
+          <!-- <view>项目大厅</view> -->
+          <view>外包岗位</view>
         </view>
         <view class='colBtn' bindtap='goTalentResume'>
           <view class='imgBox'>
@@ -76,8 +78,10 @@
     <view class='rowHeight'></view>
     <view class='typeTitleWrap' wx:if="{{ userType === 'engineer' }}">
       <view class='title'>
-        <text class='{{ titleChoosed === "project" ? "active" : "" }}' bindtap='chooseTitle' data-id="project">最新项目</text>
-        <text class='{{ titleChoosed === "quarters" ? "active" : "" }}' style='margin-left: 60rpx;' bindtap='chooseTitle' data-id="quarters">最新岗位</text>
+        <text class='{{ titleChoosed === "project" ? "active" : "" }}' bindtap='chooseTitle' data-id="project">外包岗位</text>
+        <!-- 最新项目 -->
+        <text class='{{ titleChoosed === "quarters" ? "active" : "" }}' style='margin-left: 60rpx;' bindtap='chooseTitle' data-id="quarters">入职机会</text>
+        <!-- 最新岗位 -->
       </view>
       <!-- 最新项目 -->
       <view wx:if="{{ titleChoosed === 'project' }}">
@@ -177,12 +181,13 @@
           <view class='imgBox'></view>
           <view>发布</view>
       </view>
-      <view class='btnBox' bindtap='goBbs'>
+      <!-- <view class='btnBox' bindtap='goBbs'>
         <view class='imgBox'>
           <image class='luntan' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/luntan.png'></image>
         </view>
           <view>论坛</view>
-      </view>
+      </view> -->
+      <view class='btnBox'></view>
       <view class='btnBox' bindtap='goMy'>
       <view class='unReadNum' wx:if="{{ unReadNum }}">{{ unReadNum }}</view>
         <view class='imgBox'>
@@ -204,13 +209,13 @@
           <view>
             <image class='fabuTiezi' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/fabuGangwei.png'></image>
           </view>
-          <view>发布岗位</view>
+          <view>入职岗位</view>
         </view>
         <view class='iconCol' wx:if="{{ userType === 'hr' }}" bindtap='goReleaseProject'>
           <view>
             <image class='fabuTiezi' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/fabuXiangmu.png'></image>
           </view>
-          <view>发布项目</view>
+          <view>外包岗位</view>
         </view>
       </view>
       <view class='bottomClose'>

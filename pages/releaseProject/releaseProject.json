@@ -1,5 +1,7 @@
 {
-  "usingComponents": {},
-  "navigationBarTitleText": "发布项目",
+  "usingComponents": {
+    "i-drawer": "../../dist/drawer/index"
+  },
+  "navigationBarTitleText": "外包岗位",
   "navigationBarBackgroundColor": "#fff"
 }

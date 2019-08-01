@@ -93,7 +93,11 @@ Page({
     gangweiTextareaMaskBox: false,
     instruction: '',
     yaoqiuTextareaMaskBox: false,
-    requirement: ''
+    requirement: '',
+    district: '',
+    districtCode: '',
+    showDistrictList: false,
+    districtList: []
   },
   /**
    * 生命周期函数--监听页面加载
@@ -104,6 +108,56 @@ Page({
       imgSrc: app.globalData.imgSrc
     })
     this.getData()
+  },
+  // 获取区域
+  getArea(id) {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Addr/city2DistrictList.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        city_code: id
+      },
+      method: 'POST',
+      success: (res) => {
+        this.setData({
+          districtList: res.data.bizobj.data.area_list
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 打开区域遮罩
+  openDistrict() {
+    if (this.data.btnChoose) {
+      this.setData({
+        showDistrictList: true
+      })
+    } else {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请先选择所在城市',
+      })
+    }
+  },
+  // 关闭区域遮罩
+  toggleShowDistrictList() {
+    this.setData({
+      showDistrictList: false
+    })
+  },
+  // 选择区域
+  chooseDistrict(e) {
+    this.setData({
+      district: e.currentTarget.dataset.name,
+      districtCode: e.currentTarget.dataset.id,
+      showDistrictList: false
+    })
   },
   // 项目名称
   nameChange (e) {
@@ -128,8 +182,11 @@ Page({
     this.setData({
       btnChoose: e.currentTarget.dataset.id,
       address: e.currentTarget.dataset.ida,
+      districtCode: '',
+      district: '',
       cityChooseMask: false
     })
+    this.getArea(e.currentTarget.dataset.id)
   },
   // 项目职责
   goProjectZhize() {
@@ -190,6 +247,7 @@ Page({
     let name = this.data.name
     let reward = this.data.reward
     let btnChoose = this.data.btnChoose
+    let district_code = this.data.districtCode
     let job_experience = this.data.jingyan.id
     let nature = this.data.zhouqi.id
     let salary_range = this.data.money.id
@@ -202,43 +260,49 @@ Page({
         title: '提示',
         content: '请输入项目名称',
       })
-    } else if (reward == '' || reward < 100) {
+    } else if (!reward || reward < 100) {
       wx.showModal({
         showCancel: false,
         title: '提示',
         content: '赏金最少为100',
       })
-    } else if (btnChoose == '') {
+    } else if (!btnChoose) {
       wx.showModal({
         showCancel: false,
         title: '提示',
         content: '请选择工作地点',
       })
-    } else if (job_experience === '' || typeof (job_experience) == 'undefined') {
+    } else if (!district_code) {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请选择所在区域',
+      })
+    } else if (!job_experience || typeof (job_experience) == 'undefined') {
       wx.showModal({
         showCancel: false,
         title: '提示',
         content: '请选择经验要求',
       })
-    } else if (nature === '' || typeof (nature) == 'undefined') {
+    } else if (!nature || typeof (nature) == 'undefined') {
       wx.showModal({
         showCancel: false,
         title: '提示',
         content: '请选择工作周期',
       })
-    } else if (salary_range === '' || typeof (salary_range) == 'undefined') {
+    } else if (!salary_range || typeof (salary_range) == 'undefined') {
       wx.showModal({
         showCancel: false,
         title: '提示',
-        content: '请选择月薪',
+        content: '请选择月薪范围',
       })
-    } else if (instruction == '') {
+    } else if (!instruction) {
       wx.showModal({
         showCancel: false,
         title: '提示',
         content: '请输入项目职责',
       })
-    } else if (requirement == '') {
+    } else if (!requirement) {
       wx.showModal({
         showCancel: false,
         title: '提示',
@@ -258,6 +322,7 @@ Page({
           nature: nature,
           reward: reward,
           city_code: btnChoose,
+          district_code: district_code,
           salary_range: salary_range,
           instruction: instruction,
           requirement: requirement
