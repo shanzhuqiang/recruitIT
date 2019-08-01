@@ -6,7 +6,7 @@
         <view class='topTitle'>
           {{ company_info.name }}
         </view>
-        <view class='guanzhuGag' bindtap='guanzhuClick'>{{ guanzhuOnOff ? '已关注' : '+关注' }}</view>
+        <view class='guanzhuGag' wx:if="{{ userType != 'hr' }}" bindtap='guanzhuClick'>{{ guanzhuOnOff ? '已关注' : '+关注' }}</view>
         <view class='bottomTag'>
           <text style='padding-left: 0' wx:if="{{ company_info.label1 }}">{{ company_info.label1 }}</text>
           <text class='borderLeft' wx:if="{{ company_info.label2 }}">{{ company_info.label2 }}</text>

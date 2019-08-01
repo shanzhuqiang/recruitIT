@@ -42,6 +42,8 @@ Page({
     phone: '',
     email: '',
     work: '',
+    workName: '',
+    workNameIpt: "",
     city: '',
     cityChooseMask: false,
     chooseActive: 'used',
@@ -53,7 +55,10 @@ Page({
     district: '',
     districtCode: '',
     showDistrictList: false,
-    districtList: []
+    districtList: [],
+    workOne: false,
+    workTwo: false,
+    workNameList: []
   },
 
   /**
@@ -72,6 +77,28 @@ Page({
     if (baseInfo.label3) {
       tagArray.push(baseInfo.label3)
     }
+    let workNameListOne = ["FICO", "MM", "PM", "SD", "WM", "SRM", "CRM", "PP", "PI", "BW", "BASIA", "ABAP"]
+    let workNameListTwo = ["JAVA", "WEB前端", "后端开发", "UI", "UE", "IOS", "Android", "Python", "PHP", "H5", "桌面工程师", "C#", "C++", "嵌入式", "大数据开发", "大数据运维"]
+    if (workNameListOne.indexOf(baseInfo.job_name) != -1) {
+      this.setData({
+        work: "SAP",
+        workName: baseInfo.job_name
+      })
+    } else if (workNameListTwo.indexOf(baseInfo.job_name) != -1) {
+      this.setData({
+        work: "工程师",
+        workName: baseInfo.job_name
+      })
+    } else if (baseInfo.job_name == "需求分析师" || baseInfo.job_name == "产品经理" || baseInfo.job_name == "架构师") {
+      this.setData({
+        work: baseInfo.job_name
+      })
+    } else if (baseInfo.job_name){
+      this.setData({
+        work: "其他",
+        workNameIpt: baseInfo.job_name
+      })
+    }
     this.setData({
       userInfo: app.globalData.userInfo,
       imgSrc: app.globalData.imgSrc,
@@ -79,7 +106,6 @@ Page({
       name: baseInfo.username,
       phone: baseInfo.mobile,
       email: baseInfo.email,
-      work: baseInfo.job_name,
       birthday: baseInfo.birthday,
       xingbie: baseInfo.gender == 1 ? { id: 1, name: '男' } : baseInfo.gender == 2 ? { id: 2, name: '女' } : { id: null, name: '' },
       shenfen: baseInfo.identity == 1 ? { id: 1, name: '职场人生' } : baseInfo.identity == 2 ? { id: 2, name: '应届生' } : { id: null, name: '' },
@@ -94,6 +120,58 @@ Page({
     if (this.data.btnChoose) {
       this.getArea(this.data.btnChoose)
     }
+  },
+  // 打开岗位选择
+  openChooseWork() {
+    this.setData({
+      workOne: true
+    })
+  },
+  // 关闭岗位遮罩
+  toggleShowWorkOne() {
+    this.setData({
+      workOne: false
+    })
+  },
+  // 选择岗位1
+  chooseWorkOne(e) {
+    let key = e.currentTarget.dataset.name
+    this.setData({
+      work: key,
+      workName: "",
+      workNameIpt: "",
+      workOne: false
+    })
+    if (key == 'SAP') {
+      let workNameList = ["FICO", "MM", "PM", "SD", "WM", "SRM", "CRM", "PP", "PI", "BW", "BASIA", "ABAP"]
+      this.setData({
+        workNameList: workNameList
+      })
+    } else if (key == '工程师') {
+      let workNameList = ["JAVA", "WEB前端", "后端开发", "UI", "UE", "IOS", "Android", "Python", "PHP", "H5", "桌面工程师", "C#", "C++", "嵌入式", "大数据开发", "大数据运维"]
+      this.setData({
+        workNameList: workNameList
+      })
+    }
+  },
+  // 打开岗位选择
+  openChooseWorkTwo() {
+    this.setData({
+      workTwo: true
+    })
+  },
+  // 关闭岗位遮罩
+  toggleShowWorkTwo() {
+    this.setData({
+      workTwo: false
+    })
+  },
+  // 选择岗位2
+  chooseWorkTwo(e) {
+    this.setData({
+      workName: e.currentTarget.dataset.name,
+      workTwo: false
+    })
   },
   // 获取区域
   getArea(id) {
@@ -166,7 +244,8 @@ Page({
   // 岗位改变
   workChange(e) {
     this.setData({
-      work: e.detail.value
+      workNameIpt: e.detail.value
+      // work: e.detail.value
     })
   },
   // 添加标签
@@ -272,14 +351,23 @@ Page({
   },
   // 保存
   saveInfo () {
-    console.log(333, this.data)
+    let work = this.data.work
+    let workName = this.data.workName
+    let workNameIpt = this.data.workNameIpt
+    let job_name = ""
+    if (work == 'SAP' || work == '工程师') {
+      job_name = workName
+    } else if (work == "需求分析师" || work == "产品经理" || work == "架构师") {
+      job_name = work
+    } else if (work == "其他") {
+      job_name = workNameIpt
+    }
     let name = this.data.name
     let xingbie = this.data.xingbie.id
     let workTime = this.data.workTime
     let identity = this.data.shenfen.id
     let phone = this.data.phone
     let email = this.data.email
-    let job_name = this.data.work
     let city_code = this.data.btnChoose
     let district_code = this.data.districtCode
     let district = this.data.district

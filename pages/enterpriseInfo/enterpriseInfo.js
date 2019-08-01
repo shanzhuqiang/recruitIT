@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userType: '',
     imgSrc: '',
     tabCurrent: 'gongsi',
     guanzhuOnOff: false,
@@ -21,6 +22,7 @@ Page({
   onLoad: function (options) {
     this.setData({
       id: options.id,
+      userType: app.globalData.userType,
       imgSrc: app.globalData.imgSrc
     })
     this.getInfo(options.id)

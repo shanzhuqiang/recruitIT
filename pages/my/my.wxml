@@ -100,7 +100,7 @@
       每日任务
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
     </view>
-    <view class='listItem' bindtap='goGUnzhugongsi' wx:if="{{ userType === 'engineer' }}">
+    <view class='listItem' bindtap='goGUnzhugongsi' wx:if="{{ userType !== 'hr' }}">
       <image class='guanzhu' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/guanzhu.png'></image>
       关注公司
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
