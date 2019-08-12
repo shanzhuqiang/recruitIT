@@ -169,8 +169,11 @@ Page({
   // vip
   goVip() {
     wx.navigateTo({
-      url: '../vip/vip'
+      url: '../myGold/myGold'
     })
+    // wx.navigateTo({
+    //   url: '../vip/vip'
+    // })
   }, 
   // 我的下载
   goMyDownResume() {
@@ -250,6 +253,7 @@ Page({
     } else {
       wx.showModal({
         title: '提示',
+        showCancel: false,
         content: '该功能仅经纪人可用'
       })
     }
@@ -267,9 +271,14 @@ Page({
   },
   // 进入论坛
   goBbs() {
-    wx.redirectTo({
-      url: '../bbs/bbs'
+    wx.showModal({
+      title: '提示',
+      showCancel: false,
+      content: '该功能暂未开放'
     })
+    // wx.redirectTo({
+    //   url: '../bbs/bbs'
+    // })
   },
   // 成为推广人
   goSpread() {

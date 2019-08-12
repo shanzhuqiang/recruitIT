@@ -33,6 +33,7 @@ Page({
           if (Array.isArray(company_info)) {
             wx.showModal({
               title: '提示',
+              showCancel: false,
               content: "未认证公司,后台审核",
               success: (res) => {
                 wx.navigateBack({
@@ -48,6 +49,7 @@ Page({
         } else if (res.data.error_code == 1) {
           wx.showModal({
             title: '提示',
+            showCancel: false,
             content: res.data.msg,
             success: (res) => {
               wx.navigateBack({

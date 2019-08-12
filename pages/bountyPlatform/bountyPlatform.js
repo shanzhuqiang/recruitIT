@@ -499,9 +499,14 @@ Page({
   },
   // 进入论坛
   goBbs() {
-    wx.redirectTo({
-      url: '../bbs/bbs'
+    wx.showModal({
+      title: '提示',
+      showCancel: false,
+      content: '该功能暂未开放'
     })
+    // wx.redirectTo({
+    //   url: '../bbs/bbs'
+    // })
   },
   // 进入我的
   goMy() {

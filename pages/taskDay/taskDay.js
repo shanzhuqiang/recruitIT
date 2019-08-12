@@ -140,9 +140,14 @@ Page({
   },
   // 进入论坛阅读
   goBbs() {
-    wx.navigateTo({
-      url: '../bbs/bbs'
+    wx.showModal({
+      title: '提示',
+      showCancel: false,
+      content: '该功能暂未开放'
     })
+    // wx.redirectTo({
+    //   url: '../bbs/bbs'
+    // })
   },
   // 进入金币投票
   goGoldVote() {

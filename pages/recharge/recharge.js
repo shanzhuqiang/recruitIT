@@ -30,6 +30,7 @@ Page({
     wx.request({
       url: `${app.globalData.baseUrl}/Coin/coinConfigList.html`,
       data: {
+        is_agent: userType == 'agent' ? 1 : 2,
         sess_key: app.globalData.sess_key
       },
       method: 'POST',

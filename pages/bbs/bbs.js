@@ -187,6 +187,7 @@ Page({
     } else {
       wx.showModal({
         title: '提示',
+        showCancel: false,
         content: '该功能仅经纪人可用'
       })
     }
