@@ -19,18 +19,18 @@
       <text wx:if="{{ resumeInfo.user_info.label2 !== '' }}">{{ resumeInfo.user_info.label2 }}</text>
       <text wx:if="{{ resumeInfo.user_info.label3 !== '' }}">{{ resumeInfo.user_info.label3 }}</text>
     </view>
-    <!-- <view class='four'>
+    <view class='four'>
       <view class='iconWrap'>
         <image class='phone' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/phone.png'></image>
       </view>
       <view class='strBox {{ download ? "" : "mosaic" }}'>{{resumeInfo.user_info.mobile }}</view>
-    </view> -->
-    <!-- <view class='five'>
+    </view>
+    <view class='five'>
       <view class='iconWrap'>
         <image class='email' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/email.png'></image>
       </view>
       <view class='strBox {{ download ? "" : "mosaic" }}'>{{ resumeInfo.user_info.email }}</view>
-    </view> -->
+    </view>
     <view style='height: 30rpx'></view>
   </view>
   <view class='resumeDetailBox' wx:if="{{ resumeInfo.user_info }}">
@@ -93,7 +93,8 @@
       <view>{{ collect ? '已关注' : '关注' }}</view>
     </view>
     <view class='rightBtn' bindtap='bottomBtn' wx:if="{{ userType == 'hr' }}">联系管理员</view>
-    <view class='rightBtn none' wx:if="{{ userType == 'agent' }}">当前身份不可操作</view>
+    <view class='rightBtn' wx:if="{{ userType == 'agent' && !download }}" bindtap='downResume'>下载简历</view>
+    <view class='rightBtn none' wx:if="{{ userType == 'agent' && download }}">已下载</view>
   </view>
 </view>
 

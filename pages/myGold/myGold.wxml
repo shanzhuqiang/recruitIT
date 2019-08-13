@@ -4,9 +4,10 @@
     <image class='goldBg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/goldBg.png'></image>
     <view class='first'>当前金币</view>
     <view class='secondNum'>{{ num }}</view>
+    <!-- <view class='rightBtn' bindtap='goRecharge' wx:if="{{ userType != 'agent' }}">充值</view> -->
     <view class='rightBtn' bindtap='goRecharge' wx:if="{{ userType != 'agent' }}">充值</view>
-    <!-- <view class='rightBtn' bindtap='goRecharge'>充值</view> -->
-    <view class='rightBtn' bindtap='goTixian' wx:if="{{ userType == 'agent' }}">提现</view>
+    <view class='rightBtn' style='top:150rpx;' bindtap='goRecharge' wx:if="{{ userType == 'agent' }}">充值</view>
+    <view class='rightBtn' style='top:60rpx;' bindtap='goTixian' wx:if="{{ userType == 'agent' }}">提现</view>
   </view>
   <view class='middleBtnBox'>
     <view class='{{ typeStr == 1 ? "active" : "" }}' bindtap='chooseType' data-id="1">收入</view>

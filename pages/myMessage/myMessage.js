@@ -44,8 +44,10 @@ Page({
         if (res.data.error_code == 0) {
           let data = res.data.bizobj.data
           data.forEach(el => {
-            if (el.is_read == 2 && el.type == 3) {
-              this.noticeRead(el.id)
+            if (el.is_read == 2) {
+              if (el.type == 3 || el.type == 5 || el.type == 6 || el.type == 7 || el.type == 8) {
+                this.noticeRead(el.id)
+              }
             }
           })
           if (data && data.length > 0) {
