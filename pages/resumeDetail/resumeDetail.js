@@ -18,7 +18,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
     if (options.reApplyId) {
       this.setData({
         re_apply_id: options.reApplyId
@@ -75,8 +74,35 @@ Page({
   },
   // 联系后台
   bottomBtn() {
-    wx.makePhoneCall({
-      phoneNumber: "010-68698480"
+    wx.request({
+      url: `${app.globalData.baseUrl}/User/getHrServiceMobile.html`,
+      data: {
+        sess_key: app.globalData.sess_key
+      },
+      method: 'POST',
+      success: (res) => {
+        if (res.data.error_code == 0) {
+          let phoneNumber = "010-68698480"
+          if (res.data.bizobj.company_info.mobile) {
+            phoneNumber = res.data.bizobj.company_info.mobile
+          }
+          wx.makePhoneCall({
+            phoneNumber: phoneNumber
+          })
+        } else {
+          wx.showModal({
+            showCancel: false,
+            title: '提示',
+            content: res.data.msg,
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
     })
   },
   // 下载简历

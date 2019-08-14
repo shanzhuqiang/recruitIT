@@ -242,10 +242,14 @@ Page({
         let listData = res.data.bizobj.data.project_list
         if (listData.length > 0) {
           listData.forEach((el, index) => {
-            if (el.max_salary) {
-              el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k/月'
+            if (el.salary_type == 1) {
+              el['salaryStr'] = el.day_salary + "元/日"
             } else {
-              el['salaryStr'] = '不限'
+              if (el.max_salary) {
+                el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k/月'
+              } else {
+                el['salaryStr'] = '不限'
+              }
             }
           })
           let newList = this.data.listData
@@ -283,17 +287,41 @@ Page({
   // 工作经验选择
   shaixuanchooseFilter1(e) {
     let id = e.currentTarget.dataset.id
-    console.log(id)
     this.setData({
-      shaixuan1: id
+      page: 1,
+      mask: false,
+      quyuChoose: '',
+      mini_salary: '',
+      max_salary: '',
+      shaixuan1: id,
+      shaixuan2: '',
+      listData: []
     })
+    this.getList()
+    // let id = e.currentTarget.dataset.id
+    // console.log(id)
+    // this.setData({
+    //   shaixuan1: id
+    // })
   },
   // 工作周期选择
   shaixuanchooseFilter2(e) {
     let id = e.currentTarget.dataset.id
     this.setData({
-      shaixuan2: id
+      page: 1,
+      mask: false,
+      quyuChoose: '',
+      mini_salary: '',
+      max_salary: '',
+      shaixuan1: '',
+      shaixuan2: id,
+      listData: []
     })
+    this.getList()
+    // let id = e.currentTarget.dataset.id
+    // this.setData({
+    //   shaixuan2: id
+    // })
   },
 
   /**

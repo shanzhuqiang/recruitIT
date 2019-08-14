@@ -54,10 +54,14 @@ Page({
         wx.hideLoading()
         let listData = res.data.bizobj.data.project_list
         listData.forEach((el, index) => {
-          if (el.max_salary) {
-            el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k/月'
+          if (el.salary_type == 1) {
+            el['salaryStr'] = el.day_salary + "元/日"
           } else {
-            el['salaryStr'] = '不限'
+            if (el.max_salary) {
+              el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k/月'
+            } else {
+              el['salaryStr'] = '不限'
+            }
           }
         })
         this.setData({

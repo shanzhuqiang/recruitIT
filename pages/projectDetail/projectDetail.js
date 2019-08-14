@@ -57,10 +57,14 @@ Page({
       success: (res) => {
         if (res.data.error_code == 0) {
           let data = res.data.bizobj.data.job_info
-          if (data.max_salary) {
-            data['salaryStr'] = Math.round(data.mini_salary / 1000) + 'k-' + Math.round(data.max_salary / 1000) + 'k/月'
+          if (data.salary_type == 1) {
+            data['salaryStr'] = data.day_salary + "元/日"
           } else {
-            data['salaryStr'] = '不限'
+            if (data.max_salary) {
+              data['salaryStr'] = Math.round(data.mini_salary / 1000) + 'k-' + Math.round(data.max_salary / 1000) + 'k/月'
+            } else {
+              data['salaryStr'] = '不限'
+            }
           }
           this.setData({
             job_info: data

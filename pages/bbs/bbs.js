@@ -147,12 +147,17 @@ Page({
   },
   // 发布帖子
   goReleaseBbs() {
-    wx.navigateTo({
-      url: '../releaseBbs/releaseBbs'
+    wx.showModal({
+      title: '提示',
+      showCancel: false,
+      content: '该功能暂未开放'
     })
-    this.setData({
-      releaseMark: false
-    })
+    // wx.navigateTo({
+    //   url: '../releaseBbs/releaseBbs'
+    // })
+    // this.setData({
+    //   releaseMark: false
+    // })
   },
   // 发布岗位
   goReleaseGangwei() {

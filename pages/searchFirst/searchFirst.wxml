@@ -108,13 +108,13 @@
     </view>
     <view class='filterBox' wx:if="{{ filterStr === 'filter' }}">
       <view class='filterScroll'>
-        <view>
+        <!-- <view>
           <view class='titleRow'>工作区域</view>
           <view class='tagRow' wx:for="{{ quyuData }}" wx:key="">
             <view class='tagBtn {{ quyuChoose === item.city_code ? "active" : ""}}' style='{{item.city_name === null ? "visibility:hidden" : ""}}' wx:for="{{ item }}" data-id='{{ item.city_code }}' bindtap='quyuChooseFilter' wx:key="">{{ item.city_name }}</view>
           </view>
-        </view>
-        <view>
+        </view> -->
+        <!-- <view>
           <view class='titleRow'>价格区间（元）</view>
           <view class='tagRow'>
             <view class='fl'>
@@ -124,7 +124,7 @@
               <input type='number' placeholder='最高价' value='{{ max_salary }}' bindinput="maxSalaryChange"></input>
             </view>
           </view>
-        </view>
+        </view> -->
         <view>
           <view class='titleRow'>工作经验</view>
           <view class='tagRow' wx:for="{{ xmJingyanData }}" wx:key="">

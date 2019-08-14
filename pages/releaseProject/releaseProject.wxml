@@ -35,6 +35,17 @@
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
     </view>
     <view class='hallRow'>
+      <view class='leftName'>薪资</view>
+      <picker bindchange="xinziChange" range="{{ xinziArray }}" range-key="name">
+        <input class='rightInput' placeholder="请选择薪资类型" value='{{ xinzi.name }}' disabled/>
+      </picker>
+      <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
+    </view>
+    <view class='hallRow' wx:if="{{ xinzi.id == 1 }}">
+      <view class='leftName'>日薪</view>
+      <input class='rightInput' type="number" placeholder='请输入日薪' bindinput='rixinChange'></input>
+    </view>
+    <view class='hallRow' wx:if="{{ xinzi.id == 2 }}">
       <view class='leftName'>月薪范围'</view>
       <picker bindchange="moneyChange" range="{{ moneyArray }}" range-key="name">
         <input class='rightInput' placeholder="请选择月薪范围" value='{{ money.name }}' disabled/>
@@ -53,6 +64,7 @@
     </view>
   </view>
   <view class='bottomBtn' bindtap='saveRelease'>保存</view>
+  <view style="height: 40rpx"></view>
     <!-- 项目职责 -->
   <view class='textareaMaskBox' wx:if="{{ gangweiTextareaMaskBox }}">
     <view class='bgRow'></view>

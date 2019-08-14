@@ -85,7 +85,7 @@
     <image class='vipGuanggao' bindtap='goVip' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/vipGuanggao.png'></image>
   </view>
   <view class='listWrap'>
-    <!-- <view class='listItem' bindtap='goMyDownResume' wx:if="{{ userType === 'hr' }}">
+    <!-- <view class='listItem' bindtap='goMyDownResume' wx:if="{{ userType === 'agent' }}">
       <image class='downResume' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/downResume.png'></image>
       我的下载
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>

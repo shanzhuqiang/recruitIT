@@ -416,17 +416,41 @@ Page({
   // 工作经验选择
   shaixuanchooseFilter1(e) {
     let id = e.currentTarget.dataset.id
-    console.log(id)
     this.setData({
-      shaixuan1: id
+      page: 1,
+      xiangmuMask: false,
+      quyuChoose: '',
+      shaixuan1: id,
+      shaixuan2: '',
+      mini_salary: '',
+      max_salary: '',
+      listData: []
     })
+    this.getProjectList()
+    // let id = e.currentTarget.dataset.id
+    // console.log(id)
+    // this.setData({
+    //   shaixuan1: id
+    // })
   },
   // 工作周期选择
   shaixuanchooseFilter2(e) {
     let id = e.currentTarget.dataset.id
     this.setData({
-      shaixuan2: id
+      page: 1,
+      xiangmuMask: false,
+      quyuChoose: '',
+      shaixuan1: '',
+      shaixuan2: id,
+      mini_salary: '',
+      max_salary: '',
+      listData: []
     })
+    this.getProjectList()
+    // let id = e.currentTarget.dataset.id
+    // this.setData({
+    //   shaixuan2: id
+    // })
   },
   // 项目/招聘切换
   changeTopType(e) {
@@ -455,12 +479,17 @@ Page({
   },
   // 发布帖子
   goReleaseBbs() {
-    wx.navigateTo({
-      url: '../releaseBbs/releaseBbs'
+    wx.showModal({
+      title: '提示',
+      showCancel: false,
+      content: '该功能暂未开放'
     })
-    this.setData({
-      releaseMark: false
-    })
+    // wx.navigateTo({
+    //   url: '../releaseBbs/releaseBbs'
+    // })
+    // this.setData({
+    //   releaseMark: false
+    // })
   },
   // 发布岗位
   goReleaseGangwei() {

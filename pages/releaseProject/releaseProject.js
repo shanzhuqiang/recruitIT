@@ -47,6 +47,17 @@ Page({
         name: '短期兼职'
       }],
     zhouqi: '',
+    xinziArray: [
+      {
+        id: 1,
+        name: '日薪'
+      },
+      {
+        id: 2,
+        name: '月薪'
+      }
+    ],
+    xinzi: '',
     moneyArray: [
       {
         id: '1',
@@ -81,6 +92,7 @@ Page({
         name: '50K以上'
       }
     ],
+    rixin: '',
     money: '',
     chooseActive: 'used',
     address: '',
@@ -236,6 +248,20 @@ Page({
       zhouqi: this.data.zhouqiArray[e.detail.value]
     })
   },
+  // 薪资
+  xinziChange(e) {
+    this.setData({
+      xinzi: this.data.xinziArray[e.detail.value],
+      rixin: '',
+      money: ''
+    })
+  },
+  // 日薪
+  rixinChange(e) {
+    this.setData({
+      rixin: e.detail.value
+    })
+  },
   // 月薪
   moneyChange(e) {
     this.setData({
@@ -250,11 +276,13 @@ Page({
     let district_code = this.data.districtCode
     let job_experience = this.data.jingyan.id
     let nature = this.data.zhouqi.id
+    let xinzi = this.data.xinzi.id
+    let rixin = this.data.rixin
     let salary_range = this.data.money.id
     let instruction = this.data.instruction
     let requirement = this.data.requirement
     console.log(job_experience)
-    if (name == '') {
+    if (name === '') {
       wx.showModal({
         showCancel: false,
         title: '提示',
@@ -278,19 +306,31 @@ Page({
         title: '提示',
         content: '请选择所在区域',
       })
-    } else if (!job_experience || typeof (job_experience) == 'undefined') {
+    } else if (typeof (job_experience) === 'undefined') {
       wx.showModal({
         showCancel: false,
         title: '提示',
         content: '请选择经验要求',
       })
-    } else if (!nature || typeof (nature) == 'undefined') {
+    } else if (typeof (nature) == 'undefined') {
       wx.showModal({
         showCancel: false,
         title: '提示',
         content: '请选择工作周期',
       })
-    } else if (!salary_range || typeof (salary_range) == 'undefined') {
+    } else if (typeof (xinzi) === 'undefined') {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请选择薪资',
+      })
+    } else if (xinzi == 1 && !rixin) {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请输入日薪',
+      })
+    } else if (xinzi == 2 && (!salary_range || typeof (salary_range) === 'undefined')) {
       wx.showModal({
         showCancel: false,
         title: '提示',
@@ -323,6 +363,8 @@ Page({
           reward: reward,
           city_code: btnChoose,
           district_code: district_code,
+          salary_type: xinzi,
+          day_salary: rixin,
           salary_range: salary_range,
           instruction: instruction,
           requirement: requirement
