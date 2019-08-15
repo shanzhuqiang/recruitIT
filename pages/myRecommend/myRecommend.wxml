@@ -22,7 +22,7 @@
         <view class='time'>{{ item.create_time }}</view>
       </view>
       <view class='itemBox' wx:if="{{ item.type == 2 }}" bindtap='goProjectDetail' data-id="{{ item.pj_id }}">
-        <view class='leftImg'>招标</view>
+        <!-- <view class='leftImg'>招标</view> -->
         <view class='rightText'>
           <view class='firstRow'>{{ item.name }}</view>
           <view class='secondRow'>

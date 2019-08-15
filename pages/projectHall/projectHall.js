@@ -7,13 +7,13 @@ Page({
    */
   data: {
     loading: false,
-    userInfo: null,
+    // userInfo: null,
     mask: false,
     page: 1,
     imgSrc: '',
     topFilterBtn: '',
-    quyuData: [],
-    quyuChoose: '',
+    // quyuData: [],
+    // quyuChoose: '',
     shaixuanData: [
       [
         {
@@ -79,17 +79,37 @@ Page({
     shaixuan1: '',
     shaixuan2: '',
     listData: [],
-    yuexinChoose: 1
+    yuexinChoose: 1,
+    region: ['全部', '全部', '全部'],
+    customItem: '全部',
+    codeArray: []
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.setData({
-      userInfo: app.globalData.userInfo,
+      // userInfo: app.globalData.userInfo,
       imgSrc: app.globalData.imgSrc
     })
-    this.getArea()
+    // this.getArea()
+    this.getList()
+  },
+  // 取消省市区选择
+  bindcancel() {
+    this.setData({
+      region: ['全部', '全部', '全部']
+    })
+  },
+  // 省市区选择改变
+  bindRegionChange: function (e) {
+    console.log(e.detail.code)
+    this.setData({
+      region: e.detail.value,
+      codeArray: e.detail.code,
+      page: 1,
+      listData: []
+    })
     this.getList()
   },
   // 月薪确定
@@ -126,26 +146,26 @@ Page({
     })
   },
   // 区域选择过滤内容按钮
-  quyuChooseFilter(e) {
-    let id = e.currentTarget.dataset.id
-    this.setData({
-      page: 1,
-      mask: false,
-      quyuChoose: id,
-      mini_salary: '',
-      max_salary: '',
-      shaixuan1: '',
-      shaixuan2: '',
-      listData: []
-    })
-    this.getList()
-  },
+  // quyuChooseFilter(e) {
+  //   let id = e.currentTarget.dataset.id
+  //   this.setData({
+  //     page: 1,
+  //     mask: false,
+  //     quyuChoose: id,
+  //     mini_salary: '',
+  //     max_salary: '',
+  //     shaixuan1: '',
+  //     shaixuan2: '',
+  //     listData: []
+  //   })
+  //   this.getList()
+  // },
   // 价格确定
   confirmFilterjiage() {
     this.setData({
       page: 1,
       mask: false,
-      quyuChoose: '',
+      // quyuChoose: '',
       shaixuan1: '',
       shaixuan2: '',
       listData: []
@@ -157,7 +177,7 @@ Page({
     this.setData({
       page: 1,
       mask: false,
-      quyuChoose: '',
+      // quyuChoose: '',
       mini_salary: '',
       max_salary: '',
       listData: []
@@ -165,65 +185,69 @@ Page({
     this.getList()
   },
   // 获取区域
-  getArea () {
-    wx.request({
-      url: `${app.globalData.baseUrl}/Addr/city2DistrictList.html`,
-      data: {
-        sess_key: app.globalData.sess_key,
-        city_code: this.data.userInfo.city_code
-      },
-      method: 'POST',
-      success: (res) => {
-        let listData = res.data.bizobj.data.area_list
-        console.log(listData)
-        listData.unshift({
-          district_code: '',
-          district_name: '不限'
-        })
-        let hangyeData = []
-        let length = parseInt(listData.length / 3)
-        let n = 0;
-        for (let i = 1; i <= length; i++) {
-          var star = (i - 1) * 3;
-          hangyeData[n++] = listData.slice(star, star + 3);
-        }
-        let y = listData.length - length * 3;
-        if (y > 0) {
-          let newArr = listData.slice(length * 3)
-          if (newArr.length === 2) {
-            newArr.push({
-              id: '',
-              name: null
-            })
-          }
-          hangyeData[n++] = newArr
-        }
-        this.setData({
-          quyuData: hangyeData
-        })
-        console.log(hangyeData)
-      },
-      fail: (res) => {
-        wx.showToast({
-          icon: 'none',
-          title: '网络请求失败',
-        })
-      }
-    })
-  },
+  // getArea () {
+  //   wx.request({
+  //     url: `${app.globalData.baseUrl}/Addr/city2DistrictList.html`,
+  //     data: {
+  //       sess_key: app.globalData.sess_key,
+  //       city_code: this.data.userInfo.city_code
+  //     },
+  //     method: 'POST',
+  //     success: (res) => {
+  //       let listData = res.data.bizobj.data.area_list
+  //       console.log(listData)
+  //       listData.unshift({
+  //         district_code: '',
+  //         district_name: '不限'
+  //       })
+  //       let hangyeData = []
+  //       let length = parseInt(listData.length / 3)
+  //       let n = 0;
+  //       for (let i = 1; i <= length; i++) {
+  //         var star = (i - 1) * 3;
+  //         hangyeData[n++] = listData.slice(star, star + 3);
+  //       }
+  //       let y = listData.length - length * 3;
+  //       if (y > 0) {
+  //         let newArr = listData.slice(length * 3)
+  //         if (newArr.length === 2) {
+  //           newArr.push({
+  //             id: '',
+  //             name: null
+  //           })
+  //         }
+  //         hangyeData[n++] = newArr
+  //       }
+  //       this.setData({
+  //         quyuData: hangyeData
+  //       })
+  //       console.log(hangyeData)
+  //     },
+  //     fail: (res) => {
+  //       wx.showToast({
+  //         icon: 'none',
+  //         title: '网络请求失败',
+  //       })
+  //     }
+  //   })
+  // },
   // 获取项目
   getList() {
-    console.log(55, this.data)
     this.setData({
       loading: true
     })
+    let codeArray = this.data.codeArray
+    let prov_code = codeArray[0] || ''
+    let city_code = codeArray[1] || ''
+    let district_code = codeArray[2] || ''
     wx.request({
       url: `${app.globalData.baseUrl}/Project/projectList.html`,
       data: {
         sess_key: app.globalData.sess_key,
+        prov_code: prov_code,
+        city_code: city_code,
+        district_code: district_code,
         is_bonus: 2,
-        city_code: this.data.userInfo.city_code,
-        district_code: this.data.quyuChoose,
         mini_salary: this.data.mini_salary,
         max_salary: this.data.max_salary,
         job_experience: this.data.shaixuan1,
@@ -290,7 +314,7 @@ Page({
     this.setData({
       page: 1,
       mask: false,
-      quyuChoose: '',
+      // quyuChoose: '',
       mini_salary: '',
       max_salary: '',
       shaixuan1: id,
@@ -310,7 +334,7 @@ Page({
     this.setData({
       page: 1,
       mask: false,
-      quyuChoose: '',
+      // quyuChoose: '',
       mini_salary: '',
       max_salary: '',
       shaixuan1: '',

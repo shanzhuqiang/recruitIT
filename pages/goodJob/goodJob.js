@@ -8,7 +8,7 @@ Page({
    */
   data: {
     loading: false,
-    userInfo: null,
+    // userInfo: null,
     page: 1,
     imgSrc: '',
     topFilterBtn: '',
@@ -50,6 +50,12 @@ Page({
       [{
         id: '7',
         name: '硕士'
+      },{
+        id: '8',
+        name: '博士'
+      }, {
+        id: '',
+        name: ''
       }]
     ],
     xueliChoose:'1',
@@ -78,12 +84,32 @@ Page({
     shaixuan1: '1',
     shaixuan2: '',
     listData: [],
-    keyword: ''
+    keyword: '',
+    region: ['全部', '全部', '全部'],
+    customItem: '全部',
+    codeArray: []
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+  },
+  // 取消省市区选择
+  bindcancel () {
+    this.setData({
+      region: ['全部', '全部', '全部']
+    })
+  },
+  // 省市区选择改变
+  bindRegionChange: function (e) {
+    console.log(e.detail.code)
+    this.setData({
+      region: e.detail.value,
+      codeArray: e.detail.code,
+      page: 1,
+      listData: []
+    })
+    this.getList()
   },
   /**
    * 生命周期函数--监听页面显示
@@ -99,7 +125,7 @@ Page({
       shaixuan2: '',
       keyword: '',
       listData: [],
-      userInfo: app.globalData.userInfo,
+      // userInfo: app.globalData.userInfo,
       imgSrc: app.globalData.imgSrc
     })
     this.getList()
@@ -148,20 +174,12 @@ Page({
   xueliChooseFilter(e) {
     let id = e.currentTarget.dataset.id
     this.setData({
-      xueliChoose: id,
-      jingyanChoose: '',
-      shaixuan1: '1',
-      shaixuan2: '',
-      page: 1,
-      listData: [],
-      maskOnOff: false
+      xueliChoose: id
     })
-    this.getList()
   },
   // 确认筛选
   confirmChoose() {
     this.setData({
-      xueliChoose: '1',
       jingyanChoose: '',
       page: 1,
       listData: [],
@@ -173,14 +191,8 @@ Page({
   shaixuan1Filter(e) {
     let id = e.currentTarget.dataset.id
     this.setData({
-      xueliChoose: '1',
-      jingyanChoose: '',
-      page: 1,
-      shaixuan1: id,
-      listData: [],
-      maskOnOff: false
+      shaixuan1: id
     })
-    this.getList()
   },
   // 工作周期
   shaixuan2Filter(e) {
@@ -194,11 +206,17 @@ Page({
     this.setData({
       loading: true
     })
+    let codeArray = this.data.codeArray
+    let prov_code = codeArray[0] || ''
+    let city_code = codeArray[1] || ''
+    let district_code = codeArray[2] || ''
     wx.request({
       url: `${app.globalData.baseUrl}/Work/workList.html`,
       data: {
         sess_key: app.globalData.sess_key,
-        city_code: this.data.userInfo.city_code,
+        prov_code: prov_code,
+        city_code: city_code,
+        district_code: district_code,
         is_bonus: 2,
         page: this.data.page,
         create_time: this.data.shaixuan1,

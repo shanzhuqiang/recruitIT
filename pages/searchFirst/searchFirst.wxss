@@ -28,7 +28,7 @@
   margin: 35rpx 0 0 10rpx;
 }
 .searchFirstWrap .headRow .serachIptWrap{
-  margin-left: 120rpx;
+  /* margin-left: 120rpx; */
   background-color: #f4f4f4;
 	border-radius: 2px;
   height: 62rpx;
@@ -255,7 +255,7 @@
   height: 34rpx;
   line-height: 34rpx;
   position: absolute;
-  left: 90rpx;
+  left: 0;
   top: 0rpx;
   right: 170rpx;
   overflow: hidden;

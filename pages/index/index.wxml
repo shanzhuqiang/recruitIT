@@ -87,7 +87,7 @@
       <view wx:if="{{ titleChoosed === 'project' }}">
         <view class='itemWrap' wx:for="{{ projectList }}" wx:key="" bindtap='goProjectDetail' data-id="{{ item.id }}">
           <view class='first'>
-            <view class='box'>招标</view>
+            <!-- <view class='box'>招标</view> -->
             <view class='title'>{{ item.name }}</view>
             <view class='money'>{{ item.salaryStr }}</view>
           </view>
@@ -157,7 +157,7 @@
         </view>
         <view class='contentWrap'>
           <view class='content'>
-            {{ item.introduction }}
+            {{ item.introduction || '暂无信息' }}
           </view>
         </view>
       </view>

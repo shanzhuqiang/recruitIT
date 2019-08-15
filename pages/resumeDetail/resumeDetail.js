@@ -107,43 +107,51 @@ Page({
   },
   // 下载简历
   downResume() {
-    wx.showLoading({
-      mask: true,
-      title: '下载中...',
-    })
-    let userType = this.data.userType
-    wx.request({
-      url: `${app.globalData.baseUrl}/apply/buyResume.html`,
-      data: {
-        sess_key: app.globalData.sess_key,
-        user_type: userType === 'engineer' ? 1 : userType === 'hr' ? 2 : 3,
-        re_resume_id: this.data.id,
-        re_apply_id: this.data.re_apply_id
-      },
-      method: 'POST',
+    wx.showModal({
+      title: '提示',
+      content: `确认消耗${this.data.resumeInfo.user_info.download_coin}金币下载该简历吗？`,
       success: (res) => {
-        wx.hideLoading()
-        if (res.data.error_code == 0) {
-          wx.showToast({
-            title: '下载成功',
-            icon: 'success'
+        if (res.confirm) {
+          wx.showLoading({
+            mask: true,
+            title: '下载中...',
           })
-          this.setData({
-            download: true
-          })
-        } else {
-          wx.showModal({
-            showCancel: false,
-            title: '提示',
-            content: res.data.msg,
+          let userType = this.data.userType
+          wx.request({
+            url: `${app.globalData.baseUrl}/apply/buyResume.html`,
+            data: {
+              sess_key: app.globalData.sess_key,
+              user_type: userType === 'engineer' ? 1 : userType === 'hr' ? 2 : 3,
+              re_resume_id: this.data.id,
+              re_apply_id: this.data.re_apply_id
+            },
+            method: 'POST',
+            success: (res) => {
+              wx.hideLoading()
+              if (res.data.error_code == 0) {
+                wx.showToast({
+                  title: '下载成功',
+                  icon: 'success'
+                })
+                this.setData({
+                  download: true
+                })
+              } else {
+                wx.showModal({
+                  showCancel: false,
+                  title: '提示',
+                  content: res.data.msg,
+                })
+              }
+            },
+            fail: (res) => {
+              wx.showToast({
+                icon: 'none',
+                title: '网络请求失败',
+              })
+            }
           })
         }
-      },
-      fail: (res) => {
-        wx.showToast({
-          icon: 'none',
-          title: '网络请求失败',
-        })
       }
     })
   },

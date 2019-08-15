@@ -26,9 +26,17 @@ Page({
   },
   // 返回
   finish () {
-    wx.navigateBack({
-      delta: 1
-    })
+    if (this.data.resumeInfo.user_info.mobile) {
+      wx.navigateBack({
+        delta: 1
+      })
+    } else {
+      wx.showModal({
+        title: '提示',
+        showCancel: false,
+        content: '请先完善简历'
+      })
+    }
   },
   // 获取简历详情
   getDetail() {

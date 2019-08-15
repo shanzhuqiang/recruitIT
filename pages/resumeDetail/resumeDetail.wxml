@@ -88,11 +88,11 @@
   </view>
   <view style='height: 100rpx;'></view>
   <view class='bottomBtn'>
-    <view class='leftBtn' bindtap='guanzhu' data-id="{{ resumeInfo.user_info.user_id }}" data-ida="{{ resumeInfo.user_info.re_resume_id }}">
+    <view class='leftBtn' wx:if="{{ userType == 'agent' }}" bindtap='guanzhu' data-id="{{ resumeInfo.user_info.user_id }}" data-ida="{{ resumeInfo.user_info.re_resume_id }}">
       <view style='padding-top:18rpx;'><image class='shoucang' wx:if="{{imgSrc !== ''}}" src='{{ collect ? imgSrc + "/shoucang2.png" : imgSrc + "/shoucang.png" }}'></image></view>
       <view>{{ collect ? '已关注' : '关注' }}</view>
     </view>
-    <view class='rightBtn' bindtap='bottomBtn' wx:if="{{ userType == 'hr' }}">联系管理员</view>
+    <view class='rightBtn' style="margin-left: 0" bindtap='bottomBtn' wx:if="{{ userType == 'hr' }}">联系管理员</view>
     <view class='rightBtn' wx:if="{{ userType == 'agent' && !download }}" bindtap='downResume'>下载简历</view>
     <view class='rightBtn none' wx:if="{{ userType == 'agent' && download }}">已下载</view>
   </view>

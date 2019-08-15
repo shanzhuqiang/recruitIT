@@ -54,9 +54,11 @@
       <image class='toudi' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/toudi.png'></image>
       <view>每日任务</view>
     </view>
-    <view bindtap='goMyGuanzhu'>
+    <!-- <view bindtap='goMyGuanzhu'> -->
+    <view bindtap='goMyCompany'>
       <image class='guanzhu2' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/guanzhu2.png'></image>
-      <view>我的关注</view>  
+      <!-- <view>我的关注</view> -->
+      <view>我的公司</view>
     </view>
     <view bindtap='goMyRelease'>
       <image class='fabu' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/fabu.png'></image>
@@ -90,11 +92,11 @@
       我的下载
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
     </view> -->
-    <view class='listItem' bindtap='goMyCompany' wx:if="{{ userType === 'hr' }}">
+    <!-- <view class='listItem' bindtap='goMyCompany' wx:if="{{ userType === 'hr' }}">
       <image class='company' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/company.png'></image>
       我的公司
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
-    </view>
+    </view> -->
     <view class='listItem' bindtap='goTask' wx:if="{{ userType === 'engineer' }}">
       <image class='renwuDay' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/renwuDay.png'></image>
       每日任务

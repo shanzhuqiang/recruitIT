@@ -349,65 +349,75 @@ Page({
         content: '请输入任职要求',
       })
     } else {
-      wx.showLoading({
-        mask: true,
-        title: '提交中...',
-      })
-      wx.request({
-        url: `${app.globalData.baseUrl}/Project/publish.html`,
-        data: {
-          sess_key: app.globalData.sess_key,
-          name: name,
-          job_experience: job_experience,
-          nature: nature,
-          reward: reward,
-          city_code: btnChoose,
-          district_code: district_code,
-          salary_type: xinzi,
-          day_salary: rixin,
-          salary_range: salary_range,
-          instruction: instruction,
-          requirement: requirement
-        },
-        method: 'POST',
+      wx.showModal({
+        title: '提示',
+        content: `确认发布吗？`,
+        confirmText: '确认发布',
+        cancelText: '检查一下',
         success: (res) => {
-          wx.hideLoading()
-          if (res.data.error_code == 0) {
-            wx.showToast({
-              title: '发布成功',
+          if (res.confirm) {
+            wx.showLoading({
               mask: true,
-              icon: 'success',
-              success() {
-                setTimeout(() => {
-                  wx.navigateBack({
-                    delta: 1
-                  })
-                }, 1500)
-              }
+              title: '提交中...',
             })
-          } else if (res.data.error_code == 3) {
-            wx.showModal({
-              title: '提示',
-              content: res.data.msg,
+            wx.request({
+              url: `${app.globalData.baseUrl}/Project/publish.html`,
+              data: {
+                sess_key: app.globalData.sess_key,
+                name: name,
+                job_experience: job_experience,
+                nature: nature,
+                reward: reward,
+                city_code: btnChoose,
+                district_code: district_code,
+                salary_type: xinzi,
+                day_salary: rixin,
+                salary_range: salary_range,
+                instruction: instruction,
+                requirement: requirement
+              },
+              method: 'POST',
               success: (res) => {
-                wx.navigateBack({
-                  delta: 1
+                wx.hideLoading()
+                if (res.data.error_code == 0) {
+                  wx.showToast({
+                    title: '发布成功',
+                    mask: true,
+                    icon: 'success',
+                    success() {
+                      setTimeout(() => {
+                        wx.navigateBack({
+                          delta: 1
+                        })
+                      }, 1500)
+                    }
+                  })
+                } else if (res.data.error_code == 3) {
+                  wx.showModal({
+                    title: '提示',
+                    content: res.data.msg,
+                    success: (res) => {
+                      wx.navigateBack({
+                        delta: 1
+                      })
+                    }
+                  })
+                } else {
+                  wx.showModal({
+                    showCancel: false,
+                    title: '提示',
+                    content: res.data.msg,
+                  })
+                }
+              },
+              fail: (res) => {
+                wx.showToast({
+                  icon: 'none',
+                  title: '网络请求失败',
                 })
               }
             })
-          } else {
-            wx.showModal({
-              showCancel: false,
-              title: '提示',
-              content: res.data.msg,
-            })
           }
-        },
-        fail: (res) => {
-          wx.showToast({
-            icon: 'none',
-            title: '网络请求失败',
-          })
         }
       })
     }

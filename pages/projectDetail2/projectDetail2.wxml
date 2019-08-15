@@ -1,7 +1,7 @@
 <!--pages/postDetail/postDetail.wxml-->
 <view class='projectDetailWrap2'>
   <view class='topBox'>
-    <view class='box'>招标</view>
+    <!-- <view class='box'>招标</view> -->
     <view class='first'>
       <view class='leftTitle'>{{ job_info.name }}</view>
       <view class='rightTitle'>{{ job_info.salaryStr }}</view>
@@ -39,8 +39,8 @@
     </view>
   </view>
   <view class='bottomBtnWrap'>
-    <view class='btn {{ job_info.operate_status == 3 ? "disabled" : "" }}' bindtap='changeStatus' data-id="3">结束</view>
-    <view class='btn {{ job_info.operate_status == 2 ? "disabled" : "" }}' bindtap='changeStatus' data-id="2">暂停</view>
-    <view class='btn {{ job_info.operate_status == 1 ? "disabled" : "" }}' bindtap='changeStatus' data-id="1">重发</view>
+    <view class='btn {{ job_info.operate_status == 3 ? "disabled" : "" }}' bindtap='changeStatus2' data-id="3">结束</view>
+    <!-- <view class='btn {{ job_info.operate_status == 2 ? "disabled" : "" }}' bindtap='changeStatus2' data-id="2">暂停</view> -->
+    <view class='btn {{ job_info.operate_status == 1 ? "disabled" : "" }}' bindtap='changeStatus3' data-id="1">重发</view>
   </view>
 </view>

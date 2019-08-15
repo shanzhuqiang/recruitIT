@@ -337,7 +337,7 @@ page{
   height: 34rpx;
   line-height: 34rpx;
   position: absolute;
-  left: 90rpx;
+  left: 0;
   top: 0rpx;
   right: 170rpx;
   overflow: hidden;

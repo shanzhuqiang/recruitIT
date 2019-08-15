@@ -22,11 +22,7 @@ Page({
     })
   },
   // 改变岗位状态
-  changeStatus(e) {
-    let key = e.currentTarget.dataset.id
-    if (this.data.dataInfo.operate_status == key) {
-      return false
-    }
+  changeStatus(key) {
     wx.showLoading({
       mask: true,
       title: '加载中...',
@@ -70,7 +66,28 @@ Page({
         })
       }
     })
-
+  },
+  changeStatus2(e) {
+    let key = e.currentTarget.dataset.id
+    if (this.data.dataInfo.operate_status == key) {
+      return false
+    }
+    wx.showModal({
+      title: '提示',
+      content: `如您已经享受平台服务我们将扣除30%作为服务费`,
+      success: (res) => {
+        if (res.confirm) {
+          this.changeStatus(key)
+        }
+      }
+    })
+  },
+  changeStatus3(e) {
+    let key = e.currentTarget.dataset.id
+    if (this.data.dataInfo.operate_status == key) {
+      return false
+    }
+    this.changeStatus(key)
   },
   // 获取岗位详情
   getInfo(id) {

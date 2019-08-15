@@ -113,5 +113,6 @@
   </view>
   <view class='finishWrap'>
     <view class='finish' bindtap='finish'>完成</view>
+    <view style="height: 40rpx;"></view>
   </view>
 </view>

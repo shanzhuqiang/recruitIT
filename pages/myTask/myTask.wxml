@@ -30,7 +30,7 @@
           <view class='time'>{{ item.create_at }}</view>
         </view>
         <view class='itemBox'>
-          <view class='leftImg'>招标</view>
+          <!-- <view class='leftImg'>招标</view> -->
           <view class='rightText'>
             <view class='firstRow'>{{ item.name }}</view>
             <view class='secondRow'>
@@ -51,28 +51,6 @@
         <view class='yoaqingBtn' bindtap='goCheckTime' data-name="{{ item.name }}" data-company="{{ item.company_name }}" data-id="{{ item.id }}" data-hourstatus="{{ item.hour_status }}">工时核对</view>
       </view>
     </view>
-    <!-- <view class='itemWrap'>
-      <view class='itemTop'>
-        <view class='time'>9月15日 14:00</view>
-      </view>
-      <view class='itemBox'>
-        <view class='leftImg'>招标</view>
-        <view class='rightText'>
-          <view class='firstRow'>我需要APP设计</view>
-          <view class='secondRow'>
-            <text>杭州</text>
-            <text class='line'>|</text>
-            <text>3-5年</text>
-            <text class='line'>|</text>
-            <text>短期兼职</text>
-          </view>
-          <view class='threeRow'>最近活跃：9小时前</view>
-        </view>
-      </view>
-      <view class='bottomRow'>
-        <view class='yoaqingBtn' bindtap='accept'>接受</view>
-      </view>
-    </view>  -->
   </view>
   <!-- <view class='itemWrapBox' wx:if="{{ tabType === 'inprogress' }}">
     <view class='itemWrap'>

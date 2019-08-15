@@ -24,7 +24,7 @@
     <view wx:for="{{ listData }}" wx:key="">
       <!-- 项目 -->
       <view class='itemBox' wx:if="{{ item.type == 2 }}" bindtap='goProjectDetail' data-id="{{ item.re_project_id }}" data-ida="{{ item.id }}">
-        <view class='leftImg'>招标</view>
+        <!-- <view class='leftImg'>招标</view> -->
         <view class='rightText'>
           <view class='firstRow'>
             {{ item.name }}

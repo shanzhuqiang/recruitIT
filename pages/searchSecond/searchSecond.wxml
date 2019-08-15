@@ -1,10 +1,10 @@
 <!--pages/searchFirst/searchFirst.wxml-->
 <view class='searchSecondWrap'>
   <view class='headRow'>
-    <view class='addressWrap' bindtap="goChooseCity">
+    <!-- <view class='addressWrap' bindtap="goChooseCity">
       <text class='address'>{{ userInfo.city_name }}</text>
       <image class='xiala' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/xiala.png'></image>
-    </view>
+    </view> -->
     <view class='serachIptWrap'>
       <image class='search' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/search.png'></image>
       <input class='serachIpt' value='{{ keyWord }}' placeholder="你想搜什么？" bindconfirm="iptChange" bindinput='clearList' confirm-type="搜索"/>

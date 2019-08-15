@@ -13,17 +13,30 @@
       </view>
     </view>
     <!-- 过滤类型 -->
+    <!-- <view class="filterWrap2">
+      <picker mode="region" bindchange="bindRegionChange" custom-item="{{customItem}}">
+        <view class="picker">
+          当前选择：{{regionStr}}
+        </view>
+      </picker>
+    </view> -->
     <view class='filterWrap'>
+      <view class='colBox {{ region[0] !== "全部" ? "active" : "" }}'>
+        <picker mode="region" bindcancel="bindcancel" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+          <text>区域</text>
+          <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ region[0] !== "全部" ? imgSrc + "/arrowUp.png" : imgSrc + "/arrowDown.png" }}'></image>
+        </picker>
+      </view>
       <view class='colBox {{ topFilterBtn === "jingyan" ? "active" : "" }}' bindtap='topFilter' data-id="jingyan">
         <text>经验</text>
         <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ topFilterBtn === "jingyan" ? imgSrc + "/arrowUp.png" : imgSrc + "/arrowDown.png" }}'></image>
       </view>
-      <view class='colBox {{ topFilterBtn === "xueli" ? "active" : "" }}' bindtap='topFilter' data-id="xueli">
+      <!-- <view class='colBox {{ topFilterBtn === "xueli" ? "active" : "" }}' bindtap='topFilter' data-id="xueli">
         <text>学历</text>
         <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ topFilterBtn === "xueli" ? imgSrc + "/arrowUp.png" : imgSrc + "/arrowDown.png" }}'></image>
-      </view>
+      </view> -->
       <view class='colBox {{ topFilterBtn === "shaixuan" ? "active" : "" }}' bindtap='topFilter' data-id="shaixuan">
-        <text>时间</text>
+        <text>筛选</text>
         <image class='filterImg' wx:if="{{imgSrc !== ''}}" src='{{ topFilterBtn === "shaixuan" ? imgSrc + "/filterTwo.png" : imgSrc + "/filter.png" }}'></image>
       </view>
     </view>
@@ -35,9 +48,9 @@
       <view class='money'>{{ item.salaryStr }}</view>
     </view>
     <view class='second'>
-        <text style='padding-left: 0' wx:if="{{ item.job_label1 }}">{{ item.job_label1 }}</text>
-        <text class='middleText' wx:if="{{ item.job_label2 }}">{{ item.job_label2 }}</text>
-        <text wx:if="{{ item.job_label3 }}">{{ item.job_label3 }}</text>
+        <text style='padding-left: 0'>{{ item.city_name }}</text>
+        <text class='middleText'>{{ item.job_experience }}</text>
+        <text>{{ item.education }}</text>
     </view>
     <view class='picBox'>
       <view class='left'>
@@ -63,19 +76,22 @@
   <!-- 学历过滤弹框 -->
   <view class='filterMask' wx:if="{{ topFilterBtn === 'xueli' && maskOnOff }}">
     <view class='maskBody'>
-      <view class='title'>学历要求</view>
-      <view class='filterBtnWrap' wx:for="{{ xueliData }}" wx:key="">
-        <view class='filterBtn {{ xueliChoose === item.id ? "active" : ""}}' wx:for="{{ item }}" data-id='{{ item.id }}' bindtap='xueliChooseFilter' wx:key="">{{ item.name }}</view>
-      </view>
+
     </view>
   </view>
   <!-- 筛选 -->
   <view class='filterMask' wx:if="{{ topFilterBtn === 'shaixuan' && maskOnOff }}">
     <view class='maskBody'>
+      <view class='title'>学历要求</view>
+      <view class='filterBtnWrap' wx:for="{{ xueliData }}" wx:key="">
+        <view class='filterBtn {{ xueliChoose === item.id ? "active" : ""}}' style='{{item.name === "" ? "visibility:hidden" : ""}}' wx:for="{{ item }}" data-id='{{ item.id }}' bindtap='xueliChooseFilter' wx:key="">{{ item.name }}</view>
+      </view>
+      <view style="height: 40rpx;"></view>
       <view class='title'>发布时间</view>
       <view class='filterBtnWrap' wx:for="{{ shaixuanData }}" wx:key="">
         <view class='filterBtn {{ shaixuan1 === item.id ? "active" : ""}}' style='{{item.name === "" ? "visibility:hidden" : ""}}' wx:for="{{ item }}" data-id='{{ item.id }}' bindtap='shaixuan1Filter' wx:key="">{{ item.name }}</view>
       </view>
+      <view class='confirm' bindtap='confirmChoose'>确定</view>
       <!-- <view wx:if="{{ topFilterBtn === 'shaixuan' }}" style='padding-top: 38rpx'>
         <view class='title'>工作周期</view>
         <view class='filterBtnWrap'>
