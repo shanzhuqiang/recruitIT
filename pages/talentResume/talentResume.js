@@ -7,13 +7,13 @@ Page({
    */
   data: {
     imgSrc: '',
-    userInfo: null,
+    // userInfo: null,
     page: 1,
     loading: false,
     maskOnOff: false,
     topFilterBtn: '',
-    quyuData: [],
-    quyuChoose: '',
+    // quyuData: [],
+    // quyuChoose: '',
     jingyanData: [
       [{
         id: '',
@@ -70,39 +70,59 @@ Page({
       }]
     ],
     yuexinChoose: 1,
-    listData: []
+    listData: [],
+    region: ['全部', '全部', '全部'],
+    customItem: '全部',
+    codeArray: []
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.setData({
-      userInfo: app.globalData.userInfo,
+      // userInfo: app.globalData.userInfo,
       imgSrc: app.globalData.imgSrc
     })
-    this.gitArea()
+    // this.gitArea()
     this.getList()
   },
-  // 区域筛选确定
-  quyuChooseFilter(e) {
-    let id = e.currentTarget.dataset.id
+  // 取消省市区选择
+  bindcancel() {
     this.setData({
+      region: ['全部', '全部', '全部']
+    })
+  },
+  // 省市区选择改变
+  bindRegionChange: function (e) {
+    console.log(e.detail.code)
+    this.setData({
+      region: e.detail.value,
+      codeArray: e.detail.code,
       page: 1,
-      maskOnOff: false,
-      quyuChoose: id,
-      jingyanChoose: '',
-      yuexinChoose: 1,
       listData: []
     })
     this.getList()
   },
+  // 区域筛选确定
+  // quyuChooseFilter(e) {
+  //   let id = e.currentTarget.dataset.id
+  //   this.setData({
+  //     page: 1,
+  //     maskOnOff: false,
+  //     quyuChoose: id,
+  //     jingyanChoose: '',
+  //     yuexinChoose: 1,
+  //     listData: []
+  //   })
+  //   this.getList()
+  // },
   // 经验筛选确定
   jingyanChooseFilter(e) {
     let id = e.currentTarget.dataset.id
     this.setData({
       page: 1,
       maskOnOff: false,
-      quyuChoose: '',
+      // quyuChoose: '',
       jingyanChoose: id,
       yuexinChoose: 1,
       listData: []
@@ -116,7 +136,7 @@ Page({
     this.setData({
       page: 1,
       maskOnOff: false,
-      quyuChoose: '',
+      // quyuChoose: '',
       jingyanChoose: '',
       yuexinChoose: id,
       listData: []
@@ -129,63 +149,68 @@ Page({
     })
   },
   // 获取区域
-  gitArea() {
-    wx.request({
-      url: `${app.globalData.baseUrl}/Addr/city2DistrictList.html`,
-      data: {
-        sess_key: app.globalData.sess_key,
-        city_code: this.data.userInfo.city_code
-      },
-      method: 'POST',
-      success: (res) => {
-        let listData = res.data.bizobj.data.area_list
-        listData.unshift({
-          district_code: '',
-          district_name: '不限'
-        })
-        console.log(listData)
-        let hangyeData = []
-        let length = parseInt(listData.length / 3)
-        let n = 0;
-        for (let i = 1; i <= length; i++) {
-          var star = (i - 1) * 3;
-          hangyeData[n++] = listData.slice(star, star + 3);
-        }
-        let y = listData.length - length * 3;
-        if (y > 0) {
-          let newArr = listData.slice(length * 3)
-          if (newArr.length === 2) {
-            newArr.push({
-              id: '',
-              district_name: null
-            })
-          }
-          hangyeData[n++] = newArr
-        }
-        this.setData({
-          quyuData: hangyeData
-        })
-        console.log(hangyeData)
-      },
-      fail: (res) => {
-        wx.showToast({
-          icon: 'none',
-          title: '网络请求失败',
-        })
-      }
-    })
-  },
+  // gitArea() {
+  //   wx.request({
+  //     url: `${app.globalData.baseUrl}/Addr/city2DistrictList.html`,
+  //     data: {
+  //       sess_key: app.globalData.sess_key,
+  //       city_code: this.data.userInfo.city_code
+  //     },
+  //     method: 'POST',
+  //     success: (res) => {
+  //       let listData = res.data.bizobj.data.area_list
+  //       listData.unshift({
+  //         district_code: '',
+  //         district_name: '不限'
+  //       })
+  //       console.log(listData)
+  //       let hangyeData = []
+  //       let length = parseInt(listData.length / 3)
+  //       let n = 0;
+  //       for (let i = 1; i <= length; i++) {
+  //         var star = (i - 1) * 3;
+  //         hangyeData[n++] = listData.slice(star, star + 3);
+  //       }
+  //       let y = listData.length - length * 3;
+  //       if (y > 0) {
+  //         let newArr = listData.slice(length * 3)
+  //         if (newArr.length === 2) {
+  //           newArr.push({
+  //             id: '',
+  //             district_name: null
+  //           })
+  //         }
+  //         hangyeData[n++] = newArr
+  //       }
+  //       this.setData({
+  //         quyuData: hangyeData
+  //       })
+  //       console.log(hangyeData)
+  //     },
+  //     fail: (res) => {
+  //       wx.showToast({
+  //         icon: 'none',
+  //         title: '网络请求失败',
+  //       })
+  //     }
+  //   })
+  // },
   // 获取简历列表
   getList() {
     this.setData({
       loading: true
     })
+    let codeArray = this.data.codeArray
+    let prov_code = codeArray[0] || ''
+    let city_code = codeArray[1] || ''
+    let district_code = codeArray[2] || ''
     wx.request({
       url: `${app.globalData.baseUrl}/Resume/resumeList.html`,
       data: {
         sess_key: app.globalData.sess_key,
-        city_code: this.data.userInfo.city_code,
-        district_code: this.data.quyuChoose,
+        prov_code: prov_code,
+        city_code: city_code,
+        district_code: district_code,
         job_experience: this.data.jingyanChoose,
         salary_range: this.data.yuexinChoose,
         page_size: 10,

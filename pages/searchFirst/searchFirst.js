@@ -313,6 +313,9 @@ Page({
   // 输入框确认
   iptChange (e) {
     let keyWord = e.detail.value
+    if (keyWord == "") {
+      return false
+    }
     this.setData({
       keyWord: keyWord
     })

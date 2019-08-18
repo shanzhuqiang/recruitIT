@@ -1,9 +1,15 @@
 <!--pages/talentResume/talentResume.wxml-->
 <view class='talentResumeWrap'>
   <view class='filterWrap'>
-    <view class='colBox {{ topFilterBtn === "quyu" ? "active" : "" }}' bindtap='topFilter' data-id="quyu">
+    <!-- <view class='colBox {{ topFilterBtn === "quyu" ? "active" : "" }}' bindtap='topFilter' data-id="quyu">
       <text>区域</text>
       <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ topFilterBtn === "quyu" ? imgSrc + "/arrowUp.png" : imgSrc + "/arrowDown.png" }}'></image>
+    </view> -->
+    <view class='colBox {{ region[0] !== "全部" ? "active" : "" }}'>
+      <picker mode="region" bindcancel="bindcancel" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+        <text>区域</text>
+        <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ region[0] !== "全部" ? imgSrc + "/arrowUp.png" : imgSrc + "/arrowDown.png" }}'></image>
+      </picker>
     </view>
     <view class='colBox {{ topFilterBtn === "jingyan" ? "active" : "" }}' bindtap='topFilter' data-id="jingyan">
       <text>经验</text>
@@ -35,7 +41,7 @@
     </view>
     <view class='contentWrap'>
       <view class='content'>
-        {{ item.introduction }}
+        {{ item.introduction || "暂无信息" }}
       </view>
     </view>
   </view>

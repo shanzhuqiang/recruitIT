@@ -234,6 +234,9 @@ Page({
   // 确认输入
   iptChange(e) {
     let keyWord = e.detail.value
+    if (keyWord == "") {
+      return false
+    }
     this.setData({
       keyWord: keyWord,
       quyuChoose: '',

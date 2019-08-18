@@ -48,7 +48,14 @@
       <view class='leftName'>岗位名称</view>
       <input class='rightInput' placeholder='请输入岗位名称' value='{{ workNameIpt }}' bindinput='workChange'></input>
     </view>
-    <view class='hallRow' bindtap='openChooseCity'>
+    <view class='hallRow'>
+      <picker mode="region" bindchange="bindRegionChange" value="{{region}}">
+        <view class='leftName'>所在地区</view>
+        <input class='rightInput' placeholder='请选择所在地区' value='{{ region }}' disabled></input>
+        <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
+      </picker>
+    </view>
+    <!-- <view class='hallRow' bindtap='openChooseCity'>
       <view class='leftName'>所在城市</view>
       <input class='rightInput' placeholder='请选择所在城市' value='{{ city }}' disabled></input>
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
@@ -57,7 +64,7 @@
       <view class='leftName'>所在区域</view>
       <input class='rightInput' placeholder='请选择所在区域' value='{{ district }}' disabled></input>
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
-    </view>
+    </view> -->
     <view class='hallRow'>
       <view class='leftName'>手机号码</view>
       <input class='rightInput' type='number' placeholder='请输入手机号码' maxlength='11' value='{{ phone }}' bindinput='phoneChange'></input>
@@ -85,7 +92,7 @@
       <view>确认删除该标签吗？</view>
   </i-modal>
   <!-- 选择城市 -->
-  <view class='cityChooseMask' wx:if="{{ cityChooseMask }}">
+  <!-- <view class='cityChooseMask' wx:if="{{ cityChooseMask }}">
     <view class='leftBox'>
       <scroll-view scroll-y style="height: 100%;">
         <view class='{{ chooseActive === "used" ? "active" : "" }} item' bindtap='chooseCity' data-id="used">常用</view>
@@ -108,7 +115,7 @@
         <view class='itemBox {{ btnChoose === item.city_code ? "active" : "" }}' wx:for="{{ areaList }}" data-id="{{ item.city_code }}" data-ida="{{ item.city_name }}" bindtap='chooseBtn'>{{ item.city_name }}</view>
       </view>
     </view>
-  </view>
+  </view> -->
   <i-drawer mode="right" visible="{{ showDistrictList }}" bind:close="toggleShowDistrictList">
     <scroll-view class="showCompanyListWrap" scroll-y>
       <view class='companyItem' wx:for="{{ districtList }}" wx:key="" data-id="{{ item.district_code }}" data-name="{{ item.district_name }}" bindtap='chooseDistrict'>{{ item.district_name }}</view>
