@@ -87,8 +87,8 @@ Page({
       success: (res) => {
         if (res.data.error_code == 0) {
           let phoneNumber = "010-68698480"
-          if (res.data.bizobj.company_info.mobile) {
-            phoneNumber = res.data.bizobj.company_info.mobile
+          if (res.data.bizobj.company_info.service_mobile) {
+            phoneNumber = res.data.bizobj.company_info.service_mobile
           }
           wx.makePhoneCall({
             phoneNumber: phoneNumber
