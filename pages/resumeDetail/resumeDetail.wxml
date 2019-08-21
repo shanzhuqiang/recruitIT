@@ -23,13 +23,13 @@
       <view class='iconWrap'>
         <image class='phone' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/phone.png'></image>
       </view>
-      <view class='strBox {{ download ? "" : "mosaic" }}'>{{resumeInfo.user_info.mobile }}</view>
+      <view class='strBox {{ download || resumeInfo.user_info.apply_status == 2 ? "" : "mosaic" }}'>{{resumeInfo.user_info.mobile }}</view>
     </view>
     <view class='five'>
       <view class='iconWrap'>
         <image class='email' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/email.png'></image>
       </view>
-      <view class='strBox {{ download ? "" : "mosaic" }}'>{{ resumeInfo.user_info.email }}</view>
+      <view class='strBox {{ download || resumeInfo.user_info.apply_status == 2 ? "" : "mosaic" }}'>{{ resumeInfo.user_info.email }}</view>
     </view>
     <view style='height: 30rpx'></view>
   </view>

@@ -8,6 +8,7 @@
     <view class='serachIptWrap'>
       <image class='search' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/search.png'></image>
       <input class='serachIpt' value='{{ keyWord }}' placeholder="你想搜什么？" bindconfirm="iptChange" bindinput='clearList' confirm-type="搜索"/>
+      <view class="searchBtn" bindtap="iptChange">搜索</view>
     </view>
   </view>
   <!-- 搜索记录 -->

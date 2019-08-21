@@ -267,15 +267,18 @@ Page({
     }
   },
   // 输入框内容改变
-  clearList (e) {
-    if (e.detail.value === '') {
+  clearList(e) {
+    let keyWord = e.detail.value
+    this.setData({
+      keyWord: keyWord
+    })
+    if (keyWord === '') {
       this.setData({
         filterStr: '',
         projectList: [],
         quartersList: [],
         xiangmuMask: false,
-        gangweiMask: false,
-        keyWord: ''
+        gangweiMask: false
       })
     }
   },
@@ -311,14 +314,11 @@ Page({
     }
   },
   // 输入框确认
-  iptChange (e) {
-    let keyWord = e.detail.value
+  iptChange () {
+    let keyWord = this.data.keyWord
     if (keyWord == "") {
       return false
     }
-    this.setData({
-      keyWord: keyWord
-    })
     if (this.data.typeStr === 'xiangmu') {
       this.setData({
         filterStr: '',

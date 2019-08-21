@@ -77,8 +77,41 @@ Page({
       content: `如您已经享受平台服务我们将扣除30%作为服务费`,
       success: (res) => {
         if (res.confirm) {
-          this.changeStatus(key)
+          this.bottomBtn(key)
         }
+      }
+    })
+  },
+  // 联系后台
+  bottomBtn(key) {
+    wx.request({
+      url: `${app.globalData.baseUrl}/User/getHrServiceMobile.html`,
+      data: {
+        sess_key: app.globalData.sess_key
+      },
+      method: 'POST',
+      success: (res) => {
+        if (res.data.error_code == 0) {
+          let phoneNumber = "010-68698480"
+          if (res.data.bizobj.company_info.service_mobile) {
+            phoneNumber = res.data.bizobj.company_info.service_mobile
+          }
+          wx.makePhoneCall({
+            phoneNumber: phoneNumber
+          })
+        } else {
+          wx.showModal({
+            showCancel: false,
+            title: '提示',
+            content: res.data.msg,
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
       }
     })
   },
@@ -105,11 +138,20 @@ Page({
       success: (res) => {
         wx.hideLoading()
         let data = res.data.bizobj.data.job_info
-        if (data.max_salary) {
-          data['salaryStr'] = Math.round(data.mini_salary / 1000) + 'k-' + Math.round(data.max_salary / 1000) + 'k/月'
+        if (data.salary_type == 1) {
+          data['salaryStr'] = data.day_salary + "元/日"
         } else {
-          data['salaryStr'] = '不限'
+          if (data.max_salary) {
+            data['salaryStr'] = Math.round(data.mini_salary / 1000) + 'k-' + Math.round(data.max_salary / 1000) + 'k/月'
+          } else {
+            data['salaryStr'] = '不限'
+          }
         }
+        // if (data.max_salary) {
+        //   data['salaryStr'] = Math.round(data.mini_salary / 1000) + 'k-' + Math.round(data.max_salary / 1000) + 'k/月'
+        // } else {
+        //   data['salaryStr'] = '不限'
+        // }
         this.setData({
           dataInfo: data
         })

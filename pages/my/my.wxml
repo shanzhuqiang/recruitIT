@@ -5,7 +5,7 @@
       <image class='touxiang' src='{{ userInfo.avatar }}'></image>
       <view class='firstRow'>
         <view class='one'>{{ userInfo.nickname }}</view>
-        <view class='two'>{{ userType === 'engineer' ? '工程师' : userType === 'hr' ? '客户经理' : '经纪人' }}</view>
+        <view class='two'>{{ userType === 'engineer' ? 'IT精英' : userType === 'hr' ? '企业金主' : '赏金猎人' }}</view>
         <!-- <view class='three'>
           <image class='zuanshi' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/zuanshi.png'></image>
           A会员
@@ -182,7 +182,7 @@
         <view>
           <image class='fabuTiezi' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/fabuXiangmu.png'></image>
         </view>
-        <view>外包岗位</view>
+        <view>外派岗位</view>
       </view>
     </view>
     <view class='bottomClose'>

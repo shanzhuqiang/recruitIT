@@ -38,7 +38,7 @@ page{
 }
 .indexWrap .chooseOneWrap .homeBtn{
   float: right;
-  margin-top: 110rpx;
+  margin-top: 200rpx;
 }
 .indexWrap .chooseTwoWrap{
   text-align: center;
@@ -52,21 +52,10 @@ page{
 }
 .indexWrap .chooseTwoWrap .homeBtn{
   float: right;
-  margin-top: 90rpx;
+  margin-top: 0rpx;
 }
 .indexWrap .chooseTwoWrap .homeBtn2{
-  margin-top: 60rpx;
-  float: right;
-	width: 196rpx;
-	height: 64rpx;
-	box-shadow: 0 4rpx 13rpx 0 rgba(26, 73, 210, 0.34);
-	border-radius: 4rpx;
-	border: solid 2rpx #5787f3;
-	font-family: PingFangSC-Regular;
-	font-size: 28rpx;
-	color: #5787f3;
-  text-align: center;
-  line-height: 64rpx;
+  margin-top: 200rpx;
 }
 .indexWrap .homeBtn{
   width: 200rpx;

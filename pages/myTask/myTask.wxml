@@ -5,11 +5,11 @@
       待确认
     </view>
     <view class='item {{ tabType == "1" ? "active" : "" }}' bindtap='chooseType' data-id="1">
-      进行中
+      已确认
     </view>
-    <view class='item {{ tabType == "2" ? "active" : "" }}' bindtap='chooseType' data-id="2">
+    <!-- <view class='item {{ tabType == "2" ? "active" : "" }}' bindtap='chooseType' data-id="2">
       已完成
-    </view>
+    </view> -->
   </view>
   <view class='itemWrapBox'>
     <view class='itemWrap' wx:for="{{ listData }}" wx:key="">

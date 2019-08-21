@@ -225,7 +225,11 @@ Page({
   },
   // 输入框内容改变
   clearList(e) {
-    if (e.detail.value === '') {
+    let keyWord = e.detail.value
+    this.setData({
+      keyWord: keyWord
+    })
+    if (keyWord === '') {
       this.setData({
         dataList: []
       })
@@ -233,7 +237,7 @@ Page({
   },
   // 确认输入
   iptChange(e) {
-    let keyWord = e.detail.value
+    let keyWord = this.data.keyWord
     if (keyWord == "") {
       return false
     }

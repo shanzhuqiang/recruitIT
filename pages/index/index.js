@@ -515,9 +515,14 @@ Page({
   },
   // 名企专区
   goEnterprise() {
-    wx.navigateTo({
-      url: '../enterprise/enterprise'
+    wx.showModal({
+      title: '提示',
+      showCancel: false,
+      content: '该功能暂未开放'
     })
+    // wx.navigateTo({
+    //   url: '../enterprise/enterprise'
+    // })
   },
   // 职位精选
   goGoodJob() {

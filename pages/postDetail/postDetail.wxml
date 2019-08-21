@@ -3,7 +3,7 @@
   <view class='topBox'>
     <view class='first'>
       <view class='leftTitle'>{{ dataInfo.name }}</view>
-      <view class='rightTitle'>{{ dataInfo.salaryStr }}</view>
+      <view class='rightTitle'>{{ userType == 'engineer' ? "不限" : dataInfo.salaryStr }}</view>
       <view class='rightTitle2' wx:if="{{ bonus == 1 && dataInfo.salarySt}}">赏金￥{{ dataInfo.reward }}</view>
     </view>
     <view class='second'>

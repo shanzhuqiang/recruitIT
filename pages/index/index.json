@@ -2,6 +2,6 @@
   "usingComponents": {
     "i-modal": "../../dist/modal/index"
   },
-  "navigationBarTitleText": "IT行业交流",
+  "navigationBarTitleText": "夯大猎",
   "navigationBarBackgroundColor": "#fff"
 }

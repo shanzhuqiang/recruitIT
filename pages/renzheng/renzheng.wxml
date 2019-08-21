@@ -34,8 +34,8 @@
     </view>
   </view>
   <view class='finish' bindtap='finish'>完成</view>
-  <!-- <view class='finish' wx:if="{{ shenfen === '客户经理' || shenfen === '经纪人' }}" bindtap='finish'>完成</view> -->
-  <!-- <view class='nextStep' wx:if="{{ shenfen === '工程师'}}" bindtap='nextStep'>下一步</view> -->
+  <!-- <view class='finish' wx:if="{{ shenfen === '企业金主' || shenfen === '赏金猎人' }}" bindtap='finish'>完成</view> -->
+  <!-- <view class='nextStep' wx:if="{{ shenfen === 'IT精英'}}" bindtap='nextStep'>下一步</view> -->
   <view style='height: 30rpx;'></view>
   <i-drawer mode="right" visible="{{ showCompanyList }}" bind:close="toggleShowCompanyList">
     <scroll-view class="showCompanyListWrap" scroll-y>

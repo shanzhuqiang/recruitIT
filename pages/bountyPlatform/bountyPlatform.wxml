@@ -1,8 +1,8 @@
 <!--pages/bountyPlatform/bountyPlatform.wxml-->
 <view class='bountyPlatformWrap'>
   <view class='typeWrap'>
-    <view class='{{topType === "xiangmu" ? "active" : ""}}' bindtap='changeTopType' data-id="xiangmu">赏金项目</view>
-    <view class='{{topType === "zhaopin" ? "active" : ""}}' bindtap='changeTopType' data-id="zhaopin">赏金招聘</view>
+    <view class='{{topType === "xiangmu" ? "active" : ""}}' bindtap='changeTopType' data-id="xiangmu">外派需求</view>
+    <view class='{{topType === "zhaopin" ? "active" : ""}}' bindtap='changeTopType' data-id="zhaopin">入职需求</view>
   </view>
   <!-- 项目过滤 -->
   <view class='filterWrap' wx:if="{{ topType === 'xiangmu' }}">
@@ -138,7 +138,7 @@
         <view>
           <image class='fabuTiezi' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/fabuXiangmu.png'></image>
         </view>
-        <view>外包岗位</view>
+        <view>外派岗位</view>
       </view>
     </view>
     <view class='bottomClose'>

@@ -351,7 +351,7 @@ Page({
     } else {
       wx.showModal({
         title: '提示',
-        content: `确认发布吗？`,
+        content: `确认发布吗？确认发布后内容不得修改`,
         confirmText: '确认发布',
         cancelText: '检查一下',
         success: (res) => {

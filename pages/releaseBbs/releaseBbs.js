@@ -9,7 +9,7 @@ Page({
     imgSrc: '',
     typesArray: ['官方发布', '个人发布'],
     types: '',
-    shenfenArray: ['工程师', '客户经理', '经纪人'],
+    shenfenArray: ['IT精英', '企业金主', '赏金猎人'],
     shenfen: '',
     address: '',
     imgBox: '',
@@ -149,7 +149,7 @@ Page({
         content: this.data.content,
         imgs: [imgUrl],
         type: this.data.types === '官方发布' ? 2 : 1,
-        user_type: shenfen === '工程师' ? 1 : shenfen === '客户经理' ? 2 : 3,
+        user_type: shenfen === 'IT精英' ? 1 : shenfen === '企业金主' ? 2 : 3,
         address: this.data.address,
         latitude: this.data.latitude,
         longitude: this.data.longitude

@@ -14,15 +14,15 @@ Page({
     shaixuanArray: [
       {
         id: 1,
-        name: '工程师'
+        name: 'IT精英'
       },
       {
         id: 2,
-        name: '客户经理'
+        name: '企业金主'
       },
       {
         id: 3,
-        name: '经纪人'
+        name: '赏金猎人'
       }
     ],
     shaixuan: '',

@@ -46,6 +46,13 @@
 .searchSecondWrap .headRow .serachIptWrap .serachIpt{
   font-size: 26rpx;
 }
+.searchSecondWrap .headRow .serachIptWrap .searchBtn{
+  position: absolute;
+  font-size: 26rpx;
+  right: 30rpx;
+  top: 0;
+  z-index: 9
+}
 .searchSecondWrap .historyWrap .historyBox{
   padding: 0 30rpx;
 }

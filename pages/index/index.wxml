@@ -5,12 +5,12 @@
     <view class='homeTitle'>请选择当前进入IT小程序身份</view>
     <view class='chooseOneWrap'>
       <image class='chooseOne' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/chooseOne.png'></image>
-      <view class='homeBtn' bindtap="goHomePage" data-id="engineer">我是工程师</view>
+      <view class='homeBtn' bindtap="goHomePage" data-id="engineer">IT精英</view>
     </view>
     <view class='chooseTwoWrap'>
       <image class='chooseTwo' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/chooseTwo.png'></image>
-      <view class='homeBtn' bindtap="goHomePage" data-id="hr">我是客户经理</view>
-      <view class='homeBtn2' bindtap="goHomePage" data-id="agent">我是经纪人</view>
+      <view class='homeBtn' bindtap="goHomePage" data-id="hr">企业金主</view>
+      <view class='homeBtn homeBtn2' bindtap="goHomePage" data-id="agent">赏金猎人</view>
     </view>
     <!-- 位置信息不授权提示 -->
     <i-modal title="提示" visible="{{ noLocation }}" bind:ok="closeNoLocation"  ok-text="授权" show-cancel="{{ false }}">
@@ -61,7 +61,7 @@
             <image class='xiangmu' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/xiangmu.png'></image>
           </view>
           <!-- <view>项目大厅</view> -->
-          <view>外包岗位</view>
+          <view>外派岗位</view>
         </view>
         <view class='colBtn' bindtap='goTalentResume'>
           <view class='imgBox'>
@@ -78,7 +78,7 @@
     <view class='rowHeight'></view>
     <view class='typeTitleWrap' wx:if="{{ userType === 'engineer' }}">
       <view class='title'>
-        <text class='{{ titleChoosed === "project" ? "active" : "" }}' bindtap='chooseTitle' data-id="project">外包岗位</text>
+        <text class='{{ titleChoosed === "project" ? "active" : "" }}' bindtap='chooseTitle' data-id="project">外派岗位</text>
         <!-- 最新项目 -->
         <text class='{{ titleChoosed === "quarters" ? "active" : "" }}' style='margin-left: 60rpx;' bindtap='chooseTitle' data-id="quarters">入职机会</text>
         <!-- 最新岗位 -->
@@ -214,7 +214,7 @@
           <view>
             <image class='fabuTiezi' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/fabuXiangmu.png'></image>
           </view>
-          <view>外包岗位</view>
+          <view>外派岗位</view>
         </view>
       </view>
       <view class='bottomClose'>
