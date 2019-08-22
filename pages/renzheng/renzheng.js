@@ -1,5 +1,6 @@
 // pages/renzheng/renzheng.js
 const app = getApp()
+let timer = null
 Page({
 
   /**
@@ -14,6 +15,7 @@ Page({
     birthday: '出生年月',
     shenfenKey: '',
     gongsi: "选择公司",
+    companyListCach: [],
     companyList: [],
     showCompanyList: false
   },
@@ -34,6 +36,25 @@ Page({
       this.getCompany()
     }
   },
+  // 搜索公司
+  comIptChange (e) {
+    if (timer) {
+      clearTimeout(timer)
+    }
+    timer = setTimeout(() => {
+      let keyWord = e.detail.value
+      let companyListCach = this.data.companyListCach
+      let companyList = []
+      companyListCach.forEach(el => {
+        if (el.name.indexOf(keyWord) != -1) {
+          companyList.push(el)
+        }
+      })
+      this.setData({
+        companyList: companyList
+      })
+    }, 300)
+  },
   // 获取公司列表
   getCompany () {
     wx.request({
@@ -46,6 +67,7 @@ Page({
         wx.hideLoading()
         if (res.data.error_code == 0) {
           this.setData({
+            companyListCach: res.data.bizobj.data.company_list,
             companyList: res.data.bizobj.data.company_list
           })
         } else {

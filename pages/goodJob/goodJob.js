@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userType: '',
     loading: false,
     // userInfo: null,
     page: 1,
@@ -97,6 +98,7 @@ Page({
   // 取消省市区选择
   bindcancel () {
     this.setData({
+      codeArray: [],
       region: ['全部', '全部', '全部']
     })
   },
@@ -125,6 +127,7 @@ Page({
       shaixuan2: '',
       keyword: '',
       listData: [],
+      userType: app.globalData.userType,
       // userInfo: app.globalData.userInfo,
       imgSrc: app.globalData.imgSrc
     })

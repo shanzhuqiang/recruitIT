@@ -128,6 +128,9 @@
   <!-- 推荐列表 -->
   <i-drawer mode="right" visible="{{ showUsertList }}" bind:close="toggleshowUsertList">
     <scroll-view class="showCompanyListWrap" scroll-y>
+      <view class="comSearchBox">
+        <input class="ipt" placeholder="输入关键字过滤" bindinput="comIptChange"></input>
+      </view>
       <view class='companyItem' wx:for="{{ user_list }}" wx:key="" data-id="{{ item.id }}" data-name="{{ item.username }}" bindtap='chooseDistrict'>{{ item.username }}</view>
     </scroll-view>
   </i-drawer>

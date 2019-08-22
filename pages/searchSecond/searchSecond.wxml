@@ -31,6 +31,12 @@
   </view>
   <!-- 搜索过滤 -->
   <view class='filterWrap' wx:if="{{ dataList.length !== 0 }}">
+    <view class='colBox {{ region[0] !== "全部" ? "active" : "" }}'>
+      <picker mode="region" bindcancel="bindcancel" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+        <text>区域</text>
+        <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ region[0] !== "全部" ? imgSrc + "/arrowUp.png" : imgSrc + "/arrowDown.png" }}'></image>
+      </picker>
+    </view>
     <view class='{{ filterStr === "sort" ? "active" : "" }}' bindtap='openSort'>
       默认排序
       <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ filterStr === "sort" ? imgSrc + "/arrowUp.png" : imgSrc + "/arrowDown.png" }}'></image>
@@ -80,12 +86,12 @@
     </view>
     <view class='filterBox' wx:if="{{ filterStr === 'filter' }}">
       <view class='filterScroll'>
-        <view>
+        <!-- <view>
           <view class='titleRow'>工作区域</view>
           <view class='tagRow' wx:for="{{ quyuData }}" wx:key="">
             <view class='tagBtn {{ quyuChoose === item.district_code ? "active" : ""}}' style='{{item.district_name === null ? "visibility:hidden" : ""}}' wx:for="{{ item }}" data-id='{{ item.district_code }}' bindtap='quyuChooseFilter' wx:key="">{{ item.district_name }}</view>
           </view>
-        </view>
+        </view> -->
         <view>
           <view class='titleRow'>工作经验</view>
           <view class='tagRow' wx:for="{{ jingyanData }}" wx:key="">

@@ -91,7 +91,7 @@
 	line-height: 24rpx;
 	color: #fff;
   position: absolute;
-  top: 110rpx;
+  bottom: 160rpx;
   left: 170rpx;
 }
 .myWrap .topBox .renzhengWrap .renzheng{

@@ -111,7 +111,7 @@
   height: 89rpx;
   line-height: 89rpx;
   border-bottom: 1rpx solid #eee;
-  padding: 0 100rpx;
+  padding: 0 20rpx;
   text-align: center;
 	font-family: PingFangSC-Regular;
 	font-size: 28rpx;
@@ -119,12 +119,12 @@
   display: flex;
 }
 .searchFirstWrap .filterWrap > view{
-  width: 50%;
+  width: 33%;
 }
 .searchFirstWrap .filterWrap > view.active{
 	color: #2e70f9;
 }
-.searchFirstWrap .filterWrap > view .arrowDown{
+.searchFirstWrap .filterWrap .arrowDown{
   width: 15rpx;
   height: 10rpx;
   vertical-align: middle;
@@ -157,9 +157,64 @@
 	color: #2e70f9;
 }
 /* 过滤 */
+.searchFirstWrap .filterMask{
+  position: fixed;
+  left: 0;
+  top: 180rpx;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4)
+}
+.searchFirstWrap .filterMask .maskBody{
+  padding: 35rpx 38rpx;
+  background: #fff;
+}
+.searchFirstWrap .filterMask .maskBody .title{
+	font-family: PingFangSC-Regular;
+	font-size: 27rpx;
+	color: #333;
+  padding-bottom: 13rpx;
+}
+.searchFirstWrap .filterMask .maskBody .filterBtnWrap{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 17rpx;
+  height: 62rpx;
+}
+.searchFirstWrap .filterMask .maskBody .filterBtnWrap > view{
+  height: 60rpx;
+  width: 280rpx;
+	border: solid 1rpx #f0f0f0;
+	font-family: PingFangSC-Regular;
+	font-size: 24rpx;
+  text-align: center;
+}
+.searchFirstWrap .filterMask .maskBody .filterBtnWrap .filterBtn{
+	width: 214rpx;
+	height: 60rpx;
+	line-height: 62rpx;
+  text-align: center;
+	background-color: #fff;
+	border-radius: 4rpx;
+	border: solid 1rpx #f0f0f0;
+	font-family: PingFangSC-Regular;
+	font-size: 24rpx;
+	color: #666;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.searchFirstWrap .filterMask .maskBody .filterBtnWrap .filterBtn.active{
+	color: #2e70f9;
+	background-color: #e8eeff;
+}
 .searchFirstWrap .makWrap .filterBox{
-  height: 100%;
-  position: relative;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 180rpx;
+  background: rgba(0, 0, 0, 0.4)
 }
 .searchFirstWrap .makWrap .filterBox .filterScroll{
   position: absolute;

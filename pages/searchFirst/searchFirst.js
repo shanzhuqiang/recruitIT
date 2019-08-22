@@ -6,19 +6,20 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userType: '',
     imgSrc: '',
-    userInfo: null,
+    // userInfo: null,
     typeStr: 'xiangmu',
     keyWord: '',
     filterStr: '',
     xiangmuMask: false,
-    quyuData: [],
-    quyuChoose: '',
+    // quyuData: [],
+    // quyuChoose: '',
     xiangmuSort: '',
     xiangmuFiltertList: [],
-    mini_salary: '',
-    max_salary: '',
-    xmJingyanData: [
+    // mini_salary: '',
+    // max_salary: '',
+    shaixuanData: [
       [
         {
           id: '',
@@ -49,7 +50,7 @@ Page({
       ]
     ],
     xmJingyanChoose: '',
-    xmZhouqiChoose: '',
+    // xmZhouqiChoose: '',
     gangweiMask: false,
     gangweiSort: '',
     gwJingyanChoose: '',
@@ -99,23 +100,47 @@ Page({
     ],
     gwXueliChoose: '1',
     gwTimeChoose: '1',
-    gwZhouqiChoose: '',
+    // gwZhouqiChoose: '',
     projectList: [],
     quartersList: [],
-    historyArray: []
+    historyArray: [],
+    region: ['全部', '全部', '全部'],
+    customItem: '全部',
+    codeArray: []
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.setData({
-      userInfo: app.globalData.userInfo,
+      userType: app.globalData.userType,
+      // userInfo: app.globalData.userInfo,
       imgSrc: app.globalData.imgSrc
     })
     // 获取城市下的区
-    this.getArea()
+    // this.getArea()
     // 获取搜索缓存记录
     this.initGetStorage()
+  },
+  // 取消省市区选择
+  bindcancel() {
+    this.setData({
+      codeArray: [],
+      region: ['全部', '全部', '全部']
+    })
+  },
+  // 省市区选择改变
+  bindRegionChange: function (e) {
+    console.log(e.detail.code)
+    this.setData({
+      region: e.detail.value,
+      codeArray: e.detail.code
+    })
+    if (this.data.typeStr === 'xiangmu') {
+      this.searchProjectList()
+    } else {
+      this.searchWorkList()
+    }
   },
   // 获取搜索缓存记录
   initGetStorage () {
@@ -129,50 +154,54 @@ Page({
     })
   },
   // 项目筛选确认
-  xiangmuConfirm () {
+  // xiangmuConfirm () {
+  //   this.setData({
+  //     xiangmuMask: false
+  //   })
+  //   this.searchProjectList()
+  // },
+  // 项目工作经验
+  xmJingyanChooseFilter (e) {
     this.setData({
+      xmJingyanChoose: e.currentTarget.dataset.id,
+      xiangmuSort: "",
       xiangmuMask: false
     })
     this.searchProjectList()
   },
-  // 项目工作经验
-  xmJingyanChooseFilter (e) {
-    this.setData({
-      xmJingyanChoose: e.currentTarget.dataset.id
-    })
-  },
   // 项目工作周期
-  xmZhouqiChooseFilter(e) {
-    this.setData({
-      xmZhouqiChoose: e.currentTarget.dataset.id
-    })
-  },
+  // xmZhouqiChooseFilter(e) {
+  //   this.setData({
+  //     xmZhouqiChoose: e.currentTarget.dataset.id
+  //   })
+  // },
   // 项目最低价输入
-  miniSalaryChange(e) {
-    this.setData({
-      mini_salary: e.detail.value
-    })
-  },
+  // miniSalaryChange(e) {
+  //   this.setData({
+  //     mini_salary: e.detail.value
+  //   })
+  // },
   // 项目最高价输入
-  maxSalaryChange(e) {
-    this.setData({
-      max_salary: e.detail.value
-    })
-  },
+  // maxSalaryChange(e) {
+  //   this.setData({
+  //     max_salary: e.detail.value
+  //   })
+  // },
   // 项目排序
   xiangmuSortChoose (e) {
     this.setData({
+      xmJingyanChoose: "",
       xiangmuSort: e.currentTarget.dataset.id,
       xiangmuMask: false
     })
     this.searchProjectList()
   },
   // 项目区域选择
-  quyuChooseFilter (e) {
-    this.setData({
-      quyuChoose: e.currentTarget.dataset.id
-    })
-  },
+  // quyuChooseFilter (e) {
+  //   this.setData({
+  //     quyuChoose: e.currentTarget.dataset.id
+  //   })
+  // },
   // 岗位筛选确认
   gangweiConfirm () {
     this.setData({
@@ -207,11 +236,11 @@ Page({
     })
   },
   // 岗位发布周期
-  gwZhouqiChooseFilter (e) {
-    this.setData({
-      gwZhouqiChoose: e.currentTarget.dataset.id
-    })
-  },
+  // gwZhouqiChooseFilter (e) {
+  //   this.setData({
+  //     gwZhouqiChoose: e.currentTarget.dataset.id
+  //   })
+  // },
   // 打开默认排序
   openSort (e) {
     let key = e.currentTarget.dataset.id
@@ -290,24 +319,28 @@ Page({
     })
     if (this.data.typeStr === 'xiangmu') {
       this.setData({
+        region: ['全部', '全部', '全部'],
+        codeArray: [],
         filterStr: '',
         xiangmuSort: '',
-        quyuChoose: '',
-        mini_salary: '',
-        max_salary: '',
+        // quyuChoose: '',
+        // mini_salary: '',
+        // max_salary: '',
         xmJingyanChoose: '',
-        xmZhouqiChoose: '',
+        // xmZhouqiChoose: '',
         xiangmuMask: false
       })
       this.searchProjectList()
     } else {
       this.setData({
+        region: ['全部', '全部', '全部'],
+        codeArray: [],
         filterStr: '',
         gangweiSort: '',
         gwJingyanChoose: '',
         gwXueliChoose: '1',
         gwTimeChoose: '1',
-        gwZhouqiChoose: '',
+        // gwZhouqiChoose: '',
         gangweiMask: false
       })
       this.searchWorkList()
@@ -323,11 +356,11 @@ Page({
       this.setData({
         filterStr: '',
         xiangmuSort: '',
-        quyuChoose: '',
-        mini_salary: '',
-        max_salary: '',
+        // quyuChoose: '',
+        // mini_salary: '',
+        // max_salary: '',
         xmJingyanChoose: '',
-        xmZhouqiChoose: '',
+        // xmZhouqiChoose: '',
         xiangmuMask: false
       })
       this.searchProjectList()
@@ -338,7 +371,7 @@ Page({
         gwJingyanChoose: '',
         gwXueliChoose: '1',
         gwTimeChoose: '1',
-        gwZhouqiChoose: '',
+        // gwZhouqiChoose: '',
         gangweiMask: false
       })
       this.searchWorkList()
@@ -361,17 +394,23 @@ Page({
   },
   // 搜索项目
   searchProjectList() {
+    let codeArray = this.data.codeArray
+    let prov_code = codeArray[0] || ''
+    let city_code = codeArray[1] || ''
+    let district_code = codeArray[2] || ''
     wx.request({
       url: `${app.globalData.baseUrl}/Project/projectList.html`,
       data: {
         sess_key: app.globalData.sess_key,
-        city_code: this.data.userInfo.city_code,
+        prov_code: prov_code,
+        city_code: city_code,
+        district_code: district_code,
         is_bonus: 2,
         // district_code: this.data.quyuChoose,
         // mini_salary: this.data.mini_salary,
         // max_salary: this.data.max_salary,
         job_experience: this.data.xmJingyanChoose,
-        nature: this.data.xmZhouqiChoose,
+        nature: "",
         page: 1,
         page_size: 99999,
         keyword: this.data.keyWord,
@@ -405,13 +444,19 @@ Page({
   },
   // 搜索岗位
   searchWorkList() {
+    let codeArray = this.data.codeArray
+    let prov_code = codeArray[0] || ''
+    let city_code = codeArray[1] || ''
+    let district_code = codeArray[2] || ''
     wx.request({
       url: `${app.globalData.baseUrl}/Work/workList.html`,
       data: {
         sess_key: app.globalData.sess_key,
-        city_code: this.data.userInfo.city_code,
+        prov_code: prov_code,
+        city_code: city_code,
+        district_code: district_code,
         sort: this.data.gangweiSort,
-        nature: this.data.gwZhouqiChoose, 
+        nature: "", 
         create_time: this.data.gwTimeChoose,
         education: this.data.gwXueliChoose,
         job_experience: this.data.gwJingyanChoose,
@@ -447,51 +492,51 @@ Page({
     })
   },
   // 获取区域
-  getArea() {
-    wx.request({
-      url: `${app.globalData.baseUrl}/Addr/city2DistrictList.html`,
-      data: {
-        sess_key: app.globalData.sess_key,
-        city_code: this.data.userInfo.city_code
-      },
-      method: 'POST',
-      success: (res) => {
-        let listData = res.data.bizobj.data.area_list
-        console.log(listData)
-        listData.unshift({
-          city_code: '',
-          city_name: '不限'
-        })
-        let hangyeData = []
-        let length = parseInt(listData.length / 3)
-        let n = 0;
-        for (let i = 1; i <= length; i++) {
-          var star = (i - 1) * 3;
-          hangyeData[n++] = listData.slice(star, star + 3);
-        }
-        let y = listData.length - length * 3;
-        if (y > 0) {
-          let newArr = listData.slice(length * 3)
-          if (newArr.length === 2) {
-            newArr.push({
-              id: '',
-              name: null
-            })
-          }
-          hangyeData[n++] = newArr
-        }
-        this.setData({
-          quyuData: hangyeData
-        })
-      },
-      fail: (res) => {
-        wx.showToast({
-          icon: 'none',
-          title: '网络请求失败',
-        })
-      }
-    })
-  },
+  // getArea() {
+  //   wx.request({
+  //     url: `${app.globalData.baseUrl}/Addr/city2DistrictList.html`,
+  //     data: {
+  //       sess_key: app.globalData.sess_key,
+  //       city_code: this.data.userInfo.city_code
+  //     },
+  //     method: 'POST',
+  //     success: (res) => {
+  //       let listData = res.data.bizobj.data.area_list
+  //       console.log(listData)
+  //       listData.unshift({
+  //         city_code: '',
+  //         city_name: '不限'
+  //       })
+  //       let hangyeData = []
+  //       let length = parseInt(listData.length / 3)
+  //       let n = 0;
+  //       for (let i = 1; i <= length; i++) {
+  //         var star = (i - 1) * 3;
+  //         hangyeData[n++] = listData.slice(star, star + 3);
+  //       }
+  //       let y = listData.length - length * 3;
+  //       if (y > 0) {
+  //         let newArr = listData.slice(length * 3)
+  //         if (newArr.length === 2) {
+  //           newArr.push({
+  //             id: '',
+  //             name: null
+  //           })
+  //         }
+  //         hangyeData[n++] = newArr
+  //       }
+  //       this.setData({
+  //         quyuData: hangyeData
+  //       })
+  //     },
+  //     fail: (res) => {
+  //       wx.showToast({
+  //         icon: 'none',
+  //         title: '网络请求失败',
+  //       })
+  //     }
+  //   })
+  // },
   // 切换城市
   goChooseCity() {
     wx.navigateTo({
@@ -501,6 +546,8 @@ Page({
   // 改变搜索类型
   chooseType(e) {
     this.setData({
+      region: ['全部', '全部', '全部'],
+      codeArray: [],
       typeStr: e.currentTarget.dataset.id
     })
   },

@@ -8,6 +8,21 @@
 	background:#fff;
   position: relative;
 }
+.postDetailWrap .showCompanyListWrap .comSearchBox{
+  height: 80rpx;
+  line-height: 80rpx;
+  border-bottom: 1rpx solid #e5e5e5;
+  position: relative;
+}
+.postDetailWrap .showCompanyListWrap .comSearchBox .ipt{
+  position: absolute;
+  left: 20rpx;
+  right: 0;
+  height: 80rpx;
+  line-height: 80rpx;
+	font-size: 28rpx;
+	font-family: PingFangSC-Regular;
+}
 .postDetailWrap .showCompanyListWrap .companyItem{
 	font-family: PingFangSC-Regular;
 	font-size: 28rpx;

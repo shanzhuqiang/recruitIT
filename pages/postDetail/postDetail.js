@@ -1,5 +1,6 @@
 // pages/postDetail/postDetail.js
 const app = getApp()
+let timer = null
 Page({
 
   /**
@@ -15,6 +16,7 @@ Page({
     shareMask: false,
     maskOnOff: false,
     user_list: [],
+    user_listCach: [],
     fromsesskey: null,
     bonus: '',
     showUsertList: false
@@ -277,6 +279,25 @@ Page({
       }
     })
   },
+  // 搜索工程师
+  comIptChange(e) {
+    if (timer) {
+      clearTimeout(timer)
+    }
+    timer = setTimeout(() => {
+      let keyWord = e.detail.value
+      let user_listCach = this.data.user_listCach
+      let user_list = []
+      user_listCach.forEach(el => {
+        if (el.username.indexOf(keyWord) != -1) {
+          user_list.push(el)
+        }
+      })
+      this.setData({
+        user_list: user_list
+      })
+    }, 300)
+  },
   // 获取站内关注用户
   getUserCollects() {
     wx.request({
@@ -288,6 +309,7 @@ Page({
       success: (res) => {
         if (res.data.error_code == 0) {
           this.setData({
+            user_listCach: res.data.bizobj.data.user_list,
             user_list: res.data.bizobj.data.user_list
           })
         } else {

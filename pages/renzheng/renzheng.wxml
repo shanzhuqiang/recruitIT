@@ -39,6 +39,9 @@
   <view style='height: 30rpx;'></view>
   <i-drawer mode="right" visible="{{ showCompanyList }}" bind:close="toggleShowCompanyList">
     <scroll-view class="showCompanyListWrap" scroll-y>
+      <view class="comSearchBox">
+        <input class="ipt" placeholder="输入公司关键字过滤" bindinput="comIptChange"></input>
+      </view>
       <view class='companyItem' wx:for="{{ companyList }}" wx:key="" data-id="{{ item.id }}" data-name="{{ item.name }}" bindtap='chooseCompany'>{{ item.name }}</view>
       <view style='height:106rpx;'></view>
       <view class='bottomB' bindtap='bottomBtn'>

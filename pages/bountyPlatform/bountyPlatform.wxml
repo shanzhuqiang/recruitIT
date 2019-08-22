@@ -6,22 +6,33 @@
   </view>
   <!-- 项目过滤 -->
   <view class='filterWrap' wx:if="{{ topType === 'xiangmu' }}">
-    <view class='colBox {{ xiangmuFilter === "quyu" ? "active" : "" }}' bindtap='xiangmuBtn' data-id="quyu">
+    <!-- <view class='colBox {{ xiangmuFilter === "quyu" ? "active" : "" }}' bindtap='xiangmuBtn' data-id="quyu">
       <text>区域</text>
       <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ xiangmuFilter === "quyu" ? imgSrc + "/arrowUp.png" : imgSrc + "/arrowDown.png" }}'></image>
+    </view> -->
+    <view class='colBox {{ region[0] !== "全部" ? "active" : "" }}' style="width: 50%">
+      <picker mode="region" bindcancel="bindcancel" bindchange="bindRegionChange" value="{{region2}}" custom-item="{{customItem}}">
+        <text>区域</text>
+        <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ region[0] !== "全部" ? imgSrc + "/arrowUp.png" : imgSrc + "/arrowDown.png" }}'></image>
+      </picker>
     </view>
-    <view class='colBox {{ xiangmuFilter === "jiage" ? "active" : "" }}' bindtap='xiangmuBtn' data-id="jiage">
+    <view class='colBox {{ xiangmuFilter === "jiage" ? "active" : "" }}' bindtap='xiangmuBtn' data-id="jiage" style="width: 50%">
       <text>经验</text>
       <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ xiangmuFilter === "jiage" ? imgSrc + "/arrowUp.png" : imgSrc + "/arrowDown.png" }}'></image>
     </view>
-    <view class='colBox {{ xiangmuFilter === "shaixuan" ? "active" : "" }}' bindtap='xiangmuBtn' data-id="shaixuan">
+    <!-- <view class='colBox {{ xiangmuFilter === "shaixuan" ? "active" : "" }}' bindtap='xiangmuBtn' data-id="shaixuan">
       <text>周期</text>
-      <!-- <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ xiangmuFilter === "shaixuan" ? imgSrc + "/arrowUp.png" : imgSrc + "/arrowDown.png" }}'></image> -->
       <image class='filterImg' wx:if="{{imgSrc !== ''}}" src='{{ xiangmuFilter === "shaixuan" ? imgSrc + "/filterTwo.png" : imgSrc + "/filter.png" }}'></image>
-    </view>
+    </view> -->
   </view>
   <!-- 招聘过滤 -->
   <view class='filterWrap' wx:if="{{ topType === 'zhaopin' }}">
+    <view class='colBox {{ region[0] !== "全部" ? "active" : "" }}'>
+      <picker mode="region" bindcancel="bindcancel2" bindchange="bindRegionChange2" value="{{region}}" custom-item="{{customItem}}">
+        <text>区域</text>
+        <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ region[0] !== "全部" ? imgSrc + "/arrowUp.png" : imgSrc + "/arrowDown.png" }}'></image>
+      </picker>
+    </view>
     <view class='colBox {{ zhaopinFilter === "jingyan" ? "active" : "" }}' bindtap='zhaopinBtn' data-id="jingyan">
       <text>经验</text>
       <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ zhaopinFilter === "jingyan" ? imgSrc + "/arrowUp.png" : imgSrc + "/arrowDown.png" }}'></image>
@@ -30,10 +41,10 @@
       <text>学历</text>
       <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ zhaopinFilter === "xueli" ? imgSrc + "/arrowUp.png" : imgSrc + "/arrowDown.png" }}'></image>
     </view>
-    <view class='colBox {{ zhaopinFilter === "zhouqi" ? "active" : "" }}' bindtap='zhaopinBtn' data-id="zhouqi">
+    <!-- <view class='colBox {{ zhaopinFilter === "zhouqi" ? "active" : "" }}' bindtap='zhaopinBtn' data-id="zhouqi">
       <text>周期</text>
       <image class='filterImg' wx:if="{{imgSrc !== ''}}" src='{{ zhaopinFilter === "zhouqi" ? imgSrc + "/filterTwo.png" : imgSrc + "/filter.png" }}'></image>
-    </view>
+    </view> -->
   </view>
   <!-- 赏金项目 -->
   <view wx:if="{{ topType === 'xiangmu' }}">

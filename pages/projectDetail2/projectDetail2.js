@@ -101,6 +101,36 @@ Page({
           wx.makePhoneCall({
             phoneNumber: phoneNumber
           })
+          wx.request({
+            url: `${app.globalData.baseUrl}/Apply/changeOperateStatus.html`,
+            data: {
+              sess_key: app.globalData.sess_key,
+              operate_status: key,
+              id: this.data.id,
+              type: 2
+            },
+            method: 'POST',
+            success: (res) => {
+              wx.hideLoading()
+              if (res.data.error_code == 0) {
+                wx.navigateBack({
+                  delta: 1
+                })
+              } else {
+                wx.showModal({
+                  showCancel: false,
+                  title: '提示',
+                  content: res.data.msg,
+                })
+              }
+            },
+            fail: (res) => {
+              wx.showToast({
+                icon: 'none',
+                title: '网络请求失败',
+              })
+            }
+          })
         } else {
           wx.showModal({
             showCancel: false,

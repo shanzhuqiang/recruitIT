@@ -245,8 +245,11 @@ Page({
   // 工作周期
   zhouqiChange(e) {
     this.setData({
-      zhouqi: this.data.zhouqiArray[e.detail.value]
+      zhouqi: e.detail.value
     })
+    // this.setData({
+    //   zhouqi: this.data.zhouqiArray[e.detail.value]
+    // })
   },
   // 薪资
   xinziChange(e) {
@@ -275,13 +278,13 @@ Page({
     let btnChoose = this.data.btnChoose
     let district_code = this.data.districtCode
     let job_experience = this.data.jingyan.id
-    let nature = this.data.zhouqi.id
+    let nature = this.data.zhouqi
     let xinzi = this.data.xinzi.id
     let rixin = this.data.rixin
     let salary_range = this.data.money.id
     let instruction = this.data.instruction
     let requirement = this.data.requirement
-    console.log(job_experience)
+    console.log(nature)
     if (name === '') {
       wx.showModal({
         showCancel: false,
@@ -294,7 +297,13 @@ Page({
         title: '提示',
         content: '赏金最少为100',
       })
-    } else if (!btnChoose) {
+    } else if (nature === "") {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请输入工作周期',
+      })
+    }  else if (!btnChoose) {
       wx.showModal({
         showCancel: false,
         title: '提示',
@@ -312,13 +321,7 @@ Page({
         title: '提示',
         content: '请选择经验要求',
       })
-    } else if (typeof (nature) == 'undefined') {
-      wx.showModal({
-        showCancel: false,
-        title: '提示',
-        content: '请选择工作周期',
-      })
-    } else if (typeof (xinzi) === 'undefined') {
+    }else if (typeof (xinzi) === 'undefined') {
       wx.showModal({
         showCancel: false,
         title: '提示',

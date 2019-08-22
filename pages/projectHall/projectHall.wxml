@@ -5,27 +5,26 @@
       <text>区域</text>
       <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ topFilterBtn === "quyu" ? imgSrc + "/arrowUp.png" : imgSrc + "/arrowDown.png" }}'></image>
     </view> -->
-    <view class='colBox {{ region[0] !== "全部" ? "active" : "" }}'>
+    <view class='colBox {{ region[0] !== "全部" ? "active" : "" }}' style="width: 50%">
       <picker mode="region" bindcancel="bindcancel" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
         <text>区域</text>
         <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ region[0] !== "全部" ? imgSrc + "/arrowUp.png" : imgSrc + "/arrowDown.png" }}'></image>
       </picker>
     </view>
-    <view class='colBox {{ topFilterBtn === "jiage" ? "active" : "" }}' bindtap='topFilter' data-id="jiage">
+    <view class='colBox {{ topFilterBtn === "jiage" ? "active" : "" }}' bindtap='topFilter' data-id="jiage" style="width: 50%">
       <text>经验</text>
       <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ topFilterBtn === "jiage" ? imgSrc + "/arrowUp.png" : imgSrc + "/arrowDown.png" }}'></image>
     </view>
-    <view class='colBox {{ topFilterBtn === "shaixuan" ? "active" : "" }}' bindtap='topFilter' data-id="shaixuan">
+    <!-- <view class='colBox {{ topFilterBtn === "shaixuan" ? "active" : "" }}' bindtap='topFilter' data-id="shaixuan">
       <text>周期</text>
       <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ topFilterBtn === "shaixuan" ? imgSrc + "/arrowUp.png" : imgSrc + "/arrowDown.png" }}'></image>
-      <!-- <image class='filterImg' wx:if="{{imgSrc !== ''}}" src='{{ topFilterBtn === "shaixuan" ? imgSrc + "/filterTwo.png" : imgSrc + "/filter.png" }}'></image> -->
-    </view>
+    </view> -->
   </view>
   <view class='itemWrap' wx:for="{{ listData }}" wx:key="" data-id="{{ item.id }}" bindtap='goProjectDetail'>
     <view class='first'>
       <!-- <view class='box'>招标</view> -->
       <view class='title'>{{ item.name }}</view>
-      <view class='money'>{{ item.salaryStr }}</view>
+      <view class='money'>{{ userType == 'engineer' ? "不限" : item.salaryStr }}</view>
     </view>
     <view class='second'>
       <text style='padding-left: 0'>{{ item.job_label1 }}</text>

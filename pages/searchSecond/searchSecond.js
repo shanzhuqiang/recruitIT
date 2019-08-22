@@ -7,15 +7,15 @@ Page({
    */
   data: {
     imgSrc: '',
-    userInfo: null,
+    // userInfo: null,
     dataList: [],
     filterStr: '',
     sortVal: '',
     historyArray: [],
     keyWord: '',
     maskOn: false,
-    quyuData: '',
-    quyuChoose: '',
+    // quyuData: '',
+    // quyuChoose: '',
     jingyanData: [
       [
         {
@@ -114,20 +114,39 @@ Page({
         }
       ],
     ],
-    xinziChoose: 1
+    xinziChoose: 1,
+    region: ['全部', '全部', '全部'],
+    customItem: '全部',
+    codeArray: []
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.setData({
-      userInfo: app.globalData.userInfo,
+      // userInfo: app.globalData.userInfo,
       imgSrc: app.globalData.imgSrc
     })
     // 获取搜索缓存记录
     this.initGetStorage()
     // 获取区域
-    this.getArea()
+    // this.getArea()
+  },
+  // 取消省市区选择
+  bindcancel() {
+    this.setData({
+      region: ['全部', '全部', '全部']
+    })
+  },
+  // 省市区选择改变
+  bindRegionChange: function (e) {
+    console.log(e.detail.code)
+    this.setData({
+      region: e.detail.value,
+      codeArray: e.detail.code,
+      dataList: []
+    })
+    this.getData()
   },
   // 获取搜索缓存记录
   initGetStorage() {
@@ -145,7 +164,9 @@ Page({
     let key = e.currentTarget.dataset.id
     this.setData({
       keyWord: key,
-      quyuChoose: '',
+      region: ['全部', '全部', '全部'],
+      codeArray: [],
+      // quyuChoose: '',
       jingyanChoose: '',
       xueliChoose: '',
       salary_range: '1',
@@ -177,7 +198,7 @@ Page({
     this.setData({
       sortVal: e.currentTarget.dataset.id,
       maskOn: false,
-      quyuChoose: '',
+      // quyuChoose: '',
       jingyanChoose: '',
       xueliChoose: '',
       salary_range: '1'
@@ -243,7 +264,9 @@ Page({
     }
     this.setData({
       keyWord: keyWord,
-      quyuChoose: '',
+      region: ['全部', '全部', '全部'],
+      codeArray: [],
+      // quyuChoose: '',
       jingyanChoose: '',
       xueliChoose: '',
       salary_range: '1',
@@ -267,18 +290,23 @@ Page({
     })
   },
   // 获取简历数据
-  getData () {
+  getData() {
+    let codeArray = this.data.codeArray
+    let prov_code = codeArray[0] || ''
+    let city_code = codeArray[1] || ''
+    let district_code = codeArray[2] || ''
     wx.request({
       url: `${app.globalData.baseUrl}/Resume/resumeList.html`,
       data: {
         sess_key: app.globalData.sess_key,
-        city_code: this.data.userInfo.city_code,
+        prov_code: prov_code,
+        city_code: city_code,
+        district_code: district_code,
         page: 1,
         page_size: 99999,
         keyword: this.data.keyWord,
         sort: this.data.sortVal,
         education: this.data.xueliChoose,
-        district_code: this.data.quyuChoose,
         job_experience: this.data.jingyanChoose,
         salary_range: this.data.xinziChoose
       },
@@ -309,57 +337,57 @@ Page({
     })
   },
   // 区域选择
-  quyuChooseFilter(e) {
-    this.setData({
-      quyuChoose: e.currentTarget.dataset.id
-    })
-  },
+  // quyuChooseFilter(e) {
+  //   this.setData({
+  //     quyuChoose: e.currentTarget.dataset.id
+  //   })
+  // },
   // 获取区域
-  getArea() {
-    wx.request({
-      url: `${app.globalData.baseUrl}/Addr/city2DistrictList.html`,
-      data: {
-        sess_key: app.globalData.sess_key,
-        city_code: this.data.userInfo.city_code
-      },
-      method: 'POST',
-      success: (res) => {
-        let listData = res.data.bizobj.data.area_list
-        console.log(listData)
-        listData.unshift({
-          district_code: '',
-          district_name: '不限'
-        })
-        let hangyeData = []
-        let length = parseInt(listData.length / 3)
-        let n = 0;
-        for (let i = 1; i <= length; i++) {
-          var star = (i - 1) * 3;
-          hangyeData[n++] = listData.slice(star, star + 3);
-        }
-        let y = listData.length - length * 3;
-        if (y > 0) {
-          let newArr = listData.slice(length * 3)
-          if (newArr.length === 2) {
-            newArr.push({
-              id: '',
-              name: null
-            })
-          }
-          hangyeData[n++] = newArr
-        }
-        this.setData({
-          quyuData: hangyeData
-        })
-      },
-      fail: (res) => {
-        wx.showToast({
-          icon: 'none',
-          title: '网络请求失败',
-        })
-      }
-    })
-  },
+  // getArea() {
+  //   wx.request({
+  //     url: `${app.globalData.baseUrl}/Addr/city2DistrictList.html`,
+  //     data: {
+  //       sess_key: app.globalData.sess_key,
+  //       city_code: this.data.userInfo.city_code
+  //     },
+  //     method: 'POST',
+  //     success: (res) => {
+  //       let listData = res.data.bizobj.data.area_list
+  //       console.log(listData)
+  //       listData.unshift({
+  //         district_code: '',
+  //         district_name: '不限'
+  //       })
+  //       let hangyeData = []
+  //       let length = parseInt(listData.length / 3)
+  //       let n = 0;
+  //       for (let i = 1; i <= length; i++) {
+  //         var star = (i - 1) * 3;
+  //         hangyeData[n++] = listData.slice(star, star + 3);
+  //       }
+  //       let y = listData.length - length * 3;
+  //       if (y > 0) {
+  //         let newArr = listData.slice(length * 3)
+  //         if (newArr.length === 2) {
+  //           newArr.push({
+  //             id: '',
+  //             name: null
+  //           })
+  //         }
+  //         hangyeData[n++] = newArr
+  //       }
+  //       this.setData({
+  //         quyuData: hangyeData
+  //       })
+  //     },
+  //     fail: (res) => {
+  //       wx.showToast({
+  //         icon: 'none',
+  //         title: '网络请求失败',
+  //       })
+  //     }
+  //   })
+  // },
   // 进入简历详情
   goResumeDetail (e) {
     wx.navigateTo({

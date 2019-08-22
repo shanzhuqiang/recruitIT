@@ -89,7 +89,7 @@
           <view class='first'>
             <!-- <view class='box'>招标</view> -->
             <view class='title'>{{ item.name }}</view>
-            <view class='money'>{{ item.salaryStr }}</view>
+            <view class='money'>{{ userType == 'engineer' ? "不限" : item.salaryStr }}</view>
           </view>
           <view class='second'>
             <text style='padding-left: 0'>{{ item.job_label1 }}</text>
@@ -109,7 +109,7 @@
         <view class='itemWrap itemWrapTwo' wx:for="{{ quartersList }}" wx:key="" bindtap='goPostDetail' data-id="{{ item.id }}">
           <view class='first'>
             <view class='title'>{{ item.name }}</view>
-            <view class='money'>{{ item.salaryStr }}</view>
+            <view class='money'>{{ userType == 'engineer' ? "不限" : item.salaryStr }}</view>
           </view>
           <view class='second'>
             <text style='padding-left: 0'>{{ item.city_name }}</text>
