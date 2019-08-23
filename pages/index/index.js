@@ -11,7 +11,7 @@ Page({
     // home
     imgSrc: '',
     userInfo:  null,
-    bannerImg: ['../../images/banner.png', '../../images/banner.png', '../../images/banner.png'],
+    bannerImg: [{ url: '../../images/banner1.png', title: "与时间赛跑，提升企业招聘效率" }, { url: '../../images/banner2.jpg', title: "闲置资源变现，让你的付出获得更多回报" }, { url: '../../images/banner3.jpg', title: "伯乐常在，让更多人发现你的价值" }],
     titleChoosed: 'project',
     projectList: [],
     quartersList: [],

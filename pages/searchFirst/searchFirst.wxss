@@ -50,9 +50,10 @@
 .searchFirstWrap .headRow .serachIptWrap .searchBtn{
   position: absolute;
   font-size: 26rpx;
-  right: 30rpx;
+  right: 10rpx;
   top: 0;
-  z-index: 9
+  z-index: 9;
+  padding: 0 20rpx;
 }
 /* 选择搜索类型 */
 .searchFirstWrap .historyWrap .typeWrap{

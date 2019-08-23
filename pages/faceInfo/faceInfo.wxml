@@ -43,7 +43,7 @@
       <view class='rightBox'>
         <view class='firstRow'>
           {{ dataInfo.hr_name }}
-          <text>人事</text>
+          <text>负责人</text>
         </view>
         <view class='secondRow'>最近活跃：{{ dataInfo.hr_day }}</view>
       </view>

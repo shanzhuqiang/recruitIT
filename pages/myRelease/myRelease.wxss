@@ -174,7 +174,7 @@
 .myReleaseWrap .itemWrap{
   background: #fff;
   border-bottom: 16rpx solid #f8f8f8;
-  padding: 50rpx 30rpx 0;
+  padding: 30rpx 30rpx;
   position: relative;
 }
 .myReleaseWrap .itemWrap .first{
@@ -271,6 +271,7 @@
 /* 岗位 */
 .myReleaseWrap .itemWrap.itemWrapTwo{
   height: 240rpx;
+  padding: 50rpx 30rpx 0;
 }
 .myReleaseWrap .itemWrap.itemWrapTwo .first .title{
   left: 0rpx;
