@@ -47,7 +47,7 @@
       <input class='rightInput' type="number" placeholder='请输入日薪' bindinput='rixinChange'></input>
     </view>
     <view class='hallRow' wx:if="{{ xinzi.id == 2 }}">
-      <view class='leftName'>月薪范围'</view>
+      <view class='leftName'>月薪范围</view>
       <picker bindchange="moneyChange" range="{{ moneyArray }}" range-key="name">
         <input class='rightInput' placeholder="请选择月薪范围" value='{{ money.name }}' disabled/>
       </picker>
