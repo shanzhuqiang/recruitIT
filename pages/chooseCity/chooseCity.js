@@ -8,7 +8,7 @@ Page({
   data: {
     imgSrc: '',
     chooseActive: 'used',
-    btnChoose: '',
+    btnChoose: null,
     userInfo: null,
     common: null,
     cityList: [],

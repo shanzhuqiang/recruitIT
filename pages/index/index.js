@@ -21,7 +21,10 @@ Page({
     // getPhoneMaskOnOff: true
     getPhoneMaskOnOff: false,
     unReadNum: 0,
-    basePage: ''
+    basePage: '',
+    cityName: '全国',
+    cityCode: '',
+    firstBtn: true
   },
 
   /**
@@ -50,6 +53,12 @@ Page({
       this.setData({
         userInfo: app.globalData.userInfo
       })
+      if (!this.data.firstBtn) {
+        this.setData({
+          cityName: app.globalData.userInfo.city_name,
+          cityCode: app.globalData.userInfo.city_code
+        })
+      }
       console.log("首页", userInfo)
       // 认证过了
       let userType = ""
@@ -89,6 +98,9 @@ Page({
           basePage: 'one'
         })
       }
+      this.setData({
+        firstBtn: false
+      })
     } else {
       setTimeout(() => {
         this.initTimes()
@@ -111,7 +123,6 @@ Page({
     wx.getLocation({
       type: 'wgs84',
       success: (res) => {
-        console.log('位置授权成功回调', res)
         let obj = app.globalData.userInfo || {}
         obj['lat'] = res.latitude
         obj['lng'] = res.longitude
@@ -140,12 +151,6 @@ Page({
   },
   // 授权成功后添加用户信息
   addUserInfo(data) {
-    console.log('个人信息', data)
-    // let obj = app.globalData.userInfo || {}
-    // obj['avatar'] = data.avatarUrl
-    // obj['gender'] = data.gender
-    // obj['nickname'] = data.nickName
-    // Object.assign(app.globalData.userInfo, obj)
     this.updateUserinfo(data)
   },
   // 更新用户信息
@@ -235,15 +240,6 @@ Page({
       setTimeout(() => {
         this.getUnRead()
       }, 100)
-    }
-  },
-  // 初始化授权
-  initAuth() {
-    if (app.globalData.userInfo) {
-      // if (app.globalData.userInfo && app.globalData.userInfo.phone) {
-      this.setData({
-        getPhoneMaskOnOff: false
-      })
     }
   },
   // 前往认证
@@ -336,23 +332,6 @@ Page({
     wx.redirectTo({
       url: '../my/my'
     })
-    // if (this.data.userType === 'engineer' && this.data.userInfo.identity_auth.is_engineer == 2) {
-    //   wx.navigateTo({
-    //     url: '../renzheng/renzheng'
-    //   })  
-    // } else if (this.data.userType === 'hr' && this.data.userInfo.identity_auth.is_hr == 2) {
-    //   wx.navigateTo({
-    //     url: '../renzheng/renzheng'
-    //   })
-    // } else if (this.data.userType === 'agent' && this.data.userInfo.identity_auth.is_agent == 2) {
-    //   wx.navigateTo({
-    //     url: '../renzheng/renzheng'
-    //   })
-    // } else {
-    //   wx.redirectTo({
-    //     url: '../my/my'
-    //   })
-    // }
   },
   // 简历
   goResumeDetail(e) {
@@ -378,7 +357,8 @@ Page({
       url: `${app.globalData.baseUrl}/Project/projectList.html`,
       data: {
         sess_key: app.globalData.sess_key,
-        city_code: this.data.userInfo.city_code,
+        // city_code: this.data.userInfo.city_code,
+        city_code: this.data.cityCode,
         is_bonus: 2,
         sort: 1,
         page: 1,
@@ -413,7 +393,8 @@ Page({
       data: {
         sess_key: app.globalData.sess_key,
         education: "1",
-        city_code: this.data.userInfo.city_code,
+        // city_code: this.data.userInfo.city_code,
+        city_code: this.data.cityCode,
         is_bonus: 2,
         sort: 1,
         page: 1,
@@ -448,7 +429,8 @@ Page({
       url: `${app.globalData.baseUrl}/Resume/resumeList.html`,
       data: {
         sess_key: app.globalData.sess_key,
-        city_code: this.data.userInfo.city_code,
+        // city_code: this.data.userInfo.city_code,
+        city_code: this.data.cityCode,
         sort: 1,
         page: 1,
         page_size: 20

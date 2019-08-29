@@ -16,6 +16,7 @@
       <view class='title'>最近访问</view>
       <view class='itemBox {{ btnChoose === item.city_code ? "active" : "" }}' wx:for="{{ common.rencent_visit }}" data-id="{{ item.city_code }}" data-ida="{{ item.city_name }}" bindtap='chooseBtn' wx:key="">{{ item.city_name }}</view>
       <view class='title'>热门城市</view>
+      <view class='itemBox {{ btnChoose === "" ? "active" : "" }}' data-id="" data-ida="全国" bindtap='chooseBtn'>全国</view>
       <view class='itemBox {{ btnChoose === item.city_code ? "active" : "" }}' wx:for="{{ common.hot_city }}" data-id="{{ item.city_code }}" data-ida="{{ item.city_name }}" bindtap='chooseBtn' wx:key="">{{ item.city_name }}</view>
     </view>
     <view wx:if='{{ chooseActive !== "used" }}'>
