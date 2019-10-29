@@ -14,5 +14,5 @@
       <input class='input' type='number' value='{{ money }}' placeholder='请输入提现金额' bindinput="moneyChange"></input>
     </view>
   </view>
-  <view class='confirmBtn'>确定</view>
+  <view class='confirmBtn' bindtap="tixianBtn">确定</view>
 </view>
