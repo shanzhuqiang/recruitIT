@@ -45,7 +45,7 @@ App({
   },
   globalData: {
     // baseUrl: 'http://118.31.72.207:3000/mock/16/api',
-    baseUrl: 'https://headhunter.pinecc.cn/api',
+    baseUrl: 'https://www.cnlhyg.com/api',
     sess_key: '',
     need_auth: '',
     has_password: '',

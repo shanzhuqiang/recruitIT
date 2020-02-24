@@ -257,27 +257,7 @@ page{
   height: 16rpx;
   background: #f8f8f8;
 }
-/* 切换title */
-.homeWrap > .typeTitleWrap > .title{
-  height: 88rpx;
-  line-height: 88rpx;
-  font-size: 24rpx;
-  color: #666;
-  border-bottom: 1rpx solid #eee;
-  padding: 0 30rpx;
-}
-.homeWrap > .typeTitleWrap .titleSecond{
-  border-bottom: 1rpx solid #eee;
-  padding: 0 30rpx;
-  font-size: 24rpx;
-  color: #666;
-  height: 88rpx;
-  line-height: 88rpx;
-}
-.homeWrap > .typeTitleWrap .titleSecond text{
-  border-left: 6rpx solid #2e76f9;
-  padding-left: 20rpx;
-}
+/* 切换title */hui
 .homeWrap > .typeTitleWrap .title text{
   display: inline-block;
   height: 88rpx;
