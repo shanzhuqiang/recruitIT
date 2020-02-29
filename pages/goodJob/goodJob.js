@@ -221,6 +221,7 @@ Page({
         city_code: city_code,
         district_code: district_code,
         is_bonus: 2,
+        status: 1,
         page: this.data.page,
         create_time: this.data.shaixuan1,
         // nature: this.data.shaixuan2,

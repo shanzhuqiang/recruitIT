@@ -4,12 +4,54 @@ App({
     // 登录
     wx.login({
       success: res => {
-        console.log(res)
         this.loginSesskey(res.code)
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+      }
+    })
+    // 位置授权
+    this.initLocation()
+  },
+  // 初始化地理信息
+  initLocation() {
+    wx.getLocation({
+      type: 'wgs84',
+      success: (res) => {
+        console.log("getLocation" ,res)
+        let data = {
+          lat: res.latitude,
+          lng: res.longitude
+        }
+        this.getUserInfo(data)
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '取消授权',
+        })
+        let data = {
+          lat: 30.04885,
+          lng: 119.96043
+        }
+        this.getUserInfo(data)
       }
     })
   },
+  getUserInfo(data) {
+    console.log("getUserInfo" ,data)
+    this.globalData.locationData = data
+    // 获取用户信息
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          wx.getUserInfo({
+            success: res => {
+              this.updateUserinfo(res)
+            }
+          })
+        }
+      }
+    })
+  },
+  // 获取sessKey
   loginSesskey(code) {
     wx.request({
       url: `${this.globalData.baseUrl}/Login/login.html`,
@@ -18,11 +60,13 @@ App({
       },
       method: 'POST',
       success: (res) => {
+        console.log("login", res)
         if (res.data.error_code == 0) {
           let resData = res.data.bizobj.data
-          console.log(resData)
           this.globalData.sess_key = resData.sess_key
-          this.globalData.userInfo = resData.user_info || {}
+          this.globalData.userInfo = resData.user_info
+          // 更新用户信息
+          // this.updateUserinfo(data)
           // this.globalData.has_password = resData.has_password
           // this.globalData.has_password = 2
           // this.globalData.need_auth = resData.need_auth
@@ -43,7 +87,39 @@ App({
       }
     })
   },
+  // 更新用户信息
+  updateUserinfo(data) {
+    console.log("更新用户信息", data)
+    // this.globalData.userInfo = data.userInfo
+    wx.request({
+      url: `${this.globalData.baseUrl}/User/updateUserInfo.html`,
+      data: {
+        sess_key: this.globalData.sess_key,
+        nickname: data.userInfo.nickName,
+        avatar: data.userInfo.avatarUrl,
+        gender: data.userInfo.gender,
+        lat: this.globalData.locationData.lat,
+        lng: this.globalData.locationData.lng
+      },
+      method: 'POST',
+      success: (res) => {
+        if (res.data.error_code != 0) {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
   globalData: {
+    locationData: null,
     // baseUrl: 'http://118.31.72.207:3000/mock/16/api',
     baseUrl: 'https://www.cnlhyg.com/api',
     sess_key: '',

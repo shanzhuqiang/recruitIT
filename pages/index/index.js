@@ -7,11 +7,10 @@ Page({
    */
   data: {
     authMask: false,
-    noLocation: false,
     // home
     imgSrc: '',
     userInfo:  null,
-    bannerImg: [{ url: '../../images/banner1.png', title: "与时间赛跑，提升企业招聘效率" }, { url: '../../images/banner2.jpg', title: "闲置资源变现，让你的付出获得更多回报" }, { url: '../../images/banner3.jpg', title: "伯乐常在，让更多人发现你的价值" }],
+    bannerImg: [{ url: '../../images/banner1.png', title: "与时间赛跑，提升企业招聘效率" }, { url: '../../images/banner2.png', title: "闲置资源变现，让你的付出获得更多回报" }, { url: '../../images/banner3.png', title: "伯乐常在，让更多人发现你的价值" }],
     titleChoosed: 'project',
     projectList: [],
     quartersList: [],
@@ -31,7 +30,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // 工程师加载项目和岗位
     this.getUnRead()
     // 初始化
     this.initTimes()
@@ -43,26 +41,17 @@ Page({
     this.setData({
       imgSrc: app.globalData.imgSrc
     })
-    // 初始化
-    this.getSessKeySuccess()
   },
   initTimes() {
     // 拿到登陆信息
-    if (app.globalData.sess_key != '') {
+    if (app.globalData.sess_key !== "") {
       let userInfo = app.globalData.userInfo
       this.setData({
-        userInfo: app.globalData.userInfo
+        userInfo: userInfo
       })
-      if (!this.data.firstBtn) {
-        this.setData({
-          cityName: app.globalData.userInfo.city_name,
-          cityCode: app.globalData.userInfo.city_code
-        })
-      }
-      console.log("首页", userInfo)
       // 认证过了
       let userType = ""
-      if (userInfo.identity_auth) {
+      if (userInfo && userInfo.identity_auth) {
         if (userInfo.identity_auth.is_engineer == 1) {
           userType = "engineer"
           app.globalData.userType = userType
@@ -98,125 +87,14 @@ Page({
           basePage: 'one'
         })
       }
-      this.setData({
-        firstBtn: false
-      })
     } else {
       setTimeout(() => {
         this.initTimes()
       }, 100)
     }
   },
-  // 判断用户信息拿到
-  getSessKeySuccess() {
-    // 拿到登陆信息
-    if (app.globalData.sess_key != '') {
-      this.initLocation()
-    } else {
-      setTimeout(() => {
-        this.getSessKeySuccess()
-      }, 100)
-    }
-  },
-  // 初始化地理信息
-  initLocation() {
-    wx.getLocation({
-      type: 'wgs84',
-      success: (res) => {
-        let obj = app.globalData.userInfo || {}
-        obj['lat'] = res.latitude
-        obj['lng'] = res.longitude
-        Object.assign(app.globalData.userInfo, obj)
-        this.initUserInfo()
-      },
-      fail: (res) => {
-        this.setData({
-          noLocation: true
-        })
-      }
-    })
-  },
-  // 位置不授权提示弹框
-  closeNoLocation() {
-    wx.openSetting({
-      success: (res) => {
-        if (res.authSetting['scope.userLocation']) {
-          this.initLocation()
-          this.setData({
-            noLocation: false
-          })
-        }
-      }
-    })
-  },
-  // 授权成功后添加用户信息
-  addUserInfo(data) {
-    this.updateUserinfo(data)
-  },
-  // 更新用户信息
-  updateUserinfo(data) {
-    let data2 = app.globalData.userInfo
-    wx.request({
-      url: `${app.globalData.baseUrl}/User/updateUserInfo.html`,
-      data: {
-        sess_key: app.globalData.sess_key,
-        nickname: data.nickName,
-        avatar: data.avatarUrl,
-        gender: data.gender,
-        lat: data2.lat,
-        lng: data2.lng
-      },
-      method: 'POST',
-      success: (res) => {
-        if (res.data.error_code == 0) {
-          let userInfo = res.data.bizobj.data.user_info
-          app.globalData.userInfo = userInfo
-          this.setData({
-            userInfo: userInfo
-          })
-        } else {
-          wx.showToast({
-            icon: 'none',
-            title: res.data.msg,
-          })
-        }
-      },
-      fail: (res) => {
-        wx.showToast({
-          icon: 'none',
-          title: '网络请求失败',
-        })
-      }
-    })
-  },
-  // 初始化用户授权信息
-  initUserInfo() {
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          wx.getUserInfo({
-            success: res => {
-              this.addUserInfo(res.userInfo)
-            }
-          })
-        } else {
-          this.setData({
-            authMask: true
-          })
-        }
-      }
-    })
-  },
-  // 用户授权结果回调
-  bindgetuserinfo(res) {
-    if (res.detail.errMsg != "getUserInfo:fail auth deny") {
-      this.setData({
-        authMask: false
-      })
-      this.addUserInfo(res.detail.userInfo)
-    }
-  },
-  getUnRead () {
+  // 获取未读消息
+  getUnRead() {
     if (app.globalData.sess_key) {
       wx.request({
         url: `${app.globalData.baseUrl}/notice/noticeCount.html`,
@@ -244,9 +122,33 @@ Page({
   },
   // 前往认证
   goHomePage(e) {
-    wx.navigateTo({
-      url: `../renzheng/renzheng?shenfen=${e.currentTarget.dataset.id}`
+    // this.setData({
+    //   authMask: true
+    // })
+    if (app.globalData.userInfo) {
+      wx.navigateTo({
+        url: `../renzheng/renzheng?shenfen=${e.currentTarget.dataset.id}`
+      })
+    } else {
+      this.setData({
+        authMask: true
+      })
+    }
+  },
+  // 取消登录
+  cancelLogin() {
+    this.setData({
+      authMask: false
     })
+  },
+  // 用户授权结果回调
+  bindgetuserinfo(res) {
+    if (res.detail.errMsg != "getUserInfo:fail auth deny") {
+      this.setData({
+        authMask: false
+      })
+      app.updateUserinfo(res.detail)
+    }
   },
   // getPhoneNumber(e) {
   //   if (e.detail.errMsg === 'getPhoneNumber:ok') {
@@ -398,6 +300,7 @@ Page({
         is_bonus: 2,
         sort: 1,
         page: 1,
+        is_hot:1,
         page_size: 20
       },
       method: 'POST',
@@ -456,6 +359,11 @@ Page({
         })
       }
     })
+  },
+  updateBlogs() {
+    this.initProjectData()
+    this.initQuartersData()
+    this.initResumeData()
   },
   // title切换
   chooseTitle (e) {
@@ -557,7 +465,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.updateBlogs()
   },
 
   /**

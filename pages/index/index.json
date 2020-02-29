@@ -2,6 +2,8 @@
   "usingComponents": {
     "i-modal": "../../dist/modal/index"
   },
+  "backgroundTextStyle": "dark",
+  "enablePullDownRefresh": true,
   "navigationBarTitleText": "夯大猎",
   "navigationBarBackgroundColor": "#fff"
 }

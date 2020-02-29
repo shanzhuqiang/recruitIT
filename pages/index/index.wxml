@@ -1,6 +1,10 @@
 <view class='basePage'>
 <!-- 个人信息授权 -->
-  <button wx:if="{{ authMask }}"  class='authMask' open-type="getUserInfo" bindgetuserinfo="bindgetuserinfo" lang="zh_CN"></button>
+  <!-- 位置信息不授权提示 -->
+  <!-- <i-modal title="提示" visible="{{ noLocation }}" bind:ok="closeNoLocation"  ok-text="授权" show-cancel="{{ false }}">
+    <view>请授权位置信息，否则无法使用小程序</view>
+  </i-modal> -->
+  <!-- <button wx:if="{{ authMask `}}"  class='authMask' open-type="getUserInfo" bindgetuserinfo="bindgetuserinfo" lang="zh_CN"></button> -->
   <view class='indexWrap' wx:if="{{ basePage == 'one' }}">
     <view class='homeTitle'>请选择当前进入IT小程序身份</view>
     <view class='chooseOneWrap'>
@@ -12,10 +16,6 @@
       <view class='homeBtn' bindtap="goHomePage" data-id="hr">企业金主</view>
       <view class='homeBtn homeBtn2' bindtap="goHomePage" data-id="agent">赏金猎人</view>
     </view>
-    <!-- 位置信息不授权提示 -->
-    <i-modal title="提示" visible="{{ noLocation }}" bind:ok="closeNoLocation"  ok-text="授权" show-cancel="{{ false }}">
-      <view>请授权位置信息，否则无法使用小程序</view>
-    </i-modal>
   </view>
   <view class='homeWrap' wx:if="{{ basePage == 'two' }}">
     <button class='getPhoneMask' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{ getPhoneMaskOnOff }}"></button>
@@ -32,13 +32,11 @@
     </view>
     <view class='middleWrap'>
       <view class='bannerWrap'>
-        <swiper
-          autoplay
-        >
+        <swiper autoplay indicator-dots>
           <block wx:for="{{bannerImg}}" wx:key="">
             <swiper-item>
               <image src="{{item.url}}" class="bannerImg" />
-              <view class="bannerTitle">{{item.title}}</view>
+              <!-- <view class="bannerTitle">{{item.title}}</view> -->
             </swiper-item>
           </block>
         </swiper>
@@ -220,6 +218,22 @@
       </view>
       <view class='bottomClose'>
         <image class='bottomCloseIcon' bindtap='closeRelease' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/bottomClose.png'></image>
+      </view>
+    </view>
+  </view>
+  <!-- 授权 -->
+  <view class='autoMark' wx:if="{{ authMask }}">
+    <view class='btnWrap'>
+      <view class='login'>您还未授权</view>
+      <view class='login2'>请先授权再进行操作</view>
+      <view class="imgBox">
+        <image class="wechatLogo" src="../../images/wechatLogo.png"></image>
+        <image class="tran" src="../../images/tran.png"></image>
+        <image class="logo" src="../../images/logo.png"></image>
+      </view>
+      <view class="btnBox">
+        <view class="cancelBtn" bindtap="cancelLogin">取消</view>
+        <button class='okBtn' open-type="getUserInfo" withCredentials='true' bindgetuserinfo="bindgetuserinfo" lang="zh_CN">授权</button>
       </view>
     </view>
   </view>
