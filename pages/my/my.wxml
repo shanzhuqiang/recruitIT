@@ -149,7 +149,7 @@
         <view class='imgBox'></view>
         <view>发布</view>
     </view>
-    <view class='btnBox' bindtap='goBbs'>
+    <view class='btnBox' bindtap='goBbs' wx:if="{{ is_shenhe == 0 }}">
       <view class='imgBox'>
         <image class='luntan' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/luntan.png'></image>
       </view>

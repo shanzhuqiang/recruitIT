@@ -62,7 +62,7 @@
   position: relative;
 }
 .btootmNavWrap.btootmNavWrap2 .btnBox{
-  width: 25%;
+  width: 33%;
 }
 .btootmNavWrap .btnBox .unReadNum{
   position: absolute;
