@@ -131,7 +131,7 @@
     </view>
   </view>
   <view style='height: 90rpx;'></view>
-  <view class='btootmNavWrap'>
+  <view class='btootmNavWrap {{ is_shenhe == 1 ? "btootmNavWrap2" : "" }}'>
     <view class='btnBox' bindtap='goHome'>
       <view class='imgBox'>
         <image class='homePng' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/home.png'></image>
