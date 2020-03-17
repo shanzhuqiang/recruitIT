@@ -26,7 +26,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
     this.getInfo(options.id)
     this.setData({
       userType: app.globalData.userType,
@@ -374,12 +373,8 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: '寻猿招聘',
+      title: '夯大猎',
       path: `/pages/index/index`
     }
-    // return {
-    //   title: '寻猿招聘',
-    //   path: `/pages/resumeDetail/resumeDetail?id=${this.data.id}`
-    // }
   }
 })

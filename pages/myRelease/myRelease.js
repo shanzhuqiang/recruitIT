@@ -194,7 +194,6 @@ Page({
           this.setData({
             bbsList: listData
           })
-          console.log(listData)
         } else {
           wx.showToast({
             icon: 'none',

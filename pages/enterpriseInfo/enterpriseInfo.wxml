@@ -44,7 +44,7 @@
   </view>
   <!-- 职位 -->
   <view class='zhiweiWrap' wx:if='{{ tabCurrent === "zhiwei" }}'>
-    <view class='zhiweiItemWrap' wx:for="{{ quartersList }}" wx:key="" data-id="{{ item.id }}" bindtap='goPostDetail'>
+    <view class='zhiweiItemWrap' wx:for="{{ quartersList }}" wx:key="index" data-id="{{ item.id }}" bindtap='goPostDetail'>
       <view class='zhiweiItem'>
         <view class='title'>{{ item.name }}</view>
         <view class='tagWrap'>
@@ -60,7 +60,7 @@
   </view>
   <!-- 项目 -->
   <view class='zhiweiWrap' wx:if='{{ tabCurrent === "xiangmu" }}'>
-    <view class='zhiweiItemWrap' wx:for="{{ projectList }}" wx:key="" data-id="{{ item.id }}" bindtap='goProjectDetail'>
+    <view class='zhiweiItemWrap' wx:for="{{ projectList }}" wx:key="index" data-id="{{ item.id }}" bindtap='goProjectDetail'>
       <view class='zhiweiItem'>
         <view class='title'>{{ item.name }}</view>
         <view class='tagWrap'>

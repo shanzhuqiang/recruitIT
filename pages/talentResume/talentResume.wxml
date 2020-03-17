@@ -20,7 +20,7 @@
       <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ topFilterBtn === "yuexin" ? imgSrc + "/arrowUp.png" : imgSrc + "/arrowDown.png" }}'></image>
     </view>
   </view>
-  <view class='itemWrap' wx:for="{{ listData }}" wx:key="" bindtap='goResumeDetail' data-id="{{ item.id }}">
+  <view class='itemWrap' wx:for="{{ listData }}" wx:key="index" bindtap='goResumeDetail' data-id="{{ item.id }}">
     <view class='firstRow'>
       <view class='leftImgBox'>
         <image class='leftImg' src='{{ item.avatar }}'></image>
@@ -50,8 +50,8 @@
   <view class='filterMask' wx:if="{{ topFilterBtn === 'quyu' && maskOnOff}}">
     <view class='maskBody'>
       <view class='title'>工作区域</view>
-      <view class='filterBtnWrap' wx:for="{{ quyuData }}" wx:key="">
-        <view class='filterBtn {{ quyuChoose == item.district_code ? "active" : ""}}' style='{{item.district_name === null ? "visibility:hidden" : ""}}' wx:for="{{ item }}" data-id='{{ item.district_code }}' bindtap='quyuChooseFilter' wx:key="">{{ item.district_name }}</view>
+      <view class='filterBtnWrap' wx:for="{{ quyuData }}" wx:key="index">
+        <view class='filterBtn {{ quyuChoose == item.district_code ? "active" : ""}}' style='{{item.district_name === null ? "visibility:hidden" : ""}}' wx:for="{{ item }}" data-id='{{ item.district_code }}' bindtap='quyuChooseFilter' wx:key="index">{{ item.district_name }}</view>
       </view>
     </view>
   </view>
@@ -59,8 +59,8 @@
   <view class='filterMask' wx:if="{{ topFilterBtn === 'jingyan' && maskOnOff }}">
     <view class='maskBody'>
       <view class='title'>工作经验</view>
-      <view class='filterBtnWrap' wx:for="{{ jingyanData }}" wx:key="">
-        <view class='filterBtn {{ jingyanChoose == item.id ? "active" : ""}}' wx:for="{{ item }}" data-id='{{ item.id }}' bindtap='jingyanChooseFilter' wx:key="">{{ item.name }}</view>
+      <view class='filterBtnWrap' wx:for="{{ jingyanData }}" wx:key="index">
+        <view class='filterBtn {{ jingyanChoose == item.id ? "active" : ""}}' wx:for="{{ item }}" data-id='{{ item.id }}' bindtap='jingyanChooseFilter' wx:key="index">{{ item.name }}</view>
       </view>
     </view>
   </view>
@@ -68,8 +68,8 @@
   <view class='filterMask' wx:if="{{ topFilterBtn === 'yuexin' && maskOnOff }}">
     <view class='maskBody'>
       <view class='title'>月薪</view>
-      <view class='filterBtnWrap' wx:for="{{ yuexinData }}" wx:key="">
-        <view class='filterBtn {{ yuexinChoose == item.id ? "active" : ""}}' style='{{item.name === null ? "visibility:hidden" : ""}}' wx:for="{{ item }}" data-id='{{ item.id }}' bindtap='yuexinChooseFilter' wx:key="">{{ item.name }}</view>
+      <view class='filterBtnWrap' wx:for="{{ yuexinData }}" wx:key="index">
+        <view class='filterBtn {{ yuexinChoose == item.id ? "active" : ""}}' style='{{item.name === null ? "visibility:hidden" : ""}}' wx:for="{{ item }}" data-id='{{ item.id }}' bindtap='yuexinChooseFilter' wx:key="index">{{ item.name }}</view>
       </view>
     </view>
   </view>

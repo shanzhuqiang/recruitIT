@@ -33,9 +33,9 @@
     <view class='middleWrap'>
       <view class='bannerWrap'>
         <swiper autoplay indicator-dots>
-          <block wx:for="{{bannerImg}}" wx:key="">
+          <block wx:for="{{bannerImg}}" wx:key="index">
             <swiper-item>
-              <image src="{{item.url}}" class="bannerImg" />
+              <image src="{{item}}" class="bannerImg" />
               <!-- <view class="bannerTitle">{{item.title}}</view> -->
             </swiper-item>
           </block>
@@ -84,7 +84,7 @@
       </view>
       <!-- 最新项目 -->
       <view wx:if="{{ titleChoosed === 'project' }}">
-        <view class='itemWrap' wx:for="{{ projectList }}" wx:key="" bindtap='goProjectDetail' data-id="{{ item.id }}">
+        <view class='itemWrap' wx:for="{{ projectList }}" wx:key="index" bindtap='goProjectDetail' data-id="{{ item.id }}">
           <view class='first'>
             <!-- <view class='box'>招标</view> -->
             <view class='title'>{{ item.name }}</view>
@@ -105,7 +105,7 @@
       </view>
       <!-- 岗位信息 -->
       <view wx:if="{{ titleChoosed === 'quarters' }}">
-        <view class='itemWrap itemWrapTwo' wx:for="{{ quartersList }}" wx:key="" bindtap='goPostDetail' data-id="{{ item.id }}">
+        <view class='itemWrap itemWrapTwo' wx:for="{{ quartersList }}" wx:key="index" bindtap='goPostDetail' data-id="{{ item.id }}">
           <view class='first'>
             <view class='title'>{{ item.name }}</view>
             <view class='money'>{{ userType == 'engineer' ? "不限" : item.salaryStr }}</view>
@@ -132,7 +132,7 @@
       <view class='titleSecond'>
         <text>精英简历</text>
       </view>
-      <view class='jinyingItemWrap' wx:for="{{ talentResumeList }}" wx:key="" bindtap='goResumeDetail' data-id="{{ item.id }}">
+      <view class='jinyingItemWrap' wx:for="{{ talentResumeList }}" wx:key="index" bindtap='goResumeDetail' data-id="{{ item.id }}">
         <view class='firstRow'>
           <view class='leftImgBox'>
             <image class='leftImg' src='{{ item.avatar }}'></image>
@@ -175,7 +175,7 @@
         </view>
         <view>赏金平台</view>
       </view>
-      <view class='btnBox' bindtap='goRelease'>
+      <view class='btnBox' bindtap='goRelease' wx:if="{{ is_shenhe == 0 }}">
           <image class='addfabu' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/addfabu.png'></image>
           <view class='imgBox'></view>
           <view>发布</view>

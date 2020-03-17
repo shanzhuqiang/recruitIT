@@ -65,13 +65,11 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: '寻猿招聘',
+      title: '夯大猎',
       path: `/pages/index/index`,
       success: res => {
-        console.log(res)
       },
       fail: res => {
-        console.log(res)
       }
     }
   }

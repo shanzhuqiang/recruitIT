@@ -13,7 +13,7 @@
   </view>
   <!-- 发布的帖子 -->
   <view wx:if="{{ tabType === 'tiezi' }}">
-    <view class='itemBox' wx:for="{{ bbsList }}" wx:key="" data-id="{{ item.id }}"  bindtap='goBbsInfo'>
+    <view class='itemBox' wx:for="{{ bbsList }}" wx:key="index" data-id="{{ item.id }}"  bindtap='goBbsInfo'>
       <view class='topName'>
         <image class='touxiang' wx:if="{{imgSrc !== ''}}" src='{{ item.user_info.avatar }}'></image>
         <view class='name'>{{ item.user_info.username }}</view>
@@ -56,7 +56,7 @@
   </view>
   <!-- 发布的项目 -->
   <view wx:if="{{ tabType === 'xiangmu' }}">
-    <view class='itemWrap' wx:for="{{ projectList }}" wx:key="">
+    <view class='itemWrap' wx:for="{{ projectList }}" wx:key="index">
       <view data-id="{{ item.id }}" bindtap='goProjectDetail'>
         <view class='first'>
           <!-- <view class='box'>招标</view> -->
@@ -84,7 +84,7 @@
   </view>
   <!-- 发布的岗位 -->
   <view wx:if="{{ tabType === 'gangwei' }}">
-    <view class='itemWrap itemWrapTwo' wx:key="" wx:for="{{ quartersList }}" data-id="{{ item.id }}" bindtap='goWordDetail'>
+    <view class='itemWrap itemWrapTwo' wx:key="index" wx:for="{{ quartersList }}" data-id="{{ item.id }}" bindtap='goWordDetail'>
       <view class='first'>
         <view class='title'>{{ item.name }}</view>
         <view class='money'>{{ item.salaryStr }}</view>

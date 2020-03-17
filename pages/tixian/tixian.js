@@ -15,7 +15,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // console.log(options.totalCoin)
     this.setData({
       imgSrc: app.globalData.imgSrc,
       totalCoin: options.totalCoin
@@ -63,7 +62,6 @@ Page({
                   content: res.data.bizobj.err_code_des,
                 })
               }
-              console.log(res)
             } else {
               wx.showModal({
                 showCancel: false,

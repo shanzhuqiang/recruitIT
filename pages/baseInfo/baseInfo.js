@@ -68,7 +68,6 @@ Page({
    */
   onLoad: function (options) {
     let baseInfo = app.globalData.baseInfo.user_info
-    console.log(baseInfo)
     let tagArray = []
     if (baseInfo.label1) {
       tagArray.push(baseInfo.label1)
@@ -131,7 +130,6 @@ Page({
   },
   // 省市区选择改变
   bindRegionChange: function (e) {
-    console.log(e.detail.code)
     this.setData({
       region: e.detail.value,
       codeArray: e.detail.code
@@ -314,7 +312,6 @@ Page({
     let tagVal = this.data.tagVal
     if (tagVal !== '') {
       let tagArray = this.data.tagArray
-      console.log(tagArray)
       if (tagArray.length > 2) {
         this.setData({
           addTag: false,
@@ -367,8 +364,6 @@ Page({
   // },
   // 保存
   saveInfo() {
-    console.log(this.data.region)
-    console.log(this.data.codeArray)
     let work = this.data.work
     let workName = this.data.workName
     let workNameIpt = this.data.workNameIpt
@@ -507,76 +502,6 @@ Page({
       })
     }
   },
-  // 初始化获取数据
-  // getData() {
-  //   wx.request({
-  //     url: `${app.globalData.baseUrl}/Addr/chooseDistrict.html`,
-  //     data: {
-  //       sess_key: app.globalData.sess_key,
-  //       lat: this.data.userInfo.lat,
-  //       lng: this.data.userInfo.lng
-  //     },
-  //     method: 'POST',
-  //     success: (res) => {
-  //       let resData = res.data.bizobj.data
-  //       this.setData({
-  //         cityList: resData.prov_list,
-  //         common: resData.common
-  //       })
-  //       console.log(resData)
-  //     },
-  //     fail: (res) => {
-  //       wx.showToast({
-  //         icon: 'none',
-  //         title: '网络请求失败',
-  //       })
-  //     }
-  //   })
-  // },
-  // 左侧选择省份
-  // chooseCity(e) {
-  //   let key = e.currentTarget.dataset.id
-  //   this.setData({
-  //     chooseActive: key
-  //   })
-  //   if (key !== 'used') {
-  //     this.getProv2CityList(key)
-  //   }
-  // },
-  // getProv2CityList(code) {
-  //   wx.request({
-  //     url: `${app.globalData.baseUrl}/Addr/prov2CityList.html`,
-  //     data: {
-  //       sess_key: app.globalData.sess_key,
-  //       prov_code: code
-  //     },
-  //     method: 'POST',
-  //     success: (res) => {
-  //       let resData = res.data.bizobj.data
-  //       this.setData({
-  //         areaList: resData.area_list
-  //       })
-  //       console.log(resData)
-  //     },
-  //     fail: (res) => {
-  //       wx.showToast({
-  //         icon: 'none',
-  //         title: '网络请求失败',
-  //       })
-  //     }
-  //   })
-  // },
-  // 选择城市
-  // chooseBtn(e) {
-  //   this.setData({
-  //     btnChoose: e.currentTarget.dataset.id,
-  //     city: e.currentTarget.dataset.ida,
-  //     districtCode: '',
-  //     district: '',
-  //     cityChooseMask: false
-  //   })
-  //   this.getArea(e.currentTarget.dataset.id)
-  // },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

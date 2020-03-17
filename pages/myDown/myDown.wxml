@@ -1,6 +1,6 @@
 <!--pages/myDown/myDown.wxml-->
 <view class='myDownWrap'>
-  <view class='itemWrap' wx:for="{{ listData }}" wx:key="">
+  <view class='itemWrap' wx:for="{{ listData }}" wx:key="index">
     <view class='itemBox' data-id="{{ item.re_resume_id }}" bindtap='goResumeDetail'>
       <view class='workName'>{{ item.name }}</view>
       <view class='leftImg'>

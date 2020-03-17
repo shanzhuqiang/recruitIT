@@ -67,7 +67,6 @@ Page({
     wx.getLocation({
       type: 'wgs84',
       success: (res) => {
-        console.log('位置授权成功回调', res)
         let obj = app.globalData.userInfo || {}
         obj['lat'] = res.latitude
         obj['lng'] = res.longitude
@@ -96,7 +95,6 @@ Page({
   },
   // 授权成功后添加用户信息
   addUserInfo(data) {
-    console.log('个人信息', data)
     let obj = app.globalData.userInfo || {}
     obj['avatar'] = data.avatarUrl
     obj['gender'] = data.gender
@@ -141,7 +139,6 @@ Page({
   initUserInfo() {
     wx.getSetting({
       success: res => {
-        console.log(res)
         if (res.authSetting['scope.userInfo']) {
           wx.getUserInfo({
             success: res => {
@@ -248,13 +245,11 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: '寻猿招聘',
+      title: '夯大猎',
       path: `/pages/index/index`,
       success: res => {
-        console.log(res)
       },
       fail: res => {
-        console.log(res)
       }
     }
   }

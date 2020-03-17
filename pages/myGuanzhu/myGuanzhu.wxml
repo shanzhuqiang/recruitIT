@@ -1,6 +1,6 @@
 <!--pages/myGuanzhu/myGuanzhu.wxml-->
 <view class='myGuanzhuWrap'>
-  <view class='itemBox' wx:for="{{ listData }}" wx:key="" data-id="{{ item.re_resume_id }}" bindtap='goInfo'>
+  <view class='itemBox' wx:for="{{ listData }}" wx:key="index" data-id="{{ item.re_resume_id }}" bindtap='goInfo'>
     <view class='firstRow'>
       <view class='leftImgBox'>
         <image class='leftImg' wx:if="{{ item.avatar }}" src='{{ item.avatar }}'></image>

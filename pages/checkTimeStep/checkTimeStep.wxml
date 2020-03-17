@@ -26,7 +26,7 @@
   <view class='bottomBox'>
     <view class='scrollWrap'>
       <scroll-view class="scrollView" scroll-x>
-        <view class='itemBox' wx:for="{{ images }}" wx:key="">
+        <view class='itemBox' wx:for="{{ images }}" wx:key="index">
           <image class='desImg' src='{{ item }}'></image>
         </view>
       </scroll-view>

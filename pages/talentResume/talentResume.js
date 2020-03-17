@@ -94,7 +94,6 @@ Page({
   },
   // 省市区选择改变
   bindRegionChange: function (e) {
-    console.log(e.detail.code)
     this.setData({
       region: e.detail.value,
       codeArray: e.detail.code,
@@ -148,53 +147,6 @@ Page({
       url: `../resumeDetail/resumeDetail?id=${e.currentTarget.dataset.id}`
     })
   },
-  // 获取区域
-  // gitArea() {
-  //   wx.request({
-  //     url: `${app.globalData.baseUrl}/Addr/city2DistrictList.html`,
-  //     data: {
-  //       sess_key: app.globalData.sess_key,
-  //       city_code: this.data.userInfo.city_code
-  //     },
-  //     method: 'POST',
-  //     success: (res) => {
-  //       let listData = res.data.bizobj.data.area_list
-  //       listData.unshift({
-  //         district_code: '',
-  //         district_name: '不限'
-  //       })
-  //       console.log(listData)
-  //       let hangyeData = []
-  //       let length = parseInt(listData.length / 3)
-  //       let n = 0;
-  //       for (let i = 1; i <= length; i++) {
-  //         var star = (i - 1) * 3;
-  //         hangyeData[n++] = listData.slice(star, star + 3);
-  //       }
-  //       let y = listData.length - length * 3;
-  //       if (y > 0) {
-  //         let newArr = listData.slice(length * 3)
-  //         if (newArr.length === 2) {
-  //           newArr.push({
-  //             id: '',
-  //             district_name: null
-  //           })
-  //         }
-  //         hangyeData[n++] = newArr
-  //       }
-  //       this.setData({
-  //         quyuData: hangyeData
-  //       })
-  //       console.log(hangyeData)
-  //     },
-  //     fail: (res) => {
-  //       wx.showToast({
-  //         icon: 'none',
-  //         title: '网络请求失败',
-  //       })
-  //     }
-  //   })
-  // },
   // 获取简历列表
   getList() {
     this.setData({

@@ -104,7 +104,6 @@ Page({
   },
   // 省市区选择改变
   bindRegionChange: function (e) {
-    console.log(e.detail.code)
     this.setData({
       region: e.detail.value,
       codeArray: e.detail.code,

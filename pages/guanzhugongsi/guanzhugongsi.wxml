@@ -1,6 +1,6 @@
 <!--pages/guanzhugongsi/guanzhugongsi.wxml-->
 <view class='guanzhugongsiWrap'>
-  <view class='listItem' wx:for="{{ listData }}" data-id="{{ item.id }}" wx:key="" bindtap='goEnterpriseInfo'>
+  <view class='listItem' wx:for="{{ listData }}" data-id="{{ item.id }}" wx:key="index" bindtap='goEnterpriseInfo'>
     <view class='left'>
       <image class='logo' src='{{ item.icon }}'></image>
     </view>

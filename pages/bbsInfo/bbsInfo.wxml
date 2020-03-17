@@ -26,7 +26,7 @@
   <view class='discussBox'>
     <view class='titleWord'>全部评论</view>
     <view class='discussItemWrap' wx:if="{{ bbsInfo.comment_list.length > 0 }}">
-      <view class='discussItem' wx:for="{{ bbsInfo.comment_list }}" wx:key="">
+      <view class='discussItem' wx:for="{{ bbsInfo.comment_list }}" wx:key="index">
         <view class='discussTop'>
           <view class='leftImg'>
             <image class='touxiang' wx:if="{{imgSrc !== ''}}" src='{{ item.user_info.avatar }}'></image>
@@ -40,7 +40,7 @@
         <view class='discussContent'>
           {{ item.content }}
         </view>
-        <view class='otherContent' wx:for="{{ item.sub_comment }}" wx:key="">
+        <view class='otherContent' wx:for="{{ item.sub_comment }}" wx:key="index">
           <text class='userName'>{{ item.user_info.username }}</text>回复:{{ item.content }}
         </view>
       </view>

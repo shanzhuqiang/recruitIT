@@ -170,7 +170,6 @@ Page({
       success: (res) => {
         if (res.data.error_code == 0) {
           let resData = res.data.bizobj.data.resume_info
-          console.log(resData.user_info.birthday)
           // 计算年龄
           let year = 1000 * 60 * 60 * 24 * 365;
           let now = new Date();
@@ -257,13 +256,11 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: '寻猿招聘',
+      title: '夯大猎',
       path: `/pages/index/index`,
       success: res => {
-        console.log(res)
       },
       fail: res => {
-        console.log(res)
       }
     }
   }

@@ -42,7 +42,7 @@
     </view>
   </view>
   <!-- 职位list -->
-  <view class='itemWrap' wx:for="{{ listData }}" wx:key="" data-id="{{ item.id }}" bindtap='goPostDetail'>
+  <view class='itemWrap' wx:for="{{ listData }}" wx:key="index" data-id="{{ item.id }}" bindtap='goPostDetail'>
     <view class='first'>
       <view class='title'>{{ item.name }}</view>
       <view class='money'>{{ userType == 'engineer' ? "不限" : item.salaryStr }}</view>
@@ -68,8 +68,8 @@
   <view class='filterMask' wx:if="{{ topFilterBtn === 'jingyan' && maskOnOff }}">
     <view class='maskBody'>
       <view class='title'>工作经验</view>
-      <view class='filterBtnWrap' wx:for="{{ jingyanData }}" wx:key="">
-        <view class='filterBtn {{ jingyanChoose === item.id ? "active" : ""}}' wx:for="{{ item }}" data-id='{{ item.id }}' bindtap='jingyanChooseFilter' wx:key="">{{ item.name }}</view>
+      <view class='filterBtnWrap' wx:for="{{ jingyanData }}" wx:key="index">
+        <view class='filterBtn {{ jingyanChoose === item.id ? "active" : ""}}' wx:for="{{ item }}" data-id='{{ item.id }}' bindtap='jingyanChooseFilter' wx:key="index">{{ item.name }}</view>
       </view>
     </view>
   </view>
@@ -83,13 +83,13 @@
   <view class='filterMask' wx:if="{{ topFilterBtn === 'shaixuan' && maskOnOff }}">
     <view class='maskBody'>
       <view class='title'>学历要求</view>
-      <view class='filterBtnWrap' wx:for="{{ xueliData }}" wx:key="">
-        <view class='filterBtn {{ xueliChoose === item.id ? "active" : ""}}' style='{{item.name === "" ? "visibility:hidden" : ""}}' wx:for="{{ item }}" data-id='{{ item.id }}' bindtap='xueliChooseFilter' wx:key="">{{ item.name }}</view>
+      <view class='filterBtnWrap' wx:for="{{ xueliData }}" wx:key="index">
+        <view class='filterBtn {{ xueliChoose === item.id ? "active" : ""}}' style='{{item.name === "" ? "visibility:hidden" : ""}}' wx:for="{{ item }}" data-id='{{ item.id }}' bindtap='xueliChooseFilter' wx:key="index">{{ item.name }}</view>
       </view>
       <view style="height: 40rpx;"></view>
       <view class='title'>发布时间</view>
-      <view class='filterBtnWrap' wx:for="{{ shaixuanData }}" wx:key="">
-        <view class='filterBtn {{ shaixuan1 === item.id ? "active" : ""}}' style='{{item.name === "" ? "visibility:hidden" : ""}}' wx:for="{{ item }}" data-id='{{ item.id }}' bindtap='shaixuan1Filter' wx:key="">{{ item.name }}</view>
+      <view class='filterBtnWrap' wx:for="{{ shaixuanData }}" wx:key="index">
+        <view class='filterBtn {{ shaixuan1 === item.id ? "active" : ""}}' style='{{item.name === "" ? "visibility:hidden" : ""}}' wx:for="{{ item }}" data-id='{{ item.id }}' bindtap='shaixuan1Filter' wx:key="index">{{ item.name }}</view>
       </view>
       <view class='confirm' bindtap='confirmChoose'>确定</view>
       <!-- <view wx:if="{{ topFilterBtn === 'shaixuan' }}" style='padding-top: 38rpx'>

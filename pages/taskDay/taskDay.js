@@ -39,7 +39,6 @@ Page({
               qiandao: listData.today_sign == 1
             })
           }
-          console.log(listData)
         } else {
           wx.showToast({
             icon: 'none',
@@ -167,10 +166,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function (option) {
-    // console.log(shareTicket)
-    // wx.getShareInfo({
-    //   shareTicket
-    // })
   },
 
   /**
@@ -224,13 +219,11 @@ Page({
       }
     })
     return {
-      title: '寻猿招聘',
+      title: '夯大猎',
       path: `/pages/index/index`,
       success: res => {
-        console.log(res)
       },
       fail: res => {
-        console.log(res)
       }
     }
   }

@@ -12,7 +12,7 @@
     </view> -->
   </view>
   <view class='itemWrapBox'>
-    <view class='itemWrap' wx:for="{{ listData }}" wx:key="">
+    <view class='itemWrap' wx:for="{{ listData }}" wx:key="index">
       <view data-id="{{ item.project_id }}" bindtap='goDetail'>
         <view class='itemTop'>
           <view class='squareWrap' wx:if="{{ item.user_type == 3}}">

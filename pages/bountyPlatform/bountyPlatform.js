@@ -102,7 +102,8 @@ Page({
     customItem: '全部',
     codeArray: [],
     region2: ['全部', '全部', '全部'],
-    codeArray2: []
+    codeArray2: [],
+    is_shenhe: null
   },
   /**
    * 生命周期函数--监听页面加载
@@ -117,7 +118,8 @@ Page({
     this.setData({
       // userInfo: app.globalData.userInfo,
       userType: app.globalData.userType,
-      imgSrc: app.globalData.imgSrc
+      imgSrc: app.globalData.imgSrc,
+      is_shenhe: app.globalData.is_shenhe
     })
     // this.getArea()
     this.getProjectList()
@@ -304,52 +306,6 @@ Page({
       }
     })
   },
-  // // 获取区域
-  // getArea() {
-  //   wx.request({
-  //     url: `${app.globalData.baseUrl}/Addr/city2DistrictList.html`,
-  //     data: {
-  //       sess_key: app.globalData.sess_key,
-  //       city_code: this.data.userInfo.city_code
-  //     },
-  //     method: 'POST',
-  //     success: (res) => {
-  //       let listData = res.data.bizobj.data.area_list
-  //       console.log(listData)
-  //       listData.unshift({
-  //         district_code: '',
-  //         district_name: '不限'
-  //       })
-  //       let hangyeData = []
-  //       let length = parseInt(listData.length / 3)
-  //       let n = 0;
-  //       for (let i = 1; i <= length; i++) {
-  //         var star = (i - 1) * 3;
-  //         hangyeData[n++] = listData.slice(star, star + 3);
-  //       }
-  //       let y = listData.length - length * 3;
-  //       if (y > 0) {
-  //         let newArr = listData.slice(length * 3)
-  //         if (newArr.length === 2) {
-  //           newArr.push({
-  //             id: '',
-  //             name: null
-  //           })
-  //         }
-  //         hangyeData[n++] = newArr
-  //       }
-  //       this.setData({
-  //         quyuData: hangyeData
-  //       })
-  //     },
-  //     fail: (res) => {
-  //       wx.showToast({
-  //         icon: 'none',
-  //         title: '网络请求失败',
-  //       })
-  //     }
-  //   })
-  // },
   // 招聘过滤
   zhaopinBtn(e) {
     let key = e.currentTarget.dataset.id
@@ -486,11 +442,6 @@ Page({
       quartersList: []
     })
     this.getProjectList()
-    // let id = e.currentTarget.dataset.id
-    // console.log(id)
-    // this.setData({
-    //   shaixuan1: id
-    // })
   },
   // 工作周期选择
   shaixuanchooseFilter2(e) {
@@ -593,14 +544,14 @@ Page({
   },
   // 进入论坛
   goBbs() {
-    wx.showModal({
-      title: '提示',
-      showCancel: false,
-      content: '该功能暂未开放'
-    })
-    // wx.redirectTo({
-    //   url: '../bbs/bbs'
+    // wx.showModal({
+    //   title: '提示',
+    //   showCancel: false,
+    //   content: '该功能暂未开放'
     // })
+    wx.redirectTo({
+      url: '../bbs/bbs'
+    })
   },
   // 进入我的
   goMy() {

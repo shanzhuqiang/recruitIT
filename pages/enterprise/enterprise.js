@@ -130,7 +130,6 @@ Page({
           id: '',
           name: '不限'
         })
-        console.log(data)
         let hangyeData = []
         let length = parseInt(data.length / 3)
         let n = 0;
@@ -149,7 +148,6 @@ Page({
           }
           hangyeData[n++] = newArr
         }
-        console.log(hangyeData)
         this.setData({
           hangyeData: hangyeData
         })
@@ -181,7 +179,6 @@ Page({
       method: 'POST',
       success: (res) => {
         let listData = res.data.bizobj.data.company_list
-        console.log(listData)
         if (listData.length > 0) {
           let newList = this.data.listData
           this.setData({
@@ -255,7 +252,6 @@ Page({
   chooseFilter(e) {
     let id = e.currentTarget.dataset.id
     let topFilterBtn = this.data.topFilterBtn
-    console.log(id)
     if (topFilterBtn === 'rongzi') {
       this.setData({
         rongziDataFilter: id,

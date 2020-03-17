@@ -66,7 +66,6 @@ Page({
       method: 'POST',
       success: (res) => {
         let listData = res.data.bizobj.data
-        console.log(listData)
         this.setData({
           listData: listData.coin_log,
           num: listData.total_coin

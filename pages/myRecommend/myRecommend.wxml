@@ -12,7 +12,7 @@
     </view>
   </view>
   <view class='itemWrapBox'>
-    <view class='itemWrap' wx:if="{{ listData.length > 0 }}" wx:for="{{ listData }}" wx:key="">
+    <view class='itemWrap' wx:if="{{ listData.length > 0 }}" wx:for="{{ listData }}" wx:key="index">
       <view class='itemTop'>
         <view class='square'>工</view>
         <view class='wordText' bindtap='goEngineer' data-id="{{ item.resume_id }}">

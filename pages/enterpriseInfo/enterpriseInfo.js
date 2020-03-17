@@ -31,14 +31,12 @@ Page({
   },
   // 进入岗位详情
   goPostDetail(e) {
-    console.log(e.currentTarget.dataset.id)
     wx.navigateTo({
       url: `../postDetail/postDetail?id=${e.currentTarget.dataset.id}`
     })
   },
   // 进入项目详情
   goProjectDetail(e) {
-    console.log(e.currentTarget.dataset.id)
     wx.navigateTo({
       url: `../projectDetail/projectDetail?id=${e.currentTarget.dataset.id}`
     })
@@ -81,7 +79,6 @@ Page({
       method: 'POST',
       success: (res) => {
         let listData = res.data.bizobj.data.job_list
-        console.log(listData)
         listData.forEach((el, index) => {
           if (el.max_salary) {
             el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k/月'
@@ -115,7 +112,6 @@ Page({
       method: 'POST',
       success: (res) => {
         let listData = res.data.bizobj.data.project_list
-        console.log(listData)
         listData.forEach((el, index) => {
           if (el.max_salary) {
             el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k/月'
@@ -277,13 +273,11 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: '寻猿招聘',
+      title: '夯大猎',
       path: `/pages/index/index`,
       success: res => {
-        console.log(res)
       },
       fail: res => {
-        console.log(res)
       }
     }
   }

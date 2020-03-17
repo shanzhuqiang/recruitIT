@@ -14,7 +14,6 @@ Page({
    */
   onLoad: function (options) {
     let baseInfo = app.globalData.baseInfo.user_info
-    console.log(baseInfo.self_introduction)
     this.setData({
       keyVal: baseInfo.self_introduction
     })

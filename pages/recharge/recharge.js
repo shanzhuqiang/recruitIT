@@ -36,7 +36,6 @@ Page({
       method: 'POST',
       success: (res) => {
         let listData = res.data.bizobj.data.config_list
-        console.log(listData)
         this.setData({
           typeCur: listData.length > 0 ? listData[0].id : '',
           chooseprice: listData.length > 0 ? listData[0].price : '',

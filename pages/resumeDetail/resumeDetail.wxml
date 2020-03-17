@@ -41,7 +41,7 @@
   </view>
   <view class='resumeDetailBox' wx:if="{{ resumeInfo.work.length > 0 }}">
     <view class='title'>工作经历</view>
-    <view class='jingyanBox' wx:for="{{ resumeInfo.work }}" wx:key="">
+    <view class='jingyanBox' wx:for="{{ resumeInfo.work }}" wx:key="index">
       <view class='oneBox'>
         <view class='left'>
           <image class='gongsiImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/imgC.png'></image>
@@ -58,7 +58,7 @@
   </view>
   <view class='resumeDetailBox' wx:if="{{ resumeInfo.education.length > 0 }}">
     <view class='title'>教育经历</view>
-    <view class='oneBox jingyanBox' wx:for="{{ resumeInfo.education }}" wx:key="">
+    <view class='oneBox jingyanBox' wx:for="{{ resumeInfo.education }}" wx:key="index">
       <view class='left'>
         <image class='gongsiImg' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/imgR.png'></image>
       </view>
@@ -74,7 +74,7 @@
   </view>
   <view class='resumeDetailBox' wx:if="{{ resumeInfo.project.length > 0 }}">
     <view class='title'>项目经验</view>
-    <view class='jingyanBox' wx:for="{{ resumeInfo.project }}" wx:key="">
+    <view class='jingyanBox' wx:for="{{ resumeInfo.project }}" wx:key="index">
       <view class='oneBox'>
         <view class='right' style='margin-left: 0'>
           <view class='name1'>{{ item.name }}</view>

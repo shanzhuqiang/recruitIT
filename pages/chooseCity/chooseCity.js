@@ -40,7 +40,6 @@ Page({
           cityList: resData.prov_list,
           common: resData.common
         })
-        console.log(resData)
       },
       fail: (res) => {
         wx.showToast({
@@ -73,7 +72,6 @@ Page({
         this.setData({
           areaList: resData.area_list
         })
-        console.log(resData)
       },
       fail: (res) => {
         wx.showToast({

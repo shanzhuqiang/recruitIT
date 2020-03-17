@@ -20,7 +20,6 @@ Page({
   },
   // 进入企业详情
   goEnterpriseInfo(e) {
-    console.log(e.currentTarget.dataset.id)
     wx.navigateTo({
       url: `../enterpriseInfo/enterpriseInfo?id=${e.currentTarget.dataset.id}`
     })
@@ -37,7 +36,6 @@ Page({
       method: 'POST',
       success: (res) => {
         let listData = res.data.bizobj.data.company_list
-        console.log(listData)
         this.setData({
           listData: listData
         })

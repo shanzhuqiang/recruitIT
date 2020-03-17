@@ -15,7 +15,6 @@ App({
     wx.getLocation({
       type: 'wgs84',
       success: (res) => {
-        console.log("getLocation" ,res)
         let data = {
           lat: res.latitude,
           lng: res.longitude
@@ -36,7 +35,6 @@ App({
     })
   },
   getUserInfo(data) {
-    console.log("getUserInfo" ,data)
     this.globalData.locationData = data
     // 获取用户信息
     wx.getSetting({
@@ -60,7 +58,6 @@ App({
       },
       method: 'POST',
       success: (res) => {
-        console.log("login", res)
         if (res.data.error_code == 0) {
           let resData = res.data.bizobj.data
           this.globalData.sess_key = resData.sess_key
@@ -89,7 +86,6 @@ App({
   },
   // 更新用户信息
   updateUserinfo(data) {
-    console.log("更新用户信息", data)
     // this.globalData.userInfo = data.userInfo
     wx.request({
       url: `${this.globalData.baseUrl}/User/updateUserInfo.html`,
@@ -103,7 +99,9 @@ App({
       },
       method: 'POST',
       success: (res) => {
-        if (res.data.error_code != 0) {
+        if (res.data.error_code == 0) {
+          this.globalData.userInfo = res.data.bizobj.data.user_info
+        } else {
           wx.showToast({
             icon: 'none',
             title: res.data.msg,
@@ -120,6 +118,7 @@ App({
   },
   globalData: {
     locationData: null,
+    is_shenhe: null,
     // baseUrl: 'http://118.31.72.207:3000/mock/16/api',
     baseUrl: 'https://www.cnlhyg.com/api',
     sess_key: '',

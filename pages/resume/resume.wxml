@@ -6,7 +6,7 @@
     <view class='{{ topType == "3" ? "active" : "" }}' bindtap='chooseType' data-id='3'>面试</view>
     <view class='{{ topType == "4" ? "active" : "" }}' bindtap='chooseType' data-id='4'>不合适</view>
   </view>
-  <view class='itemWrap' wx:for="{{ listData }}" wx:key="">
+  <view class='itemWrap' wx:for="{{ listData }}" wx:key="index">
     <view class='itemBox' data-id="{{ item.re_resume_id }}" data-ida="{{ item.id }}" data-type="{{ item.type }}" bindtap='goResumeDetail'>
       <view class='workName'>{{ item.name }}</view>
       <view class='leftImg'>

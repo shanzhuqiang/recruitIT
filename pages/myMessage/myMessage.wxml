@@ -1,6 +1,6 @@
 <!--pages/myMessage/myMessage.wxml-->
 <view class='myMessageWrap'>
-  <view class='itemBox' wx:for="{{ listData }}" wx:key="" >
+  <view class='itemBox' wx:for="{{ listData }}" wx:key="index" >
     <view class='first'>{{ item.brief_content }}</view>
     <view class='second'>{{ item.content }}</view>
     <view class='three'>{{ item.time }} <text wx:if="{{ item.is_read == 2 }}">(未读)</text></view>

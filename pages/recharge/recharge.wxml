@@ -3,7 +3,7 @@
   <view class='topBox'>
     <view class='title'>充值金额</view>
     <view class='itemBoxRow clearfix'>
-      <view class='itemBox {{ index%2 == 0 ? "fl" : "fr" }} {{ typeCur == item.id ? "active" : "" }}' wx:for="{{ listData }}" wx:key="" data-id="{{ item.id }}" data-price="{{ item.price }}" bindtap='choosePrice'>
+      <view class='itemBox {{ index%2 == 0 ? "fl" : "fr" }} {{ typeCur == item.id ? "active" : "" }}' wx:for="{{ listData }}" wx:key="index" data-id="{{ item.id }}" data-price="{{ item.price }}" bindtap='choosePrice'>
         <view class='firstText'>{{ item.title }}</view>
         <view class='secondText'>{{ item.subtitle }}</view>
       </view>

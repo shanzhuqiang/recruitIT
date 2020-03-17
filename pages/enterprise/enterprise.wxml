@@ -36,8 +36,8 @@
   <view class='filterMask' wx:if="{{ maskOnOff }}">
     <view class='maskBody'>
       <view class='title'>{{ filterTitle }}</view>
-      <view class='filterBtnWrap' wx:for="{{ filterList }}" wx:key="">
-        <view class='filterBtn {{ filterBtn === item.id ? "active" : ""}}' style='{{item.name === null ? "visibility:hidden" : ""}}' wx:for="{{ item }}" data-id='{{ item.id }}' bindtap='chooseFilter' wx:key="">{{ item.name }}</view>
+      <view class='filterBtnWrap' wx:for="{{ filterList }}" wx:key="index">
+        <view class='filterBtn {{ filterBtn === item.id ? "active" : ""}}' style='{{item.name === null ? "visibility:hidden" : ""}}' wx:for="{{ item }}" data-id='{{ item.id }}' bindtap='chooseFilter' wx:key="index">{{ item.name }}</view>
       </view>
     </view>
   </view>

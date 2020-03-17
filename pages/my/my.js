@@ -12,7 +12,8 @@ Page({
     imgSrc: '',
     num: '',
     unReadNum: 0,
-    interviewCount: 0
+    interviewCount: 0,
+    is_shenhe: null
   }, 
 
   /**
@@ -28,7 +29,8 @@ Page({
     this.setData({
       userInfo: app.globalData.userInfo,
       userType: app.globalData.userType,
-      imgSrc: app.globalData.imgSrc
+      imgSrc: app.globalData.imgSrc,
+      is_shenhe: app.globalData.is_shenhe
     })
     this.getNum()
     this.getUnRead()
@@ -105,17 +107,17 @@ Page({
   },
   // 发布帖子
   goReleaseBbs() {
-    wx.showModal({
-      title: '提示',
-      showCancel: false,
-      content: '该功能暂未开放'
+    // wx.showModal({
+    //   title: '提示',
+    //   showCancel: false,
+    //   content: '该功能暂未开放'
+    // })
+    wx.navigateTo({
+      url: '../releaseBbs/releaseBbs'
     })
-    // wx.navigateTo({
-    //   url: '../releaseBbs/releaseBbs'
-    // })
-    // this.setData({
-    //   releaseMark: false
-    // })
+    this.setData({
+      releaseMark: false
+    })
   },
   // 发布岗位
   goReleaseGangwei() {
@@ -276,14 +278,14 @@ Page({
   },
   // 进入论坛
   goBbs() {
-    wx.showModal({
-      title: '提示',
-      showCancel: false,
-      content: '该功能暂未开放'
-    })
-    // wx.redirectTo({
-    //   url: '../bbs/bbs'
+    // wx.showModal({
+    //   title: '提示',
+    //   showCancel: false,
+    //   content: '该功能暂未开放'
     // })
+    wx.redirectTo({
+      url: '../bbs/bbs'
+    })
   },
   // 成为推广人
   goSpread() {
@@ -337,13 +339,11 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: '寻猿招聘',
+      title: '夯大猎',
       path: `/pages/index/index`,
       success: res => {
-        console.log(res)
       },
       fail: res => {
-        console.log(res)
       }
     }
   }

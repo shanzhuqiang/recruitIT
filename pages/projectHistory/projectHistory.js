@@ -19,7 +19,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
     this.setData({
       imgSrc: app.globalData.imgSrc,
       id: options.id
@@ -47,7 +46,6 @@ Page({
   // 保存提交
   formSubmit(e) {
     let data = e.detail.value
-    console.log('form发生了submit事件，携带数据为：', data)
     if (data.name == '') {
       wx.showModal({
         showCancel: false,

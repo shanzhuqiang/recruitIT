@@ -30,7 +30,8 @@ Page({
     listData: [],
     loading: false,
     pickerVal: 0,
-    unReadNum: 0
+    unReadNum: 0,
+    is_shenhe: null
   },
   /**
    * 生命周期函数--监听页面加载
@@ -39,7 +40,8 @@ Page({
     this.setData({
       userInfo: app.globalData.userInfo,
       userType: app.globalData.userType,
-      imgSrc: app.globalData.imgSrc
+      imgSrc: app.globalData.imgSrc,
+      is_shenhe: app.globalData.is_shenhe
     })
   },
 
@@ -117,7 +119,6 @@ Page({
       method: 'POST',
       success: (res) => {
         let listData = res.data.bizobj.data.post_list
-        console.log(listData)
         if (listData.length > 0) {
           let newList = this.data.listData
           this.setData({

@@ -20,7 +20,7 @@
       <image class='arrowDown' wx:if="{{imgSrc !== ''}}" src='{{ topFilterBtn === "shaixuan" ? imgSrc + "/arrowUp.png" : imgSrc + "/arrowDown.png" }}'></image>
     </view> -->
   </view>
-  <view class='itemWrap' wx:for="{{ listData }}" wx:key="" data-id="{{ item.id }}" bindtap='goProjectDetail'>
+  <view class='itemWrap' wx:for="{{ listData }}" wx:key="index" data-id="{{ item.id }}" bindtap='goProjectDetail'>
     <view class='first'>
       <!-- <view class='box'>招标</view> -->
       <view class='title'>{{ item.name }}</view>
@@ -52,8 +52,8 @@
   <view class='filterMask' wx:if="{{ topFilterBtn === 'jiage' && mask}}">
     <view class='maskBody'>
       <view class='title'>工作经验</view>
-      <view class='filterBtnWrap' wx:for="{{ shaixuanData }}" wx:key="">
-        <view class='filterBtn {{ shaixuan1 == item.id ? "active" : ""}}' style='{{item.name === "" ? "visibility:hidden" : ""}}' wx:for="{{ item }}" data-id='{{ item.id }}' bindtap='shaixuanchooseFilter1' wx:key="">{{ item.name }}</view>
+      <view class='filterBtnWrap' wx:for="{{ shaixuanData }}" wx:key="index">
+        <view class='filterBtn {{ shaixuan1 == item.id ? "active" : ""}}' style='{{item.name === "" ? "visibility:hidden" : ""}}' wx:for="{{ item }}" data-id='{{ item.id }}' bindtap='shaixuanchooseFilter1' wx:key="index">{{ item.name }}</view>
       </view>
       <!-- <view class='title'>月薪</view>
       <view class='filterBtnWrap'>

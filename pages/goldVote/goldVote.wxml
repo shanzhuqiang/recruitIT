@@ -6,7 +6,7 @@
     <image class='question' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/question.png' bindtap='openRule'></image>
     <view class='rightTitle' bindtap='goOldGoldVote'>往期话题</view>
   </view>
-  <view class='itemBox' wx:for="{{ listData }}" wx:key="">
+  <view class='itemBox' wx:for="{{ listData }}" wx:key="index">
     <view class='firstBox'>
       {{ item.title }}
       <view class='lastTime'>

@@ -10,7 +10,7 @@ Page({
     // home
     imgSrc: '',
     userInfo:  null,
-    bannerImg: [{ url: '../../images/banner1.png', title: "与时间赛跑，提升企业招聘效率" }, { url: '../../images/banner2.png', title: "闲置资源变现，让你的付出获得更多回报" }, { url: '../../images/banner3.png', title: "伯乐常在，让更多人发现你的价值" }],
+    bannerImg: [],
     titleChoosed: 'project',
     projectList: [],
     quartersList: [],
@@ -23,7 +23,8 @@ Page({
     basePage: '',
     cityName: '全国',
     cityCode: '',
-    firstBtn: true
+    firstBtn: true,
+    is_shenhe: null
   },
 
   /**
@@ -34,12 +35,53 @@ Page({
     // 初始化
     this.initTimes()
   },
+  jupgeVersion(version) {
+    wx.request({
+      url: `${app.globalData.baseUrl}/index/getVersionInfo`,
+      data: {
+        version: "2.0"
+      },
+      success: (res) => {
+        let is_shenhe = res.data.bizobj.is_shenhe
+        app.globalData.is_shenhe = is_shenhe
+        this.setData({
+          is_shenhe: is_shenhe
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.jupgeVersion()
+    this.getBanner()
     this.setData({
       imgSrc: app.globalData.imgSrc
+    })
+  },
+  // 获取banner
+  getBanner () {
+    wx.request({
+      url: `${app.globalData.baseUrl}/web/bannerList`,
+      method: 'GET',
+      success: (res) => {
+        this.setData({
+          bannerImg: res.data.bizobj.banner_list
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
     })
   },
   initTimes() {
@@ -122,17 +164,45 @@ Page({
   },
   // 前往认证
   goHomePage(e) {
-    // this.setData({
-    //   authMask: true
-    // })
-    if (app.globalData.userInfo) {
-      wx.navigateTo({
-        url: `../renzheng/renzheng?shenfen=${e.currentTarget.dataset.id}`
-      })
-    } else {
+    if (this.data.is_shenhe === 1) {
+      let userType = e.currentTarget.dataset.id
+      let data = {
+          avatar: "",
+          city_code: "330100",
+          city_name: "杭州市",
+          gender: 1,
+          id: 326,
+        identity_auth: { is_engineer: userType === 'engineer' ? 1 : 2, is_hr: userType === 'hr' ? 1 : 2, is_agent: userType === 'agent' ? 1 : 2 },
+          lat: "30.04885",
+          lng: "119.96043",
+          mobile: "",
+          nickname: "用户",
+          password: "",
+          session_key: "",
+          username: "",
+      }
+      app.globalData.userInfo = data
       this.setData({
-        authMask: true
+        userType: userType,
+        basePage: 'two'
       })
+      if (userType === "engineer") {
+        this.initProjectData()
+        this.initQuartersData()
+      }
+      if (userType === "hr" || userType === "agent") {
+        this.initResumeData()
+      }
+    } else if (this.data.is_shenhe === 0) {
+      if (app.globalData.userInfo) {
+        wx.navigateTo({
+          url: `../renzheng/renzheng?shenfen=${e.currentTarget.dataset.id}`
+        })
+      } else {
+        this.setData({
+          authMask: true
+        })
+      }
     }
   },
   // 取消登录
@@ -150,17 +220,6 @@ Page({
       app.updateUserinfo(res.detail)
     }
   },
-  // getPhoneNumber(e) {
-  //   if (e.detail.errMsg === 'getPhoneNumber:ok') {
-  //     this.setData({
-  //       getPhoneMaskOnOff: false
-  //     })
-  //     console.log(e)
-  //     console.log(e.detail.errMsg)
-  //     console.log(e.detail.iv)
-  //     console.log(e.detail.encryptedData)
-  //   }
-  // },
   // 进入赏金平台
   goBountyPlatform() {
     if (this.data.userType === 'agent') {
@@ -177,17 +236,17 @@ Page({
   },
   // 发布帖子
   goReleaseBbs() {
-    wx.showModal({
-      title: '提示',
-      showCancel: false,
-      content: '该功能暂未开放'
+    // wx.showModal({
+    //   title: '提示',
+    //   showCancel: false,
+    //   content: '该功能暂未开放'
+    // })
+    wx.navigateTo({
+      url: '../releaseBbs/releaseBbs'
     })
-    // wx.navigateTo({
-    //   url: '../releaseBbs/releaseBbs'
-    // })
-    // this.setData({
-    //   releaseMark: false
-    // })
+    this.setData({
+      releaseMark: false
+    })
   },
   // 发布岗位
   goReleaseGangwei() {
@@ -220,14 +279,14 @@ Page({
   },
   // 进入论坛
   goBbs() {
-    wx.showModal({
-      title: '提示',
-      showCancel: false,
-      content: '该功能暂未开放'
-    })
-    // wx.redirectTo({
-    //   url: '../bbs/bbs'
+    // wx.showModal({
+    //   title: '提示',
+    //   showCancel: false,
+    //   content: '该功能暂未开放'
     // })
+    wx.redirectTo({
+      url: '../bbs/bbs'
+    })
   },
   // 进入我的
   goMy() {
@@ -305,7 +364,6 @@ Page({
       },
       method: 'POST',
       success: (res) => {
-        console.log(res)
         let listData = res.data.bizobj.data.job_list
         listData.forEach((el, index) => {
           if (el.max_salary) {
@@ -405,14 +463,14 @@ Page({
   },
   // 名企专区
   goEnterprise() {
-    wx.showModal({
-      title: '提示',
-      showCancel: false,
-      content: '该功能暂未开放'
-    })
-    // wx.navigateTo({
-    //   url: '../enterprise/enterprise'
+    // wx.showModal({
+    //   title: '提示',
+    //   showCancel: false,
+    //   content: '该功能暂未开放'
     // })
+    wx.navigateTo({
+      url: '../enterprise/enterprise'
+    })
   },
   // 职位精选
   goGoodJob() {
@@ -480,7 +538,7 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: '寻猿招聘',
+      title: '夯大猎',
       path: `/pages/index/index`
     }
   }

@@ -89,7 +89,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log()
     this.setData({
       userInfo: app.globalData.userInfo,
       imgSrc: app.globalData.imgSrc
@@ -306,7 +305,6 @@ Page({
   },
   // 上传base64拿url
   updateImg(baseImage, companyObj) {
-    console.log(2222, baseImage)
     wx.request({
       url: `${app.globalData.baseUrl}/File/uploadImagesBase64.html`,
       data: {

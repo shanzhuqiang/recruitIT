@@ -31,7 +31,6 @@ Page({
       method: 'POST',
       success: (res) => {
         let listData = res.data.bizobj.data.user_list
-        console.log(listData)
         this.setData({
           listData: listData
         })

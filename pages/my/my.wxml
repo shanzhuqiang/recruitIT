@@ -144,7 +144,7 @@
       </view>
       <view>赏金平台</view>
     </view>
-    <view class='btnBox' bindtap='goRelease'>
+    <view class='btnBox' bindtap='goRelease' wx:if="{{ is_shenhe == 0 }}">
         <image class='addfabu' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/addfabu.png'></image>
         <view class='imgBox'></view>
         <view>发布</view>

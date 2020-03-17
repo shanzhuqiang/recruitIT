@@ -16,7 +16,7 @@
     <view class='historyBox'>
       <view class='historyTitle'>搜索历史</view>
       <view class='historyTag'>
-        <text wx:for="{{ historyArray }}" wx:key="" data-id="{{ item }}" bindtap='searchHistory'>{{ item }}</text>
+        <text wx:for="{{ historyArray }}" wx:key="index" data-id="{{ item }}" bindtap='searchHistory'>{{ item }}</text>
       </view>
       <view class='historyTitle'>热门推荐</view>
       <view class='historyTag'>
@@ -48,7 +48,7 @@
   </view>
   <!-- 简历列表 -->
   <view class='typeTitleWrap'>
-    <view class='jinyingItemWrap' wx:for="{{ dataList }}" wx:key="" data-id="{{ item.id }}" bindtap='goResumeDetail'>
+    <view class='jinyingItemWrap' wx:for="{{ dataList }}" wx:key="index" data-id="{{ item.id }}" bindtap='goResumeDetail'>
       <view class='firstRow'>
         <view class='leftImgBox'>
           <image class='leftImg' src='{{ item.avatar }}'></image>
@@ -94,20 +94,20 @@
         </view> -->
         <view>
           <view class='titleRow'>工作经验</view>
-          <view class='tagRow' wx:for="{{ jingyanData }}" wx:key="">
-            <view class='tagBtn  {{ jingyanChoose == item.id ? "active" : ""}}' wx:for="{{ item }}" data-id="{{ item.id }}" bindtap='jingyanChooseFilter' wx:key="">{{ item.name }}</view>
+          <view class='tagRow' wx:for="{{ jingyanData }}" wx:key="index">
+            <view class='tagBtn  {{ jingyanChoose == item.id ? "active" : ""}}' wx:for="{{ item }}" data-id="{{ item.id }}" bindtap='jingyanChooseFilter' wx:key="index">{{ item.name }}</view>
           </view>
         </view>
         <view>
           <view class='titleRow'>学历要求</view>
-          <view class='tagRow' wx:for="{{ xueliData }}" wx:key="">
-            <view class='tagBtn  {{ xueliChoose == item.id ? "active" : ""}}' wx:for="{{ item }}" data-id="{{ item.id }}" bindtap='xueliChooseFilter' wx:key="">{{ item.name }}</view>
+          <view class='tagRow' wx:for="{{ xueliData }}" wx:key="index">
+            <view class='tagBtn  {{ xueliChoose == item.id ? "active" : ""}}' wx:for="{{ item }}" data-id="{{ item.id }}" bindtap='xueliChooseFilter' wx:key="index">{{ item.name }}</view>
           </view>
         </view>
         <view>
           <view class='titleRow'>薪资区间（元）</view>
-          <view class='tagRow' wx:for="{{ xinziData }}" wx:key="">
-            <view class='tagBtn  {{ xinziChoose == item.id ? "active" : ""}}' style='{{item.name == null ? "visibility:hidden" : ""}}' wx:for="{{ item }}" data-id="{{ item.id }}" bindtap='xinziChooseFilter' wx:key="">{{ item.name }}</view>
+          <view class='tagRow' wx:for="{{ xinziData }}" wx:key="index">
+            <view class='tagBtn  {{ xinziChoose == item.id ? "active" : ""}}' style='{{item.name == null ? "visibility:hidden" : ""}}' wx:for="{{ item }}" data-id="{{ item.id }}" bindtap='xinziChooseFilter' wx:key="index">{{ item.name }}</view>
           </view>
         </view>
       </view>

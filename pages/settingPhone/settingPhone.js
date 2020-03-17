@@ -21,7 +21,6 @@ Page({
     this.setData({
       oldMobile: options.mobile
     })
-    console.log(options)
   },
   // 提交
   confirm () {

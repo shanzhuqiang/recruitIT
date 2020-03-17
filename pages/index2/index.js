@@ -25,7 +25,6 @@ Page({
   },
   // 判断用户信息拿到
   getSessKeySuccess() {
-    console.log(app.globalData.sess_key)
     if (app.globalData.sess_key != '') {
       this.setData({
         firstMask: false
@@ -42,7 +41,6 @@ Page({
     wx.getLocation({
       type: 'wgs84',
       success: (res) => {
-        console.log('位置授权成功回调', res)
         let obj = app.globalData.userInfo || {}
         obj['lat'] = res.latitude
         obj['lng'] = res.longitude
@@ -123,7 +121,6 @@ Page({
   // 更新用户信息
   updateUserinfo () {
     let data = app.globalData.userInfo
-    console.log(4555, data)
     wx.request({
       url: `${app.globalData.baseUrl}/User/updateUserInfo.html`,
       data: {
@@ -187,11 +184,9 @@ Page({
   initUserInfo(on) {
     wx.getSetting({
       success: res => {
-        console.log(res)
         if (res.authSetting['scope.userInfo']) {
           wx.getUserInfo({
             success: res => {
-              console.log('个人信息', res)
               this.addUserInfo(res.userInfo)
               // if (this.data.password) {
               //   this.openPassword()
@@ -218,37 +213,6 @@ Page({
       url: '../login/login'
     })
   },
-  // 获取城市信息
-  // getCityInfo(lat, lng, on) {
-  //   wx.request({
-  //     url: `${app.globalData.baseUrl}/User/getUserLocation.html`,
-  //     data: {
-  //       sess_key: app.globalData.sess_key,
-  //       lat: lat,
-  //       lng: lng
-  //     },
-  //     method: 'POST',
-  //     success: (res) => {
-  //       let data = res.data.bizobj
-  //       ? res.data.bizobj.location_info
-  //       : {}
-  //       let obj = app.globalData.userInfo || {}
-  //       console.log(obj)
-  //       console.log(data)
-  //       obj['city_code'] = data.city_code
-  //       obj['city_name'] = data.city_name
-  //       obj['lat'] = lat
-  //       obj['lng'] = lng
-  //       Object.assign(app.globalData.userInfo, obj)
-  //     },
-  //     fail: (res) => {
-  //       wx.showToast({
-  //         icon: 'none',
-  //         title: '网络请求失败',
-  //       })
-  //     }
-  //   })
-  // },
   // 获取用户信息
   autoGetUserInfo(res) {
     if (res.detail.userInfo) {
@@ -368,13 +332,11 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: '寻猿招聘',
+      title: '夯大猎',
       path: `/pages/index/index`,
       success: res => {
-        console.log(res)
       },
       fail: res => {
-        console.log(res)
       }
     }
   }

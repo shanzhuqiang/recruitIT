@@ -227,13 +227,11 @@ Page({
         wx.hideLoading()
         if (res.data.error_code == 0) {
           let resData = res.data.bizobj.data.post_info
-          console.log(resData.is_collect)
           this.setData({
             bbsInfo: resData,
             is_collect: resData.user_info.is_collect,
             shoucang: resData.is_collect
           })
-          console.log(resData)
         } else {
           wx.showToast({
             icon: 'none',
@@ -315,13 +313,11 @@ Page({
       }
     })
     return {
-      title: '寻猿招聘',
+      title: '夯大猎',
       path: `/pages/index/index`,
       success: res => {
-        console.log(res)
       },
       fail: res => {
-        console.log(res)
       }
     }
   }
