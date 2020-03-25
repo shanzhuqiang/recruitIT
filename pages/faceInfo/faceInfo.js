@@ -54,7 +54,6 @@ Page({
       }
     })
   },
-  // 获取项目详情
   getProjectInfo(id) {
     wx.request({
       url: `${app.globalData.baseUrl}/Project/projectDetail.html`,
@@ -82,7 +81,6 @@ Page({
       }
     })
   },
-  // 获取岗位详情
   getWorkInfo(id) {
     wx.request({
       url: `${app.globalData.baseUrl}/Work/workDetail.html`,

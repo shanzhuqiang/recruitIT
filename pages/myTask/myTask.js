@@ -115,7 +115,6 @@ Page({
       }
     })
   },
-  // 进入项目详情
   goDetail (e) {
     wx.navigateTo({
       url: `../projectDetail/projectDetail?id=${e.currentTarget.dataset.id}`

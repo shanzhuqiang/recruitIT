@@ -16,6 +16,11 @@
       <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
     </view>
     <view class='hallRow'>
+      <view class='leftName'>所在区域</view>
+      <input class='rightInput' placeholder='请选择所在区域' value='{{ district }}' disabled bindtap='openDistrict'></input>
+      <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
+    </view>
+    <view class='hallRow'>
       <view class='leftName'>经验要求</view>
       <picker bindchange="jingyanChange" range="{{ jingyanArray }}" range-key="name">
         <input class='rightInput' placeholder="请选择经验要求" value='{{ jingyan.name }}' disabled/>
@@ -119,4 +124,9 @@
     <view class='wordNum'>{{ requirement.length }}/1000字</view>
     <view class='saveBtn' bindtap='choseYaoqiu'>保存</view>
   </view>
+  <i-drawer mode="right" visible="{{ showDistrictList }}" bind:close="toggleShowDistrictList">
+    <scroll-view class="showCompanyListWrap" scroll-y>
+      <view class='companyItem' wx:for="{{ districtList }}" wx:key="index" data-id="{{ item.district_code }}" data-name="{{ item.district_name }}" bindtap='chooseDistrict'>{{ item.district_name }}</view>
+    </scroll-view>
+  </i-drawer>
 </view>

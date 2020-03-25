@@ -132,7 +132,6 @@ Page({
     })
     this.getList()
   },
-  // 岗位详情
   goPostDetail (e) {
     wx.navigateTo({
       url: `../postDetail/postDetail?id=${e.currentTarget.dataset.id}`

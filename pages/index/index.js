@@ -39,7 +39,7 @@ Page({
     wx.request({
       url: `${app.globalData.baseUrl}/index/getVersionInfo`,
       data: {
-        version: "2.0"
+        version: "3.1.4"
       },
       success: (res) => {
         let is_shenhe = res.data.bizobj.is_shenhe
@@ -329,10 +329,14 @@ Page({
       success: (res) => {
         let listData = res.data.bizobj.data.project_list
         listData.forEach((el, index) => {
-          if (el.max_salary) {
-            el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k/月'
+          if (el.salary_type == 1) {
+            el['salaryStr'] = el.day_salary + "元/日"
           } else {
-            el['salaryStr'] = '不限'
+            if (el.max_salary) {
+              el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k/月'
+            } else {
+              el['salaryStr'] = '不限'
+            }
           }
         })
         this.setData({
@@ -366,10 +370,14 @@ Page({
       success: (res) => {
         let listData = res.data.bizobj.data.job_list
         listData.forEach((el, index) => {
-          if (el.max_salary) {
-            el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k/月'
+          if (el.salary_type == 1) {
+            el['salaryStr'] = el.day_salary + "元/日"
           } else {
-            el['salaryStr'] = '不限'
+            if (el.max_salary) {
+              el['salaryStr'] = Math.round(el.mini_salary / 1000) + 'k-' + Math.round(el.max_salary / 1000) + 'k/月'
+            } else {
+              el['salaryStr'] = '不限'
+            }
           }
         })
         this.setData({

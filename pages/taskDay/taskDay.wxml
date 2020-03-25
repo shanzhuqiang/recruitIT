@@ -64,7 +64,7 @@
   </view>
   <view class='itemBox' style='background: linear-gradient(0deg, #7afee2 0%, #3ac7a5 100%);' bindtap='goWalk'>
     <view class='first'>完成一次步数兑换</view>
-    <view class='second'>邀请好友参与步数兑换可得金币</view>
+    <view class='second'>成功推荐可得金币</view>
     <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR2.png'></image>
   </view>
   <!-- <view class='itemBox' style='background: linear-gradient(0deg, #ffafab 0%, #f54840 100%);' bindtap='goBbs'>
@@ -72,11 +72,11 @@
     <view class='second'>阅读、点赞、转发文章可获得金币</view>
     <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR2.png'></image>
   </view> -->
-  <view class='itemBox' style='background: linear-gradient(0deg, #bfc3ff 0%, #5d66f7 100%);'bindtap='goGoldVote'>
+  <!-- <view class='itemBox' style='background: linear-gradient(0deg, #bfc3ff 0%, #5d66f7 100%);'bindtap='goGoldVote'>
     <view class='first'>参与一次话题投票</view>
     <view class='second'>参与话题投票可获得金币</view>
     <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR2.png'></image>
-  </view>
+  </view> -->
   <!-- 签到7天 -->
   <!-- <i-modal visible="{{ visible }}" bind:ok="bindOk" bind:cancel="bindClose">
     <image class='modealImg' wx:if="{{imgSrc !== ''}}" src='{{ openModalType == 1 ? imgSrc + "/btn2.png" : imgSrc + "/btn3.png"}}'></image>

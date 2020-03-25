@@ -6,7 +6,8 @@
       <view class='rightTitle'>{{ dataInfo.salaryStr }}</view>
     </view>
     <view class='second'>
-      <text>{{ dataInfo.city_name + '·' + dataInfo.district_name }}</text>
+      <text wx:if="{{ dataInfo.district_name }}">{{ dataInfo.city_name + '·' + dataInfo.district_name }}</text>
+      <text wx:if="{{ !dataInfo.district_name }}">{{ dataInfo.city_name }}</text>
       <text class='line'>|</text>
       <text class='middle'>{{ dataInfo.education }}</text>
       <text class='line'>|</text>

@@ -12,11 +12,11 @@
     </view>
     <view class='hallRow'>
       <view class='leftName'>工作周期</view>
-      <input class='rightInput' placeholder='请输入工作周期' value='{{ zhouqi }}' bindinput='zhouqiChange'></input>
-      <!-- <picker bindchange="zhouqiChange" range="{{ zhouqiArray }}" range-key="name">
+      <!-- <input class='rightInput' placeholder='请输入工作周期' value='{{ zhouqi }}' bindinput='zhouqiChange'></input> -->
+      <picker bindchange="zhouqiChange" range="{{ zhouqiArray }}" range-key="name">
         <input class='rightInput' placeholder="请选择工作周期" value='{{ zhouqi.name }}' disabled/>
-      </picker> -->
-      <!-- <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image> -->
+      </picker>
+      <image class='arrowR' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/arrowR.png'></image>
     </view>
     <view class='hallRow'>
       <view class='leftName'>工作地点</view>

@@ -45,7 +45,7 @@ Page({
           let data = res.data.bizobj.data
           data.forEach(el => {
             if (el.is_read == 2) {
-              if (el.type == 3 || el.type == 5 || el.type == 6 || el.type == 7 || el.type == 8) {
+              if (el.type == 3 || el.type == 6 || el.type == 7 || el.type == 8 || el.type == 9 || el.type == 10) {
                 this.noticeRead(el.id)
               }
             }

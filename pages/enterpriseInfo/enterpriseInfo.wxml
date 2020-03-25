@@ -21,8 +21,8 @@
   </view>
   <view class='chooseBtnWrap'>
     <view class='btnWrod {{ tabCurrent === "gongsi" ? "active" : "" }}' bindtap='changeTabs' data-id='gongsi'>公司信息</view>
-    <view class='btnWrod {{ tabCurrent === "zhiwei" ? "active" : "" }}' bindtap='changeTabs' data-id='zhiwei'>在招职位</view>
-    <view class='btnWrod {{ tabCurrent === "xiangmu" ? "active" : "" }}' bindtap='changeTabs' data-id='xiangmu'>在招项目</view>
+    <view class='btnWrod {{ tabCurrent === "zhiwei" ? "active" : "" }}' bindtap='changeTabs' data-id='zhiwei'>入职机会</view>
+    <view class='btnWrod {{ tabCurrent === "xiangmu" ? "active" : "" }}' bindtap='changeTabs' data-id='xiangmu'>外派岗位</view>
   </view>
   <!-- 公司 -->
   <view class='gongsiWrap' wx:if='{{ tabCurrent === "gongsi" }}'>
@@ -36,7 +36,7 @@
     </view>
     <view class='title'>公司介绍</view>
     <view class='xianqgingImgWrap'>
-      <image class='xianqgingImg' src='{{ company_info.image }}'></image>
+      <image wx:if="{{ company_info.image }}" class='xianqgingImg' src='{{ company_info.image }}'></image>
     </view>
     <view class='content'>
       {{ company_info.instruction }}

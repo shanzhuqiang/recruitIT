@@ -127,7 +127,11 @@ Page({
     gangweiTextareaMaskBox: false,
     instruction: '',
     yaoqiuTextareaMaskBox: false,
-    requirement: ''
+    requirement: '',
+    district: '',
+    districtCode: '',
+    showDistrictList: false,
+    districtList: []
   },
   /**
    * 生命周期函数--监听页面加载
@@ -138,6 +142,56 @@ Page({
       imgSrc: app.globalData.imgSrc
     })
     this.getData()
+  },
+  // 获取区域
+  getArea(id) {
+    wx.request({
+      url: `${app.globalData.baseUrl}/Addr/city2DistrictList.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        city_code: id
+      },
+      method: 'POST',
+      success: (res) => {
+        this.setData({
+          districtList: res.data.bizobj.data.area_list
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 打开区域遮罩
+  openDistrict() {
+    if (this.data.btnChoose) {
+      this.setData({
+        showDistrictList: true
+      })
+    } else {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请先选择所在城市',
+      })
+    }
+  },
+  // 关闭区域遮罩
+  toggleShowDistrictList() {
+    this.setData({
+      showDistrictList: false
+    })
+  },
+  // 选择区域
+  chooseDistrict(e) {
+    this.setData({
+      district: e.currentTarget.dataset.name,
+      districtCode: e.currentTarget.dataset.id,
+      showDistrictList: false
+    })
   },
   // 岗位名字
   nameChange(e) {
@@ -162,8 +216,11 @@ Page({
     this.setData({
       btnChoose: e.currentTarget.dataset.id,
       address: e.currentTarget.dataset.ida,
+      districtCode: '',
+      district: '',
       cityChooseMask: false
     })
+    this.getArea(e.currentTarget.dataset.id)
   },
   // 添加标签
   addTag() {
@@ -308,6 +365,7 @@ Page({
     let name = this.data.name
     let reward = this.data.reward
     let btnChoose = this.data.btnChoose
+    let district_code = this.data.districtCode
     let job_experience = this.data.jingyan.id
     let education = this.data.xueli.id
     let xinzi = this.data.xinzi.id
@@ -335,6 +393,12 @@ Page({
         showCancel: false,
         title: '提示',
         content: '请选择工作地点',
+      })
+    } else if (!district_code) {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请选择所在区域',
       })
     } else if (typeof(job_experience) === 'undefined') {
       wx.showModal({
@@ -397,6 +461,7 @@ Page({
                 name: name,
                 reward: reward,
                 city_code: btnChoose,
+                district_code: district_code,
                 job_experience: job_experience,
                 education: education,
                 salary_type: xinzi,

@@ -7,7 +7,7 @@ Page({
    */
   data: {
     imgSrc: '',
-    walkNum: 0,
+    walkNum: null,
     maskOnOff: false,
     needAuto: false,
     ruleOnOff: false,
@@ -46,11 +46,10 @@ Page({
       method: 'POST',
       success: (res) => {
         if (res.data.error_code == 0) {
-          // let today_step = res.data.bizobj.today_step
-          let today_step = 2499
+          let today_step = res.data.bizobj.today_step
           this.setData({
             walkNum: today_step,
-            money: parseInt(today_step / 500)
+            money: parseInt(today_step / 80000)
           })
         } else {
           wx.showToast({
@@ -161,15 +160,15 @@ Page({
   },
   // 点击步数兑换
   shouquan() {
-    if (this.data.walkNum == 0) {
+    if (this.data.walkNum === null) {
       this.setData({
         needAuto: true
       })
-    } else if (this.data.walkNum < 500) {
+    } else if (this.data.walkNum < 80000) {
       this.setData({
         lessWalk: true
       })
-    } else if (this.data.walkNum >= 500) {
+    } else if (this.data.walkNum >= 80000) {
       this.setData({
         getMoneySuccess: true
       })

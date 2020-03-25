@@ -90,7 +90,6 @@ Page({
       }
     })
   },
-  // 进入岗位详情
   goPostDetail(e) {
     let id = e.currentTarget.dataset.id
     let re_interview_id = e.currentTarget.dataset.ida
@@ -105,7 +104,6 @@ Page({
     }
     
   },
-  // 进入项目详情
   goProjectDetail(e) {
     let id = e.currentTarget.dataset.id
     let re_interview_id = e.currentTarget.dataset.ida

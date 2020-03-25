@@ -178,9 +178,6 @@ Page({
     wx.navigateTo({
       url: '../myGold/myGold'
     })
-    // wx.navigateTo({
-    //   url: '../vip/vip'
-    // })
   }, 
   // 我的下载
   goMyDownResume() {
@@ -196,18 +193,11 @@ Page({
   },
   // 我的金币
   goMyGold() {
-    wx.navigateTo({
-      url: '../myGold/myGold'
-    })
-    // if (this.data.userType == 'engineer') {
-    //   wx.navigateTo({
-    //     url: '../myGold/myGold'
-    //   })
-    // } else {
-    //   wx.navigateTo({
-    //     url: '../myGold2/myGold2'
-    //   })
-    // }
+    if (this.data.is_shenhe === 0) {
+      wx.navigateTo({
+        url: '../myGold/myGold'
+      })
+    }
   },
   // 我的钱包
   goMyMoney() {

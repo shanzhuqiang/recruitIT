@@ -52,7 +52,7 @@ page{
   height: 28rpx;
   line-height: 28rpx;
 	color: #4c85fb;
-  padding-top: 30rpx;
+  padding-top: 130rpx;
 }
 .walkWrap .workBottom .rule .question2{
   height: 26rpx;

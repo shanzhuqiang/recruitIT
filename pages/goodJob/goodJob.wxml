@@ -45,7 +45,7 @@
   <view class='itemWrap' wx:for="{{ listData }}" wx:key="index" data-id="{{ item.id }}" bindtap='goPostDetail'>
     <view class='first'>
       <view class='title'>{{ item.name }}</view>
-      <view class='money'>{{ userType == 'engineer' ? "不限" : item.salaryStr }}</view>
+      <view class='money'>{{ item.salaryStr }}</view>
     </view>
     <view class='second'>
         <text style='padding-left: 0'>{{ item.city_name }}</text>

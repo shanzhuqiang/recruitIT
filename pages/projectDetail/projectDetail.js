@@ -42,7 +42,6 @@ Page({
       })
     }
   },
-  // 获取项目详情
   getInfo(id) {
     wx.showLoading({
       mask: true,
@@ -67,6 +66,7 @@ Page({
               data['salaryStr'] = '不限'
             }
           }
+          data["natureStr"] = data["nature"] == 1 ? '短期兼职' : data["nature"] == 2 ? '长期兼职' : "不限"
           this.setData({
             job_info: data
           })

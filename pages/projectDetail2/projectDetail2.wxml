@@ -11,7 +11,7 @@
       <text class='line'>|</text>
       <text class='middle'>{{ job_info.job_experience }}</text>
       <text class='line'>|</text>
-      <text>{{ job_info.nature }}</text>
+      <text>{{ job_info.natureStr }}</text>
     </view>
   </view>
   <view class='detailBox'>

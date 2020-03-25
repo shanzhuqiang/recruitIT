@@ -105,13 +105,13 @@
         <view>
           <image class='fabuTiezi' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/fabuXiangmu.png'></image>
         </view>
-        <view>外派需求</view>
+        <view>外派岗位</view>
       </view>
       <view class='iconCol' wx:if="{{ userType == 'hr' }}" bindtap='goReleaseGangwei'>
         <view>
           <image class='fabuTiezi' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/fabuGangwei.png'></image>
         </view>
-        <view>入职需求</view>
+        <view>入职机会</view>
       </view>
     </view>
     <view class='bottomClose'>

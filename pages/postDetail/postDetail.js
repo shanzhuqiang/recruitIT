@@ -42,7 +42,6 @@ Page({
       })
     }
   },
-  // 获取岗位详情
   getInfo(id) {
     wx.showLoading({
       mask: true,

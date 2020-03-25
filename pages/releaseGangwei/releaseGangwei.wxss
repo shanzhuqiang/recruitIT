@@ -1,4 +1,22 @@
 /* pages/releaseGangwei/releaseGangwei.wxss */
+.releaseGangweiWrap .showCompanyListWrap{
+	width:50vw;
+	height: 100vh;
+	background:#fff;
+  position: relative;
+}
+.releaseGangweiWrap .showCompanyListWrap .companyItem{
+	font-family: PingFangSC-Regular;
+	font-size: 28rpx;
+	color: #666;
+  height: 84rpx;
+  line-height: 84rpx;
+  border-bottom: 1rpx solid #e5e5e5;
+  text-align: center;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
 .releaseGangweiWrap .hallRowWrap{
   padding: 0 30rpx;
 }

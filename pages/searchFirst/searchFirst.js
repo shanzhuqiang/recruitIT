@@ -504,13 +504,11 @@ Page({
       typeStr: e.currentTarget.dataset.id
     })
   },
-  // 进入项目详情
   goProjectDetail (e) {
     wx.navigateTo({
       url: `../projectDetail/projectDetail?id=${e.currentTarget.dataset.id}`
     })
   },
-  // 进入岗位详情
   goPostDetail(e) {
     wx.navigateTo({
       url: `../postDetail/postDetail?id=${e.currentTarget.dataset.id}`

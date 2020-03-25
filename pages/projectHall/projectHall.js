@@ -141,7 +141,6 @@ Page({
       max_salary: Number(e.detail.value)
     })
   },
-  // 进入项目详情
   goProjectDetail (e) {
     wx.navigateTo({
       url: `../projectDetail/projectDetail?id=${e.currentTarget.dataset.id}`
