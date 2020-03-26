@@ -176,11 +176,6 @@ Page({
             data['salaryStr'] = '不限'
           }
         }
-        // if (data.max_salary) {
-        //   data['salaryStr'] = Math.round(data.mini_salary / 1000) + 'k-' + Math.round(data.max_salary / 1000) + 'k/月'
-        // } else {
-        //   data['salaryStr'] = '不限'
-        // }
         this.setData({
           dataInfo: data
         })

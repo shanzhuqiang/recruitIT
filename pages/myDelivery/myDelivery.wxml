@@ -24,8 +24,10 @@
     <view wx:for="{{ listData }}" wx:key="index">
       <!-- 项目 -->
       <view class='itemBox' wx:if="{{ item.type == 2 }}" bindtap='goProjectDetail' data-id="{{ item.re_project_id }}" data-ida="{{ item.id }}">
-        <!-- <view class='leftImg'>招标</view> -->
-        <view class='rightText'>
+        <view class='leftImg2'>
+          <image class='logoImg' wx:if="{{imgSrc !== ''}}" src='{{ item.company_icon }}'></image>
+        </view>
+        <view class='rightText rightText2'>
           <view class='firstRow'>
             {{ item.name }}
             <view class='time'>{{ item.create_time }}</view>

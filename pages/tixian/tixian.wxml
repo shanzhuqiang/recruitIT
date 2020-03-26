@@ -7,7 +7,7 @@
   </view>
   <view class='middleBox'>
     <view class='title'>
-      当前余额{{ totalCoin }}<text>(30元起提现)</text>
+      当前余额{{ totalCoin }}<text>(50金币起提现)</text>
     </view>
     <view class='bottomMoey'>
       <text>￥</text>

@@ -22,18 +22,18 @@ Page({
   },
   // 提现
   tixianBtn () {
-    if (this.data.totalCoin < 30) {
+    if (this.data.totalCoin < 50) {
       wx.showModal({
         showCancel: false,
         title: '提示',
         content: '余额不足',
       })
     } else {
-      if (this.data.money < 30) {
+      if (this.data.money < 50) {
         wx.showModal({
           showCancel: false,
           title: '提示',
-          content: '30元起提现',
+          content: '50金币起提现',
         })
       } else {
         wx.request({

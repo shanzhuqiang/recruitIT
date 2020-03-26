@@ -140,7 +140,7 @@ Page({
   goResumeDetail(e) {
     if (this.data.topType == 1 || this.data.topType == 2) {
       wx.navigateTo({
-        url: `../resumeDetail/resumeDetail?id=${e.currentTarget.dataset.id}&reApplyId=${e.currentTarget.dataset.ida}`
+        url: `../resumeDetail/resumeDetail?id=${e.currentTarget.dataset.id}&reApplyId=${e.currentTarget.dataset.ida}&type=${e.currentTarget.dataset.type}`
       })
     } else {
       wx.navigateTo({

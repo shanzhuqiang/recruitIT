@@ -7,8 +7,7 @@
       <view class='rightTitle2' wx:if="{{ bonus == 1 && dataInfo.salarySt}}">赏金￥{{ dataInfo.reward }}</view>
     </view>
     <view class='second'>
-      <text wx:if="{{ dataInfo.district_name }}">{{ dataInfo.city_name + '·' + dataInfo.district_name }}</text>
-      <text wx:if="{{ !dataInfo.district_name }}">{{ dataInfo.city_name }}</text>
+      <text>{{ dataInfo.city_name + '·' }}{{ dataInfo.district_name || "不限" }}</text>
       <text class='line' wx:if="{{ dataInfo.education }}">|</text>
       <text class='middle'>{{ dataInfo.education }}</text>
       <text class='line' wx:if="{{ dataInfo.job_experience }}">|</text>

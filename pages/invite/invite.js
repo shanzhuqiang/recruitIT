@@ -23,7 +23,7 @@ Page({
       id: options.id
     })
   },
-  // 面试地点
+  // 面试方式
   addressChange(e) {
     this.setData({
       address: e.detail.value
@@ -63,7 +63,7 @@ Page({
       wx.showModal({
         showCancel: false,
         title: '提示',
-        content: '请输入面试地点',
+        content: '请输入面试方式',
       })
     } else if (name == '') {
       wx.showModal({

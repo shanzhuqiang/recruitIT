@@ -153,8 +153,12 @@ Page({
       },
       method: 'POST',
       success: (res) => {
+        let buxian = {
+          district_code: 1,
+          district_name: "不限"
+        }
         this.setData({
-          districtList: res.data.bizobj.data.area_list
+          districtList: [buxian, ...res.data.bizobj.data.area_list]
         })
       },
       fail: (res) => {
@@ -461,7 +465,7 @@ Page({
                 name: name,
                 reward: reward,
                 city_code: btnChoose,
-                district_code: district_code,
+                district_code: district_code === 1 ? "" : district_code,
                 job_experience: job_experience,
                 education: education,
                 salary_type: xinzi,

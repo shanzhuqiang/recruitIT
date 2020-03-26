@@ -196,6 +196,16 @@
   height: 100rpx;
   line-height: 100rpx;
 }
+.resumeDetailWrap .bottomBtn .rightBtn .one{
+  float: left;
+  width: 50%;
+}
+.resumeDetailWrap .bottomBtn .rightBtn .two{
+  background: #ccc;
+  color: #fff;
+  float: left;
+  width: 50%;
+}
 .resumeDetailWrap .bottomBtn .rightBtn.none{
   background: #ccc;
   color: #fff;

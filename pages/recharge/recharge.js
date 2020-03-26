@@ -85,7 +85,7 @@ Page({
         confirmText: '确认充值',
         confirmColor: '#0073ff',
         title: '提示',
-        content: `您将充值${this.data.iptPrice || this.data.chooseprice}元,请确认`,
+        content: `您将充值${this.data.iptPrice || this.data.chooseprice}金币,请确认`,
         success: (res) => {
           if (res.confirm) {
             this.payCoin()

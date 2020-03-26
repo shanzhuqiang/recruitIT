@@ -49,7 +49,7 @@
           <view class='threeRow'>{{ item.salaryStr }}</view>
         </view>
       </view>
-      <view class='bottomRow'  wx:if="{{ tabType == 5 }}">赏金：{{ item.bonus }}元</view>
+      <view class='bottomRow'  wx:if="{{ tabType == 5 }}">赏金：{{ item.bonus }}金币</view>
     </view>
     <view wx:if="{{ listData.length == 0 }}" class='noDataWrap'>
       <image class='noData' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/noData.png'></image>

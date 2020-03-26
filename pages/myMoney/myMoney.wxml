@@ -13,7 +13,7 @@
   <view class='itemBox' wx:for="{{ listData }}" wx:key="index">
     <view class='first'>{{ item.title }}</view>
     <view class='second'>
-      <view class='itemNum'>{{ item.way == 1 ? '+' : '-' }}{{ item.num }}元</view>
+      <view class='itemNum'>{{ item.way == 1 ? '+' : '-' }}{{ item.num }}金币</view>
       {{ item.create_at }}
     </view>
   </view>

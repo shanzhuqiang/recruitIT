@@ -7,7 +7,7 @@
       <view class='rightVal'>{{ interviewInfo.time }}</view>
     </view>
     <view class='rowBox'>
-      <view class='leftName'>面试地点</view>
+      <view class='leftName'>面试方式</view>
       <view class='rightVal'>{{ interviewInfo.address }}</view>
     </view>
     <view class='rowBox'>

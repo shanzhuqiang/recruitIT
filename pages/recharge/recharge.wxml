@@ -7,18 +7,6 @@
         <view class='firstText'>{{ item.title }}</view>
         <view class='secondText'>{{ item.subtitle }}</view>
       </view>
-      <!-- <view class='itemBox fr'>
-        <view class='firstText'>5000元</view>
-        <view class='secondText'>送10金币</view>
-      </view>
-      <view class='itemBox fl'>
-        <view class='firstText'>5000元</view>
-        <view class='secondText'>送10金币</view>
-      </view>
-      <view class='itemBox fr'>
-        <view class='firstText'>5000元</view>
-        <view class='secondText'>送10金币</view>
-      </view> -->
     </view>
     <view class='inputBox'>
       <input class='input' placeholder='手动输入充值金额' bindinput='inputNum'></input>

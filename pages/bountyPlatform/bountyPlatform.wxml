@@ -172,16 +172,6 @@
       <view class='filterBtnWrap' wx:for="{{ shaixuanData }}" wx:key="index">
         <view class='filterBtn {{ shaixuan1 == item.id ? "active" : ""}}' style='{{item.name === "" ? "visibility:hidden" : ""}}' wx:for="{{ item }}" data-id='{{ item.id }}' bindtap='shaixuanchooseFilter1' wx:key="index">{{ item.name }}</view>
       </view>
-      <!-- <view class='title'>价格区间（元）</view>
-      <view class='filterBtnWrap'>
-        <view class='fl'>
-          <input type='number' placeholder='最低价' value='{{ mini_salary }}' bindinput="miniSalaryChange"></input>
-        </view>
-        <view class='fr'>
-          <input type='number' placeholder='最高价' value='{{ max_salary }}' bindinput="maxSalaryChange"></input>
-        </view>
-      </view>
-      <view class='confirm' bindtap='confirmFilterjiage'>确定</view> -->
     </view>
   </view>
   <!-- 筛选 -->

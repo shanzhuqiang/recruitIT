@@ -12,14 +12,17 @@ Page({
     resumeInfo: null,
     collect: false,
     download: false,
-    re_apply_id: ''
+    re_apply_id: '',
+    type: ""
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
     if (options.reApplyId) {
       this.setData({
+        type: options.type,
         re_apply_id: options.reApplyId
       })
     }
@@ -198,6 +201,45 @@ Page({
           wx.showToast({
             icon: 'none',
             title: res.data.msg,
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络请求失败',
+        })
+      }
+    })
+  },
+  // 放弃
+  giveUp() {
+    wx.request({
+      url: `${app.globalData.baseUrl}/apply/interviewStatus.html`,
+      data: {
+        sess_key: app.globalData.sess_key,
+        re_apply_id: this.data.re_apply_id,
+        type: this.data.type
+      },
+      method: 'POST',
+      success: (res) => {
+        wx.hideLoading()
+        if (res.data.error_code == 0) {
+          wx.showToast({
+            title: '操作成功',
+            mask: true,
+            icon: 'success',
+            success: () => {
+              setTimeout(() => {
+                wx.navigateBack()
+              }, 1500)
+            }
+          })
+        } else {
+          wx.showModal({
+            showCancel: false,
+            title: '提示',
+            content: res.data.msg,
           })
         }
       },

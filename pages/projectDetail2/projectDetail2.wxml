@@ -7,7 +7,7 @@
       <view class='rightTitle'>{{ job_info.salaryStr }}</view>
     </view>
     <view class='second'>
-      <text>{{ job_info.city_name + '·' + job_info.district_name }}</text>
+      <text>{{ job_info.city_name + '·' }}{{ job_info.district_name || "不限" }}</text>
       <text class='line'>|</text>
       <text class='middle'>{{ job_info.job_experience }}</text>
       <text class='line'>|</text>

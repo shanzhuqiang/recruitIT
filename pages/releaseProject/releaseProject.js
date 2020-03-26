@@ -33,19 +33,19 @@ Page({
       }
     ],
     jingyan: '',
-    zhouqiArray: [
-      {
-        id: '3',
-        name: '不限'
-      },
-      {
-        id: '2',
-        name: '长期兼职'
-      },
-      {
-        id: '1',
-        name: '短期兼职'
-      }],
+    // zhouqiArray: [
+    //   {
+    //     id: '3',
+    //     name: '不限'
+    //   },
+    //   {
+    //     id: '2',
+    //     name: '长期兼职'
+    //   },
+    //   {
+    //     id: '1',
+    //     name: '短期兼职'
+    //   }],
     zhouqi: '',
     xinziArray: [
       {
@@ -131,8 +131,12 @@ Page({
       },
       method: 'POST',
       success: (res) => {
+        let buxian = {
+          district_code: 1,
+          district_name: "不限"
+        }
         this.setData({
-          districtList: res.data.bizobj.data.area_list
+          districtList: [buxian, ...res.data.bizobj.data.area_list] 
         })
       },
       fail: (res) => {
@@ -244,12 +248,12 @@ Page({
   },
   // 工作周期
   zhouqiChange(e) {
-    // this.setData({
-    //   zhouqi: e.detail.value
-    // })
     this.setData({
-      zhouqi: this.data.zhouqiArray[e.detail.value]
+      zhouqi: e.detail.value
     })
+    // this.setData({
+    //   zhouqi: this.data.zhouqiArray[e.detail.value]
+    // })
   },
   // 薪资
   xinziChange(e) {
@@ -278,7 +282,7 @@ Page({
     let btnChoose = this.data.btnChoose
     let district_code = this.data.districtCode
     let job_experience = this.data.jingyan.id
-    let nature = this.data.zhouqi.id
+    let nature = this.data.zhouqi
     let xinzi = this.data.xinzi.id
     let rixin = this.data.rixin
     let salary_range = this.data.money.id
@@ -296,7 +300,7 @@ Page({
         title: '提示',
         content: '赏金最少为100',
       })
-    } else if (!nature) {
+    } else if (nature === '') {
       wx.showModal({
         showCancel: false,
         title: '提示',
@@ -371,7 +375,7 @@ Page({
                 nature: nature,
                 reward: reward,
                 city_code: btnChoose,
-                district_code: district_code,
+                district_code: district_code === 1 ? "" : district_code,
                 salary_type: xinzi,
                 day_salary: rixin,
                 salary_range: salary_range,

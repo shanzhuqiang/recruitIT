@@ -81,6 +81,10 @@
   height: 30rpx;
   line-height: 30rpx;
   margin-left: 15rpx;
+  max-width: 400rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
 .myTaskWrap .itemWrap .itemTop .time{
 	font-family: PingFangSC-Regular;
