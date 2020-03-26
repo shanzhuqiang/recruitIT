@@ -29,6 +29,13 @@ page{
   float: right;
   margin-top: 200rpx;
 }
+.indexWrap .des{
+  color: #333;
+  font-size: 24rpx;
+  width: 200rpx;
+  text-align: center;
+  margin-top: 20rpx;
+}
 .indexWrap .chooseTwoWrap{
   text-align: center;
   height: 357rpx;
@@ -38,6 +45,7 @@ page{
   width: 264rpx;
   height: 357rpx;
   float: left;
+  padding-bottom: 30rpx;
 }
 .indexWrap .chooseTwoWrap .homeBtn{
   float: right;

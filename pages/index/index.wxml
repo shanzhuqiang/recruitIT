@@ -10,11 +10,14 @@
     <view class='chooseOneWrap'>
       <image class='chooseOne' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/chooseOne.png'></image>
       <view class='homeBtn' bindtap="goHomePage" data-id="engineer">IT精英</view>
+      <view class="fr des">工作来找你</view>
     </view>
     <view class='chooseTwoWrap'>
       <image class='chooseTwo' wx:if="{{imgSrc !== ''}}" src='{{ imgSrc }}/chooseTwo.png'></image>
       <view class='homeBtn' bindtap="goHomePage" data-id="hr">企业金主</view>
+      <view class="fr des">需求寻交付</view>
       <view class='homeBtn homeBtn2' bindtap="goHomePage" data-id="agent">赏金猎人</view>
+      <view class="fr des">推荐赚赏金</view>
     </view>
   </view>
   <view class='homeWrap' wx:if="{{ basePage == 'two' }}">
