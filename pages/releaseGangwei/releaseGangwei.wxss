@@ -44,6 +44,10 @@
   line-height: 120rpx;
   color: #333
 }
+.releaseGangweiWrap .hallRow .rightInput.rightInputRi{
+  margin-right: 0;
+  width: 120rpx;
+}
 .releaseGangweiWrap .hallRow .arrowR{
   width: 14rpx;
   height: 26rpx;

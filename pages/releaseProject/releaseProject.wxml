@@ -44,7 +44,9 @@
     </view>
     <view class='hallRow' wx:if="{{ xinzi.id == 1 }}">
       <view class='leftName'>日薪</view>
-      <input class='rightInput' type="number" placeholder='请输入日薪' bindinput='rixinChange'></input>
+      <input class='rightInput rightInputRi' type="number" placeholder='最高日薪' bindinput='rixinChange'></input>
+      <text class="fr" style="color: #999">-</text>
+      <input class='rightInput rightInputRi' type="number" placeholder='最低日薪' bindinput='rixinChange2'></input>
     </view>
     <view class='hallRow' wx:if="{{ xinzi.id == 2 }}">
       <view class='leftName'>月薪范围</view>

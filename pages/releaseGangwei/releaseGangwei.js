@@ -109,6 +109,7 @@ Page({
       }
     ],
     rixin: '',
+    rixin2: '',
     money: '',
     tagArray: [],
     addTag: false,
@@ -358,6 +359,12 @@ Page({
       rixin: e.detail.value
     })
   },
+  // 日薪2
+  rixinChange2(e) {
+    this.setData({
+      rixin2: e.detail.value
+    })
+  },
   // 月薪
   moneyChange(e) {
     this.setData({
@@ -374,6 +381,7 @@ Page({
     let education = this.data.xueli.id
     let xinzi = this.data.xinzi.id
     let rixin = this.data.rixin
+    let rixin2 = this.data.rixin2
     let salary_range = this.data.money.id
     let instruction = this.data.instruction
     let requirement = this.data.requirement
@@ -422,11 +430,17 @@ Page({
         title: '提示',
         content: '请选择薪资',
       })
+    } else if (xinzi == 1 && !rixin2) {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请输入最低日薪',
+      })
     } else if (xinzi == 1 && !rixin) {
       wx.showModal({
         showCancel: false,
         title: '提示',
-        content: '请输入日薪',
+        content: '请输入最高日薪',
       })
     } else if (xinzi == 2 && (!salary_range || typeof (salary_range) === 'undefined')) {
       wx.showModal({
@@ -469,7 +483,7 @@ Page({
                 job_experience: job_experience,
                 education: education,
                 salary_type: xinzi,
-                day_salary: rixin,
+                day_salary: rixin2 + "-" + rixin,
                 salary_range: salary_range,
                 instruction: instruction,
                 requirement: requirement,

@@ -45,7 +45,7 @@ page{
   width: 264rpx;
   height: 357rpx;
   float: left;
-  padding-bottom: 30rpx;
+  padding-bottom: 120rpx;
 }
 .indexWrap .chooseTwoWrap .homeBtn{
   float: right;

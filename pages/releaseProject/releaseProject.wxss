@@ -44,6 +44,10 @@
   line-height: 120rpx;
   color: #333
 }
+.releaseProjectWrap .hallRow .rightInput.rightInputRi{
+  margin-right: 0;
+  width: 120rpx;
+}
 .releaseProjectWrap .hallRow .arrowR{
   width: 14rpx;
   height: 26rpx;
